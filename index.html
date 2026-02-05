@@ -402,6 +402,40 @@ body::before {
 .hero {
   padding-top: 180px;
 }
+    /* HERO EXTRA */
+.hero-sub {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #b5b7bd;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+.hero-buttons {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-btn {
+  font-size: 0.8rem;
+  padding: 13px 32px;
+}
+
+.hero-btn.outline {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.hero-btn.outline:hover {
+  background: rgba(255,255,255,0.05);
+}
   </style>
 </head>
 <body>
@@ -426,10 +460,23 @@ body::before {
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="container">
-      <h1>GHOST<span>SOFTWAREX</span></h1>
+  <div class="container">
+
+    <h1>GHOST<span>SOFTWAREX</span></h1>
+
+    <p class="hero-sub">
+      Profesyonel Oyun Yazılımları & Güvenli Lisans Sistemi
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#products" class="btn hero-btn">Ürünleri İncele</a>
+      <a href="https://discord.gg/NK8Swnsjuc" target="_blank" class="btn hero-btn outline">
+        Discord’a Katıl
+      </a>
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- PRODUCTS -->
 <section id="products">
