@@ -3,9 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <title>GhostSoftwareX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1a1a1d 0%, #0b0b0d 60%);
+      color: #f5f7fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ghost glow background */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+      top: -200px;
+      right: -200px;
+      filter: blur(80px);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 3rem;
+      letter-spacing: 4px;
+      font-weight: 700;
+    }
+
+    .logo span {
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .tagline {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #c9cbd1;
+    }
+
+    .card {
+      margin: 60px auto 0;
+      background: rgba(22, 22, 24, 0.9);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 520px;
+      box-shadow:
+        0 0 40px rgba(255,255,255,0.06),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 0 60px rgba(255,255,255,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .card h2 {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #9a9ca3;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: #f5f7fa;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 1px;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #6f7177;
+    }
+  </style>
 </head>
 <body>
-  <h1>GhostSoftwareX</h1>
-  <p>Site yakında aktif.</p>
+
+  <div class="container">
+    <div class="logo">
+      GHOST<span>SOFTWAREX</span>
+    </div>
+
+    <div class="tagline">
+      Silent. Secure. Powerful.
+    </div>
+
+    <div class="card">
+      <h2>Ghost Module</h2>
+      <p>
+        Premium software crafted to operate unseen.
+        Performance-focused, minimal and secure.
+      </p>
+      <a href="#" class="btn">İNCELE</a>
+    </div>
+
+    <footer>
+      © 2026 GhostSoftwareX
+    </footer>
+  </div>
+
 </body>
 </html>
