@@ -436,6 +436,44 @@ body::before {
 .hero-btn.outline:hover {
   background: rgba(255,255,255,0.05);
 }
+    /* PRODUCT BADGE */
+.product-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255,255,255,0.08);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* PRICE BOX */
+.prices {
+  background: rgba(255,255,255,0.03);
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin: 15px 0 18px;
+  line-height: 1.6;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* GLOW EFFECT */
+.product:hover {
+  box-shadow:
+    0 0 80px rgba(255,255,255,0.15),
+    inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+
+/* BUTTON STRONG */
+.product .btn {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
   </style>
 </head>
 <body>
@@ -487,6 +525,8 @@ body::before {
     <div class="products">
       <!-- KING MOD -->
       <div class="product">
+
+  <div class="product-badge">POPÜLER</div>
         <img src="KİNG MOD.jpeg">
         <h3>King Mod</h3>
         <p class="update">🔄 Online Auto-Update System Supports</p>
@@ -520,6 +560,8 @@ body::before {
 
       <!-- REVOTECH -->
       <div class="product">
+
+  <div class="product-badge">POPÜLER</div>
         <img src="REVOTECH.jpeg">
         <h3>Revotech</h3>
         <p class="update">🔄 Online Auto-Update System Supports</p>
