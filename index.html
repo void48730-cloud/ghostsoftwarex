@@ -347,19 +347,92 @@ body::before {
     .product:nth-child(3) {animation-delay: 0.3s;}
     .product:nth-child(4) {animation-delay: 0.4s;}
     .product:nth-child(5) {animation-delay: 0.5s;}
+
+    /* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(10,10,12,0.75);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+.nav-logo span {
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #f5f7fa;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* Navbar boşluğu */
+.hero {
+  padding-top: 180px;
+}
   </style>
 </head>
 <body>
+  <!-- NAVBAR -->
+<div class="navbar">
+  <div class="container">
+
+    <div class="nav-logo">
+      GHOST<span>SOFTWAREX</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#home">Ana Sayfa</a>
+      <a href="#products">Ürünler</a>
+      <a href="#why">Neden Biz</a>
+      <a href="#faq">SSS</a>
+      <a href="https://discord.gg/NK8Swnsjuc" target="_blank">Discord</a>
+    </div>
+
+  </div>
+</div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="container">
       <h1>GHOST<span>SOFTWAREX</span></h1>
     </div>
   </section>
 
   <!-- PRODUCTS -->
-<section>
+<section id="products">
   <div class="container">
     <h2>Ürünler</h2>
     <p class="subtext">Yüksek performanslı oyun yazılımları</p>
@@ -534,9 +607,9 @@ body::before {
 </section>
 
   <!-- WHY US -->
-  <section>
-    <div class="container">
-      <h2>Neden GhostSoftwareX?</h2>
+  <section id="why">
+  <div class="container">
+    <h2>Neden GhostSoftwareX?</h2>
       <div class="features">
         <div class="feature">
           <h3>Güvenilir Altyapı</h3>
@@ -555,9 +628,9 @@ body::before {
   </section>
 
   <!-- FAQ -->
-  <section>
-    <div class="container">
-      <h2>Sık Sorulan Sorular</h2>
+  <section id="faq">
+  <div class="container">
+    <h2>Sık Sorulan Sorular</h2>
       <p class="subtext">Satın alma ve kullanım süreci hakkında bilgiler</p>
       <div class="faq">
         <div class="faq-item">
