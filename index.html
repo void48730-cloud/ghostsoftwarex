@@ -362,6 +362,13 @@ body::before {
     .product:nth-child(4) {animation-delay: 0.4s;}
     .product:nth-child(5) {animation-delay: 0.5s;}
 
+    /* MAGNETIC BUTTON EFFECT */
+.magnetic {
+  display: inline-block;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
     /* NAVBAR */
 .navbar {
   position: fixed;
@@ -669,7 +676,7 @@ body::before {
           Haftalık: 425 TL<br>
           Aylık: 1040 TL
         </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn">SATIN AL</a>
+        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
       </div>
 
       <!-- REVOTECH -->
@@ -704,7 +711,7 @@ body::before {
           Haftalık: 420 TL<br>
           Aylık: 840 TL
         </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn">SATIN AL</a>
+        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
       </div>
 
       <!-- ZOLO CHEATS -->
@@ -737,7 +744,7 @@ body::before {
           Haftalık: 375 TL<br>
           Aylık: 855 TL
         </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn">SATIN AL</a>
+        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
       </div>
 
       <!-- MONSTER ENGINE -->
@@ -770,7 +777,7 @@ body::before {
           Haftalık: 280 TL<br>
           Aylık: 680 TL
         </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn">SATIN AL</a>
+        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
       </div>
 
       <!-- ASPECT MOD -->
@@ -803,7 +810,7 @@ body::before {
           Haftalık: 380 TL<br>
           Aylık: 760 TL
         </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn">SATIN AL</a>
+        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
       </div>
     </div>
   </div>
@@ -907,6 +914,21 @@ body::before {
   </script>
   <!-- Particles JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  // MAGNETIC EFFECT
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0,0)';
+  });
+});
 
 <script>
 particlesJS("particles-js", {
