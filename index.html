@@ -479,6 +479,51 @@ body::before {
   text-align: center;
   font-weight: 500;
 }
+    /* FORUM SALES CARD */
+.forum-card {
+  background: rgba(22,22,24,0.9);
+  border-radius: 18px;
+  padding: 35px;
+  margin-top: 50px;
+  text-align: center;
+  box-shadow:
+    0 0 40px rgba(255,255,255,0.06),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.forum-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.forum-card p {
+  color: #9a9ca3;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.forum-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.05)
+  );
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+  transition: 0.3s ease;
+}
+
+.forum-btn:hover {
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
   </style>
 </head>
 <body>
@@ -743,7 +788,23 @@ body::before {
           <h4>İade veya değişim mümkün mü?</h4>
           <p>Dijital ürünler için iade koşulları ürün bazlı olarak değerlendirilir.</p>
         </div>
-        <a href="https://forumadresi.com/konu-linki" target="_blank" rel="nofollow">X Forum Satış Konumuz</a>
+        <div class="forum-card">
+  <h3>📌 Resmi Forum Satış Konumuz</h3>
+
+  <p>
+    Tüm ürünlerimizin detaylı tanıtımı,  
+    kullanıcı yorumları ve güncel satış bilgileri  
+    forum konumuzda yer almaktadır.
+  </p>
+
+  <a href="https://forumadresi.com/konu-linki"
+     target="_blank"
+     rel="nofollow"
+     class="forum-btn">
+
+     FORUMA GİT
+  </a>
+</div>
       </div>
     </div>
   </section>
