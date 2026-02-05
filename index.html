@@ -5,7 +5,6 @@
   <title>GhostSoftwareX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -17,92 +16,98 @@
     }
 
     body {
-      min-height: 100vh;
       background: radial-gradient(circle at top, #1a1a1d 0%, #0b0b0d 60%);
       color: #f5f7fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      line-height: 1.6;
     }
 
-    /* ghost glow background */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
-      top: -200px;
-      right: -200px;
-      filter: blur(80px);
+    section {
+      padding: 80px 20px;
     }
 
     .container {
-      width: 90%;
-      max-width: 900px;
-      text-align: center;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .logo {
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+
+    .subtext {
+      color: #c9cbd1;
+      max-width: 700px;
+      margin-top: 10px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding-top: 120px;
+    }
+
+    .hero h1 {
       font-size: 3rem;
       letter-spacing: 4px;
-      font-weight: 700;
     }
 
-    .logo span {
+    .hero span {
       font-weight: 300;
       opacity: 0.7;
     }
 
-    .tagline {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      color: #c9cbd1;
+    /* PRODUCT */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
     }
 
-    .card {
-      margin: 60px auto 0;
-      background: rgba(22, 22, 24, 0.9);
-      border-radius: 16px;
-      padding: 40px;
-      max-width: 520px;
+    .product {
+      background: rgba(22,22,24,0.95);
+      border-radius: 18px;
+      padding: 30px;
       box-shadow:
         0 0 40px rgba(255,255,255,0.06),
         inset 0 0 0 1px rgba(255,255,255,0.05);
-      transition: all 0.4s ease;
+      transition: 0.4s ease;
     }
 
-    .card:hover {
+    .product:hover {
       transform: translateY(-6px);
       box-shadow:
         0 0 60px rgba(255,255,255,0.12),
         inset 0 0 0 1px rgba(255,255,255,0.08);
     }
 
-    .card h2 {
-      font-weight: 600;
+    .product h3 {
       margin-bottom: 10px;
     }
 
-    .card p {
-      font-size: 0.95rem;
+    .product p {
       color: #9a9ca3;
-      margin-bottom: 30px;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      color: #c9cbd1;
     }
 
     .btn {
       display: inline-block;
-      padding: 14px 34px;
+      padding: 12px 28px;
       border-radius: 999px;
       background: rgba(255,255,255,0.06);
       color: #f5f7fa;
       text-decoration: none;
-      font-weight: 500;
+      font-size: 0.85rem;
       letter-spacing: 1px;
-      backdrop-filter: blur(4px);
-      transition: all 0.3s ease;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+      transition: 0.3s;
     }
 
     .btn:hover {
@@ -110,37 +115,154 @@
       box-shadow: 0 0 30px rgba(255,255,255,0.15);
     }
 
+    /* WHY US */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature {
+      background: rgba(22,22,24,0.8);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .feature p {
+      color: #9a9ca3;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 60px auto 0;
+    }
+
+    .faq-item {
+      margin-bottom: 25px;
+    }
+
+    .faq-item h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #9a9ca3;
+    }
+
+    /* FOOTER */
     footer {
-      margin-top: 40px;
-      font-size: 0.75rem;
+      background: #0a0a0c;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
       color: #6f7177;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="logo">
-      GHOST<span>SOFTWAREX</span>
-    </div>
-
-    <div class="tagline">
-      Silent. Secure. Powerful.
-    </div>
-
-    <div class="card">
-      <h2>Ghost Module</h2>
-      <p>
-        Premium software crafted to operate unseen.
-        Performance-focused, minimal and secure.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>GHOST<span>SOFTWAREX</span></h1>
+      <p class="subtext">
+        Silent. Secure. Powerful software solutions.
       </p>
-      <a href="#" class="btn">İNCELE</a>
     </div>
+  </section>
 
-    <footer>
-      © 2026 GhostSoftwareX
-    </footer>
-  </div>
+  <!-- PRODUCTS -->
+  <section>
+    <div class="container">
+      <h2>Ürünler</h2>
+
+      <div class="products">
+
+        <!-- ÖRNEK ÜRÜN -->
+        <div class="product">
+          <h3>Ghost Game Module</h3>
+          <p>
+            (Buraya ürün açıklamasını sen yazacaksın)
+          </p>
+          <div class="price">
+            Günlük / Haftalık / Aylık Lisans
+          </div>
+          <a href="#" class="btn">İNCELE</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section>
+    <div class="container">
+      <h2>Neden GhostSoftwareX?</h2>
+
+      <div class="features">
+        <div class="feature">
+          <h3>Güvenli Altyapı</h3>
+          <p>
+            Yazılımlarımız performans ve stabilite öncelikli olarak geliştirilir.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Düzenli Güncellemeler</h3>
+          <p>
+            Ürünlerimiz sürekli olarak güncellenir ve iyileştirilir.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Destek</h3>
+          <p>
+            Satın alma sonrası destek ve bilgilendirme sağlanır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <h2>Sık Sorulan Sorular</h2>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h4>Lisans süresi nasıl çalışır?</h4>
+          <p>
+            Satın alınan lisans süresi boyunca ürün aktif olarak kullanılabilir.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Güncelleme alıyor mu?</h4>
+          <p>
+            Lisans süresi boyunca güncellemeler ücretsizdir.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4>İade var mı?</h4>
+          <p>
+            Dijital ürünler olduğu için iade koşulları ürün bazlıdır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 GhostSoftwareX — All rights reserved.
+  </footer>
 
 </body>
 </html>
