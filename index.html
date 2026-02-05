@@ -22,7 +22,7 @@
     }
 
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
     }
 
     .container {
@@ -30,20 +30,20 @@
       margin: auto;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       font-weight: 600;
     }
 
     .subtext {
       color: #c9cbd1;
-      max-width: 700px;
       margin-top: 10px;
+      max-width: 700px;
     }
 
     /* HERO */
     .hero {
       text-align: center;
-      padding-top: 120px;
+      padding-top: 130px;
     }
 
     .hero h1 {
@@ -56,10 +56,10 @@
       opacity: 0.7;
     }
 
-    /* PRODUCT */
+    /* PRODUCTS */
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 30px;
       margin-top: 60px;
     }
@@ -67,7 +67,7 @@
     .product {
       background: rgba(22,22,24,0.95);
       border-radius: 18px;
-      padding: 30px;
+      padding: 28px;
       box-shadow:
         0 0 40px rgba(255,255,255,0.06),
         inset 0 0 0 1px rgba(255,255,255,0.05);
@@ -81,25 +81,34 @@
         inset 0 0 0 1px rgba(255,255,255,0.08);
     }
 
+    .product img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
     .product h3 {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .product p {
       color: #9a9ca3;
       font-size: 0.95rem;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .price {
-      font-size: 0.9rem;
-      margin-bottom: 20px;
+      font-size: 0.85rem;
       color: #c9cbd1;
+      margin-bottom: 20px;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 28px;
+      padding: 12px 30px;
       border-radius: 999px;
       background: rgba(255,255,255,0.06);
       color: #f5f7fa;
@@ -120,35 +129,35 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 30px;
-      margin-top: 50px;
+      margin-top: 60px;
     }
 
     .feature {
-      background: rgba(22,22,24,0.8);
-      padding: 30px;
+      background: rgba(22,22,24,0.85);
+      padding: 32px;
       border-radius: 16px;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
     }
 
     .feature p {
-      color: #9a9ca3;
-      font-size: 0.9rem;
       margin-top: 10px;
+      font-size: 0.9rem;
+      color: #9a9ca3;
     }
 
     /* FAQ */
     .faq {
-      max-width: 800px;
+      max-width: 820px;
       margin: 60px auto 0;
     }
 
     .faq-item {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
     .faq-item h4 {
       font-size: 1rem;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .faq-item p {
@@ -160,7 +169,7 @@
     footer {
       background: #0a0a0c;
       text-align: center;
-      padding: 40px 20px;
+      padding: 45px 20px;
       font-size: 0.8rem;
       color: #6f7177;
     }
@@ -172,9 +181,7 @@
   <section class="hero">
     <div class="container">
       <h1>GHOST<span>SOFTWAREX</span></h1>
-      <p class="subtext">
-        Silent. Secure. Powerful software solutions.
-      </p>
+      <p class="subtext">Silent. Secure. Powerful software solutions.</p>
     </div>
   </section>
 
@@ -182,18 +189,39 @@
   <section>
     <div class="container">
       <h2>Ürünler</h2>
+      <p class="subtext">Yüksek performanslı oyun yazılımları</p>
 
       <div class="products">
 
-        <!-- ÖRNEK ÜRÜN -->
         <div class="product">
-          <h3>Ghost Game Module</h3>
-          <p>
-            (Buraya ürün açıklamasını sen yazacaksın)
-          </p>
-          <div class="price">
-            Günlük / Haftalık / Aylık Lisans
-          </div>
+          <img src="images/kingmod.jpg" alt="King Mod">
+          <h3>King Mod</h3>
+          <p>(Açıklamayı buraya yazacaksın)</p>
+          <div class="price">Günlük / Haftalık / Aylık</div>
+          <a href="#" class="btn">İNCELE</a>
+        </div>
+
+        <div class="product">
+          <img src="images/revotech.jpg" alt="Revotech">
+          <h3>Revotech</h3>
+          <p>(Açıklamayı buraya yazacaksın)</p>
+          <div class="price">Günlük / Haftalık / Aylık</div>
+          <a href="#" class="btn">İNCELE</a>
+        </div>
+
+        <div class="product">
+          <img src="images/zolocheats.jpg" alt="Zolocheats">
+          <h3>Zolocheats</h3>
+          <p>(Açıklamayı buraya yazacaksın)</p>
+          <div class="price">Günlük / Haftalık / Aylık</div>
+          <a href="#" class="btn">İNCELE</a>
+        </div>
+
+        <div class="product">
+          <img src="images/monsterengine.jpg" alt="Monster Engine">
+          <h3>Monster Engine</h3>
+          <p>(Açıklamayı buraya yazacaksın)</p>
+          <div class="price">Günlük / Haftalık / Aylık</div>
           <a href="#" class="btn">İNCELE</a>
         </div>
 
@@ -208,22 +236,16 @@
 
       <div class="features">
         <div class="feature">
-          <h3>Güvenli Altyapı</h3>
-          <p>
-            Yazılımlarımız performans ve stabilite öncelikli olarak geliştirilir.
-          </p>
+          <h3>Güvenilir Altyapı</h3>
+          <p>Stabilite ve performans öncelikli yazılım mimarisi.</p>
         </div>
         <div class="feature">
           <h3>Düzenli Güncellemeler</h3>
-          <p>
-            Ürünlerimiz sürekli olarak güncellenir ve iyileştirilir.
-          </p>
+          <p>Lisans süresi boyunca ücretsiz güncellemeler.</p>
         </div>
         <div class="feature">
           <h3>Destek</h3>
-          <p>
-            Satın alma sonrası destek ve bilgilendirme sağlanır.
-          </p>
+          <p>Satın alma sonrası teknik destek ve bilgilendirme.</p>
         </div>
       </div>
     </div>
@@ -233,27 +255,27 @@
   <section>
     <div class="container">
       <h2>Sık Sorulan Sorular</h2>
+      <p class="subtext">Satın alma ve kullanım süreci hakkında bilgiler</p>
 
       <div class="faq">
         <div class="faq-item">
-          <h4>Lisans süresi nasıl çalışır?</h4>
-          <p>
-            Satın alınan lisans süresi boyunca ürün aktif olarak kullanılabilir.
-          </p>
+          <h4>Lisans süreleri nasıl çalışır?</h4>
+          <p>Seçilen süre boyunca lisans aktif olur ve süre sonunda otomatik olarak sona erer.</p>
         </div>
 
         <div class="faq-item">
-          <h4>Güncelleme alıyor mu?</h4>
-          <p>
-            Lisans süresi boyunca güncellemeler ücretsizdir.
-          </p>
+          <h4>Ürünler güncelleme alıyor mu?</h4>
+          <p>Lisans süresi boyunca tüm güncellemeler ücretsiz olarak sunulur.</p>
         </div>
 
         <div class="faq-item">
-          <h4>İade var mı?</h4>
-          <p>
-            Dijital ürünler olduğu için iade koşulları ürün bazlıdır.
-          </p>
+          <h4>Satın alma sonrası destek sağlanıyor mu?</h4>
+          <p>Evet, kurulum ve kullanım konularında destek verilir.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>İade veya değişim mümkün mü?</h4>
+          <p>Dijital ürünler için iade koşulları ürün bazlı olarak değerlendirilir.</p>
         </div>
       </div>
     </div>
