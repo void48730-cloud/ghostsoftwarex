@@ -64,14 +64,17 @@
       margin-top: 10px;
       max-width: 700px;
     }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding-top: 130px;
-      overflow: hidden;
-    }
-
+    
+/* HERO */
+   .hero {
+  text-align: center;
+  padding-top: 120px; /* navbar yüksekliği + dengeli boşluk */
+  overflow: hidden;
+  min-height: 100vh;  /* ekranı tam doldursun */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     .hero h1 {
       font-size: 3rem;
       letter-spacing: 4px;
@@ -420,11 +423,6 @@ body::before {
 
 .nav-links a:hover {
   opacity: 1;
-}
-
-/* Navbar boşluğu */
-.hero {
-  padding-top: 180px;
 }
     /* HERO EXTRA */
 .hero-sub {
