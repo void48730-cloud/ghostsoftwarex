@@ -28,76 +28,6 @@ background:black;
 color:white;
 overflow-x:hidden;
 }
-
-/* BACKGROUND */
-<canvas id="bg"></canvas>
-
-<script>
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-
-let w,h;
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize",resize);
-
-canvas.style.position="fixed";
-canvas.style.top=0;
-canvas.style.left=0;
-canvas.style.zIndex="-2";
-
-const particles = [];
-const count = 120;
-
-for(let i=0;i<count;i++){
-  particles.push({
-    x:Math.random()*w,
-    y:Math.random()*h,
-    r:Math.random()*2+1,
-    dx:(Math.random()-0.5)*0.6,
-    dy:(Math.random()-0.5)*0.6
-  });
-}
-
-let mouse={x:0,y:0};
-
-window.addEventListener("mousemove",e=>{
-  mouse.x=e.clientX;
-  mouse.y=e.clientY;
-});
-
-function animate(){
-  ctx.clearRect(0,0,w,h);
-
-  particles.forEach(p=>{
-
-    const dist = Math.hypot(mouse.x-p.x,mouse.y-p.y);
-
-    if(dist<120){
-      p.x -= (mouse.x-p.x)/30;
-      p.y -= (mouse.y-p.y)/30;
-    }
-
-    p.x+=p.dx;
-    p.y+=p.dy;
-
-    if(p.x<0||p.x>w) p.dx*=-1;
-    if(p.y<0||p.y>h) p.dy*=-1;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle="rgba(255,255,255,0.6)";
-    ctx.fill();
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script>
 /* HEADER */
 
 header{
@@ -295,12 +225,77 @@ font-size:36px;
 </head>
 
 <body>
+  
+<!-- ARKA PLAN -->
+<canvas id="bg"></canvas>
 
-<header>
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
 
-<h1>Ghost<span>SoftwareX</span></h1>
-<p>Premium Oyun Yazılımları & Profesyonel Destek</p>
+let w,h;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
 
+canvas.style.position="fixed";
+canvas.style.top=0;
+canvas.style.left=0;
+canvas.style.zIndex="-2";
+
+const particles = [];
+const count = 120;
+
+for(let i=0;i<count;i++){
+  particles.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+1,
+    dx:(Math.random()-0.5)*0.6,
+    dy:(Math.random()-0.5)*0.6
+  });
+}
+
+let mouse={x:0,y:0};
+
+window.addEventListener("mousemove",e=>{
+  mouse.x=e.clientX;
+  mouse.y=e.clientY;
+});
+
+function animate(){
+  ctx.clearRect(0,0,w,h);
+
+  particles.forEach(p=>{
+
+    const dist = Math.hypot(mouse.x-p.x,mouse.y-p.y);
+
+    if(dist<120){
+      p.x -= (mouse.x-p.x)/30;
+      p.y -= (mouse.y-p.y)/30;
+    }
+
+    p.x+=p.dx;
+    p.y+=p.dy;
+
+    if(p.x<0||p.x>w) p.dx*=-1;
+    if(p.y<0||p.y>h) p.dy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,255,255,0.6)";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+  
 </header>
 
 <section class="main">
