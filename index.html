@@ -190,7 +190,6 @@ cursor.style.top=e.clientY+"px";
 });
 
 /* PRODUCTS */
-/* PRODUCTS */
 const productsData=[
 {
   name:"ASPECT MOD",
@@ -214,12 +213,13 @@ const productsData=[
   name:"KING MOD",
   Günlük:900, dailyLink:"https://example.com/zolo/daily",
   Haftalık:1700, weeklyLink:"https://example.com/zolo/weekly",
+  Aylık:840, monthlyLink:"https://example.com/zolo/monthly"
 },
 {
   name:"MONSTER ENGINE",
-  Günlük:125, dailyLink:"https://example.com/zolo/daily",
-  Haftalık:375, weeklyLink:"https://example.com/zolo/weekly",
-  Aylık:855, monthlyLink:"https://example.com/zolo/monthly"
+<div class="pack" data-link="${product.dailyLink}">Günlük ${product.daily}</div>
+<div class="pack" data-link="${product.weeklyLink}">Haftalık ${product.weekly}</div>
+<div class="pack" data-link="${product.monthlyLink}">Aylık ${product.monthly}</div>
 }
 ];
 
