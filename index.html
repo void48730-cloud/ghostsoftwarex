@@ -26,7 +26,7 @@ overflow-x:hidden;
 cursor:none;
 }
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 .cursor{
 width:18px;
 height:18px;
@@ -37,10 +37,10 @@ pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:9999;
 box-shadow:0 0 15px #00ff99;
-transition:0.05s;
+transition:.05s;
 }
 
-/* ANIMATED BACKGROUND */
+/* BACKGROUND */
 .bg{
 position:fixed;
 top:0;
@@ -70,14 +70,13 @@ padding:80px 20px;
 header h1{
 font-size:48px;
 letter-spacing:4px;
-font-weight:600;
 }
 
 header span{color:#aaa;}
 
 header p{
 margin-top:15px;
-opacity:0.7;
+opacity:.7;
 }
 
 /* MAIN */
@@ -95,15 +94,15 @@ gap:50px;
 border:1px solid #222;
 padding:35px;
 border-radius:15px;
-background:rgba(10,10,10,0.9);
+background:rgba(10,10,10,.9);
 backdrop-filter:blur(12px);
-box-shadow:0 0 30px rgba(0,255,150,0.05);
+box-shadow:0 0 30px rgba(0,255,150,.05);
 transition:.3s;
 }
 
 .product:hover{
 transform:translateY(-5px);
-box-shadow:0 0 40px rgba(0,255,150,0.15);
+box-shadow:0 0 40px rgba(0,255,150,.15);
 }
 
 .product img{
@@ -115,26 +114,20 @@ border:1px solid #222;
 margin-bottom:25px;
 }
 
-.product h2{
-font-size:26px;
-margin-bottom:12px;
-}
+.product h2{margin-bottom:12px;}
 
 .product p{
-opacity:0.7;
-line-height:1.6;
+opacity:.7;
 margin-bottom:25px;
 }
 
 /* FEATURES */
-.features{
-margin-bottom:25px;
-}
+.features{margin-bottom:25px;}
 
 .features li{
 list-style:none;
 margin-bottom:8px;
-opacity:0.8;
+opacity:.8;
 }
 
 .features li::before{
@@ -166,6 +159,11 @@ color:#00ff99;
 transform:scale(1.05);
 }
 
+.pack.active{
+background:#00ff99;
+color:black;
+}
+
 /* BUY */
 .buy{text-align:center;}
 
@@ -180,6 +178,11 @@ transition:.3s;
 font-weight:500;
 }
 
+.buy a.disabled{
+opacity:.4;
+pointer-events:none;
+}
+
 .buy a:hover{
 background:#00ff99;
 color:black;
@@ -191,16 +194,6 @@ margin-top:80px;
 text-align:center;
 padding:60px 20px;
 border-top:1px solid #222;
-}
-
-.discord h3{
-font-size:26px;
-margin-bottom:15px;
-}
-
-.discord p{
-opacity:0.7;
-margin-bottom:20px;
 }
 
 .discord a{
@@ -221,8 +214,7 @@ color:black;
 footer{
 text-align:center;
 padding:25px;
-font-size:14px;
-opacity:0.5;
+opacity:.5;
 border-top:1px solid #111;
 }
 
@@ -230,8 +222,6 @@ border-top:1px solid #111;
 @media(max-width:900px){
 
 .main{grid-template-columns:1fr;}
-
-header h1{font-size:36px;}
 
 body{cursor:auto;}
 .cursor{display:none;}
@@ -243,10 +233,7 @@ body{cursor:auto;}
 
 <body>
 
-<!-- BACKGROUND -->
 <div class="bg"></div>
-
-<!-- CUSTOM CURSOR -->
 <div class="cursor"></div>
 
 <header>
@@ -257,11 +244,11 @@ body{cursor:auto;}
 
 <section class="main">
 
-<!-- ÜRÜNLER (AYNEN KORUNDU) -->
-
 <!-- ÜRÜN 1 -->
 <div class="product">
+
 <img src="https://via.placeholder.com/800x400">
+
 <h2>Ghost Premium Aimbot</h2>
 <p>Yüksek isabet oranı ve stabil performans.</p>
 
@@ -273,17 +260,144 @@ body{cursor:auto;}
 </ul>
 
 <div class="packages">
-<div class="pack">Günlük</div>
-<div class="pack">Haftalık</div>
-<div class="pack">Aylık</div>
+
+<div class="pack"
+data-link="https://www.shopier.com/gunluk1">Günlük</div>
+
+<div class="pack"
+data-link="https://www.shopier.com/haftalik1">Haftalık</div>
+
+<div class="pack"
+data-link="https://www.shopier.com/aylik1">Aylık</div>
+
 </div>
 
 <div class="buy">
-<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
-</div>
+<a class="buyBtn disabled" href="#">Paket Seç</a>
 </div>
 
-<!-- Diğer ürünler aynı kalır (senin kodundan) -->
+</div>
+
+
+<!-- ÜRÜN 2 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost ESP Wallhack</h2>
+<p>Rakipleri harita üzerinde gör.</p>
+
+<ul class="features">
+<li>Duvar Arkası Görüş</li>
+<li>FPS Dostu</li>
+<li>Anti-Ban</li>
+<li>Güncelleme</li>
+</ul>
+
+<div class="packages">
+
+<div class="pack" data-link="https://www.shopier.com/gunluk2">Günlük</div>
+<div class="pack" data-link="https://www.shopier.com/haftalik2">Haftalık</div>
+<div class="pack" data-link="https://www.shopier.com/aylik2">Aylık</div>
+
+</div>
+
+<div class="buy">
+<a class="buyBtn disabled" href="#">Paket Seç</a>
+</div>
+
+</div>
+
+
+<!-- ÜRÜN 3 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost TriggerBot</h2>
+<p>Otomatik ateş sistemi.</p>
+
+<ul class="features">
+<li>Hızlı Tepki</li>
+<li>Düşük Ban</li>
+<li>Kolay Kurulum</li>
+<li>Destek</li>
+</ul>
+
+<div class="packages">
+
+<div class="pack" data-link="https://www.shopier.com/gunluk3">Günlük</div>
+<div class="pack" data-link="https://www.shopier.com/haftalik3">Haftalık</div>
+<div class="pack" data-link="https://www.shopier.com/aylik3">Aylık</div>
+
+</div>
+
+<div class="buy">
+<a class="buyBtn disabled" href="#">Paket Seç</a>
+</div>
+
+</div>
+
+
+<!-- ÜRÜN 4 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost Macro Tool</h2>
+<p>Gelişmiş makro sistemi.</p>
+
+<ul class="features">
+<li>Özel Ayarlar</li>
+<li>FPS Uyumlu</li>
+<li>Stabil</li>
+<li>Hızlı Teslim</li>
+</ul>
+
+<div class="packages">
+
+<div class="pack" data-link="https://www.shopier.com/gunluk4">Günlük</div>
+<div class="pack" data-link="https://www.shopier.com/haftalik4">Haftalık</div>
+<div class="pack" data-link="https://www.shopier.com/aylik4">Aylık</div>
+
+</div>
+
+<div class="buy">
+<a class="buyBtn disabled" href="#">Paket Seç</a>
+</div>
+
+</div>
+
+
+<!-- ÜRÜN 5 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost VIP Paket</h2>
+<p>Tüm yazılımlar tek pakette.</p>
+
+<ul class="features">
+<li>Tüm Sistemler</li>
+<li>Öncelikli Destek</li>
+<li>Güncelleme</li>
+<li>VIP Rol</li>
+</ul>
+
+<div class="packages">
+
+<div class="pack" data-link="https://www.shopier.com/gunluk5">Günlük</div>
+<div class="pack" data-link="https://www.shopier.com/haftalik5">Haftalık</div>
+<div class="pack" data-link="https://www.shopier.com/aylik5">Aylık</div>
+
+</div>
+
+<div class="buy">
+<a class="buyBtn disabled" href="#">Paket Seç</a>
+</div>
+
+</div>
+
 
 </section>
 
@@ -305,12 +419,38 @@ body{cursor:auto;}
 
 <script>
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 const cursor = document.querySelector(".cursor");
 
 document.addEventListener("mousemove",e=>{
 cursor.style.left = e.clientX+"px";
 cursor.style.top = e.clientY+"px";
+});
+
+
+/* PACKAGE SYSTEM */
+
+document.querySelectorAll(".product").forEach(product=>{
+
+const packs = product.querySelectorAll(".pack");
+const buyBtn = product.querySelector(".buyBtn");
+
+packs.forEach(pack=>{
+
+pack.addEventListener("click",()=>{
+
+packs.forEach(p=>p.classList.remove("active"));
+
+pack.classList.add("active");
+
+buyBtn.href = pack.dataset.link;
+buyBtn.classList.remove("disabled");
+buyBtn.textContent="Satın Al";
+
+});
+
+});
+
 });
 
 </script>
