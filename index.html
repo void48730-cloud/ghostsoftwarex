@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GhostSoftwareX | Key Shop</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<title>GhostSoftwareX | Premium Yazılım</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* RESET */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: 'Orbitron', sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -22,117 +24,188 @@ color:white;
 overflow-x:hidden;
 }
 
-/* Animated Background */
+/* BACKGROUND ANIMATION */
+
 .bg{
 position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:linear-gradient(45deg,#000,#111,#000);
-animation:bg 10s infinite linear;
+background:
+radial-gradient(circle at 20% 30%, #222, transparent),
+radial-gradient(circle at 80% 70%, #111, transparent),
+linear-gradient(120deg,#000,#050505,#000);
+animation:movebg 12s infinite alternate;
 z-index:-1;
 }
 
-@keyframes bg{
+@keyframes movebg{
 0%{filter:hue-rotate(0deg);}
-100%{filter:hue-rotate(360deg);}
+100%{filter:hue-rotate(90deg);}
 }
+
+/* HEADER */
 
 header{
 text-align:center;
-padding:50px;
-border-bottom:1px solid white;
+padding:80px 20px;
 }
 
 header h1{
-font-size:40px;
-letter-spacing:3px;
+font-size:48px;
+letter-spacing:4px;
+font-weight:600;
+}
+
+header span{
+color:#aaa;
 }
 
 header p{
+margin-top:15px;
 opacity:0.7;
-margin-top:10px;
+font-size:16px;
 }
 
-/* Products */
+/* MAIN */
 
-.container{
-max-width:1200px;
+.main{
+max-width:1100px;
 margin:auto;
-padding:40px;
+padding:40px 20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
 }
 
-.card{
-border:1px solid white;
-padding:20px;
+/* PRODUCT */
+
+.product{
+border:1px solid #222;
+padding:40px;
+border-radius:15px;
+background:rgba(10,10,10,0.8);
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,255,255,0.05);
+}
+
+.product img{
+width:100%;
+border-radius:12px;
+border:1px solid #222;
+margin-bottom:25px;
+}
+
+.product h2{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.product p{
+opacity:0.7;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+/* FEATURES */
+
+.features{
+margin-bottom:30px;
+}
+
+.features li{
+list-style:none;
+margin-bottom:10px;
+opacity:0.8;
+}
+
+.features li::before{
+content:"✔ ";
+color:#0f0;
+}
+
+/* PACKAGES */
+
+.packages{
+display:flex;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.pack{
+flex:1;
+border:1px solid #222;
+padding:15px;
+border-radius:10px;
 text-align:center;
 transition:0.3s;
-background:#050505;
+cursor:pointer;
 }
 
-.card:hover{
+.pack:hover{
+border-color:white;
 transform:scale(1.05);
-box-shadow:0 0 15px white;
 }
 
-.card img{
-width:100%;
-height:150px;
-object-fit:cover;
-margin-bottom:15px;
-border:1px solid white;
+.pack h4{
+margin-bottom:5px;
 }
 
-.card h3{
-margin-bottom:10px;
+.pack span{
+color:#aaa;
+font-size:14px;
 }
 
-.card p{
-opacity:0.7;
-margin-bottom:10px;
+/* BUY */
+
+.buy{
+text-align:center;
 }
 
-.card span{
-display:block;
-margin-bottom:15px;
-font-size:18px;
-}
-
-.btn{
+.buy a{
 display:inline-block;
-padding:10px 20px;
+padding:12px 35px;
 border:1px solid white;
 color:white;
 text-decoration:none;
+border-radius:30px;
 transition:0.3s;
+font-weight:500;
 }
 
-.btn:hover{
+.buy a:hover{
 background:white;
 color:black;
 }
 
-/* Discord */
+/* DISCORD */
 
 .discord{
+margin-top:80px;
 text-align:center;
-padding:50px;
-border-top:1px solid white;
-margin-top:50px;
+padding:60px 20px;
+border-top:1px solid #222;
 }
 
-.discord h2{
+.discord h3{
+font-size:26px;
 margin-bottom:15px;
 }
 
+.discord p{
+opacity:0.7;
+margin-bottom:20px;
+}
+
 .discord a{
-display:inline-block;
-padding:12px 30px;
+padding:10px 30px;
 border:1px solid white;
 color:white;
 text-decoration:none;
+border-radius:25px;
 transition:0.3s;
 }
 
@@ -141,11 +214,28 @@ background:white;
 color:black;
 }
 
+/* FOOTER */
+
 footer{
 text-align:center;
-padding:20px;
-opacity:0.6;
+padding:25px;
 font-size:14px;
+opacity:0.5;
+border-top:1px solid #111;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.main{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:36px;
+}
+
 }
 
 </style>
@@ -156,101 +246,110 @@ font-size:14px;
 <div class="bg"></div>
 
 <header>
-<h1>GhostSoftwareX</h1>
-<p>Premium Key Satış Platformu</p>
+
+<h1>Ghost<span>SoftwareX</span></h1>
+
+<p>Premium Oyun Yazılımları & Profesyonel Destek</p>
+
 </header>
 
-<section class="container">
+<section class="main">
 
-<!-- ÜRÜN 1 -->
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Günlük Key</h3>
-<p>24 Saatlik Premium Erişim</p>
-<span>₺49</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+<!-- LEFT -->
+
+<div class="product">
+
+<img src="https://via.placeholder.com/600x350">
+
+<h2>GhostSoftwareX Premium Yazılım</h2>
+
+<p>
+Güvenli altyapı, düzenli güncelleme ve stabil performans ile
+oyun deneyimini üst seviyeye taşı.
+</p>
+
+<ul class="features">
+
+<li>Anti-Ban Koruması</li>
+<li>Güncel Sistem</li>
+<li>Hızlı Aktivasyon</li>
+<li>7/24 Destek</li>
+<li>Otomatik Güncelleme</li>
+
+</ul>
+
+<div class="packages">
+
+<div class="pack">
+<h4>Günlük</h4>
+<span>24 Saat</span>
 </div>
 
-<!-- ÜRÜN 2 -->
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Haftalık Key</h3>
-<p>7 Günlük Premium</p>
-<span>₺149</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+<div class="pack">
+<h4>Haftalık</h4>
+<span>7 Gün</span>
 </div>
 
-<!-- ÜRÜN 3 -->
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Aylık Key</h3>
-<p>30 Günlük Premium</p>
-<span>₺299</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+<div class="pack">
+<h4>Aylık</h4>
+<span>30 Gün</span>
 </div>
 
-<!-- DİĞER ÜRÜNLER -->
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>VIP Paket</h3>
-<p>Özel Özellikler</p>
-<span>₺499</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
 </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Lifetime</h3>
-<p>Ömür Boyu Lisans</p>
-<span>₺999</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+<div class="buy">
+
+<a href="https://www.shopier.com/ghostsoftware">
+Satın Al
+</a>
+
 </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Extra Key</h3>
-<p>Ek Lisans</p>
-<span>₺99</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
 </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Bundle</h3>
-<p>Paket Satış</p>
-<span>₺399</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
-</div>
+<!-- RIGHT -->
 
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Pro Pack</h3>
-<p>Gelişmiş Paket</p>
-<span>₺699</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
-</div>
+<div class="product">
 
-<div class="card">
-<img src="https://via.placeholder.com/300x150">
-<h3>Custom Key</h3>
-<p>Özel Lisans</p>
-<span>₺199</span>
-<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+<h2>Neden GhostSoftwareX?</h2>
+
+<p>
+Piyasadaki sıradan sistemlerden farklı olarak
+tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
+</p>
+
+<ul class="features">
+
+<li>Düşük Ban Riski</li>
+<li>Hızlı Teslimat</li>
+<li>Aktif Discord Desteği</li>
+<li>Memnuniyet Garantisi</li>
+<li>Sürekli Güncelleme</li>
+
+</ul>
+
+<img src="https://via.placeholder.com/600x350">
+
 </div>
 
 </section>
 
 <section class="discord">
 
-<h2>Discord Sunucumuza Katıl</h2>
-<p>Destek, Güncelleme ve İndirimler</p>
-<br>
-<a href="DISCORD_LINK">Katıl</a>
+<h3>Destek & Güncellemeler</h3>
+
+<p>Discord sunucumuza katıl, destek al</p>
+
+<a href="https://discord.gg/bDxJvXVVx9">
+Discord'a Katıl
+</a>
 
 </section>
 
 <footer>
+
 © 2026 GhostSoftwareX | All Rights Reserved
+
 </footer>
 
 </body>
