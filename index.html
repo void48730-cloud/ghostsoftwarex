@@ -146,141 +146,7 @@ body{cursor:auto}
 
 <section id="urunler" class="main">
 <!-- ürünler -->
-  <!-- PRODUCT TEMPLATE -->
 
-<div class="product">
-<img src="https://via.placeholder.com/800x400">
-<h2>ASPECT MOD</h2>
-<p>Yüksek performanslı gelişmiş sistem.</p>
-
-<ul class="features">
-<li>Anti-Ban</li>
-<li>Stabil</li>
-<li>Hızlı Aktivasyon</li>
-<li>7/24 Destek</li>
-</ul>
-
-<div class="packages">
-<div class="pack" data-link="#">Günlük</div>
-<div class="pack" data-link="#">Haftalık</div>
-<div class="pack" data-link="#">Aylık</div>
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-</div>
-
-
-<div class="product">
-<img src="https://via.placeholder.com/800x400">
-<h2>ZOLO MOD</h2>
-<p>FPS dostu optimize edilmiş yazılım.</p>
-
-<ul class="features">
-<li>Düşük Ban</li>
-<li>Güncelleme</li>
-<li>Destek</li>
-<li>Stabil</li>
-</ul>
-
-<div class="packages">
-<div class="pack" data-link="#">Günlük</div>
-<div class="pack" data-link="#">Haftalık</div>
-<div class="pack" data-link="#">Aylık</div>
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-</div>
-
-
-<div class="product">
-<img src="https://via.placeholder.com/800x400">
-<h2>REVOTECH</h2>
-<p>Profesyonel mod paketi.</p>
-
-<ul class="features">
-<li>Anti-Ban</li>
-<li>Hızlı Tepki</li>
-<li>Stabil</li>
-<li>Destek</li>
-</ul>
-
-<div class="packages">
-<div class="pack" data-link="#">Günlük</div>
-<div class="pack" data-link="#">Haftalık</div>
-<div class="pack" data-link="#">Aylık</div>
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-</div>
-
-
-<div class="product">
-<img src="https://via.placeholder.com/800x400">
-<h2>KING MOD</h2>
-<p>VIP performans sistemi.</p>
-
-<ul class="features">
-<li>Özel Ayar</li>
-<li>FPS Uyum</li>
-<li>Stabil</li>
-<li>Hızlı Teslim</li>
-</ul>
-
-<div class="packages">
-<div class="pack" data-link="#">Günlük</div>
-<div class="pack" data-link="#">Haftalık</div>
-<div class="pack" data-link="#">Aylık</div>
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-</div>
-
-
-<div class="product">
-<img src="https://via.placeholder.com/800x400">
-<h2>MONSTER ENGINE</h2>
-<p>En üst seviye altyapı.</p>
-
-<ul class="features">
-<li>Tüm Sistemler</li>
-<li>VIP Destek</li>
-<li>Güncelleme</li>
-<li>Öncelik</li>
-</ul>
-
-<div class="packages">
-<div class="pack" data-link="#">Günlük</div>
-<div class="pack" data-link="#">Haftalık</div>
-<div class="pack" data-link="#">Aylık</div>
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-</div>
-</section>
-
-<section id="neden" class="trust">
-<div class="trustbox">
-<h2>Neden GhostSoftwareX?</h2>
-<p style="margin:15px 0;opacity:.7">Yüksek performans, stabilite ve güvenlik bizim önceliğimizdir.</p>
-<ul class="features">
-<li>Düşük Ban Riski</li>
-<li>Hızlı Teslimat</li>
-<li>Aktif Destek</li>
-<li>Memnuniyet Garantisi</li>
-<li>Sürekli Güncelleme</li>
-</ul>
-<p style="margin-top:20px;opacity:.6"><a href="https://cheatglobal.com/" target="_blank">Cheatglobal</a></p>
-</div>
 </section>
 
 <section id="yorumlar" class="reviews">
@@ -324,7 +190,79 @@ cursor.style.top=e.clientY+"px";
 });
 
 /* PRODUCTS */
+/* PRODUCTS */
+const productsData=[
+{
+  name:"ASPECT MOD",
+  daily:5, dailyLink:"https://example.com/aspect/daily",
+  weekly:25, weeklyLink:"https://example.com/aspect/weekly",
+  monthly:80, monthlyLink:"https://example.com/aspect/monthly"
+},
+{
+  name:"ZOLO MOD",
+  daily:6, dailyLink:"https://example.com/zolo/daily",
+  weekly:28, weeklyLink:"https://example.com/zolo/weekly",
+  monthly:90, monthlyLink:"https://example.com/zolo/monthly"
+},
+{
+  name:"REVOTECH",
+  daily:4, dailyLink:"https://example.com/revotech/daily",
+  weekly:22, weeklyLink:"https://example.com/revotech/weekly",
+  monthly:75, monthlyLink:"https://example.com/revotech/monthly"
+},
+{
+  name:"KING MOD",
+  daily:7, dailyLink:"https://example.com/king/daily",
+  weekly:30, weeklyLink:"https://example.com/king/weekly",
+  monthly:100, monthlyLink:"https://example.com/king/monthly"
+},
+{
+  name:"MONSTER ENGINE",
+  daily:8, dailyLink:"https://example.com/monster/daily",
+  weekly:35, weeklyLink:"https://example.com/monster/weekly",
+  monthly:120, monthlyLink:"https://example.com/monster/monthly"
+}
+];
 
+const main=document.querySelector(".main");
+
+productsData.forEach(product=>{
+  const productDiv=document.createElement("div");
+  productDiv.classList.add("product");
+  productDiv.innerHTML=`
+    <img src="https://via.placeholder.com/800x400">
+    <h2>${product.name}</h2>
+    <p>Üst seviye performans ve güvenlik.</p>
+    <ul class="features">
+      <li>Anti-Ban</li>
+      <li>Stabil</li>
+      <li>Hızlı Aktivasyon</li>
+      <li>7/24 Destek</li>
+    </ul>
+    <div class="packages">
+      <div class="pack" data-link="${product.dailyLink}">Günlük $${product.daily}</div>
+      <div class="pack" data-link="${product.weeklyLink}">Haftalık $${product.weekly}</div>
+      <div class="pack" data-link="${product.monthlyLink}">Aylık $${product.monthly}</div>
+    </div>
+    <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
+  `;
+  main.appendChild(productDiv);
+});
+
+/* PACK SYSTEM */
+document.querySelectorAll(".product").forEach(product=>{
+  const packs=product.querySelectorAll(".pack");
+  const buyBtn=product.querySelector(".buyBtn");
+  packs.forEach(pack=>{
+    pack.addEventListener("click",()=>{
+      packs.forEach(p=>p.classList.remove("active"));
+      pack.classList.add("active");
+      buyBtn.href=pack.dataset.link; // tıklandığında link burada değişiyor
+      buyBtn.classList.remove("disabled");
+      buyBtn.textContent="Satın Al";
+    });
+  });
+});
 
 /* LANGUAGE */
 function setLang(lang){
