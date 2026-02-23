@@ -1,1062 +1,257 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>GhostSoftwareX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SEO META -->
-<meta name="description" content="GhostSoftwareX - Güvenli, stabil ve yüksek performanslı oyun yazılımları. Discord destekli lisans sistemi.">
-<meta name="keywords" content="ghostsoftwarex, oyun yazılımı, esp, aimbot, mod, oyun hilesi, lisans sistemi">
-<meta name="author" content="GhostSoftwareX">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GhostSoftwareX | Key Shop</title>
 
-<!-- SOCIAL PREVIEW -->
-<meta property="og:title" content="GhostSoftwareX">
-<meta property="og:description" content="Yüksek performanslı ve güvenli oyun yazılımları">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ghostsoftwarex.xyz">
-<meta property="og:site_name" content="GhostSoftwareX">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-  position: relative;
-  z-index: 1;
-
-  background: linear-gradient(120deg, #0b0b0d, #1a1a1d);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-  color: #f5f7fa;
-  line-height: 1.6;
-  overflow-x: hidden;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Orbitron', sans-serif;
 }
 
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    section {
-      padding: 90px 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h1, h2, h3, h4 {
-      font-weight: 600;
-    }
-
-    .subtext {
-      color: #c9cbd1;
-      margin-top: 10px;
-      max-width: 700px;
-    }
-    
-/* HERO */
-   .hero {
-  text-align: center;
-  padding-top: 120px; /* navbar yüksekliği + dengeli boşluk */
-  overflow: hidden;
-  min-height: 100vh;  /* ekranı tam doldursun */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-    .hero h1 {
-      font-size: 3rem;
-      letter-spacing: 4px;
-      animation: fadeInUp 1.2s ease forwards;
-      opacity: 0;
-    }
-
-    .hero h1 span {
-      font-weight: 300;
-      opacity: 0.8;
-    }
-
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(40px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    /* PRODUCTS */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .product {
-      background: rgba(22,22,24,0.95);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow:
-        0 0 40px rgba(255,255,255,0.06),
-        inset 0 0 0 1px rgba(255,255,255,0.05);
-      transition: 0.5s ease, transform 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: rgba(255,255,255,0.03);
-      transform: rotate(45deg);
-      transition: 0.5s;
-    }
-
-    .product:hover::before {
-      top: -60%;
-      left: -60%;
-    }
-
-    .product:hover {
-      transform: translateY(-8px);
-      box-shadow:
-        0 0 60px rgba(255,255,255,0.12),
-        inset 0 0 0 1px rgba(255,255,255,0.08);
-    }
-
-    .product img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      opacity: 0.95;
-      transition: 0.3s ease;
-
-      position: relative;
-      z-index: 1;
-    }
-
-    .product img:hover {
-      transform: scale(1.05);
-    }
-
-    .product h3 {
-      margin-bottom: 8px;
-      font-size: 1.3rem;
-    }
-
-    .product p {
-      color: #9a9ca3;
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      font-size: 0.85rem;
-      color: #c9cbd1;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      color: #f5f7fa;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
-      transition: 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.12);
-      transition: 0.4s;
-    }
-
-    .btn:hover::after {
-      left: 0;
-    }
-
-    .btn:hover {
-      box-shadow: 0 0 30px rgba(255,255,255,0.15);
-    }
-
-    .product-description {
-      margin-top: 15px;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .product-description h4 {
-      margin: 15px 0 8px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #fff;
-    }
-
-    .product-description ul {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 12px;
-    }
-
-    .product-description ul li {
-      margin-bottom: 6px;
-    }
-
-    .product-description .highlights li {
-      font-weight: 500;
-    }
-
-    .product-description .update {
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    .product-description .license {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    /* WHY US */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .feature {
-      background: rgba(22,22,24,0.85);
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
-      transition: 0.3s ease;
-    }
-
-    .feature:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 40px rgba(255,255,255,0.08);
-    }
-
-    .feature p {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #9a9ca3;
-    }
-
-    /* FAQ */
-    .faq {
-      max-width: 820px;
-      margin: 60px auto 0;
-    }
-
-    .faq-item {
-      margin-bottom: 28px;
-    }
-
-    .faq-item h4 {
-      font-size: 1rem;
-      margin-bottom: 6px;
-      cursor: pointer;
-      position: relative;
-      transition: 0.3s;
-    }
-
-    .faq-item h4::after {
-      content: "+";
-      position: absolute;
-      right: 0;
-      font-weight: 600;
-    }
-
-    .faq-item.active h4::after {
-      content: "-";
-    }
-
-    .faq-item p {
-      font-size: 0.9rem;
-      color: #9a9ca3;
-      display: none;
-    }
-
-    .faq-item.active p {
-      display: block;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      0% {opacity: 0;}
-      100% {opacity: 1;}
-    }
-
-    /* FOOTER */
-    footer {
-      background: #0a0a0c;
-      text-align: center;
-      padding: 45px 20px;
-      font-size: 0.8rem;
-      color: #6f7177;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* SMALL ANIMATION DELAYS */
-    .product {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    /* DYNAMIC GRID BACKGROUND */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  z-index: 0;
-  animation: gridMove 25s linear infinite;
-  pointer-events: none;
+body{
+background:black;
+color:white;
+overflow-x:hidden;
 }
 
-@keyframes gridMove {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 200px 200px;
-  }
+/* Animated Background */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(45deg,#000,#111,#000);
+animation:bg 10s infinite linear;
+z-index:-1;
 }
 
-    .product:nth-child(1) {animation-delay: 0.1s;}
-    .product:nth-child(2) {animation-delay: 0.2s;}
-    .product:nth-child(3) {animation-delay: 0.3s;}
-    .product:nth-child(4) {animation-delay: 0.4s;}
-    .product:nth-child(5) {animation-delay: 0.5s;}
-    .product:nth-child(6) {animation-delay: 0.6s;}
-    .product:nth-child(7) {animation-delay: 0.7s;}
-    .product:nth-child(8) {animation-delay: 0.8s;}
-
-    /* MAGNETIC BUTTON EFFECT */
-.magnetic {
-  display: inline-block;
-  transition: transform 0.2s ease-out;
-  will-change: transform;
+@keyframes bg{
+0%{filter:hue-rotate(0deg);}
+100%{filter:hue-rotate(360deg);}
 }
 
-    /* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background: rgba(10,10,12,0.75);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  z-index: 9999;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+header{
+text-align:center;
+padding:50px;
+border-bottom:1px solid white;
 }
 
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+header h1{
+font-size:40px;
+letter-spacing:3px;
 }
 
-.nav-logo {
-  font-weight: 700;
-  letter-spacing: 2px;
-  font-size: 1.1rem;
+header p{
+opacity:0.7;
+margin-top:10px;
 }
 
-.nav-logo span {
-  font-weight: 300;
-  opacity: 0.7;
+/* Products */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 25px;
+.card{
+border:1px solid white;
+padding:20px;
+text-align:center;
+transition:0.3s;
+background:#050505;
 }
 
-.nav-links a {
-  color: #f5f7fa;
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  opacity: 0.8;
-  transition: 0.3s;
+.card:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px white;
 }
 
-.nav-links a:hover {
-  opacity: 1;
-}
-    /* HERO EXTRA */
-.hero-sub {
-  margin-top: 20px;
-  font-size: 1rem;
-  color: #b5b7bd;
-  letter-spacing: 1px;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
-  animation-delay: 0.4s;
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+margin-bottom:15px;
+border:1px solid white;
 }
 
-.hero-buttons {
-  margin-top: 35px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
-  animation-delay: 0.6s;
+.card h3{
+margin-bottom:10px;
 }
 
-.hero-btn {
-  font-size: 0.8rem;
-  padding: 13px 32px;
+.card p{
+opacity:0.7;
+margin-bottom:10px;
 }
 
-.hero-btn.outline {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
+.card span{
+display:block;
+margin-bottom:15px;
+font-size:18px;
 }
 
-.hero-btn.outline:hover {
-  background: rgba(255,255,255,0.05);
-}
-    /* PRODUCT BADGE */
-.product-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0,0,0,0.6);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  letter-spacing: 1px;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.15);
-  z-index: 10;
-  color: #fff;
+.btn{
+display:inline-block;
+padding:10px 20px;
+border:1px solid white;
+color:white;
+text-decoration:none;
+transition:0.3s;
 }
 
-/* PRICE BOX */
-.prices {
-  background: rgba(255,255,255,0.03);
-  padding: 12px 15px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  margin: 15px 0 18px;
-  line-height: 1.6;
-  border: 1px solid rgba(255,255,255,0.05);
+.btn:hover{
+background:white;
+color:black;
 }
 
-/* GLOW EFFECT */
-.product:hover {
-  box-shadow:
-    0 0 80px rgba(255,255,255,0.15),
-    inset 0 0 0 1px rgba(255,255,255,0.12);
+/* Discord */
+
+.discord{
+text-align:center;
+padding:50px;
+border-top:1px solid white;
+margin-top:50px;
 }
 
-/* BUTTON STRONG */
-.product .btn {
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-}
-    /* FORUM SALES CARD */
-.forum-card {
-  background: rgba(22,22,24,0.9);
-  border-radius: 18px;
-  padding: 35px;
-  margin-top: 50px;
-  text-align: center;
-  box-shadow:
-    0 0 40px rgba(255,255,255,0.06),
-    inset 0 0 0 1px rgba(255,255,255,0.05);
+.discord h2{
+margin-bottom:15px;
 }
 
-.forum-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+.discord a{
+display:inline-block;
+padding:12px 30px;
+border:1px solid white;
+color:white;
+text-decoration:none;
+transition:0.3s;
 }
 
-.forum-card p {
-  color: #9a9ca3;
-  font-size: 0.95rem;
-  margin-bottom: 25px;
-  line-height: 1.6;
+.discord a:hover{
+background:white;
+color:black;
 }
 
-.forum-btn {
-  display: inline-block;
-  padding: 14px 36px;
-  border-radius: 999px;
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.05)
-  );
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
-  transition: 0.3s ease;
+footer{
+text-align:center;
+padding:20px;
+opacity:0.6;
+font-size:14px;
 }
 
-.forum-btn:hover {
-  box-shadow: 0 0 30px rgba(255,255,255,0.2);
-  transform: translateY(-2px);
-}
-    /* TRUST SECTION */
-.trust-section {
-  margin-top: 80px;
-  padding: 60px 20px;
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
-
-.trust-card {
-  background: rgba(22,22,24,0.9);
-  padding: 30px 25px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.05),
-    0 0 25px rgba(255,255,255,0.05);
-  transition: 0.3s ease;
-}
-
-.trust-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 35px rgba(255,255,255,0.12);
-}
-
-.trust-card h4 {
-  margin: 15px 0 10px;
-  font-size: 1rem;
-}
-
-.trust-card p {
-  font-size: 0.85rem;
-  color: #9a9ca3;
-  line-height: 1.5;
-}
-
-.trust-icon {
-  font-size: 1.8rem;
-  opacity: 0.8;
-}
-/* PARTICLES BACKGROUND */
-#particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-    .footer-link {
-  color: #4da3ff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.footer-link:hover {
-  color: #1e6fd9;
-  text-decoration: underline;
-}
-    html {
-  scroll-padding-top: 90px;
-}
-    .navbar {
-  text-align: center; /* Logo ve menüyü ortala */
-  padding: 20px 0;
-}
-
-.nav-logo {
-  margin-bottom: 15px; /* Menü ile araya boşluk */
-  font-size: inherit;   /* Orijinal boyut */
-}
-    .navbar {
-  padding: 20px 0;
-}
-
-.nav-logo {
-  display: block;      /* blok yap, tam ortalanabilsin */
-  margin: 0 auto 15px; /* üst ve alt boşluk, ortala yatayda */
-  font-size: inherit;  /* orijinal boyut */
-  text-align: center;  /* yazıyı ortala */
-}
-
-.nav-links {
-  text-align: center;  /* menüyü ortala */
-}
-  </style>
+</style>
 </head>
+
 <body>
-  <div id="particles-js"></div>
-  <!-- NAVBAR -->
-<div class="navbar">
 
-  <!-- LOGO EN ÜSTTE -->
-  <div class="nav-logo">
-    GHOST<span>SOFTWAREX</span>
-  </div>
+<div class="bg"></div>
 
-  <div class="container">
-    <div class="nav-links">
-      <a href="#home">Ana Sayfa</a>
-      <a href="#products">Ürünler</a>
-      <a href="#why">Neden Biz</a>
-      <a href="#faq">SSS</a>
-      <a href="https://discord.gg/NK8Swnsjuc" target="_blank">Discord</a>
-    </div>
-  </div>
+<header>
+<h1>GhostSoftwareX</h1>
+<p>Premium Key Satış Platformu</p>
+</header>
 
-  </div>
+<section class="container">
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-  <div class="container">
-
-    <h1>GHOST<span>SOFTWAREX</span></h1>
-
-    <p class="hero-sub">
-      Profesyonel Oyun Yazılımları & Güvenli Lisans Sistemi
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#products" class="btn hero-btn">Ürünleri İncele</a>
-      <a href="https://discord.gg/NK8Swnsjuc" target="_blank" class="btn hero-btn outline">
-        Discord’a Katıl
-      </a>
-    </div>
-
-  </div>
-</section>
-
-  <!-- PRODUCTS -->
-<section id="products">
-  <div class="container">
-    <h2>Ürünler</h2>
-    <p class="subtext">Yüksek performanslı oyun yazılımları</p>
-
-    <div class="products">
-      <!-- KING MOD -->
-      <div class="product">
-
-  <div class="product-badge">POPÜLER</div>
-        <img src="KİNG MOD.jpeg">
-        <h3>King Mod</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Günlük: 150 TL<br>
-          Haftalık: 425 TL<br>
-          Aylık: 1040 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-
-      <!-- REVOTECH -->
-      <div class="product">
-
-  <div class="product-badge">POPÜLER</div>
-        <img src="REVOTECH.jpeg">
-        <h3>Revotech</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Günlük: 140 TL<br>
-          Haftalık: 420 TL<br>
-          Aylık: 840 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-
-      <!-- ZOLO CHEATS -->
-      <div class="product">
-        <img src="ZOLO CHEAT.jpeg">
-        <h3>Zolocheats</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Günlük: 125 TL<br>
-          Haftalık: 375 TL<br>
-          Aylık: 855 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-
-      <!-- MONSTER ENGINE -->
-      <div class="product">
-        <img src="MONSTER ENGİNE.jpeg">
-        <h3>Monster Engine</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Günlük: 140 TL<br>
-          Haftalık: 280 TL<br>
-          Aylık: 680 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-
-      <!-- ASPECT MOD -->
-      <div class="product">
-        <img src="ASPECT MOD.jpeg">
-        <h3>Aspect Mod</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Günlük: 150 TL<br>
-          Haftalık: 380 TL<br>
-          Aylık: 760 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-
-  <!-- ZERO EMULATOR MOD -->
-      <div class="product">
-        <img src="WhatsApp Image 2026-02-11 at 19.16.28 (1).jpeg">
-        <h3>Zero VİP Emulator</h3>
-        <p class="update">🔄 Online Auto-Update System Supports</p>
-        <div class="product-description">
-          <h4>Özellikler</h4>
-          <ul>
-              <li>Safe & Undetectable Features</li>
-              <li>Fully Customizable ESP</li>
-              <li>Smooth & Smart Aimbot</li>
-              <li>Bullet Track & No Recoil</li>
-              <li>Hide Hack in Record</li>
-              <li>Skin Hack & Magic Bullet</li>
-              <li>Full SDK Functionality</li>
-          </ul>
-          <ul class="highlights">
-              <li>✅ Secure & Anti-Ban Protected</li>
-              <li>⚡ Ultra Smooth Performance</li>
-              <li>🚫 No Crashes – No FPS Drops</li>
-          </ul>
-          <h4>Kurulum Hizmeti</h4>
-          <p>Kişisel Ayar Rehberi ve 7/24 Destek</p>
-          <p class="license">Günlük – Haftalık – Aylık – Sezonluk Anahtar Satışı</p>
-        </div>
-        <div class="prices">
-          Haftalık: 1100 TL<br>
-          Aylık: 2200 TL
-        </div>
-        <a href="https://discord.gg/NK8Swnsjuc" class="btn magnetic">SATIN AL</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- WHY US -->
-  <section class="trust-section">
-
-  <div class="container">
-
-    <h2>Neden Bizi Tercih Etmelisiniz?</h2>
-    <p class="subtext">Kalite, güven ve sürdürülebilir destek</p>
-
-    <div class="trust-grid">
-
-      <div class="trust-card">
-        <div class="trust-icon">🔐</div>
-        <h4>Lisanslı Sistem</h4>
-        <p>Tüm ürünlerimiz güvenli lisans altyapısı ile korunmaktadır.</p>
-      </div>
-
-      <div class="trust-card">
-        <div class="trust-icon">⚙️</div>
-        <h4>Düzenli Güncelleme</h4>
-        <p>Yazılımlarımız sürekli güncellenir ve optimize edilir.</p>
-      </div>
-
-      <div class="trust-card">
-        <div class="trust-icon">💬</div>
-        <h4>Discord Destek</h4>
-        <p>7/24 destek ve bilgilendirme için aktif topluluk.</p>
-      </div>
-
-      <div class="trust-card">
-        <div class="trust-icon">🚀</div>
-        <h4>Stabil Performans</h4>
-        <p>Oyun içi uyumluluk ve minimum gecikme garantisi.</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-  <!-- FAQ -->
-  <section id="faq">
-  <div class="container">
-    <h2>Sık Sorulan Sorular</h2>
-      <p class="subtext">Satın alma ve kullanım süreci hakkında bilgiler</p>
-      <div class="faq">
-        <div class="faq-item">
-          <h4>Lisans süreleri nasıl çalışır?</h4>
-          <p>Seçilen süre boyunca lisans aktif olur ve süre sonunda otomatik olarak sona erer.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Ürünler güncelleme alıyor mu?</h4>
-          <p>Lisans süresi boyunca tüm güncellemeler ücretsiz olarak sunulur.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Satın alma sonrası destek sağlanıyor mu?</h4>
-          <p>Evet, kurulum ve kullanım konularında destek verilir.</p>
-        </div>
-        <div class="faq-item">
-          <h4>İade veya değişim mümkün mü?</h4>
-          <p>Dijital ürünler için iade koşulları ürün bazlı olarak değerlendirilir.</p>
-        </div>
-        <div class="forum-card">
-  <h3>📌 Resmi Forum Satış Konumuz</h3>
-
-  <p>
-    Tüm ürünlerimizin detaylı tanıtımı,  
-    kullanıcı yorumları ve güncel satış bilgileri  
-    forum konumuzda yer almaktadır.
-  </p>
-
-  <a href="https://cheatglobal.com/konu/pubg-mobile-android-king-mod-4-2-anti-ban-bypass-esp-skin-changer-magic-bullet-aimbot-undetected-c-2026-ghostsoftwarex.107004/"
-     target="_blank"
-     rel="nofollow"
-     class="forum-btn">
-
-     FORUMA GİT
-  </a>
+<!-- ÜRÜN 1 -->
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Günlük Key</h3>
+<p>24 Saatlik Premium Erişim</p>
+<span>₺49</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
 </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- FOOTER -->
+<!-- ÜRÜN 2 -->
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Haftalık Key</h3>
+<p>7 Günlük Premium</p>
+<span>₺149</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<!-- ÜRÜN 3 -->
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Aylık Key</h3>
+<p>30 Günlük Premium</p>
+<span>₺299</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<!-- DİĞER ÜRÜNLER -->
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>VIP Paket</h3>
+<p>Özel Özellikler</p>
+<span>₺499</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Lifetime</h3>
+<p>Ömür Boyu Lisans</p>
+<span>₺999</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Extra Key</h3>
+<p>Ek Lisans</p>
+<span>₺99</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Bundle</h3>
+<p>Paket Satış</p>
+<span>₺399</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Pro Pack</h3>
+<p>Gelişmiş Paket</p>
+<span>₺699</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x150">
+<h3>Custom Key</h3>
+<p>Özel Lisans</p>
+<span>₺199</span>
+<a href="SHOPIER_LINK" class="btn">Satın Al</a>
+</div>
+
+</section>
+
+<section class="discord">
+
+<h2>Discord Sunucumuza Katıl</h2>
+<p>Destek, Güncelleme ve İndirimler</p>
+<br>
+<a href="DISCORD_LINK">Katıl</a>
+
+</section>
+
 <footer>
-  © 2026 GhostSoftwareX — All rights reserved. —
-  <a href="https://cheatglobal.com" target="_blank" class="footer-link">
-    Cheatglobal
-  </a>
+© 2026 GhostSoftwareX | All Rights Reserved
 </footer>
 
-  <script>
-    // FAQ toggle
-    document.querySelectorAll('.faq-item h4').forEach(item => {
-      item.addEventListener('click', () => {
-        item.parentElement.classList.toggle('active');
-      });
-    });
-  </script>
-  <!-- Particles JS -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  
-<script>
-  
-  // MAGNETIC EFFECT
-document.querySelectorAll('.magnetic').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-
-    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = 'translate(0,0)';
-  });
-});
-
-  
-particlesJS("particles-js", {
-  "particles": {
-    "number": {
-      "value": 70,
-      "density": {
-        "enable": true,
-        "value_area": 900
-      }
-    },
-    "color": {
-      "value": "#ffffff"
-    },
-    "shape": {
-      "type": "circle"
-    },
-    "opacity": {
-      "value": 0.15,
-      "random": true
-    },
-    "size": {
-      "value": 2,
-      "random": true
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.08,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 0.6
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": true,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": false
-      }
-    }
-  },
-  "retina_detect": true
-});
-</script>
 </body>
 </html>
