@@ -24,7 +24,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND ANIMATION */
+/* BACKGROUND */
 
 .bg{
 position:fixed;
@@ -65,42 +65,42 @@ color:#aaa;
 header p{
 margin-top:15px;
 opacity:0.7;
-font-size:16px;
 }
 
 /* MAIN */
 
 .main{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 padding:40px 20px;
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:repeat(auto-fit,minmax(480px,1fr));
 gap:50px;
-align-items:center;
 }
 
 /* PRODUCT */
 
 .product{
 border:1px solid #222;
-padding:40px;
+padding:35px;
 border-radius:15px;
-background:rgba(10,10,10,0.8);
+background:rgba(10,10,10,0.85);
 backdrop-filter:blur(10px);
 box-shadow:0 0 25px rgba(255,255,255,0.05);
 }
 
 .product img{
 width:100%;
+height:260px;
+object-fit:cover;
 border-radius:12px;
 border:1px solid #222;
 margin-bottom:25px;
 }
 
 .product h2{
-font-size:28px;
-margin-bottom:15px;
+font-size:26px;
+margin-bottom:12px;
 }
 
 .product p{
@@ -112,12 +112,12 @@ margin-bottom:25px;
 /* FEATURES */
 
 .features{
-margin-bottom:30px;
+margin-bottom:25px;
 }
 
 .features li{
 list-style:none;
-margin-bottom:10px;
+margin-bottom:8px;
 opacity:0.8;
 }
 
@@ -138,7 +138,7 @@ flex-wrap:wrap;
 .pack{
 flex:1;
 border:1px solid #222;
-padding:15px;
+padding:12px;
 border-radius:10px;
 text-align:center;
 transition:0.3s;
@@ -151,12 +151,12 @@ transform:scale(1.05);
 }
 
 .pack h4{
-margin-bottom:5px;
+margin-bottom:4px;
 }
 
 .pack span{
 color:#aaa;
-font-size:14px;
+font-size:13px;
 }
 
 /* BUY */
@@ -248,87 +248,149 @@ font-size:36px;
 <header>
 
 <h1>Ghost<span>SoftwareX</span></h1>
-
 <p>Premium Oyun Yazılımları & Profesyonel Destek</p>
 
 </header>
 
 <section class="main">
 
-<!-- LEFT -->
-
+<!-- ÜRÜN 1 -->
 <div class="product">
 
-<img src="https://via.placeholder.com/600x350">
+<img src="https://via.placeholder.com/800x400">
 
-<h2>GhostSoftwareX Premium Yazılım</h2>
+<h2>Ghost Premium Aimbot</h2>
 
-<p>
-Güvenli altyapı, düzenli güncelleme ve stabil performans ile
-oyun deneyimini üst seviyeye taşı.
-</p>
+<p>Yüksek isabet oranı ve stabil performans.</p>
 
 <ul class="features">
-
-<li>Anti-Ban Koruması</li>
+<li>Anti-Ban</li>
 <li>Güncel Sistem</li>
 <li>Hızlı Aktivasyon</li>
 <li>7/24 Destek</li>
-<li>Otomatik Güncelleme</li>
-
 </ul>
 
 <div class="packages">
-
-<div class="pack">
-<h4>Günlük</h4>
-<span>24 Saat</span>
-</div>
-
-<div class="pack">
-<h4>Haftalık</h4>
-<span>7 Gün</span>
-</div>
-
-<div class="pack">
-<h4>Aylık</h4>
-<span>30 Gün</span>
-</div>
-
+<div class="pack"><h4>Günlük</h4><span>24 Saat</span></div>
+<div class="pack"><h4>Haftalık</h4><span>7 Gün</span></div>
+<div class="pack"><h4>Aylık</h4><span>30 Gün</span></div>
 </div>
 
 <div class="buy">
-
-<a href="https://www.shopier.com/ghostsoftware">
-Satın Al
-</a>
-
+<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
 </div>
 
 </div>
 
-<!-- RIGHT -->
-
+<!-- ÜRÜN 2 -->
 <div class="product">
 
-<h2>Neden GhostSoftwareX?</h2>
+<img src="https://via.placeholder.com/800x400">
 
-<p>
-Piyasadaki sıradan sistemlerden farklı olarak
-tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
-</p>
+<h2>Ghost ESP Wallhack</h2>
+
+<p>Rakipleri harita üzerinde gör.</p>
 
 <ul class="features">
-
-<li>Düşük Ban Riski</li>
-<li>Hızlı Teslimat</li>
-<li>Aktif Discord Desteği</li>
-<li>Memnuniyet Garantisi</li>
-<li>Sürekli Güncelleme</li>
-
+<li>Duvar Arkası Görüş</li>
+<li>FPS Dostu</li>
+<li>Anti-Ban</li>
+<li>Güncelleme</li>
 </ul>
 
-<img src="https://via.placeholder.com/600x350">
+<div class="packages">
+<div class="pack"><h4>Günlük</h4><span>24 Saat</span></div>
+<div class="pack"><h4>Haftalık</h4><span>7 Gün</span></div>
+<div class="pack"><h4>Aylık</h4><span>30 Gün</span></div>
+</div>
+
+<div class="buy">
+<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
+</div>
+
+</div>
+
+<!-- ÜRÜN 3 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost TriggerBot</h2>
+
+<p>Otomatik ateş sistemi.</p>
+
+<ul class="features">
+<li>Hızlı Tepki</li>
+<li>Düşük Ban</li>
+<li>Kolay Kurulum</li>
+<li>Destek</li>
+</ul>
+
+<div class="packages">
+<div class="pack"><h4>Günlük</h4><span>24 Saat</span></div>
+<div class="pack"><h4>Haftalık</h4><span>7 Gün</span></div>
+<div class="pack"><h4>Aylık</h4><span>30 Gün</span></div>
+</div>
+
+<div class="buy">
+<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
+</div>
+
+</div>
+
+<!-- ÜRÜN 4 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost Macro Tool</h2>
+
+<p>Gelişmiş makro sistemi.</p>
+
+<ul class="features">
+<li>Özel Ayarlar</li>
+<li>FPS Uyumlu</li>
+<li>Stabil</li>
+<li>Hızlı Teslim</li>
+</ul>
+
+<div class="packages">
+<div class="pack"><h4>Günlük</h4><span>24 Saat</span></div>
+<div class="pack"><h4>Haftalık</h4><span>7 Gün</span></div>
+<div class="pack"><h4>Aylık</h4><span>30 Gün</span></div>
+</div>
+
+<div class="buy">
+<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
+</div>
+
+</div>
+
+<!-- ÜRÜN 5 -->
+<div class="product">
+
+<img src="https://via.placeholder.com/800x400">
+
+<h2>Ghost VIP Paket</h2>
+
+<p>Tüm yazılımlar tek pakette.</p>
+
+<ul class="features">
+<li>Tüm Sistemler</li>
+<li>Öncelikli Destek</li>
+<li>Güncelleme</li>
+<li>VIP Rol</li>
+</ul>
+
+<div class="packages">
+<div class="pack"><h4>Günlük</h4><span>24 Saat</span></div>
+<div class="pack"><h4>Haftalık</h4><span>7 Gün</span></div>
+<div class="pack"><h4>Aylık</h4><span>30 Gün</span></div>
+</div>
+
+<div class="buy">
+<a href="https://www.shopier.com/ghostsoftware">Satın Al</a>
+</div>
 
 </div>
 
@@ -337,8 +399,7 @@ tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
 <section class="discord">
 
 <h3>Destek & Güncellemeler</h3>
-
-<p>Discord sunucumuza katıl, destek al</p>
+<p>Discord sunucumuza katıl</p>
 
 <a href="https://discord.gg/bDxJvXVVx9">
 Discord'a Katıl
@@ -347,9 +408,7 @@ Discord'a Katıl
 </section>
 
 <footer>
-
 © 2026 GhostSoftwareX | All Rights Reserved
-
 </footer>
 
 </body>
