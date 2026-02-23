@@ -10,7 +10,6 @@
 
 <style>
 
-/* RESET */
 *{
 margin:0;
 padding:0;
@@ -19,7 +18,6 @@ font-family:'Poppins',sans-serif;
 scroll-behavior:smooth;
 }
 
-/* BODY */
 body{
 background:#000;
 color:white;
@@ -27,7 +25,6 @@ overflow-x:hidden;
 cursor:none;
 }
 
-/* LINK FIX */
 a,button,.pack{cursor:none}
 
 /* CURSOR */
@@ -246,12 +243,20 @@ border-radius:15px;
 background:rgba(10,10,10,.9);
 }
 
-.trustbox img{
-margin-top:25px;
-width:100%;
-max-width:500px;
-border-radius:12px;
+/* REVIEWS */
+.reviews{
+max-width:1000px;
+margin:60px auto;
+padding:20px;
+text-align:center;
+}
+
+.review-box{
 border:1px solid #222;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+background:rgba(10,10,10,.8);
 }
 
 /* DISCORD */
@@ -316,17 +321,16 @@ body{cursor:auto}
 <ul>
 <li><a href="#urunler">Ürünler</a></li>
 <li><a href="#neden">Neden Biz</a></li>
+<li><a href="#yorumlar">Yorumlar</a></li>
 <li><a href="#discord">Discord</a></li>
 </ul>
 </div>
 </nav>
 
-
 <header>
 <h1>Ghost<span>SoftwareX</span></h1>
 <p>Premium Oyun Yazılımları & Profesyonel Destek</p>
 </header>
-
 
 <!-- PRODUCTS -->
 <section id="urunler" class="main">
@@ -454,7 +458,6 @@ body{cursor:auto}
 
 </section>
 
-
 <!-- TRUST -->
 <section id="neden" class="trust">
 
@@ -463,32 +466,50 @@ body{cursor:auto}
 <h2>Neden GhostSoftwareX?</h2>
 
 <p style="margin:15px 0;opacity:.7">
-Optimize edilmiş, güvenilir ve stabil yazılım sunuyoruz.
+Yüksek performans, stabilite ve güvenlik bizim önceliğimizdir.
 </p>
 
 <ul class="features">
-
 <li>Düşük Ban Riski</li>
 <li>Hızlı Teslimat</li>
 <li>Aktif Destek</li>
 <li>Memnuniyet Garantisi</li>
 <li>Sürekli Güncelleme</li>
-
 </ul>
 
-<img src="https://via.placeholder.com/600x350">
-
 <p style="margin-top:20px;opacity:.6">
-Kaynak: 
-<a href="https://cheatglobal.com/" target="_blank" style="color:#00ff99">
-Cheatglobal
-</a>
+Kaynak: <a href="https://cheatglobal.com/" target="_blank" style="color:#00ff99">Cheatglobal</a>
 </p>
 
 </div>
 
 </section>
 
+<!-- REVIEWS -->
+<section id="yorumlar" class="reviews">
+
+<h2 style="margin-bottom:25px">Müşteri Yorumları</h2>
+
+<div class="review-box">
+⭐⭐⭐⭐⭐ <br>
+"Hızlı teslimat, çok memnun kaldım."
+</div>
+
+<div class="review-box">
+⭐⭐⭐⭐⭐ <br>
+"Destek gerçekten çok ilgili."
+</div>
+
+<div class="review-box">
+⭐⭐⭐⭐⭐ <br>
+"Uzun süredir sorunsuz kullanıyorum."
+</div>
+
+<p style="opacity:.5;margin-top:15px">
+Not: Yorumlar Telegram üzerinden alınmıştır.
+</p>
+
+</section>
 
 <!-- DISCORD -->
 <section id="discord" class="discord">
@@ -500,11 +521,9 @@ Cheatglobal
 
 </section>
 
-
 <footer>
 © 2026 GhostSoftwareX | All Rights Reserved
 </footer>
-
 
 <script>
 
