@@ -18,6 +18,11 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+/* CURSOR FIX */
+a, button, .pack{
+cursor:none !important;
+}
+
 /* BODY */
 body{
 background:#000;
@@ -26,7 +31,7 @@ overflow-x:hidden;
 cursor:none;
 }
 
-/* CURSOR */
+/* CUSTOM CURSOR */
 .cursor{
 width:18px;
 height:18px;
@@ -37,7 +42,6 @@ pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:9999;
 box-shadow:0 0 15px #00ff99;
-transition:.05s;
 }
 
 /* BACKGROUND */
@@ -85,8 +89,8 @@ max-width:1200px;
 margin:auto;
 padding:40px 20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(480px,1fr));
-gap:50px;
+grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+gap:40px;
 }
 
 /* PRODUCT */
@@ -107,14 +111,17 @@ box-shadow:0 0 40px rgba(0,255,150,.15);
 
 .product img{
 width:100%;
-height:260px;
+height:240px;
 object-fit:cover;
 border-radius:12px;
 border:1px solid #222;
 margin-bottom:25px;
 }
 
-.product h2{margin-bottom:12px;}
+.product h2{
+margin-bottom:12px;
+font-size:24px;
+}
 
 .product p{
 opacity:.7;
@@ -138,7 +145,7 @@ color:#00ff99;
 /* PACKAGES */
 .packages{
 display:flex;
-gap:15px;
+gap:12px;
 margin-bottom:25px;
 flex-wrap:wrap;
 }
@@ -146,11 +153,10 @@ flex-wrap:wrap;
 .pack{
 flex:1;
 border:1px solid #222;
-padding:12px;
+padding:10px;
 border-radius:10px;
 text-align:center;
 transition:.3s;
-cursor:pointer;
 }
 
 .pack:hover{
@@ -188,12 +194,32 @@ background:#00ff99;
 color:black;
 }
 
+/* TRUST */
+.trust{
+max-width:1200px;
+margin:60px auto;
+padding:40px 20px;
+}
+
+.trust .product{
+text-align:center;
+}
+
 /* DISCORD */
 .discord{
-margin-top:80px;
+margin-top:60px;
 text-align:center;
 padding:60px 20px;
 border-top:1px solid #222;
+}
+
+.discord h3{
+margin-bottom:10px;
+}
+
+.discord p{
+opacity:.7;
+margin-bottom:25px;
 }
 
 .discord a{
@@ -244,108 +270,86 @@ body{cursor:auto;}
 
 <section class="main">
 
-<!-- ÜRÜN 1 -->
+<!-- ASPECT MOD -->
 <div class="product">
-
 <img src="https://via.placeholder.com/800x400">
-
-<h2>Ghost Premium Aimbot</h2>
-<p>Yüksek isabet oranı ve stabil performans.</p>
+<h2>ASPECT MOD</h2>
+<p>Yüksek performanslı gelişmiş sistem.</p>
 
 <ul class="features">
 <li>Anti-Ban</li>
-<li>Güncel Sistem</li>
+<li>Stabil</li>
 <li>Hızlı Aktivasyon</li>
 <li>7/24 Destek</li>
 </ul>
 
 <div class="packages">
-
-<div class="pack"
-data-link="https://www.shopier.com/gunluk1">Günlük</div>
-
-<div class="pack"
-data-link="https://www.shopier.com/haftalik1">Haftalık</div>
-
-<div class="pack"
-data-link="https://www.shopier.com/aylik1">Aylık</div>
-
+<div class="pack" data-link="#">Günlük</div>
+<div class="pack" data-link="#">Haftalık</div>
+<div class="pack" data-link="#">Aylık</div>
 </div>
 
 <div class="buy">
 <a class="buyBtn disabled" href="#">Paket Seç</a>
 </div>
-
 </div>
 
 
-<!-- ÜRÜN 2 -->
+<!-- ZOLO MOD -->
 <div class="product">
-
 <img src="https://via.placeholder.com/800x400">
-
-<h2>Ghost ESP Wallhack</h2>
-<p>Rakipleri harita üzerinde gör.</p>
+<h2>ZOLO MOD</h2>
+<p>FPS dostu optimize edilmiş yazılım.</p>
 
 <ul class="features">
-<li>Duvar Arkası Görüş</li>
-<li>FPS Dostu</li>
-<li>Anti-Ban</li>
-<li>Güncelleme</li>
-</ul>
-
-<div class="packages">
-
-<div class="pack" data-link="https://www.shopier.com/gunluk2">Günlük</div>
-<div class="pack" data-link="https://www.shopier.com/haftalik2">Haftalık</div>
-<div class="pack" data-link="https://www.shopier.com/aylik2">Aylık</div>
-
-</div>
-
-<div class="buy">
-<a class="buyBtn disabled" href="#">Paket Seç</a>
-</div>
-
-</div>
-
-
-<!-- ÜRÜN 3 -->
-<div class="product">
-
-<img src="https://via.placeholder.com/800x400">
-
-<h2>Ghost TriggerBot</h2>
-<p>Otomatik ateş sistemi.</p>
-
-<ul class="features">
-<li>Hızlı Tepki</li>
 <li>Düşük Ban</li>
-<li>Kolay Kurulum</li>
+<li>Hızlı Kurulum</li>
+<li>Güncelleme</li>
 <li>Destek</li>
 </ul>
 
 <div class="packages">
-
-<div class="pack" data-link="https://www.shopier.com/gunluk3">Günlük</div>
-<div class="pack" data-link="https://www.shopier.com/haftalik3">Haftalık</div>
-<div class="pack" data-link="https://www.shopier.com/aylik3">Aylık</div>
-
+<div class="pack" data-link="#">Günlük</div>
+<div class="pack" data-link="#">Haftalık</div>
+<div class="pack" data-link="#">Aylık</div>
 </div>
 
 <div class="buy">
 <a class="buyBtn disabled" href="#">Paket Seç</a>
 </div>
-
 </div>
 
 
-<!-- ÜRÜN 4 -->
+<!-- REVOTECH -->
 <div class="product">
-
 <img src="https://via.placeholder.com/800x400">
+<h2>REVOTECH</h2>
+<p>Gelişmiş profesyonel mod paketi.</p>
 
-<h2>Ghost Macro Tool</h2>
-<p>Gelişmiş makro sistemi.</p>
+<ul class="features">
+<li>Stabil</li>
+<li>Hızlı Tepki</li>
+<li>Anti-Ban</li>
+<li>Destek</li>
+</ul>
+
+<div class="packages">
+<div class="pack" data-link="#">Günlük</div>
+<div class="pack" data-link="#">Haftalık</div>
+<div class="pack" data-link="#">Aylık</div>
+</div>
+
+<div class="buy">
+<a class="buyBtn disabled" href="#">Paket Seç</a>
+</div>
+</div>
+
+
+<!-- KING MOD -->
+<div class="product">
+<img src="https://via.placeholder.com/800x400">
+<h2>KING MOD</h2>
+<p>VIP seviye performans sistemi.</p>
 
 <ul class="features">
 <li>Özel Ayarlar</li>
@@ -355,27 +359,22 @@ data-link="https://www.shopier.com/aylik1">Aylık</div>
 </ul>
 
 <div class="packages">
-
-<div class="pack" data-link="https://www.shopier.com/gunluk4">Günlük</div>
-<div class="pack" data-link="https://www.shopier.com/haftalik4">Haftalık</div>
-<div class="pack" data-link="https://www.shopier.com/aylik4">Aylık</div>
-
+<div class="pack" data-link="#">Günlük</div>
+<div class="pack" data-link="#">Haftalık</div>
+<div class="pack" data-link="#">Aylık</div>
 </div>
 
 <div class="buy">
 <a class="buyBtn disabled" href="#">Paket Seç</a>
 </div>
-
 </div>
 
 
-<!-- ÜRÜN 5 -->
+<!-- MONSTER ENGINE -->
 <div class="product">
-
 <img src="https://via.placeholder.com/800x400">
-
-<h2>Ghost VIP Paket</h2>
-<p>Tüm yazılımlar tek pakette.</p>
+<h2>MONSTER ENGINE</h2>
+<p>En üst seviye motor altyapısı.</p>
 
 <ul class="features">
 <li>Tüm Sistemler</li>
@@ -385,19 +384,51 @@ data-link="https://www.shopier.com/aylik1">Aylık</div>
 </ul>
 
 <div class="packages">
-
-<div class="pack" data-link="https://www.shopier.com/gunluk5">Günlük</div>
-<div class="pack" data-link="https://www.shopier.com/haftalik5">Haftalık</div>
-<div class="pack" data-link="https://www.shopier.com/aylik5">Aylık</div>
-
+<div class="pack" data-link="#">Günlük</div>
+<div class="pack" data-link="#">Haftalık</div>
+<div class="pack" data-link="#">Aylık</div>
 </div>
 
 <div class="buy">
 <a class="buyBtn disabled" href="#">Paket Seç</a>
 </div>
-
 </div>
 
+</section>
+
+
+<!-- TRUST -->
+<section class="trust">
+
+<div class="product">
+
+<h2>Neden GhostSoftwareX?</h2>
+
+<p>
+Piyasadaki sıradan sistemlerden farklı olarak
+tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
+</p>
+
+<ul class="features">
+
+<li>Düşük Ban Riski</li>
+<li>Hızlı Teslimat</li>
+<li>Aktif Discord Desteği</li>
+<li>Memnuniyet Garantisi</li>
+<li>Sürekli Güncelleme</li>
+
+</ul>
+
+<img src="https://via.placeholder.com/600x350">
+
+<p style="margin-top:20px;opacity:.6">
+Konu Sahibi: 
+<a href="https://cheatglobal.com/" target="_blank" style="color:#00ff99">
+Cheatglobal
+</a>
+</p>
+
+</div>
 
 </section>
 
@@ -405,7 +436,7 @@ data-link="https://www.shopier.com/aylik1">Aylık</div>
 <section class="discord">
 
 <h3>Destek & Güncellemeler</h3>
-<p>Discord sunucumuza katıl</p>
+<p>Discord sunucumuza katılarak anında destek alabilirsin.</p>
 
 <a href="https://discord.gg/bDxJvXVVx9">Discord'a Katıl</a>
 
@@ -434,6 +465,8 @@ document.querySelectorAll(".product").forEach(product=>{
 
 const packs = product.querySelectorAll(".pack");
 const buyBtn = product.querySelector(".buyBtn");
+
+if(!buyBtn) return;
 
 packs.forEach(pack=>{
 
