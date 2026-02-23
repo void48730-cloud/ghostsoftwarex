@@ -238,11 +238,11 @@ productsData.forEach(product=>{
       <li>Hızlı Aktivasyon</li>
       <li>7/24 Destek</li>
     </ul>
-    <div class="packages">
-      <div class="pack" data-link="${product.dailyLink}">Günlük $${product.daily}</div>
-      <div class="pack" data-link="${product.weeklyLink}">Haftalık $${product.weekly}</div>
-      <div class="pack" data-link="${product.monthlyLink}">Aylık $${product.monthly}</div>
-    </div>
+<div class="packages">
+  <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
+  <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
+  <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
+</div>
     <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
   `;
   main.appendChild(productDiv);
