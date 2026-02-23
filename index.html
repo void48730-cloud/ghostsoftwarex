@@ -16,11 +16,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
-}
-
-/* CURSOR FIX */
-a, button, .pack{
-cursor:none !important;
+scroll-behavior:smooth;
 }
 
 /* BODY */
@@ -31,7 +27,10 @@ overflow-x:hidden;
 cursor:none;
 }
 
-/* CUSTOM CURSOR */
+/* LINK FIX */
+a,button,.pack{cursor:none}
+
+/* CURSOR */
 .cursor{
 width:18px;
 height:18px;
@@ -65,10 +64,51 @@ z-index:-10;
 100%{background-position:100% 50%;}
 }
 
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid #111;
+z-index:999;
+}
+
+.navbox{
+max-width:1200px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.navbox h2{color:#00ff99}
+
+.navbox ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.navbox a{
+color:white;
+text-decoration:none;
+font-size:14px;
+opacity:.8;
+transition:.3s;
+}
+
+.navbox a:hover{
+color:#00ff99;
+opacity:1;
+}
+
 /* HEADER */
 header{
 text-align:center;
-padding:80px 20px;
+padding:140px 20px 80px;
 }
 
 header h1{
@@ -76,7 +116,7 @@ font-size:48px;
 letter-spacing:4px;
 }
 
-header span{color:#aaa;}
+header span{color:#aaa}
 
 header p{
 margin-top:15px;
@@ -111,29 +151,26 @@ box-shadow:0 0 40px rgba(0,255,150,.15);
 
 .product img{
 width:100%;
-height:240px;
+height:230px;
 object-fit:cover;
 border-radius:12px;
 border:1px solid #222;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
-.product h2{
-margin-bottom:12px;
-font-size:24px;
-}
+.product h2{margin-bottom:10px}
 
 .product p{
 opacity:.7;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 /* FEATURES */
-.features{margin-bottom:25px;}
+.features{margin-bottom:20px}
 
 .features li{
 list-style:none;
-margin-bottom:8px;
+margin-bottom:7px;
 opacity:.8;
 }
 
@@ -145,7 +182,7 @@ color:#00ff99;
 /* PACKAGES */
 .packages{
 display:flex;
-gap:12px;
+gap:10px;
 margin-bottom:25px;
 flex-wrap:wrap;
 }
@@ -154,7 +191,7 @@ flex-wrap:wrap;
 flex:1;
 border:1px solid #222;
 padding:10px;
-border-radius:10px;
+border-radius:8px;
 text-align:center;
 transition:.3s;
 }
@@ -171,7 +208,7 @@ color:black;
 }
 
 /* BUY */
-.buy{text-align:center;}
+.buy{text-align:center}
 
 .buy a{
 display:inline-block;
@@ -179,7 +216,7 @@ padding:12px 35px;
 border:1px solid #00ff99;
 color:#00ff99;
 text-decoration:none;
-border-radius:30px;
+border-radius:25px;
 transition:.3s;
 font-weight:500;
 }
@@ -196,34 +233,42 @@ color:black;
 
 /* TRUST */
 .trust{
-max-width:1200px;
-margin:60px auto;
+max-width:1000px;
+margin:70px auto;
 padding:40px 20px;
 }
 
-.trust .product{
+.trustbox{
 text-align:center;
+border:1px solid #222;
+padding:40px;
+border-radius:15px;
+background:rgba(10,10,10,.9);
+}
+
+.trustbox img{
+margin-top:25px;
+width:100%;
+max-width:500px;
+border-radius:12px;
+border:1px solid #222;
 }
 
 /* DISCORD */
 .discord{
-margin-top:60px;
+margin-top:70px;
 text-align:center;
 padding:60px 20px;
 border-top:1px solid #222;
 }
 
-.discord h3{
-margin-bottom:10px;
-}
-
 .discord p{
 opacity:.7;
-margin-bottom:25px;
+margin:15px 0 25px;
 }
 
 .discord a{
-padding:10px 30px;
+padding:12px 35px;
 border:1px solid #00ff99;
 color:#00ff99;
 text-decoration:none;
@@ -249,8 +294,10 @@ border-top:1px solid #111;
 
 .main{grid-template-columns:1fr;}
 
-body{cursor:auto;}
-.cursor{display:none;}
+body{cursor:auto}
+.cursor{display:none}
+
+.navbox ul{display:none}
 
 }
 
@@ -262,15 +309,30 @@ body{cursor:auto;}
 <div class="bg"></div>
 <div class="cursor"></div>
 
+<!-- NAV -->
+<nav>
+<div class="navbox">
+<h2>GhostX</h2>
+<ul>
+<li><a href="#urunler">Ürünler</a></li>
+<li><a href="#neden">Neden Biz</a></li>
+<li><a href="#discord">Discord</a></li>
+</ul>
+</div>
+</nav>
+
+
 <header>
 <h1>Ghost<span>SoftwareX</span></h1>
 <p>Premium Oyun Yazılımları & Profesyonel Destek</p>
 </header>
 
 
-<section class="main">
+<!-- PRODUCTS -->
+<section id="urunler" class="main">
 
-<!-- ASPECT MOD -->
+<!-- PRODUCT TEMPLATE -->
+
 <div class="product">
 <img src="https://via.placeholder.com/800x400">
 <h2>ASPECT MOD</h2>
@@ -295,7 +357,6 @@ body{cursor:auto;}
 </div>
 
 
-<!-- ZOLO MOD -->
 <div class="product">
 <img src="https://via.placeholder.com/800x400">
 <h2>ZOLO MOD</h2>
@@ -303,9 +364,9 @@ body{cursor:auto;}
 
 <ul class="features">
 <li>Düşük Ban</li>
-<li>Hızlı Kurulum</li>
 <li>Güncelleme</li>
 <li>Destek</li>
+<li>Stabil</li>
 </ul>
 
 <div class="packages">
@@ -320,16 +381,15 @@ body{cursor:auto;}
 </div>
 
 
-<!-- REVOTECH -->
 <div class="product">
 <img src="https://via.placeholder.com/800x400">
 <h2>REVOTECH</h2>
-<p>Gelişmiş profesyonel mod paketi.</p>
+<p>Profesyonel mod paketi.</p>
 
 <ul class="features">
-<li>Stabil</li>
-<li>Hızlı Tepki</li>
 <li>Anti-Ban</li>
+<li>Hızlı Tepki</li>
+<li>Stabil</li>
 <li>Destek</li>
 </ul>
 
@@ -345,15 +405,14 @@ body{cursor:auto;}
 </div>
 
 
-<!-- KING MOD -->
 <div class="product">
 <img src="https://via.placeholder.com/800x400">
 <h2>KING MOD</h2>
-<p>VIP seviye performans sistemi.</p>
+<p>VIP performans sistemi.</p>
 
 <ul class="features">
-<li>Özel Ayarlar</li>
-<li>FPS Uyumlu</li>
+<li>Özel Ayar</li>
+<li>FPS Uyum</li>
 <li>Stabil</li>
 <li>Hızlı Teslim</li>
 </ul>
@@ -370,17 +429,16 @@ body{cursor:auto;}
 </div>
 
 
-<!-- MONSTER ENGINE -->
 <div class="product">
 <img src="https://via.placeholder.com/800x400">
 <h2>MONSTER ENGINE</h2>
-<p>En üst seviye motor altyapısı.</p>
+<p>En üst seviye altyapı.</p>
 
 <ul class="features">
 <li>Tüm Sistemler</li>
-<li>Öncelikli Destek</li>
+<li>VIP Destek</li>
 <li>Güncelleme</li>
-<li>VIP Rol</li>
+<li>Öncelik</li>
 </ul>
 
 <div class="packages">
@@ -398,22 +456,21 @@ body{cursor:auto;}
 
 
 <!-- TRUST -->
-<section class="trust">
+<section id="neden" class="trust">
 
-<div class="product">
+<div class="trustbox">
 
 <h2>Neden GhostSoftwareX?</h2>
 
-<p>
-Piyasadaki sıradan sistemlerden farklı olarak
-tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
+<p style="margin:15px 0;opacity:.7">
+Optimize edilmiş, güvenilir ve stabil yazılım sunuyoruz.
 </p>
 
 <ul class="features">
 
 <li>Düşük Ban Riski</li>
 <li>Hızlı Teslimat</li>
-<li>Aktif Discord Desteği</li>
+<li>Aktif Destek</li>
 <li>Memnuniyet Garantisi</li>
 <li>Sürekli Güncelleme</li>
 
@@ -422,7 +479,7 @@ tam optimize edilmiş, stabil ve güvenli yazılım sunuyoruz.
 <img src="https://via.placeholder.com/600x350">
 
 <p style="margin-top:20px;opacity:.6">
-Konu Sahibi: 
+Kaynak: 
 <a href="https://cheatglobal.com/" target="_blank" style="color:#00ff99">
 Cheatglobal
 </a>
@@ -433,7 +490,8 @@ Cheatglobal
 </section>
 
 
-<section class="discord">
+<!-- DISCORD -->
+<section id="discord" class="discord">
 
 <h3>Destek & Güncellemeler</h3>
 <p>Discord sunucumuza katılarak anında destek alabilirsin.</p>
@@ -451,22 +509,18 @@ Cheatglobal
 <script>
 
 /* CURSOR */
-const cursor = document.querySelector(".cursor");
+const cursor=document.querySelector(".cursor");
 
 document.addEventListener("mousemove",e=>{
-cursor.style.left = e.clientX+"px";
-cursor.style.top = e.clientY+"px";
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
 });
 
-
-/* PACKAGE SYSTEM */
-
+/* PACK SYSTEM */
 document.querySelectorAll(".product").forEach(product=>{
 
-const packs = product.querySelectorAll(".pack");
-const buyBtn = product.querySelector(".buyBtn");
-
-if(!buyBtn) return;
+const packs=product.querySelectorAll(".pack");
+const buyBtn=product.querySelector(".buyBtn");
 
 packs.forEach(pack=>{
 
@@ -476,7 +530,7 @@ packs.forEach(p=>p.classList.remove("active"));
 
 pack.classList.add("active");
 
-buyBtn.href = pack.dataset.link;
+buyBtn.href=pack.dataset.link;
 buyBtn.classList.remove("disabled");
 buyBtn.textContent="Satın Al";
 
