@@ -7,42 +7,45 @@
 <style>
 /* ===== GENEL ===== */
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #0a0a0a;
-    color: #fff;
-    overflow-x: hidden;
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    background:#000;
+    overflow-x:hidden;
 }
-body::before {
-    content: "";
-    position: fixed;
+/* Arka plan animasyonu */
+body::before{
+    content:"";
+    position:fixed;
     top:0; left:0;
     width:100%; height:100%;
-    background: linear-gradient(270deg, #1a001a, #3a003a, #1a001a);
-    background-size: 600% 600%;
-    z-index: -1;
-    animation: gradientBG 20s ease infinite;
+    background: linear-gradient(45deg,#111,#333,#111);
+    background-size:400% 400%;
+    z-index:-1;
+    animation: bgAnim 30s ease infinite;
 }
-@keyframes gradientBG {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+@keyframes bgAnim{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-/* Header */
-header {
-    display:flex; justify-content:space-between; align-items:center;
-    padding: 1rem 4rem;
-    background: rgba(0,0,0,0.8);
-    box-shadow: 0 0 25px #9b59b6;
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 4rem;
+    background:rgba(0,0,0,0.85);
+    box-shadow:0 0 20px #fff3;
 }
-header .logo {
-    font-size:2.5rem;
+header .logo{
+    font-size:2.8rem;
     font-weight:bold;
-    color:#9b59b6;
-    text-shadow: 0 0 15px #9b59b6, 0 0 25px #ff00ff;
+    color:#fff;
+    text-shadow:0 0 10px #fff3;
 }
-header nav a {
+header nav a{
     margin-left:2rem;
     text-decoration:none;
     color:#fff;
@@ -50,110 +53,164 @@ header nav a {
     font-size:1.1rem;
     transition:0.3s;
 }
-header nav a:hover { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
+header nav a:hover{
+    color:#00ffff;
+    text-shadow:0 0 8px #00ffff;
+}
 
-/* Footer */
-footer {
+/* HERO */
+#hero{
     text-align:center;
-    padding:1.5rem;
+    padding:5rem 2rem;
+}
+#hero h1{
+    font-size:3rem;
+    color:#fff;
+    text-shadow:0 0 15px #fff3,0 0 25px #00ffff;
+}
+#hero p{
+    font-size:1.5rem;
     color:#ccc;
-    border-top:2px solid #9b59b6;
-    margin-top:2rem;
+    margin-top:1rem;
 }
 
-/* Hero */
-#hero { text-align:center; padding:5rem 2rem;}
-#hero h1 {
-    font-size:3rem; color:#9b59b6; text-shadow:0 0 20px #9b59b6, 0 0 40px #ff00ff;
-}
-#hero p { font-size:1.5rem; color:#ddd; margin-top:1rem; }
-
-/* Ürünlerimiz başlığı */
-#products h2 {
+/* ÜRÜNLERİMİZ BAŞLIK */
+#products h2{
     text-align:center;
-    font-size:2.5rem;
-    color:#ff00ff;
-    text-shadow:0 0 20px #9b59b6, 0 0 40px #ff00ff;
+    font-size:2.8rem;
+    color:#00ffff;
+    text-shadow:0 0 15px #fff3;
     margin-bottom:2rem;
 }
 
-/* Ürün kartları */
-.product-grid {
+/* ÜRÜN KARTLARI */
+.product-grid{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(420px,1fr));
     gap:3rem;
     padding:2rem 4rem;
 }
-.product-card {
-    background:#1a1a1a;
-    border:3px solid #9b59b6;
-    border-radius:25px;
+.product-card{
+    background:#111;
+    border-radius:20px;
     padding:2rem;
     text-align:center;
     transition:0.5s;
-    box-shadow:0 0 20px #9b59b6;
+    box-shadow:0 0 20px #00ffff55;
 }
-.product-card:hover {
-    transform:translateY(-10px);
-    box-shadow:0 0 35px #ff00ff, 0 0 50px #9b59b6;
+.product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px #00ffff,0 0 50px #fff;
 }
-.product-card img {
+.product-card img{
     width:100%;
     height:220px;
     object-fit:cover;
-    border-radius:20px;
+    border-radius:15px;
     margin-bottom:1rem;
 }
-.product-card h3 {
-    font-size:2rem; margin-bottom:0.5rem;
-    color:#fff; text-shadow:0 0 10px #9b59b6,0 0 20px #ff00ff;
+.product-card h3{
+    font-size:2rem;
+    margin-bottom:0.5rem;
+    color:#fff;
+    text-shadow:0 0 10px #fff3;
 }
-.product-card p { font-size:1.1rem; color:#ccc; margin-bottom:1.5rem; }
-.price-btn {
-    padding:0.7rem 1.5rem; margin:0.5rem;
-    border:none; border-radius:12px;
-    cursor:pointer; background:#9b59b6; color:#fff;
-    font-weight:bold; font-size:1rem; text-shadow:0 0 3px #fff;
+.product-card p{
+    font-size:1.1rem;
+    color:#ccc;
+    margin-bottom:1.5rem;
+}
+.price-list{
+    font-size:1.1rem;
+    margin-bottom:1rem;
+}
+.price-list span{
+    display:block;
+    margin:0.3rem 0;
+}
+.buy-btn{
+    padding:0.8rem 2rem;
+    border:none;
+    border-radius:12px;
+    background:#00ffff;
+    color:#000;
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
     transition:0.3s;
 }
-.price-btn:hover { background:#ff00ff; box-shadow:0 0 20px #ff00ff; }
+.buy-btn:hover{
+    background:#fff;
+    box-shadow:0 0 15px #00ffff;
+}
 
-/* Müşteri yorumları */
-#reviews { padding:4rem 2rem; text-align:center;}
-#reviews h2 {
-    font-size:2rem; color:#9b59b6; margin-bottom:2rem; text-shadow:0 0 20px #9b59b6;
+/* MÜŞTERİ YORUMLARI */
+#reviews{
+    padding:4rem 2rem;
+    text-align:center;
 }
-.review-slider {
-    display:flex; justify-content:center; gap:2rem;
+#reviews h2{
+    font-size:2rem;
+    color:#fff;
+    margin-bottom:2rem;
 }
-.review {
-    min-width:320px; background:#1a1a1a; padding:2rem;
-    border-radius:20px; border:3px solid #9b59b6; box-shadow:0 0 25px #9b59b6;
+.review-slider{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+}
+.review{
+    min-width:350px;
+    background:#111;
+    padding:2rem;
+    border-radius:15px;
+    border:2px solid #00ffff33;
+    box-shadow:0 0 25px #00ffff55;
     font-size:1.1rem;
 }
 
-/* Neden Biz */
-#whyus { text-align:center; padding:4rem 2rem;}
-#whyus h2 {
-    font-size:2rem; color:#ff00ff; text-shadow:0 0 20px #9b59b6;
+/* NEDEN BİZ */
+#whyus{
+    text-align:center;
+    padding:4rem 2rem;
+}
+#whyus h2{
+    font-size:2rem;
+    color:#00ffff;
+    text-shadow:0 0 10px #fff3;
     margin-bottom:2rem;
 }
-#whyus ul { list-style:none; padding:0; }
-#whyus ul li { margin:1rem 0; font-size:1.2rem; text-shadow:0 0 10px #9b59b6; }
-
-/* Popup */
-.popup {
-    position:fixed; top:25%; left:50%; transform:translateX(-50%);
-    background:#222; padding:2rem 3rem; border-radius:20px;
-    display:none; color:#fff; z-index:200; box-shadow:0 0 30px #9b59b6;
-    text-align:center;
+#whyus ul{
+    list-style:none;
+    padding:0;
+}
+#whyus ul li{
+    margin:1rem 0;
+    font-size:1.2rem;
+    text-shadow:0 0 8px #00ffff22;
 }
 
-/* Sadece PC odaklı, minimum 1200px */
-@media(max-width:1200px){
-    body { font-size:14px; }
-    .product-grid { grid-template-columns:1fr; padding:1rem; }
-    header { flex-direction:column; align-items:flex-start; padding:1rem 2rem; }
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:1.5rem;
+    color:#ccc;
+    border-top:2px solid #00ffff55;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:25%; left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    padding:2rem 3rem;
+    border-radius:20px;
+    display:none;
+    color:#fff;
+    z-index:200;
+    box-shadow:0 0 30px #00ffff55;
+    text-align:center;
 }
 </style>
 </head>
@@ -171,7 +228,7 @@ footer {
 
 <section id="hero">
     <h1>👾 GhostSoftwareX - Güvenli Yazılım</h1>
-    <p>Hızlı teslimat, premium ürünler ve güvenli alışveriş 💜</p>
+    <p>Hızlı teslimat, premium ürünler ve güvenli alışveriş</p>
 </section>
 
 <section id="products">
@@ -180,43 +237,66 @@ footer {
 
         <!-- ASPECT -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/400x220.png?text=ASPECT" alt="ASPECT">
+            <img src="https://via.placeholder.com/420x220.png?text=ASPECT" alt="ASPECT">
             <h3>ASPECT 💎</h3>
-            <p>Premium yazılım, günlük kullanım paketi.</p>
-            <button class="price-btn">Günlük: 50₺</button>
+            <p>Premium yazılım paketi.</p>
+            <div class="price-list">
+                <span>Günlük: 50₺</span>
+                <span>Haftalık: 120₺</span>
+                <span>Aylık: 250₺</span>
+            </div>
+            <button class="buy-btn">Satın Al</button>
         </div>
 
         <!-- ZOLO -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/400x220.png?text=ZOLO" alt="ZOLO">
+            <img src="https://via.placeholder.com/420x220.png?text=ZOLO" alt="ZOLO">
             <h3>ZOLO ⚡</h3>
-            <p>Güvenli ve hızlı yazılım, günlük paket.</p>
-            <button class="price-btn">Günlük: 40₺</button>
+            <p>Güvenli ve hızlı yazılım paketi.</p>
+            <div class="price-list">
+                <span>Günlük: 40₺</span>
+                <span>Haftalık: 100₺</span>
+                <span>Aylık: 220₺</span>
+            </div>
+            <button class="buy-btn">Satın Al</button>
         </div>
 
         <!-- REVOTECH -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/400x220.png?text=REVOTECH" alt="REVOTECH">
+            <img src="https://via.placeholder.com/420x220.png?text=REVOTECH" alt="REVOTECH">
             <h3>REVOTECH 🔥</h3>
-            <p>Profesyonel yazılım, günlük paket.</p>
-            <button class="price-btn">Günlük: 60₺</button>
+            <p>Profesyonel yazılım paketi.</p>
+            <div class="price-list">
+                <span>Günlük: 60₺</span>
+                <span>Haftalık: 140₺</span>
+                <span>Aylık: 300₺</span>
+            </div>
+            <button class="buy-btn">Satın Al</button>
         </div>
 
         <!-- MONSTER -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/400x220.png?text=MONSTER" alt="MONSTER">
+            <img src="https://via.placeholder.com/420x220.png?text=MONSTER" alt="MONSTER">
             <h3>MONSTER 🐲</h3>
-            <p>Günlük paket, yüksek performanslı yazılım.</p>
-            <button class="price-btn">Günlük: 55₺</button>
+            <p>Yüksek performanslı yazılım paketi.</p>
+            <div class="price-list">
+                <span>Günlük: 55₺</span>
+                <span>Haftalık: 130₺</span>
+                <span>Aylık: 280₺</span>
+            </div>
+            <button class="buy-btn">Satın Al</button>
         </div>
 
         <!-- KING MOD -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/400x220.png?text=KING+MOD" alt="KING MOD">
+            <img src="https://via.placeholder.com/420x220.png?text=KING+MOD" alt="KING MOD">
             <h3>KING MOD 👑</h3>
-            <p>Haftalık ve aylık paketler, premium özellikler.</p>
-            <button class="price-btn">Haftalık: 120₺</button>
-            <button class="price-btn">Aylık: 250₺</button>
+            <p>Haftalık ve aylık premium paketler.</p>
+            <div class="price-list">
+                <span>Haftalık: 120₺</span>
+                <span>Aylık: 250₺</span>
+            </div>
+            <button class="buy-btn">Satın Al</button>
         </div>
 
     </div>
@@ -243,7 +323,7 @@ footer {
 </section>
 
 <footer>
-    © 2026 GhostSoftwareX | <a href="https://discord.gg/FHCMVxjW63" style="color:#ff00ff;">Discord</a>
+    © 2026 GhostSoftwareX | <a href="https://discord.gg/FHCMVxjW63" style="color:#00ffff;">Discord</a>
 </footer>
 
 <div id="popup" class="popup">
@@ -251,18 +331,19 @@ footer {
 </div>
 
 <script>
-const priceButtons = document.querySelectorAll('.price-btn');
-const popup = document.getElementById('popup');
+const buyButtons=document.querySelectorAll('.buy-btn');
+const popup=document.getElementById('popup');
 
-priceButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        popup.style.display = 'block';
-        setTimeout(() => {
-            popup.style.display = 'none';
-            window.open('https://discord.gg/FHCMVxjW63', '_blank');
-        }, 1500);
+buyButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        popup.style.display='block';
+        setTimeout(()=>{
+            popup.style.display='none';
+            window.open('https://discord.gg/FHCMVxjW63','_blank');
+        },1500);
     });
 });
 </script>
+
 </body>
 </html>
