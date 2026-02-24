@@ -278,7 +278,7 @@ productsData.forEach(product=>{
   const productDiv=document.createElement("div");
   productDiv.classList.add("product");
   productDiv.innerHTML=`
-  <img src="${product.img}">
+    <img src="${product.img}" alt="${product.name}">
     <h2>${product.name}</h2>
     <p>Üst seviye performans ve güvenlik.</p>
     <ul class="features">
@@ -287,11 +287,11 @@ productsData.forEach(product=>{
       <li>Hızlı Aktivasyon</li>
       <li>7/24 Destek</li>
     </ul>
-<div class="packages">
-  <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
-  <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
-  <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
-</div>
+    <div class="packages">
+      <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
+      <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
+      <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
+    </div>
     <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
   `;
   main.appendChild(productDiv);
@@ -305,13 +305,13 @@ document.querySelectorAll(".product").forEach(product=>{
     pack.addEventListener("click",()=>{
       packs.forEach(p=>p.classList.remove("active"));
       pack.classList.add("active");
-      buyBtn.href=pack.dataset.link; // tıklandığında link burada değişiyor
+      buyBtn.href=pack.dataset.link;
       buyBtn.classList.remove("disabled");
       buyBtn.textContent="Satın Al";
     });
   });
 });
-
+  
 /* LANGUAGE */
 function setLang(lang){
 document.querySelectorAll("header p").forEach(p=>{p.innerText=(lang==="en")?"Premium Game Software & Support":"Premium Oyun Yazılımları & Profesyonel Destek";});
