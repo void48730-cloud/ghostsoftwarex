@@ -12,106 +12,119 @@ body {
     background: #0a0a0a;
     color: #fff;
     overflow-x: hidden;
-    background: linear-gradient(45deg, #0a0a0a, #1a001a);
-    animation: gradientMove 15s infinite linear;
 }
 
-/* Arka plan animasyonu */
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Neon gradient arka plan animasyonu */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(270deg, #1a001a, #3a003a, #1a001a);
+    background-size: 600% 600%;
+    z-index: -1;
+    animation: gradientBG 20s ease infinite;
+}
+@keyframes gradientBG {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    background: #1a1a1a;
+    padding: 1rem 3rem;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 20px #9b59b6;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 0 15px #9b59b6;
 }
 
 header .logo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #9b59b6;
     font-weight: bold;
-    text-shadow: 0 0 5px #9b59b6;
+    text-shadow: 0 0 10px #9b59b6;
 }
 
 header nav a {
-    margin-left: 1rem;
+    margin-left: 2rem;
     text-decoration: none;
     color: #fff;
-    font-weight: 500;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-header nav a:hover { color: #9b59b6; }
+header nav a:hover { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
 
-/* Hero Bölümü */
+/* Hero */
 #hero {
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
 }
 #hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #9b59b6;
-    text-shadow: 0 0 10px #9b59b6;
+    text-shadow: 0 0 20px #9b59b6;
 }
 #hero p {
-    font-size: 1.2rem;
-    color: #ddd;
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-top: 1rem;
 }
 
-/* ===== ÜRÜNLER ===== */
+/* ÜRÜNLER */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .product-card {
     background: #1a1a1a;
     border: 2px solid #9b59b6;
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 20px;
+    padding: 2rem;
     text-align: center;
     transition: 0.4s;
-    box-shadow: 0 0 10px #9b59b6;
+    box-shadow: 0 0 15px #9b59b6;
 }
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px #9b59b6, 0 0 30px #7e3ea1;
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px #ff00ff, 0 0 40px #9b59b6;
 }
 
 .product-card img {
     width: 100%;
-    border-radius: 10px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
     margin-bottom: 1rem;
 }
 
 .product-card h3 {
+    font-size: 1.8rem;
     color: #fff;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 5px #9b59b6;
+    text-shadow: 0 0 10px #9b59b6;
 }
 
 .product-card p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #ccc;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Butonlar */
-button {
+/* Fiyat butonları */
+.price-btn {
     padding: 0.6rem 1.2rem;
     margin: 0.3rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     background: #9b59b6;
     color: #fff;
@@ -119,33 +132,29 @@ button {
     text-shadow: 0 0 3px #fff;
     transition: 0.3s;
 }
-
-button:hover {
-    background: #7e3ea1;
-    box-shadow: 0 0 10px #9b59b6;
+.price-btn:hover {
+    background: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
 }
 
-/* ===== POPUP ===== */
+/* Popup */
 .popup {
     position: fixed;
     top: 25%;
     left: 50%;
     transform: translateX(-50%);
     background: #222;
-    padding: 1.5rem 3rem;
-    border-radius: 15px;
+    padding: 2rem 3rem;
+    border-radius: 20px;
     display: none;
     color: #fff;
     z-index: 200;
-    box-shadow: 0 0 15px #9b59b6;
+    box-shadow: 0 0 20px #9b59b6;
     text-align: center;
 }
 
-/* ===== YORUMLAR ===== */
-#reviews {
-    padding: 4rem 2rem;
-    text-align: center;
-}
+/* YORUMLAR */
+#reviews { padding: 4rem 2rem; text-align: center; }
 .review-slider {
     display: flex;
     overflow-x: auto;
@@ -154,28 +163,24 @@ button:hover {
     padding-bottom: 1rem;
 }
 .review {
-    min-width: 250px;
+    min-width: 300px;
     background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 15px;
     border: 2px solid #9b59b6;
-    box-shadow: 0 0 10px #9b59b6;
+    box-shadow: 0 0 15px #9b59b6;
+    font-size: 1rem;
 }
 
-/* ===== NEDEN BİZ ===== */
-#whyus ul { list-style: none; padding: 0; }
+/* NEDEN BİZ */
+#whyus ul { list-style: none; padding: 0; margin-top:1rem;}
 #whyus ul li {
-    margin: 0.7rem 0;
-    font-size: 1.1rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
     color: #fff;
-    text-shadow: 0 0 3px #9b59b6;
+    text-shadow: 0 0 5px #9b59b6;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-    header { flex-direction: column; align-items: flex-start; }
-    header nav { margin-top: 0.5rem; }
-}
 </style>
 </head>
 <body>
@@ -191,53 +196,55 @@ button:hover {
 </header>
 
 <section id="hero">
-    <h1>👾 GhostSoftwareX ile Güvenli Yazılım</h1>
-    <p>Hızlı teslimat, güvenli alışveriş ve premium ürünler! 💜</p>
+    <h1>👾 GhostSoftwareX - Güvenli Yazılım</h1>
+    <p>Hızlı teslimat, premium ürünler ve güvenli alışveriş 💜</p>
 </section>
 
 <section id="products">
     <h2>Ürünlerimiz</h2>
     <div class="product-grid">
-        <!-- ÜRÜN 1 -->
+
+        <!-- ASPECT -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/250x150.png?text=ASPECT" alt="ASPECT">
+            <img src="https://via.placeholder.com/350x180.png?text=ASPECT" alt="ASPECT">
             <h3>ASPECT 💎</h3>
-            <p>Hızlı ve güvenli yazılım çözümü, premium özellikler dahil.</p>
-            <button class="buy-btn">Satın Al 🛒</button>
-            <button class="buy-btn">Toplu Al 💰</button>
+            <p>Premium yazılım, günlük kullanım için uygundur.</p>
+            <button class="price-btn">Günlük: 50₺</button>
         </div>
-        <!-- ÜRÜN 2 -->
+
+        <!-- ZOLO -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/250x150.png?text=ZOLO" alt="ZOLO">
+            <img src="https://via.placeholder.com/350x180.png?text=ZOLO" alt="ZOLO">
             <h3>ZOLO ⚡</h3>
-            <p>Kolay kurulum ve güvenli kullanım sağlayan güçlü yazılım.</p>
-            <button class="buy-btn">Satın Al 🛒</button>
-            <button class="buy-btn">Toplu Al 💰</button>
+            <p>Güvenli ve hızlı yazılım çözümü, sadece günlük paket.</p>
+            <button class="price-btn">Günlük: 40₺</button>
         </div>
-        <!-- ÜRÜN 3 -->
+
+        <!-- REVOTECH -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/250x150.png?text=REVOTECH" alt="REVOTECH">
+            <img src="https://via.placeholder.com/350x180.png?text=REVOTECH" alt="REVOTECH">
             <h3>REVOTECH 🔥</h3>
-            <p>Profesyonel yazılım deneyimi ve güvenli altyapı.</p>
-            <button class="buy-btn">Satın Al 🛒</button>
-            <button class="buy-btn">Toplu Al 💰</button>
+            <p>Profesyonel günlük yazılım paketi, güvenli altyapı.</p>
+            <button class="price-btn">Günlük: 60₺</button>
         </div>
-        <!-- ÜRÜN 4 -->
+
+        <!-- MONSTER -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/250x150.png?text=MONSTER" alt="MONSTER">
+            <img src="https://via.placeholder.com/350x180.png?text=MONSTER" alt="MONSTER">
             <h3>MONSTER 🐲</h3>
-            <p>Yüksek performans ve güvenlik sunan yazılım paketi.</p>
-            <button class="buy-btn">Satın Al 🛒</button>
-            <button class="buy-btn">Toplu Al 💰</button>
+            <p>Günlük paket, yüksek performans ve güvenlik sunar.</p>
+            <button class="price-btn">Günlük: 55₺</button>
         </div>
-        <!-- ÜRÜN 5 -->
+
+        <!-- KING MOD -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/250x150.png?text=KING+MOD" alt="KING MOD">
+            <img src="https://via.placeholder.com/350x180.png?text=KING+MOD" alt="KING MOD">
             <h3>KING MOD 👑</h3>
-            <p>Eksiksiz özellikler ve premium destek ile güvenli kullanım.</p>
-            <button class="buy-btn">Satın Al 🛒</button>
-            <button class="buy-btn">Toplu Al 💰</button>
+            <p>Haftalık ve aylık paket mevcuttur, premium özellikler.</p>
+            <button class="price-btn">Haftalık: 120₺</button>
+            <button class="price-btn">Aylık: 250₺</button>
         </div>
+
     </div>
 </section>
 
@@ -266,10 +273,10 @@ button:hover {
 </div>
 
 <script>
-const buyButtons = document.querySelectorAll('.buy-btn');
+const priceButtons = document.querySelectorAll('.price-btn');
 const popup = document.getElementById('popup');
 
-buyButtons.forEach(btn => {
+priceButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         popup.style.display = 'block';
         setTimeout(() => {
@@ -279,5 +286,6 @@ buyButtons.forEach(btn => {
     });
 });
 </script>
+
 </body>
 </html>
