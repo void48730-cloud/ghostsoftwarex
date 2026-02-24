@@ -13,13 +13,11 @@ body {
     color: #fff;
     overflow-x: hidden;
 }
-
-/* Neon gradient arka plan animasyonu */
 body::before {
     content: "";
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top:0; left:0;
+    width:100%; height:100%;
     background: linear-gradient(270deg, #1a001a, #3a003a, #1a001a);
     background-size: 600% 600%;
     z-index: -1;
@@ -33,154 +31,130 @@ body::before {
 
 /* Header */
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 3rem;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 1rem 4rem;
     background: rgba(0,0,0,0.8);
-    box-shadow: 0 0 20px #9b59b6;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    box-shadow: 0 0 25px #9b59b6;
 }
-
 header .logo {
-    font-size: 2rem;
-    color: #9b59b6;
-    font-weight: bold;
-    text-shadow: 0 0 10px #9b59b6;
+    font-size:2.5rem;
+    font-weight:bold;
+    color:#9b59b6;
+    text-shadow: 0 0 15px #9b59b6, 0 0 25px #ff00ff;
 }
-
 header nav a {
-    margin-left: 2rem;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    transition: 0.3s;
+    margin-left:2rem;
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    font-size:1.1rem;
+    transition:0.3s;
 }
+header nav a:hover { color:#ff00ff; text-shadow:0 0 10px #ff00ff; }
 
-header nav a:hover { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+/* Footer */
+footer {
+    text-align:center;
+    padding:1.5rem;
+    color:#ccc;
+    border-top:2px solid #9b59b6;
+    margin-top:2rem;
+}
 
 /* Hero */
-#hero {
-    text-align: center;
-    padding: 5rem 2rem;
-}
+#hero { text-align:center; padding:5rem 2rem;}
 #hero h1 {
-    font-size: 3rem;
-    color: #9b59b6;
-    text-shadow: 0 0 20px #9b59b6;
+    font-size:3rem; color:#9b59b6; text-shadow:0 0 20px #9b59b6, 0 0 40px #ff00ff;
 }
-#hero p {
-    font-size: 1.5rem;
-    color: #ccc;
-    margin-top: 1rem;
+#hero p { font-size:1.5rem; color:#ddd; margin-top:1rem; }
+
+/* Ürünlerimiz başlığı */
+#products h2 {
+    text-align:center;
+    font-size:2.5rem;
+    color:#ff00ff;
+    text-shadow:0 0 20px #9b59b6, 0 0 40px #ff00ff;
+    margin-bottom:2rem;
 }
 
-/* ÜRÜNLER */
+/* Ürün kartları */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 3rem;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap:3rem;
+    padding:2rem 4rem;
 }
-
 .product-card {
-    background: #1a1a1a;
-    border: 2px solid #9b59b6;
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    transition: 0.4s;
-    box-shadow: 0 0 15px #9b59b6;
+    background:#1a1a1a;
+    border:3px solid #9b59b6;
+    border-radius:25px;
+    padding:2rem;
+    text-align:center;
+    transition:0.5s;
+    box-shadow:0 0 20px #9b59b6;
 }
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px #ff00ff, 0 0 40px #9b59b6;
+    transform:translateY(-10px);
+    box-shadow:0 0 35px #ff00ff, 0 0 50px #9b59b6;
 }
-
 .product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 1rem;
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:1rem;
 }
-
 .product-card h3 {
-    font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px #9b59b6;
+    font-size:2rem; margin-bottom:0.5rem;
+    color:#fff; text-shadow:0 0 10px #9b59b6,0 0 20px #ff00ff;
 }
-
-.product-card p {
-    font-size: 1rem;
-    color: #ccc;
-    margin-bottom: 1.5rem;
-}
-
-/* Fiyat butonları */
+.product-card p { font-size:1.1rem; color:#ccc; margin-bottom:1.5rem; }
 .price-btn {
-    padding: 0.6rem 1.2rem;
-    margin: 0.3rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: #9b59b6;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 0 0 3px #fff;
-    transition: 0.3s;
+    padding:0.7rem 1.5rem; margin:0.5rem;
+    border:none; border-radius:12px;
+    cursor:pointer; background:#9b59b6; color:#fff;
+    font-weight:bold; font-size:1rem; text-shadow:0 0 3px #fff;
+    transition:0.3s;
 }
-.price-btn:hover {
-    background: #ff00ff;
-    box-shadow: 0 0 15px #ff00ff;
+.price-btn:hover { background:#ff00ff; box-shadow:0 0 20px #ff00ff; }
+
+/* Müşteri yorumları */
+#reviews { padding:4rem 2rem; text-align:center;}
+#reviews h2 {
+    font-size:2rem; color:#9b59b6; margin-bottom:2rem; text-shadow:0 0 20px #9b59b6;
 }
+.review-slider {
+    display:flex; justify-content:center; gap:2rem;
+}
+.review {
+    min-width:320px; background:#1a1a1a; padding:2rem;
+    border-radius:20px; border:3px solid #9b59b6; box-shadow:0 0 25px #9b59b6;
+    font-size:1.1rem;
+}
+
+/* Neden Biz */
+#whyus { text-align:center; padding:4rem 2rem;}
+#whyus h2 {
+    font-size:2rem; color:#ff00ff; text-shadow:0 0 20px #9b59b6;
+    margin-bottom:2rem;
+}
+#whyus ul { list-style:none; padding:0; }
+#whyus ul li { margin:1rem 0; font-size:1.2rem; text-shadow:0 0 10px #9b59b6; }
 
 /* Popup */
 .popup {
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    padding: 2rem 3rem;
-    border-radius: 20px;
-    display: none;
-    color: #fff;
-    z-index: 200;
-    box-shadow: 0 0 20px #9b59b6;
-    text-align: center;
+    position:fixed; top:25%; left:50%; transform:translateX(-50%);
+    background:#222; padding:2rem 3rem; border-radius:20px;
+    display:none; color:#fff; z-index:200; box-shadow:0 0 30px #9b59b6;
+    text-align:center;
 }
 
-/* YORUMLAR */
-#reviews { padding: 4rem 2rem; text-align: center; }
-.review-slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    scroll-behavior: smooth;
-    padding-bottom: 1rem;
+/* Sadece PC odaklı, minimum 1200px */
+@media(max-width:1200px){
+    body { font-size:14px; }
+    .product-grid { grid-template-columns:1fr; padding:1rem; }
+    header { flex-direction:column; align-items:flex-start; padding:1rem 2rem; }
 }
-.review {
-    min-width: 300px;
-    background: #1a1a1a;
-    padding: 1.5rem;
-    border-radius: 15px;
-    border: 2px solid #9b59b6;
-    box-shadow: 0 0 15px #9b59b6;
-    font-size: 1rem;
-}
-
-/* NEDEN BİZ */
-#whyus ul { list-style: none; padding: 0; margin-top:1rem;}
-#whyus ul li {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    color: #fff;
-    text-shadow: 0 0 5px #9b59b6;
-}
-
 </style>
 </head>
 <body>
@@ -189,7 +163,7 @@ header nav a:hover { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
     <div class="logo">GhostSoftwareX</div>
     <nav>
         <a href="#products">Ürünler</a>
-        <a href="#reviews">Yorumlar</a>
+        <a href="#reviews">Müşteri Yorumları</a>
         <a href="#whyus">Neden Biz?</a>
         <a href="https://discord.gg/FHCMVxjW63" target="_blank">Discord</a>
     </nav>
@@ -201,46 +175,46 @@ header nav a:hover { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
 </section>
 
 <section id="products">
-    <h2>Ürünlerimiz</h2>
+    <h2>💻 Ürünlerimiz</h2>
     <div class="product-grid">
 
         <!-- ASPECT -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/350x180.png?text=ASPECT" alt="ASPECT">
+            <img src="https://via.placeholder.com/400x220.png?text=ASPECT" alt="ASPECT">
             <h3>ASPECT 💎</h3>
-            <p>Premium yazılım, günlük kullanım için uygundur.</p>
+            <p>Premium yazılım, günlük kullanım paketi.</p>
             <button class="price-btn">Günlük: 50₺</button>
         </div>
 
         <!-- ZOLO -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/350x180.png?text=ZOLO" alt="ZOLO">
+            <img src="https://via.placeholder.com/400x220.png?text=ZOLO" alt="ZOLO">
             <h3>ZOLO ⚡</h3>
-            <p>Güvenli ve hızlı yazılım çözümü, sadece günlük paket.</p>
+            <p>Güvenli ve hızlı yazılım, günlük paket.</p>
             <button class="price-btn">Günlük: 40₺</button>
         </div>
 
         <!-- REVOTECH -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/350x180.png?text=REVOTECH" alt="REVOTECH">
+            <img src="https://via.placeholder.com/400x220.png?text=REVOTECH" alt="REVOTECH">
             <h3>REVOTECH 🔥</h3>
-            <p>Profesyonel günlük yazılım paketi, güvenli altyapı.</p>
+            <p>Profesyonel yazılım, günlük paket.</p>
             <button class="price-btn">Günlük: 60₺</button>
         </div>
 
         <!-- MONSTER -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/350x180.png?text=MONSTER" alt="MONSTER">
+            <img src="https://via.placeholder.com/400x220.png?text=MONSTER" alt="MONSTER">
             <h3>MONSTER 🐲</h3>
-            <p>Günlük paket, yüksek performans ve güvenlik sunar.</p>
+            <p>Günlük paket, yüksek performanslı yazılım.</p>
             <button class="price-btn">Günlük: 55₺</button>
         </div>
 
         <!-- KING MOD -->
         <div class="product-card">
-            <img src="https://via.placeholder.com/350x180.png?text=KING+MOD" alt="KING MOD">
+            <img src="https://via.placeholder.com/400x220.png?text=KING+MOD" alt="KING MOD">
             <h3>KING MOD 👑</h3>
-            <p>Haftalık ve aylık paket mevcuttur, premium özellikler.</p>
+            <p>Haftalık ve aylık paketler, premium özellikler.</p>
             <button class="price-btn">Haftalık: 120₺</button>
             <button class="price-btn">Aylık: 250₺</button>
         </div>
@@ -268,6 +242,10 @@ header nav a:hover { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
     </ul>
 </section>
 
+<footer>
+    © 2026 GhostSoftwareX | <a href="https://discord.gg/FHCMVxjW63" style="color:#ff00ff;">Discord</a>
+</footer>
+
 <div id="popup" class="popup">
     <p>Discord’a yönlendiriliyorsunuz... 🌐</p>
 </div>
@@ -286,6 +264,5 @@ priceButtons.forEach(btn => {
     });
 });
 </script>
-
 </body>
 </html>
