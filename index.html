@@ -5,13 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GhostSoftwareX</title>
 <style>
-/* ==== GENEL === */
+/* ===== GENEL ===== */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #0a0a0a;
+    background: #0a0a0a;
     color: #fff;
+    overflow-x: hidden;
+    background: linear-gradient(45deg, #0a0a0a, #1a001a);
+    animation: gradientMove 15s infinite linear;
 }
+
+/* Arka plan animasyonu */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -20,77 +31,155 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 0 15px #9b59b6;
 }
+
 header .logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #9b59b6;
     font-weight: bold;
+    text-shadow: 0 0 5px #9b59b6;
 }
+
 header nav a {
     margin-left: 1rem;
     text-decoration: none;
     color: #fff;
+    font-weight: 500;
     transition: 0.3s;
 }
+
 header nav a:hover { color: #9b59b6; }
-section { padding: 4rem 2rem; }
-h2 { text-align: center; margin-bottom: 2rem; color: #9b59b6; }
-/* ==== ÜRÜNLER === */
+
+/* Hero Bölümü */
+#hero {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+#hero h1 {
+    font-size: 2.5rem;
+    color: #9b59b6;
+    text-shadow: 0 0 10px #9b59b6;
+}
+#hero p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* ===== ÜRÜNLER ===== */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    padding: 2rem;
 }
+
 .product-card {
     background: #1a1a1a;
-    padding: 1.5rem;
-    border-radius: 10px;
+    border: 2px solid #9b59b6;
+    border-radius: 15px;
+    padding: 1rem;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.4s;
+    box-shadow: 0 0 10px #9b59b6;
 }
-.product-card:hover { background: #2a2a2a; }
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #9b59b6, 0 0 30px #7e3ea1;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px #9b59b6;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Butonlar */
 button {
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     margin: 0.3rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     background: #9b59b6;
     color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 3px #fff;
     transition: 0.3s;
 }
-button:hover { background: #7e3ea1; }
-/* ==== POPUP === */
+
+button:hover {
+    background: #7e3ea1;
+    box-shadow: 0 0 10px #9b59b6;
+}
+
+/* ===== POPUP ===== */
 .popup {
     position: fixed;
-    top: 20%;
+    top: 25%;
     left: 50%;
     transform: translateX(-50%);
     background: #222;
-    padding: 1rem 2rem;
-    border-radius: 10px;
+    padding: 1.5rem 3rem;
+    border-radius: 15px;
     display: none;
     color: #fff;
     z-index: 200;
+    box-shadow: 0 0 15px #9b59b6;
+    text-align: center;
 }
-/* ==== YORUMLAR === */
+
+/* ===== YORUMLAR ===== */
+#reviews {
+    padding: 4rem 2rem;
+    text-align: center;
+}
 .review-slider {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
     scroll-behavior: smooth;
+    padding-bottom: 1rem;
 }
 .review {
     min-width: 250px;
     background: #1a1a1a;
     padding: 1rem;
     border-radius: 10px;
+    border: 2px solid #9b59b6;
+    box-shadow: 0 0 10px #9b59b6;
 }
-ul { list-style: none; padding: 0; text-align: center; }
-ul li { margin: 0.5rem 0; }
+
+/* ===== NEDEN BİZ ===== */
+#whyus ul { list-style: none; padding: 0; }
+#whyus ul li {
+    margin: 0.7rem 0;
+    font-size: 1.1rem;
+    color: #fff;
+    text-shadow: 0 0 3px #9b59b6;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+    header { flex-direction: column; align-items: flex-start; }
+    header nav { margin-top: 0.5rem; }
+}
 </style>
 </head>
 <body>
+
 <header>
     <div class="logo">GhostSoftwareX</div>
     <nav>
@@ -102,84 +191,78 @@ ul li { margin: 0.5rem 0; }
 </header>
 
 <section id="hero">
-    <h1>GhostSoftwareX ile Güvenli Yazılım</h1>
-    <p>Hızlı teslimat, güvenli alışveriş ve premium ürünler!</p>
+    <h1>👾 GhostSoftwareX ile Güvenli Yazılım</h1>
+    <p>Hızlı teslimat, güvenli alışveriş ve premium ürünler! 💜</p>
 </section>
 
 <section id="products">
     <h2>Ürünlerimiz</h2>
     <div class="product-grid">
+        <!-- ÜRÜN 1 -->
         <div class="product-card">
-            <h3>ASPECT</h3>
-            <div class="prices">
-                <button>Günlük</button>
-                <button>Haftalık</button>
-                <button>Aylık</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
+            <img src="https://via.placeholder.com/250x150.png?text=ASPECT" alt="ASPECT">
+            <h3>ASPECT 💎</h3>
+            <p>Hızlı ve güvenli yazılım çözümü, premium özellikler dahil.</p>
+            <button class="buy-btn">Satın Al 🛒</button>
+            <button class="buy-btn">Toplu Al 💰</button>
         </div>
+        <!-- ÜRÜN 2 -->
         <div class="product-card">
-            <h3>ZOLO</h3>
-            <div class="prices">
-                <button>Günlük</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
+            <img src="https://via.placeholder.com/250x150.png?text=ZOLO" alt="ZOLO">
+            <h3>ZOLO ⚡</h3>
+            <p>Kolay kurulum ve güvenli kullanım sağlayan güçlü yazılım.</p>
+            <button class="buy-btn">Satın Al 🛒</button>
+            <button class="buy-btn">Toplu Al 💰</button>
         </div>
+        <!-- ÜRÜN 3 -->
         <div class="product-card">
-            <h3>REVOTECH</h3>
-            <div class="prices">
-                <button>Günlük</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
+            <img src="https://via.placeholder.com/250x150.png?text=REVOTECH" alt="REVOTECH">
+            <h3>REVOTECH 🔥</h3>
+            <p>Profesyonel yazılım deneyimi ve güvenli altyapı.</p>
+            <button class="buy-btn">Satın Al 🛒</button>
+            <button class="buy-btn">Toplu Al 💰</button>
         </div>
+        <!-- ÜRÜN 4 -->
         <div class="product-card">
-            <h3>MONSTER</h3>
-            <div class="prices">
-                <button>Günlük</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
+            <img src="https://via.placeholder.com/250x150.png?text=MONSTER" alt="MONSTER">
+            <h3>MONSTER 🐲</h3>
+            <p>Yüksek performans ve güvenlik sunan yazılım paketi.</p>
+            <button class="buy-btn">Satın Al 🛒</button>
+            <button class="buy-btn">Toplu Al 💰</button>
         </div>
+        <!-- ÜRÜN 5 -->
         <div class="product-card">
-            <h3>ENGINE</h3>
-            <div class="prices">
-                <button>Günlük</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
-        </div>
-        <div class="product-card">
-            <h3>KING MOD</h3>
-            <div class="prices">
-                <button>Günlük</button>
-                <button>Haftalık</button>
-                <button>Aylık</button>
-            </div>
-            <button class="buy-btn">Satın Al</button>
+            <img src="https://via.placeholder.com/250x150.png?text=KING+MOD" alt="KING MOD">
+            <h3>KING MOD 👑</h3>
+            <p>Eksiksiz özellikler ve premium destek ile güvenli kullanım.</p>
+            <button class="buy-btn">Satın Al 🛒</button>
+            <button class="buy-btn">Toplu Al 💰</button>
         </div>
     </div>
 </section>
 
 <section id="reviews">
-    <h2>Müşteri Yorumları</h2>
+    <h2>⭐ Müşteri Yorumları ⭐</h2>
     <div class="review-slider">
-        <div class="review">Ali: Çok iyi hizmet ⭐⭐⭐⭐⭐</div>
-        <div class="review">Mehmet: Hızlı teslimat ⭐⭐⭐⭐⭐</div>
-        <div class="review">Can: Güvenilir site ⭐⭐⭐⭐</div>
+        <div class="review">Ali: Çok iyi hizmet 💯⭐⭐⭐⭐⭐</div>
+        <div class="review">Mehmet: Hızlı teslimat 🚀⭐⭐⭐⭐⭐</div>
+        <div class="review">Can: Güvenilir site 🔒⭐⭐⭐⭐</div>
     </div>
 </section>
 
 <section id="whyus">
-    <h2>Neden GhostSoftwareX?</h2>
+    <h2>💡 Neden GhostSoftwareX?</h2>
     <ul>
-        <li>Hızlı Teslimat</li>
-        <li>Uygun Fiyat</li>
-        <li>7/24 Destek</li>
-        <li>Güncel Yazılımlar</li>
-        <li>Güvenli Altyapı</li>
+        <li>⚡ Hızlı Teslimat</li>
+        <li>💰 Uygun Fiyat</li>
+        <li>🕒 7/24 Destek</li>
+        <li>🛡️ Güncel Yazılımlar</li>
+        <li>🔒 Güvenli Altyapı</li>
     </ul>
 </section>
 
 <div id="popup" class="popup">
-    <p>Discord’a yönlendiriliyorsunuz...</p>
+    <p>Discord’a yönlendiriliyorsunuz... 🌐</p>
 </div>
 
 <script>
