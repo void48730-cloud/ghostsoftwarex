@@ -1,188 +1,103 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GhostSoftwareX | Premium Yazılım Mağazası</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    body{background:#0b0b0f;color:#fff}
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+}
 
-    header{background:#07070a;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-    header h1{color:#00ffe1}
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-    nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:500;transition:.3s}
-    nav a:hover{color:#00ffe1}
+header .logo {
+    font-size: 1.5rem;
+    color: #9b59b6;
+    font-weight: bold;
+}
 
-    .hero{height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#111,#000)}
+header nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
 
-    .hero h2{font-size:50px;margin-bottom:15px}
-    .hero p{opacity:.8;font-size:18px}
+header nav a:hover {
+    color: #9b59b6;
+}
 
-    .btn{display:inline-block;margin-top:25px;padding:12px 35px;background:#00ffe1;color:#000;border-radius:30px;font-weight:600;text-decoration:none}
+section {
+    padding: 4rem 2rem;
+}
 
-    section{padding:80px 10%}
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #9b59b6;
+}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
 
-    .card{background:#12121a;border-radius:15px;padding:25px;box-shadow:0 0 20px rgba(0,255,225,.1);transition:.3s}
-    .card:hover{transform:translateY(-5px)}
+.product-card {
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
 
-    .card img{width:100%;border-radius:10px;margin-bottom:15px}
+.product-card:hover {
+    background: #2a2a2a;
+}
 
-    .stars{color:gold}
+button {
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #9b59b6;
+    color: #fff;
+    transition: 0.3s;
+}
 
-    footer{background:#07070a;padding:30px;text-align:center;opacity:.7}
-  </style>
-</head>
-<body>
+button:hover {
+    background: #7e3ea1;
+}
 
-<header>
-  <h1>GhostSoftwareX</h1>
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="products.html">Ürünler</a>
-    <a href="reviews.html">Yorumlar</a>
-    <a href="about.html">Neden Biz?</a>
-    <a href="security.html">Güvenlik</a>
-  </nav>
-</header>
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: none;
+    color: #fff;
+    z-index: 200;
+}
 
-<div class="hero">
-  <div>
-    <h2>Premium Oyun Yazılımları</h2>
-    <p>Güvenilir • Hızlı • Profesyonel</p>
-    <a href="products.html" class="btn">Ürünleri İncele</a>
-  </div>
-</div>
+.review-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-behavior: smooth;
+}
 
-<section>
-  <h2>Popüler Ürünler</h2><br>
-  <div class="grid">
-
-    <div class="card">
-      <img src="img/product1.jpg">
-      <h3>Ürün 1</h3>
-      <p>Kısa açıklama</p>
-    </div>
-
-    <div class="card">
-      <img src="img/product2.jpg">
-      <h3>Ürün 2</h3>
-      <p>Kısa açıklama</p>
-    </div>
-
-    <div class="card">
-      <img src="img/product3.jpg">
-      <h3>Ürün 3</h3>
-      <p>Kısa açıklama</p>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  © 2026 GhostSoftwareX | Tüm Hakları Saklıdır
-</footer>
-
-</body>
-</html>
-
-<!-- ================= PRODUCTS PAGE ================= -->
-<!-- Save below as products.html -->
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GhostSoftwareX | Ürünler</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#0b0b0f;color:#fff}
-header{background:#07070a;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-header h1{color:#00ffe1}
-nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:500;transition:.3s}
-nav a:hover{color:#00ffe1}
-section{padding:70px 10%}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
-.card{background:#12121a;border-radius:18px;padding:25px;box-shadow:0 0 25px rgba(0,255,225,.1);transition:.3s;text-align:center}
-.card:hover{transform:translateY(-7px)}
-.card img{width:100%;border-radius:12px;margin-bottom:15px}
-.price{margin:10px 0;font-size:14px;opacity:.9}
-.buy{display:inline-block;margin-top:15px;padding:10px 28px;background:#00ffe1;color:#000;border-radius:25px;text-decoration:none;font-weight:600}
-footer{background:#07070a;padding:25px;text-align:center;opacity:.7}
-</style>
-</head>
-<body>
-
-<header>
-<h1>GhostSoftwareX</h1>
-<nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="products.html">Ürünler</a>
-<a href="reviews.html">Yorumlar</a>
-<a href="about.html">Neden Biz?</a>
-<a href="security.html">Güvenlik</a>
-</nav>
-</header>
-
-<section>
-<h2>Ürünlerimiz</h2><br>
-<div class="grid">
-
-<!-- ASPECT -->
-<div class="card">
-<img src="img/aspect.jpg">
-<h3>ASPECT</h3>
-<p>Stabil altyapı, düşük ban riski ve maksimum performans sunan premium yazılım. Kolay kurulum ve 7/24 destek içerir.</p>
-<div class="price">Günlük: 150₺ | Haftalık: 380₺ | Aylık: 760₺</div>
-<a href="https://discord.gg/qgrBX7C9GZ" class="buy">Satın Al</a>
-</div>
-
-<!-- ZOLO MOD -->
-<div class="card">
-<img src="img/zolo.jpg">
-<h3>ZOLO MOD</h3>
-<p>Hızlı güncelleme sistemi, gelişmiş koruma ve optimize edilmiş performans ile güvenli kullanım sağlar.</p>
-<div class="price">Günlük: 125₺ | Haftalık: 375₺ | Aylık: 855₺</div>
-<a href="https://discord.gg/qgrBX7C9GZ" class="buy">Satın Al</a>
-</div>
-
-<!-- REVOTECH -->
-<div class="card">
-<img src="img/revotech.jpg">
-<h3>REVOTECH</h3>
-<p>Profesyonel kullanıcılar için geliştirilmiş, stabil çalışan ve uzun vadeli destek sunan özel sistem.</p>
-<div class="price">Günlük: 140₺ | Haftalık: 420₺ | Aylık: 840₺</div>
-<a href="https://discord.gg/qgrBX7C9GZ" class="buy">Satın Al</a>
-</div>
-
-<!-- MONSTER ENGINE -->
-<div class="card">
-<img src="img/monster.jpg">
-<h3>MONSTER ENGINE</h3>
-<p>Yüksek FPS uyumu, güçlü çekirdek sistemi ve minimum gecikme ile üstün oyun deneyimi sunar.</p>
-<div class="price">Günlük: 140₺ | Haftalık: 280₺ | Aylık: 680₺</div>
-<a href="https://discord.gg/qgrBX7C9GZ" class="buy">Satın Al</a>
-</div>
-
-<!-- KING MOD ANDROID -->
-<div class="card">
-<img src="img/king.jpg">
-<h3>KING MOD (Android)</h3>
-<p>Mobil oyuncular için özel geliştirilen, stabil çalışan ve tam uyumlu premium mod sistemi.</p>
-<div class="price">Haftalık: 900₺ | Aylık: 1600₺</div>
-<a href="https://discord.gg/qgrBX7C9GZ" class="buy">Satın Al</a>
-</div>
-
-</div>
-</section>
-
-<footer>
-© 2026 GhostSoftwareX | Tüm Hakları Saklıdır
-</footer>
-
-</body>
-</html>
+.review {
+    min-width: 250px;
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 10px;
+}
