@@ -237,31 +237,36 @@ cursor.style.top=e.clientY+"px";
 const productsData = [
   {
     name: "ASPECT MOD",
+    img: "images/aspect-mod.jpg", // kendi görselin
     günlük: 150, günlükLink: "https://discord.gg/NK8Swnsjuc",
     haftalık: 380, haftalıkLink: "https://discord.gg/NK8Swnsjuc",
     aylık: 760, aylıkLink: "https://discord.gg/NK8Swnsjuc"
   },
   {
     name: "ZOLO MOD",
+    img: "images/zolo-mod.jpg",
     günlük: 125, günlükLink: "https://discord.gg/NK8Swnsjuc",
     haftalık: 375, haftalıkLink: "https://discord.gg/NK8Swnsjuc",
     aylık: 855, aylıkLink: "https://discord.gg/NK8Swnsjuc"
   },
   {
     name: "REVOTECH",
+    img: "images/revotech.jpg",
     günlük: 140, günlükLink: "https://discord.gg/NK8Swnsjuc",
     haftalık: 420, haftalıkLink: "https://discord.gg/NK8Swnsjuc",
     aylık: 840, aylıkLink: "https://discord.gg/NK8Swnsjuc"
   },
   {
     name: "KING MOD",
+    img: "images/king-mod.jpg",
     günlük: 0, günlükLink: "https://discord.gg/NK8Swnsjuc",
     haftalık: 900, haftalıkLink: "https://discord.gg/NK8Swnsjuc",
     aylık: 1700, aylıkLink: "https://discord.gg/NK8Swnsjuc"
   },
   {
     name: "MONSTER ENGINE",
-    günlük: 140, günlükLink: "https://discord.gg/NK8Swnsjuc",
+    img: "images/monster-engine.jpg",
+    günlük: 140, günlükLink: "MONSTER ENGİNE.jpeg",
     haftalık: 280, haftalıkLink: "https://discord.gg/NK8Swnsjuc",
     aylık: 680, aylıkLink: "https://discord.gg/NK8Swnsjuc"
   }
@@ -273,7 +278,7 @@ productsData.forEach(product=>{
   const productDiv=document.createElement("div");
   productDiv.classList.add("product");
   productDiv.innerHTML=`
-    <img src="https://via.placeholder.com/800x400">
+  <img src="${product.img}">
     <h2>${product.name}</h2>
     <p>Üst seviye performans ve güvenlik.</p>
     <ul class="features">
