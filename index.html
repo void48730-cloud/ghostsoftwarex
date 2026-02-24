@@ -1,10 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GhostSoftwareX</title>
+<style>
+/* ==== GENEL === */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #0a0a0a;
     color: #fff;
 }
-
 header {
     display: flex;
     justify-content: space-between;
@@ -14,40 +21,26 @@ header {
     top: 0;
     z-index: 100;
 }
-
 header .logo {
     font-size: 1.5rem;
     color: #9b59b6;
     font-weight: bold;
 }
-
 header nav a {
     margin-left: 1rem;
     text-decoration: none;
     color: #fff;
     transition: 0.3s;
 }
-
-header nav a:hover {
-    color: #9b59b6;
-}
-
-section {
-    padding: 4rem 2rem;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #9b59b6;
-}
-
+header nav a:hover { color: #9b59b6; }
+section { padding: 4rem 2rem; }
+h2 { text-align: center; margin-bottom: 2rem; color: #9b59b6; }
+/* ==== ÜRÜNLER === */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
 }
-
 .product-card {
     background: #1a1a1a;
     padding: 1.5rem;
@@ -55,11 +48,7 @@ h2 {
     text-align: center;
     transition: 0.3s;
 }
-
-.product-card:hover {
-    background: #2a2a2a;
-}
-
+.product-card:hover { background: #2a2a2a; }
 button {
     padding: 0.5rem 1rem;
     margin: 0.3rem;
@@ -70,11 +59,8 @@ button {
     color: #fff;
     transition: 0.3s;
 }
-
-button:hover {
-    background: #7e3ea1;
-}
-
+button:hover { background: #7e3ea1; }
+/* ==== POPUP === */
 .popup {
     position: fixed;
     top: 20%;
@@ -87,17 +73,128 @@ button:hover {
     color: #fff;
     z-index: 200;
 }
-
+/* ==== YORUMLAR === */
 .review-slider {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
     scroll-behavior: smooth;
 }
-
 .review {
     min-width: 250px;
     background: #1a1a1a;
     padding: 1rem;
     border-radius: 10px;
 }
+ul { list-style: none; padding: 0; text-align: center; }
+ul li { margin: 0.5rem 0; }
+</style>
+</head>
+<body>
+<header>
+    <div class="logo">GhostSoftwareX</div>
+    <nav>
+        <a href="#products">Ürünler</a>
+        <a href="#reviews">Yorumlar</a>
+        <a href="#whyus">Neden Biz?</a>
+        <a href="https://discord.gg/FHCMVxjW63" target="_blank">Discord</a>
+    </nav>
+</header>
+
+<section id="hero">
+    <h1>GhostSoftwareX ile Güvenli Yazılım</h1>
+    <p>Hızlı teslimat, güvenli alışveriş ve premium ürünler!</p>
+</section>
+
+<section id="products">
+    <h2>Ürünlerimiz</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <h3>ASPECT</h3>
+            <div class="prices">
+                <button>Günlük</button>
+                <button>Haftalık</button>
+                <button>Aylık</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+        <div class="product-card">
+            <h3>ZOLO</h3>
+            <div class="prices">
+                <button>Günlük</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+        <div class="product-card">
+            <h3>REVOTECH</h3>
+            <div class="prices">
+                <button>Günlük</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+        <div class="product-card">
+            <h3>MONSTER</h3>
+            <div class="prices">
+                <button>Günlük</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+        <div class="product-card">
+            <h3>ENGINE</h3>
+            <div class="prices">
+                <button>Günlük</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+        <div class="product-card">
+            <h3>KING MOD</h3>
+            <div class="prices">
+                <button>Günlük</button>
+                <button>Haftalık</button>
+                <button>Aylık</button>
+            </div>
+            <button class="buy-btn">Satın Al</button>
+        </div>
+    </div>
+</section>
+
+<section id="reviews">
+    <h2>Müşteri Yorumları</h2>
+    <div class="review-slider">
+        <div class="review">Ali: Çok iyi hizmet ⭐⭐⭐⭐⭐</div>
+        <div class="review">Mehmet: Hızlı teslimat ⭐⭐⭐⭐⭐</div>
+        <div class="review">Can: Güvenilir site ⭐⭐⭐⭐</div>
+    </div>
+</section>
+
+<section id="whyus">
+    <h2>Neden GhostSoftwareX?</h2>
+    <ul>
+        <li>Hızlı Teslimat</li>
+        <li>Uygun Fiyat</li>
+        <li>7/24 Destek</li>
+        <li>Güncel Yazılımlar</li>
+        <li>Güvenli Altyapı</li>
+    </ul>
+</section>
+
+<div id="popup" class="popup">
+    <p>Discord’a yönlendiriliyorsunuz...</p>
+</div>
+
+<script>
+const buyButtons = document.querySelectorAll('.buy-btn');
+const popup = document.getElementById('popup');
+
+buyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+            window.open('https://discord.gg/FHCMVxjW63', '_blank');
+        }, 1500);
+    });
+});
+</script>
+</body>
+</html>
