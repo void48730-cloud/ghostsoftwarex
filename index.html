@@ -340,12 +340,12 @@ productsData.forEach(product=>{
   main.appendChild(productDiv);
 });
 
-/* PACK SYSTEM → LOCALSTORAGE SEPETE EKLEME */
+/* PACK SYSTEM → LOCALSTORAGE SEPETE EKLEME VE SAYACI GÜNCELLEME */
 document.querySelectorAll(".product").forEach(product=>{
   const packs=product.querySelectorAll(".pack");
   const buyBtn=product.querySelector(".buyBtn");
   let selectedPack="";
-  
+
   packs.forEach(pack=>{
     pack.addEventListener("click",()=>{
       packs.forEach(p=>p.classList.remove("active"));
@@ -355,6 +355,24 @@ document.querySelectorAll(".product").forEach(product=>{
       buyBtn.textContent="Sepete Ekle";
     });
   });
+
+  buyBtn.addEventListener("click",()=>{
+    if(!selectedPack) return;
+
+    const productName = product.querySelector("h2").innerText;
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Sepete ekle
+    cart.push({ name: productName, pack: selectedPack });
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Sepet sayacını güncelle
+    updateCartCount();
+
+    // Buton metni tekrar “Sepete Ekle” olarak kalsın
+    buyBtn.textContent="Sepete Ekle";
+  });
+});
 
   buyBtn.addEventListener("click",()=>{
     if(!selectedPack) return;
