@@ -312,19 +312,73 @@ productsData.forEach(product=>{
   main.appendChild(productDiv);
 });
 
-/* PACK SYSTEM */
+/* PACK SYSTEM → SEPET SİSTEMİ */
+
 document.querySelectorAll(".product").forEach(product=>{
-  const packs=product.querySelectorAll(".pack");
-  const buyBtn=product.querySelector(".buyBtn");
+
+  const packs =
+  product.querySelectorAll(".pack");
+
+  const buyBtn =
+  product.querySelector(".buyBtn");
+
+  let selectedPack = "";
+
   packs.forEach(pack=>{
+
     pack.addEventListener("click",()=>{
-      packs.forEach(p=>p.classList.remove("active"));
+
+      packs.forEach(p=>
+        p.classList.remove("active")
+      );
+
       pack.classList.add("active");
-      buyBtn.href=pack.dataset.link;
-      buyBtn.classList.remove("disabled");
-      buyBtn.textContent="Satın Al";
+
+      selectedPack =
+      pack.innerText;
+
+      buyBtn.classList.remove(
+        "disabled"
+      );
+
+      buyBtn.textContent =
+      "Sepete Ekle";
+
     });
+
   });
+
+
+  buyBtn.addEventListener("click",()=>{
+
+    if(!selectedPack) return;
+
+    const productName =
+    product.querySelector("h2").innerText;
+
+    let cart =
+    JSON.parse(
+    localStorage.getItem("cart")
+    ) || [];
+
+    cart.push({
+
+      name: productName,
+
+      pack: selectedPack
+
+    });
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    location.href =
+    "cart.html";
+
+  });
+
 });
   
 /* LANGUAGE */
