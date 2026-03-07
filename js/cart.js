@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Sepet</title>
-</head>
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-<body>
+const div =
+document.getElementById("cart");
 
-<h1>Sepet</h1>
+cart.forEach(item => {
 
-<div id="cart"></div>
+  div.innerHTML +=
+    item.name + " - " + item.price + "₺<br>";
 
-<a href="checkout.html">Ödeme</a>
-
-<script src="js/cart.js"></script>
-
-</body>
-</html>
+});
