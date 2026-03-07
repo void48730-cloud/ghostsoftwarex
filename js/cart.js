@@ -1,10 +1,10 @@
-// Sepet sayısı göstergesi
 function updateCartCount(){
   const count = JSON.parse(localStorage.getItem("cart"))?.length || 0;
-  document.getElementById("cartCount").textContent = count;
+  const el = document.getElementById("cartCount");
+  if(el) el.textContent = count;
 }
 
-// Sayfa yüklendiğinde güncelle
+// Sayfa yüklendiğinde sayaç
 updateCartCount();
 
 // Her ürün sepete eklendiğinde güncelle
