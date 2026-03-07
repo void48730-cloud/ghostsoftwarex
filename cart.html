@@ -3,60 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sepet | GhostSoftwareX</title>
+<title>GhostSoftwareX | Sepet</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-body{background:#000;color:white;font-family:'Poppins',sans-serif;padding:50px;}
-h1{text-align:center;margin-bottom:30px;color:#00ff99;}
-.cart-item{border:1px solid #222;padding:20px;border-radius:12px;margin-bottom:15px;background:rgba(10,10,10,.9);}
-.cart-item p{margin:5px 0;}
+/* RESET & BODY */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#000;color:white;overflow-x:hidden;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6{margin:0;}
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid #111;z-index:999;}
+.navbox{max-width:1200px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;}
+.navbox h2{color:#00ff99;}
+.navbox a{color:white;text-decoration:none;margin-left:15px;transition:.3s;}
+.navbox a:hover{color:#00ff99;}
+/* MAIN */
+.main{max-width:1200px;margin:100px auto 50px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cart-item{display:flex;gap:15px;border:1px solid #222;padding:15px;border-radius:12px;background:rgba(10,10,10,.9);align-items:center;transition:.3s;}
+.cart-item:hover{box-shadow:0 0 20px #00ff99;}
+.cart-item img{width:100px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #222;}
+.cart-item .info{flex:1;}
+.cart-item .info h3{color:#00ff99;margin-bottom:5px;font-size:16px;}
+.cart-item .info p{opacity:.8;margin-bottom:5px;font-size:14px;}
+.cart-item button{padding:6px 15px;border:none;border-radius:8px;background:#ff4500;color:white;font-weight:600;transition:.3s;}
+.cart-item button:hover{background:#e03e00;}
 
-/* BUTTONS */
-.button-container{display:flex;justify-content:center;gap:20px;margin-top:30px;flex-wrap:wrap;}
-.cart-btn{padding:12px 25px;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:.3s;text-decoration:none;color:white;text-align:center;display:inline-block;}
-.cart-btn.home{background:#00ff99;color:black;}
-.cart-btn.home:hover{background:#00cc77;}
-.cart-btn.checkout{background:#ff4500;}
-.cart-btn.checkout:hover{background:#e03e00;}
-.clear-btn{display:block;width:200px;margin:20px auto;padding:10px;text-align:center;background:#555;color:white;border:none;border-radius:8px;cursor:pointer;}
-.clear-btn:hover{background:#777;}
+/* TOTAL */
+.total{grid-column:1/-1;text-align:right;margin-top:20px;font-size:18px;font-weight:600;color:#00ff99;}
+.buy-now{display:inline-block;margin-top:15px;padding:12px 35px;border-radius:25px;background:#00ff99;color:black;text-decoration:none;font-weight:600;transition:.3s;}
+.buy-now:hover{background:#00cc77;color:white;}
+
+/* MOBILE */
+@media(max-width:900px){
+.main{grid-template-columns:1fr;}
+.cart-item{flex-direction:column;align-items:flex-start;}
+.cart-item img{width:100%;height:180px;}
+}
 </style>
 </head>
 <body>
 
-<h1>Sepetiniz</h1>
-<div id="cartContainer"></div>
-<button class="clear-btn" onclick="clearCart()">Sepeti Temizle</button>
-
-<div class="button-container">
-  <a href="index.html" class="cart-btn home">Ana Sayfaya Dön</a>
-  <a href="checkout.html" class="cart-btn checkout">Ödemeye Devam Et</a>
+<nav>
+<div class="navbox">
+<h2>GhostX</h2>
+<div>
+<a href="index.html">Ana Sayfa</a>
+<a href="cart.html">Sepet</a>
 </div>
+</div>
+</nav>
+
+<main class="main">
+<!-- Sepet ürünleri JS ile yüklenecek -->
+</main>
 
 <script>
-function loadCart(){
-  const container = document.getElementById("cartContainer");
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  container.innerHTML = "";
-  if(cart.length===0){
-    container.innerHTML="<p style='text-align:center;opacity:.7'>Sepetiniz boş.</p>";
-    return;
-  }
-  cart.forEach((item,index)=>{
-    const div = document.createElement("div");
-    div.classList.add("cart-item");
-    div.innerHTML=`<p><strong>Ürün:</strong> ${item.name}</p>
-                   <p><strong>Paket:</strong> ${item.pack}</p>`;
-    container.appendChild(div);
-  });
-}
+// SEPETİ LOCALSTORAGE'DEN ÇEK
+function loadCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const main = document.querySelector(".main");
+    main.innerHTML=""; // Temizle
+    let total = 0;
 
-function clearCart(){
-  localStorage.removeItem("cart");
-  loadCart();
-}
+    if(cart.length===0){
+        main.innerHTML='<h2 style="grid-column:1/-1;text-align:center;color:#ff4500;">Sepetiniz boş 😢</h2>';
+        return;
+    }
 
+    cart.forEach((item,index)=>{
+        const priceMatch = item.pack.match(/\d+/);
+        const price = priceMatch ? parseInt(priceMatch[0]) : 0;
+        total += price;
+
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+            <img src="${item.img || 'placeholder.jpeg'}" alt="${item.name}">
+            <div class="info">
+                <h3>${item.name}</h3>
+                <p>Paket: ${item.pack}</p>
+                <p>Fiyat: ${price}₺</p>
+            </div>
+            <button onclick="removeItem(${index})">Sil</button>
+        `;
+        main.appendChild(div);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.classList.add("total");
+    totalDiv.innerHTML = `Toplam: ${total}₺ <br><a href="#" class="buy-now">Satın Al</a>`;
+    main.appendChild(totalDiv);
+}
 loadCart();
+
+// ÜRÜN SİLME
+function removeItem(index){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index,1);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    loadCart();
+}
 </script>
 
 </body>
