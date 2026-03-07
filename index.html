@@ -150,17 +150,23 @@ function updateCartCount(){
 productsData.forEach(product=>{
   const div=document.createElement("div");
   div.classList.add("product");
-  div.innerHTML=`
-    <img src="${product.img}" alt="${product.name}">
-    <h2>${product.name}</h2>
-    <p>Üst seviye performans ve güvenlik.</p>
-    <div class="packages">
-      <div class="pack">Günlük ${product.günlük}</div>
-      <div class="pack">Haftalık ${product.haftalık}</div>
-      <div class="pack">Aylık ${product.aylık}</div>
-    </div>
-    <div class="buy"><a href="#" class="buyBtn disabled">Paket Seç</a></div>
-  `;
+div.innerHTML=`
+  <img src="${product.img}" alt="${product.name}">
+  <h2>${product.name}</h2>
+  <p>Üst seviye performans ve güvenlik.</p>
+  <ul class="features">
+    <li>Anti-Ban</li>
+    <li>Stabil</li>
+    <li>Hızlı Aktivasyon</li>
+    <li>7/24 Destek</li>
+  </ul>
+  <div class="packages">
+    <div class="pack">Günlük ${product.günlük}</div>
+    <div class="pack">Haftalık ${product.haftalık}</div>
+    <div class="pack">Aylık ${product.aylık}</div>
+  </div>
+  <div class="buy"><a href="#" class="buyBtn disabled">Paket Seç</a></div>
+`;
   main.appendChild(div);
 
   const packs=div.querySelectorAll(".pack");
