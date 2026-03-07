@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhostSoftwareX - Giriş / Kayıt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family:'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .container {
+      background: rgba(0,0,0,0.7);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #0ff;
+      width:300px;
+      text-align:center;
+    }
+    input {
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border-radius:6px;
+      border:none;
+    }
+    .btn {
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      background:#0ff;
+      color:#000;
+      font-weight:600;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover {box-shadow:0 0 15px #0ff; transform:scale(1.05);}
+    .message {margin-top:10px; color:#ff0;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Giriş / Kayıt</h2>
+    <input type="text" id="username" placeholder="Kullanıcı Adı">
+    <input type="password" id="password" placeholder="Şifre">
+    <button class="btn" id="registerBtn">Kayıt Ol</button>
+    <button class="btn" id="loginBtn">Giriş Yap</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // LocalStorage users kontrol
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const registerBtn = document.getElementById("registerBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const messageDiv = document.getElementById("message");
+
+    registerBtn.addEventListener("click", ()=>{
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      if(!username || !password){messageDiv.innerText="Kullanıcı adı ve şifre girin!"; return;}
+
+      // Aynı kullanıcı adı var mı?
+      if(users.find(u=>u.username===username)){
+        messageDiv.innerText="Bu kullanıcı adı zaten alınmış!";
+        return;
+      }
+
+      users.push({username,password});
+      localStorage.setItem("users", JSON.stringify(users));
+      messageDiv.style.color="#0f0";
+      messageDiv.innerText="Kayıt başarılı! Giriş yapabilirsiniz.";
+    });
+
+    loginBtn.addEventListener("click", ()=>{
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const user = users.find(u=>u.username===username);
+
+      if(!user){messageDiv.style.color="#f00"; messageDiv.innerText="Kullanıcı bulunamadı!"; return;}
+      if(user.password !== password){messageDiv.style.color="#f00"; messageDiv.innerText="Şifre yanlış!"; return;}
+
+      // Session başlat
+      const session = {username, loginTime:Date.now()};
+      localStorage.setItem("session", JSON.stringify(session));
+
+      // index.html yönlendir
+      window.location.href="index.html";
+    });
+  </script>
+</body>
+</html>
