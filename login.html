@@ -1,0 +1,32 @@
+<!-- index.html içinde header altına veya ayrı login.html -->
+<div id="authForms">
+  <h2>Kayıt Ol</h2>
+  <input type="text" id="regUsername" placeholder="Kullanıcı Adı">
+  <input type="email" id="regEmail" placeholder="Email">
+  <input type="password" id="regPassword" placeholder="Şifre">
+  <button id="regBtn">Kayıt Ol</button>
+
+  <h2>Giriş Yap</h2>
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Şifre">
+  <button id="loginBtn">Giriş Yap</button>
+</div>
+
+<script type="module">
+import { registerUser, loginUser } from "./auth.js";
+
+document.getElementById("regBtn").addEventListener("click", ()=>{
+  const username = document.getElementById("regUsername").value;
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPassword").value;
+  registerUser(email, password, username);
+});
+
+document.getElementById("loginBtn").addEventListener("click", ()=>{
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  loginUser(email, password).then(user=>{
+    if(user) alert("Giriş başarılı! Hoşgeldin " + user.email);
+  });
+});
+</script>
