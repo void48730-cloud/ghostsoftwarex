@@ -245,146 +245,115 @@ body{cursor:auto}
 <script>
 /* CURSOR, DEVTOOLS BLOK ve PRODUCTS kodun aynen buraya gelecek */
 /* CURSOR */
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
+const cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
 });
 
-  /* ULTRA GÜVENLİK & DEVTOOLS BLOK */
-document.addEventListener("keydown",e=>{
-if(e.keyCode==123 || (e.ctrlKey&&e.shiftKey&&e.keyCode==73) || (e.ctrlKey&&e.keyCode==85) || (e.ctrlKey&&e.keyCode==67) || (e.ctrlKey&&e.keyCode==86)){e.preventDefault();}
+/* ULTRA GÜVENLİK & DEVTOOLS BLOK */
+document.addEventListener("keydown", e => {
+    if(e.keyCode==123 || (e.ctrlKey&&e.shiftKey&&e.keyCode==73) || 
+       (e.ctrlKey&&e.keyCode==85) || (e.ctrlKey&&e.keyCode==67) || 
+       (e.ctrlKey&&e.keyCode==86)){e.preventDefault();}
 });
-document.addEventListener("contextmenu",e=>e.preventDefault());
-document.addEventListener("copy",e=>e.preventDefault());
-document.addEventListener("cut",e=>e.preventDefault());
-document.addEventListener("paste",e=>e.preventDefault());
-window.addEventListener("blur",()=>{window.focus();});
+document.addEventListener("contextmenu", e=> e.preventDefault());
+document.addEventListener("copy", e=> e.preventDefault());
+document.addEventListener("cut", e=> e.preventDefault());
+document.addEventListener("paste", e=> e.preventDefault());
+window.addEventListener("blur", ()=> { window.focus(); });
 
-  /* PRODUCTS */
+/* PRODUCTS DATA */
 const productsData = [
-  { 
-    name: "ASPECT MOD", 
-    img: "ASPECT ESP.jpeg", 
-    günlük: 150, 
-    günlükLink: "https://discord.gg/tFU8B6ERSk", 
-    haftalık: 380, 
-    haftalıkLink: "https://discord.gg/tFU8B6ERSk", 
-    aylık: 760, 
-    aylıkLink: "https://discord.gg/tFU8B6ERSk" 
-  },
-  { 
-    name: "ZOLO MOD", 
-    img: "WhatsApp Image 2026-02-23 at 18.29.10.jpeg", 
-    günlük: 125, 
-    günlükLink: "https://discord.gg/tFU8B6ERSk", 
-    haftalık: 375, 
-    haftalıkLink: "https://discord.gg/tFU8B6ERSk", 
-    aylık: 855, 
-    aylıkLink: "https://discord.gg/tFU8B6ERSk" 
-  },
-  { 
-    name: "REVOTECH", 
-    img: "REVO ESP.jpeg", 
-    günlük: 140, 
-    günlükLink: "https://discord.gg/tFU8B6ERSk", 
-    haftalık: 420, 
-    haftalıkLink: "https://discord.gg/tFU8B6ERSk", 
-    aylık: 840, 
-    aylıkLink: "https://discord.gg/tFU8B6ERSk" 
-  },
-  { 
-    name: "KING MOD", 
-    img: "KİNG MOD.jpeg", 
-    günlük: 0, 
-    günlükLink: "https://discord.gg/tFU8B6ERSk", 
-    haftalık: 900, 
-    haftalıkLink: "https://discord.gg/tFU8B6ERSk", 
-    aylık: 1700, 
-    aylıkLink: "https://discord.gg/tFU8B6ERSk" 
-  },
-  { 
-    name: "MONSTER ENGINE", 
-    img: "MONSTER ENGİNE.jpeg", 
-    günlük: 140, 
-    günlükLink: "https://discord.gg/tFU8B6ERSk", 
-    haftalık: 280, 
-    haftalıkLink: "https://discord.gg/tFU8B6ERSk", 
-    aylık: 680, 
-    aylıkLink: "https://discord.gg/tFU8B6ERSk" 
-  }
+  { name: "ASPECT MOD", img: "ASPECT ESP.jpeg", günlük: 150, günlükLink: "#", haftalık: 380, haftalıkLink: "#", aylık: 760, aylıkLink: "#" },
+  { name: "ZOLO MOD", img: "WhatsApp Image 2026-02-23 at 18.29.10.jpeg", günlük: 125, günlükLink: "#", haftalık: 375, haftalıkLink: "#", aylık: 855, aylıkLink: "#" },
+  { name: "REVOTECH", img: "REVO ESP.jpeg", günlük: 140, günlükLink: "#", haftalık: 420, haftalıkLink: "#", aylık: 840, aylıkLink: "#" },
+  { name: "KING MOD", img: "KİNG MOD.jpeg", günlük: 0, günlükLink: "#", haftalık: 900, haftalıkLink: "#", aylık: 1700, aylıkLink: "#" },
+  { name: "MONSTER ENGINE", img: "MONSTER ENGİNE.jpeg", günlük: 140, günlükLink: "#", haftalık: 280, haftalıkLink: "#", aylık: 680, aylıkLink: "#" }
 ];
 
-const main=document.querySelector(".main");
-
-productsData.forEach(product=>{
-  const productDiv=document.createElement("div");
-  productDiv.classList.add("product");
-  productDiv.innerHTML=`
-    <img src="${product.img}" alt="${product.name}">
-    <h2>${product.name}</h2>
-    <p>Üst seviye performans ve güvenlik.</p>
-    <ul class="features">
-      <li>Anti-Ban</li>
-      <li>Stabil</li>
-      <li>Hızlı Aktivasyon</li>
-      <li>7/24 Destek</li>
-    </ul>
-    <div class="packages">
-      <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
-      <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
-      <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
-    </div>
-    <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
-  `;
-  main.appendChild(productDiv);
+/* MAIN PRODUCTS */
+const main = document.querySelector(".main");
+productsData.forEach(product => {
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product");
+    productDiv.innerHTML = `
+      <img src="${product.img}" alt="${product.name}">
+      <h2>${product.name}</h2>
+      <p>Üst seviye performans ve güvenlik.</p>
+      <ul class="features">
+        <li>Anti-Ban</li>
+        <li>Stabil</li>
+        <li>Hızlı Aktivasyon</li>
+        <li>7/24 Destek</li>
+      </ul>
+      <div class="packages">
+        <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
+        <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
+        <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
+      </div>
+      <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
+    `;
+    main.appendChild(productDiv);
 });
 
-/* PACK SYSTEM → LOCALSTORAGE SEPETE EKLEME VE SAYACI GÜNCELLEME */
-document.querySelectorAll(".product").forEach(product=>{
-  const packs=product.querySelectorAll(".pack");
-  const buyBtn=product.querySelector(".buyBtn");
-  let selectedPack="";
+/* SEPET & PACK SYSTEM */
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+}
+updateCartCount();
 
-  packs.forEach(pack=>{
-    pack.addEventListener("click",()=>{
-      packs.forEach(p=>p.classList.remove("active"));
-      pack.classList.add("active");
-      selectedPack = pack.innerText;
-      buyBtn.classList.remove("disabled");
-      buyBtn.textContent="Sepete Ekle";
+document.querySelectorAll(".product").forEach(product => {
+    const packs = product.querySelectorAll(".pack");
+    const buyBtn = product.querySelector(".buyBtn");
+    let selectedPack = "";
+
+    packs.forEach(pack => {
+        pack.addEventListener("click", () => {
+            packs.forEach(p => p.classList.remove("active"));
+            pack.classList.add("active");
+            selectedPack = pack.innerText;
+            buyBtn.classList.remove("disabled");
+            buyBtn.textContent = "Sepete Ekle";
+        });
     });
-  });
 
-  buyBtn.addEventListener("click",()=>{
-    if(!selectedPack) return;
-
-    const productName = product.querySelector("h2").innerText;
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Sepete ekle
-    cart.push({ name: productName, pack: selectedPack });
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Sepet sayacını güncelle
-    updateCartCount();
-
-    // Buton metni tekrar “Sepete Ekle” olarak kalsın
-    buyBtn.textContent="Sepete Ekle";
-  });
+    buyBtn.addEventListener("click", () => {
+        if (!selectedPack) return;
+        const productName = product.querySelector("h2").innerText;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name: productName, pack: selectedPack });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        buyBtn.textContent = "Sepete Eklendi!";
+        setTimeout(() => buyBtn.textContent = "Sepete Ekle", 1200);
+    });
 });
 
-  buyBtn.addEventListener("click",()=>{
-    if(!selectedPack) return;
-    const productName = product.querySelector("h2").innerText;
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name: productName, pack: selectedPack });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    location.href="cart.html";
-  });
-});
+/* LANGUAGE */
+function setLang(lang) {
+    document.querySelectorAll("header p").forEach(p => { p.innerText = (lang==="en")?"Premium Game Software & Support":"Premium Oyun Yazılımları & Profesyonel Destek"; });
+    document.querySelector(".trustbox h2").innerText = (lang==="en")?"Why GhostSoftwareX?":"Neden GhostSoftwareX?";
+    document.querySelector(".trustbox p").innerText = (lang==="en")?"High performance, stability and security is our priority.":"Yüksek performans, stabilite ve güvenlik bizim önceliğimizdir.";
+    document.querySelectorAll(".buyBtn").forEach(btn => { if(!btn.classList.contains("disabled")) btn.textContent = (lang==="en")?"Add to Cart":"Sepete Ekle"; });
+}
 
+/* NOTIFY SYSTEM */
+const notify = document.createElement("div");
+notify.classList.add("notify");
+document.body.appendChild(notify);
+const users = ["Ahmet","Mehmet","Ali","Can","Burak","Zeynep","Elif","Veli","Merve","Deniz"];
+setInterval(() => {
+    const user = users[Math.floor(Math.random()*users.length)];
+    const prod = productsData[Math.floor(Math.random()*productsData.length)].name;
+    notify.textContent = `👤 ${user} ${prod} satın aldı`;
+    notify.style.display="block";
+    setTimeout(()=>{notify.style.display="none";},4000);
+},9000);
+  
 /* LANGUAGE, NOTIFY kodun buraya */
+  
 </script>
 </body>
 </html>
