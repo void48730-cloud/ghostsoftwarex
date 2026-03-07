@@ -1,1 +1,17 @@
-
+[
+  {
+    "id": 1,
+    "name": "ASPECT MOD",
+    "price": 150
+  },
+  {
+    "id": 2,
+    "name": "ZOLO MOD",
+    "price": 125
+  },
+  {
+    "id": 3,
+    "name": "REVOTECH",
+    "price": 140
+  }
+]
