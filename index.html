@@ -143,6 +143,27 @@ body{cursor:auto}
     background: #e03e00;
   }
 </style>
+  
+  <!-- index.html head içine -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase initialize
+  const firebaseConfig = {
+    apiKey: "AIzaSyBSxbXJdfVhXMyWZnKX8_-z8Z0Ghvm1bpk",
+    authDomain: "ghostsoftwarex.firebaseapp.com",
+    projectId: "ghostsoftwarex",
+    storageBucket: "ghostsoftwarex.firebasestorage.app",
+    messagingSenderId: "143714891017",
+    appId: "1:143714891017:web:9798d66f2aa30b6f7ecfd8",
+    measurementId: "G-9Q98HCLT09"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
 </head>
 
 <body oncontextmenu="return false">
