@@ -39,8 +39,6 @@ nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,.85);backdrop-filter:b
 .navbox{max-width:1200px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;}
 .navbox h2{color:#00ff99;}
 .navbox ul{display:flex;gap:25px;list-style:none;}
-  <a href="cart.html" class="cart-icon">
-  Sepet 🛒 <span class="cart-count" id="cartCount">0</span>
 </a>
 .navbox a{color:white;text-decoration:none;font-size:14px;opacity:.8;transition:.3s;}
 .navbox a:hover{color:#00ff99;opacity:1;}
@@ -194,6 +192,12 @@ body{cursor:auto}
 <li><a href="#yorumlar">Yorumlar</a></li>
 <li><a href="#discord">Discord</a></li>
 </ul>
+
+  <!-- SEPET BUTONU -->
+    <a href="cart.html" class="cart-icon">
+      Sepet 🛒 <span class="cart-count" id="cartCount">0</span>
+    </a>
+  
 <div class="lang">
 <button onclick="setLang('tr')">TR</button>
 <button onclick="setLang('en')">EN</button>
