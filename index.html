@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -21,6 +20,19 @@ transform:translate(-50%,-50%);z-index:9999;
 box-shadow:0 0 15px #00ff99;transition:transform .05s;
 }
 
+/* BACKGROUND */
+.bg{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:
+radial-gradient(circle at 20% 30%, rgba(0,255,150,0.08), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(0,255,200,0.08), transparent 40%),
+linear-gradient(120deg,#050505,#000);
+background-size:200% 200%;
+animation:bgMove 15s infinite alternate;
+z-index:-10;
+}
+@keyframes bgMove{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+
 /* NAV */
 nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid #111;z-index:999;}
 .navbox{max-width:1200px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;}
@@ -28,41 +40,20 @@ nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,.85);backdrop-filter:b
 .navbox ul{display:flex;gap:25px;list-style:none;}
 .navbox a{color:white;text-decoration:none;font-size:14px;opacity:.8;transition:.3s;}
 .navbox a:hover{color:#00ff99;opacity:1;}
-.cart-icon{
-  position:relative;
-  display:inline-block;
-  background:#00ff99;
-  color:black;
-  padding:8px 15px;
-  border-radius:20px;
-  font-weight:600;
-  font-size:14px;
-  transition:.3s;
-  cursor:pointer;
-  text-decoration:none;
-}
-.cart-icon:hover{background:#00cc77;}
-.cart-count{
-  position:absolute;
-  top:-6px;
-  right:-6px;
-  background:#ff4500;
-  color:white;
-  width:18px;
-  height:18px;
-  font-size:12px;
-  font-weight:bold;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+
+/* LANG BUTTONS */
+.lang{display:flex;gap:10px;}
+.lang button{background:none;border:1px solid #00ff99;color:#00ff99;padding:3px 8px;border-radius:5px;cursor:pointer;transition:.3s;}
+.lang button:hover{background:#00ff99;color:black;}
 
 /* HEADER */
 header{text-align:center;padding:140px 20px 80px;}
 header h1{font-size:48px;letter-spacing:4px;}
 header span{color:#aaa}
 header p{margin-top:15px;opacity:.7;}
+#campaign{color:#00ff99;font-weight:600;margin-top:15px;}
+.discount-btn{display:inline-block;margin-top:8px;padding:10px 20px;background:#ff4500;color:#fff;font-weight:bold;text-decoration:none;border-radius:8px;transition:background .3s;}
+.discount-btn:hover{background:#e03e00;}
 
 /* MAIN */
 .main{
@@ -75,13 +66,53 @@ header p{margin-top:15px;opacity:.7;}
 }
 
 /* PRODUCT */
-.product{border:1px solid #222;padding:35px;border-radius:15px;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);}
-.product img{width:100%;height:230px;object-fit:cover;border-radius:12px;margin-bottom:20px;}
-.packages{display:flex;gap:10px;margin-bottom:15px;flex-wrap:wrap;}
+.product{border:1px solid #222;padding:35px;border-radius:15px;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);box-shadow:0 0 30px rgba(0,255,150,.05);transition:.3s;}
+.product:hover{transform:translateY(-5px);box-shadow:0 0 40px rgba(0,255,150,.15);}
+.product img{width:100%;height:230px;object-fit:cover;border-radius:12px;border:1px solid #222;margin-bottom:20px;}
+.product h2{margin-bottom:10px;}
+.product p{opacity:.7;margin-bottom:20px;}
+
+/* FEATURES */
+.features{margin-bottom:20px;}
+.features li{list-style:none;margin-bottom:7px;opacity:.8;}
+.features li::before{content:"✔ ";color:#00ff99;}
+
+/* PACKAGES */
+.packages{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap;}
 .pack{flex:1;border:1px solid #222;padding:10px;border-radius:8px;text-align:center;transition:.3s;cursor:pointer;}
+.pack:hover{border-color:#00ff99;color:#00ff99;transform:scale(1.05);}
 .pack.active{background:#00ff99;color:black;}
-.buy a{display:inline-block;padding:12px 25px;border:1px solid #00ff99;color:#00ff99;text-decoration:none;border-radius:25px;transition:.3s;font-weight:500;}
+
+/* BUY */
+.buy{text-align:center;}
+.buy a{display:inline-block;padding:12px 35px;border:1px solid #00ff99;color:#00ff99;text-decoration:none;border-radius:25px;transition:.3s;font-weight:500;}
 .buy a.disabled{opacity:.4;pointer-events:none;}
+.buy a:hover{background:#00ff99;color:black;}
+
+/* TRUST */
+.trust{max-width:1000px;margin:70px auto;padding:40px 20px;}
+.trustbox{text-align:center;border:1px solid #222;padding:40px;border-radius:15px;background:rgba(10,10,10,.9);}
+
+/* REVIEWS */
+.reviews{max-width:1000px;margin:60px auto;padding:20px;text-align:center;}
+.review-box{border:1px solid #222;padding:25px;border-radius:12px;margin-bottom:20px;background:rgba(10,10,10,.8);}
+
+/* DISCORD */
+.discord{margin-top:70px;text-align:center;padding:60px 20px;border-top:1px solid #222;}
+.discord p{opacity:.7;margin:15px 0 25px;}
+.discord a{display:inline-block;padding:12px 35px;border-radius:25px;text-decoration:none;font-weight:600;transition:.3s;background:#7289da;color:white;}
+.discord a:hover{background:#5b6eae;color:white;}
+
+/* SHOPIER */
+.shopier a{display:inline-block;background:#ff6f00;color:white;padding:12px 35px;border-radius:25px;text-decoration:none;font-weight:600;transition:.3s;}
+.shopier a:hover{background:#e65c00;color:white;}
+
+/* NOTIFY */
+.notify{position:fixed;bottom:20px;left:20px;background:#0a0a0a;border:1px solid #00ff99;padding:10px 15px;border-radius:10px;font-size:13px;display:none;z-index:9999;}
+
+/* FOOTER */
+footer{text-align:center;padding:25px;opacity:.5;border-top:1px solid #111;}
+footer a{color:#00ff99;text-decoration:none;}
 
 /* MOBILE */
 @media(max-width:900px){
@@ -89,39 +120,90 @@ header p{margin-top:15px;opacity:.7;}
 body{cursor:auto}
 .cursor{display:none}
 .navbox ul{display:none}
+.lang{position:absolute;top:15px;right:20px;}
 }
 </style>
 </head>
-<body>
+<body oncontextmenu="return false">
 
+<div class="bg"></div>
 <div class="cursor"></div>
 
+<!-- NAV -->
 <nav>
 <div class="navbox">
 <h2>GhostX</h2>
 <ul>
 <li><a href="#urunler">Ürünler</a></li>
 <li><a href="#neden">Neden Biz</a></li>
+<li><a href="#yorumlar">Yorumlar</a></li>
 <li><a href="#discord">Discord</a></li>
 </ul>
-<a href="cart.html" class="cart-icon">
-Sepet 🛒 <span class="cart-count" id="cartCount">0</span>
-</a>
+<div class="lang">
+<button onclick="setLang('tr')">TR</button>
+<button onclick="setLang('en')">EN</button>
+</div>
 </div>
 </nav>
 
 <header>
 <h1>Ghost<span>SoftwareX</span></h1>
 <p>Premium Oyun Yazılımları & Profesyonel Destek</p>
+<div id="campaign">
+🔥 TikTok Takipçilerine Özel %20 İndirim!<br>
+<a href="https://www.tiktok.com/@ghostsoftwarexx?is_from_webapp=1&sender_device=pc" target="_blank" class="discount-btn">Takip Et</a>
+</div>
 </header>
 
 <section id="urunler" class="main"></section>
 
-<footer style="text-align:center;padding:25px;opacity:.5;border-top:1px solid #111;">
-© 2026 GhostSoftwareX
+<section id="neden" class="trust">
+<div class="trustbox">
+<h2>Neden GhostSoftwareX?</h2>
+<p style="margin:15px 0;opacity:.7">Yüksek performans, stabilite ve güvenlik bizim önceliğimizdir.</p>
+<ul class="features">
+<li>Düşük Ban Riski</li>
+<li>Hızlı Teslimat</li>
+<li>Aktif Destek</li>
+<li>Memnuniyet Garantisi</li>
+<li>Sürekli Güncelleme</li>
+</ul>
+</div>
+</section>
+
+<section id="yorumlar" class="reviews">
+<h2 style="margin-bottom:25px">Müşteri Yorumları</h2>
+<div class="review-box">⭐⭐⭐⭐⭐ <br>"Hızlı teslimat, çok memnun kaldım."</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br>"Destek gerçekten çok ilgili."</div>
+<div class="review-box">⭐⭐⭐⭐⭐ <br>"Uzun süredir sorunsuz kullanıyorum."</div>
+<p style="opacity:.5;margin-top:15px">Not: Yorumlar Telegram üzerinden alınmıştır.</p>
+</section>
+
+<section class="shopier" style="text-align:center;margin:50px 0;">
+<a href="YAKINDA LİNK" target="_blank">Shopier Mağazamız (YAKINDA)</a>
+</section>
+
+<section id="discord" class="discord">
+<h3>Destek & Güncellemeler</h3>
+<p>Discord sunucumuza katılarak anında destek alabilirsin.</p>
+<a href="https://discord.gg/bDxJvXVVx9">Discord'a Katıl</a>
+</section>
+
+<footer>
+© 2026 GhostSoftwareX | <a href="https://cheatglobal.com/" target="_blank">Cheat Global</a>
 </footer>
 
 <script>
+/* ULTRA GÜVENLİK & DEVTOOLS BLOK */
+document.addEventListener("keydown",e=>{
+if(e.keyCode==123 || (e.ctrlKey&&e.shiftKey&&e.keyCode==73) || (e.ctrlKey&&e.keyCode==85) || (e.ctrlKey&&e.keyCode==67) || (e.ctrlKey&&e.keyCode==86)){e.preventDefault();}
+});
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("cut",e=>e.preventDefault());
+document.addEventListener("paste",e=>e.preventDefault());
+window.addEventListener("blur",()=>{window.focus();});
+
 /* CURSOR */
 const cursor=document.querySelector(".cursor");
 document.addEventListener("mousemove",e=>{
@@ -129,74 +211,74 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* PRODUCTS DATA */
+/* PRODUCTS */
 const productsData = [
-{ name:"ASPECT MOD", img:"ASPECT ESP.jpeg", günlük:150, haftalık:380, aylık:760 },
-{ name:"ZOLO MOD", img:"WhatsApp Image 2026-02-23 at 18.29.10.jpeg", günlük:125, haftalık:375, aylık:855 },
-{ name:"REVOTECH", img:"REVO ESP.jpeg", günlük:140, haftalık:420, aylık:840 },
-{ name:"KING MOD", img:"KİNG MOD.jpeg", günlük:0, haftalık:900, aylık:1700 },
-{ name:"MONSTER ENGINE", img:"MONSTER ENGİNE.jpeg", günlük:140, haftalık:280, aylık:680 }
+  {name:"ASPECT MOD",img:"ASPECT ESP.jpeg",günlük:150,günlükLink:"https://discord.gg/tFU8B6ERSk",haftalık:380,haftalıkLink:"https://discord.gg/tFU8B6ERSk",aylık:760,aylıkLink:"https://discord.gg/tFU8B6ERSk"},
+  {name:"ZOLO MOD",img:"WhatsApp Image 2026-02-23 at 18.29.10.jpeg",günlük:125,günlükLink:"https://discord.gg/tFU8B6ERSk",haftalık:375,haftalıkLink:"https://discord.gg/tFU8B6ERSk",aylık:855,aylıkLink:"https://discord.gg/tFU8B6ERSk"},
+  {name:"REVOTECH",img:"REVO ESP.jpeg",günlük:140,günlükLink:"https://discord.gg/tFU8B6ERSk",haftalık:420,haftalıkLink:"https://discord.gg/tFU8B6ERSk",aylık:840,aylıkLink:"https://discord.gg/tFU8B6ERSk"},
+  {name:"KING MOD",img:"KİNG MOD.jpeg",günlük:0,günlükLink:"https://discord.gg/tFU8B6ERSk",haftalık:900,haftalıkLink:"https://discord.gg/tFU8B6ERSk",aylık:1700,aylıkLink:"https://discord.gg/tFU8B6ERSk"},
+  {name:"MONSTER ENGINE",img:"MONSTER ENGİNE.jpeg",günlük:140,günlükLink:"https://discord.gg/tFU8B6ERSk",haftalık:280,haftalıkLink:"https://discord.gg/tFU8B6ERSk",aylık:680,aylıkLink:"https://discord.gg/tFU8B6ERSk"}
 ];
 
 const main=document.querySelector(".main");
-const cartCount=document.getElementById("cartCount");
 
-function updateCartCount(){
-  let cart=JSON.parse(localStorage.getItem("cart")) || [];
-  cartCount.textContent=cart.length;
-}
-
-/* Render Products */
 productsData.forEach(product=>{
   const div=document.createElement("div");
   div.classList.add("product");
-div.innerHTML=`
-  <img src="${product.img}" alt="${product.name}">
-  <h2>${product.name}</h2>
-  <p>Üst seviye performans ve güvenlik.</p>
-  <ul class="features">
-    <li>Anti-Ban</li>
-    <li>Stabil</li>
-    <li>Hızlı Aktivasyon</li>
-    <li>7/24 Destek</li>
-  </ul>
-  <div class="packages">
-    <div class="pack">Günlük ${product.günlük}</div>
-    <div class="pack">Haftalık ${product.haftalık}</div>
-    <div class="pack">Aylık ${product.aylık}</div>
-  </div>
-  <div class="buy"><a href="#" class="buyBtn disabled">Paket Seç</a></div>
-`;
+  div.innerHTML=`
+    <img src="${product.img}" alt="${product.name}">
+    <h2>${product.name}</h2>
+    <p>Üst seviye performans ve güvenlik.</p>
+    <ul class="features">
+      <li>Anti-Ban</li>
+      <li>Stabil</li>
+      <li>Hızlı Aktivasyon</li>
+      <li>7/24 Destek</li>
+    </ul>
+    <div class="packages">
+      <div class="pack" data-link="${product.günlükLink}">Günlük ${product.günlük}</div>
+      <div class="pack" data-link="${product.haftalıkLink}">Haftalık ${product.haftalık}</div>
+      <div class="pack" data-link="${product.aylıkLink}">Aylık ${product.aylık}</div>
+    </div>
+    <div class="buy"><a class="buyBtn disabled" href="#">Paket Seç</a></div>
+  `;
   main.appendChild(div);
+});
 
-  const packs=div.querySelectorAll(".pack");
-  const buyBtn=div.querySelector(".buyBtn");
-  let selectedPack="";
-
+/* PACK SYSTEM */
+document.querySelectorAll(".product").forEach(product=>{
+  const packs=product.querySelectorAll(".pack");
+  const buyBtn=product.querySelector(".buyBtn");
   packs.forEach(pack=>{
     pack.addEventListener("click",()=>{
       packs.forEach(p=>p.classList.remove("active"));
       pack.classList.add("active");
-      selectedPack=pack.innerText;
+      buyBtn.href=pack.dataset.link;
       buyBtn.classList.remove("disabled");
-      buyBtn.textContent="Sepete Ekle";
+      buyBtn.textContent="Satın Al";
     });
-  });
-
-  buyBtn.addEventListener("click",(e)=>{
-    e.preventDefault();
-    if(!selectedPack) return;
-    let cart=JSON.parse(localStorage.getItem("cart"))||[];
-    cart.push({name:product.name,pack:selectedPack});
-    localStorage.setItem("cart",JSON.stringify(cart));
-    updateCartCount();
-    selectedPack="";
-    buyBtn.textContent="Sepete Ekle";
   });
 });
 
-/* Load Cart Count on Page Load */
-updateCartCount();
+/* LANGUAGE */
+function setLang(lang){
+document.querySelectorAll("header p").forEach(p=>{p.innerText=(lang==="en")?"Premium Game Software & Support":"Premium Oyun Yazılımları & Profesyonel Destek";});
+document.querySelector(".trustbox h2").innerText=(lang==="en")?"Why GhostSoftwareX?":"Neden GhostSoftwareX?";
+document.querySelector(".trustbox p").innerText=(lang==="en")?"High performance, stability and security is our priority.":"Yüksek performans, stabilite ve güvenlik bizim önceliğimizdir.";
+document.querySelectorAll(".buyBtn").forEach(btn=>{if(!btn.classList.contains("disabled")) btn.textContent=(lang==="en")?"Buy Now":"Satın Al";});
+}
+
+/* NOTIFY */
+const notify=document.createElement("div");notify.classList.add("notify");document.body.appendChild(notify);
+const users=["Ahmet","Mehmet","Ali","Can","Burak","Zeynep","Elif","Veli","Merve","Deniz"];
+setInterval(()=>{
+const user=users[Math.floor(Math.random()*users.length)];
+const prod=productsData[Math.floor(Math.random()*productsData.length)].name;
+notify.textContent=`👤 ${user} ${prod} satın aldı`;
+notify.style.display="block";
+setTimeout(()=>{notify.style.display="none";},4000);
+},9000);
 </script>
+
 </body>
 </html>
