@@ -34,13 +34,48 @@ z-index:-10;
 }
 @keyframes bgMove{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
 
-/* NAV */
+/* NAV */ 
 nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid #111;z-index:999;}
 .navbox{max-width:1200px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;}
 .navbox h2{color:#00ff99;}
 .navbox ul{display:flex;gap:25px;list-style:none;}
+  <a href="cart.html" class="cart-icon">
+  Sepet 🛒 <span class="cart-count" id="cartCount">0</span>
+</a>
 .navbox a{color:white;text-decoration:none;font-size:14px;opacity:.8;transition:.3s;}
 .navbox a:hover{color:#00ff99;opacity:1;}
+  /* NAV SEPET BUTONU */
+.cart-icon{
+  position:relative;
+  display:inline-block;
+  background:#00ff99;
+  color:black;
+  padding:8px 15px;
+  border-radius:20px;
+  font-weight:600;
+  font-size:14px;
+  transition:.3s;
+  cursor:pointer;
+  text-decoration:none;
+}
+.cart-icon:hover{
+  background:#00cc77;
+}
+.cart-count{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:#ff4500;
+  color:white;
+  width:18px;
+  height:18px;
+  font-size:12px;
+  font-weight:bold;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
 /* LANG BUTTONS */
 .lang{display:flex;gap:10px;}
