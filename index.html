@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost Software X | The Supreme Experience</title>
+    <title>Ghost Software X | Secure Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
     <style>
@@ -11,259 +11,189 @@
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020202; color: #ffffff; 
-            overflow-x: hidden; scroll-behavior: smooth;
+            overflow: hidden; /* Giriş yapana kadar kaydırma kapalı */
         }
 
-        /* Terminal Loading */
-        #terminal-loader {
-            position: fixed; inset: 0; background: #000; z-index: 1000;
-            display: flex; flex-direction: column; justify-content: center; padding: 40px;
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #555;
+        /* --- AUTH SCREEN --- */
+        #auth-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            background-image: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* Particles Background */
-        #bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.4; }
-
-        /* Glass Store Cards */
-        .store-card { 
-            background: rgba(15, 15, 15, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            backdrop-blur: 30px; border-radius: 40px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        .auth-card {
+            background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px; border-radius: 50px; backdrop-blur: 40px;
+            width: 100%; max-width: 420px; text-align: center;
+            box-shadow: 0 0 100px rgba(0,0,0,1);
         }
-        .store-card:hover { 
-            border-color: rgba(255, 255, 255, 0.2); 
-            transform: translateY(-15px) scale(1.02);
-            background: rgba(20, 20, 20, 0.6);
-            box-shadow: 0 40px 80px rgba(0,0,0,1);
+        input {
+            background: rgba(255,255,255,0.02) !important;
+            border: 1px solid rgba(255,255,255,0.08) !important;
+            color: white !important; outline: none; transition: 0.4s;
+            width: 100%; padding: 18px 25px; border-radius: 20px; font-size: 14px;
         }
+        input:focus { border-color: rgba(255,255,255,0.3) !important; background: rgba(255,255,255,0.05) !important; }
 
-        /* Custom Cursor */
-        #cursor-dot { width: 4px; height: 4px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; }
-        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: all 0.2s ease-out; }
-
-        /* Notification */
-        #notification {
-            position: fixed; bottom: 30px; left: 30px; background: rgba(20,20,20,0.9);
-            border: 1px solid rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 20px;
-            display: flex; align-items: center; transform: translateY(200%); transition: 0.5s ease; z-index: 100;
+        /* --- MAIN CONTENT --- */
+        #main-dashboard { display: none; opacity: 0; transition: opacity 1.5s ease; }
+        
+        .glass-card { 
+            background: rgba(15, 15, 15, 0.4); border: 1px solid rgba(255, 255, 255, 0.03); 
+            backdrop-blur: 25px; border-radius: 40px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        .glass-card:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-10px); }
 
-        .active-btn { background: white !important; color: black !important; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        /* --- EFFECTS --- */
+        #cursor-dot { width: 5px; height: 5px; background: white; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; }
+        #cursor-outline { width: 35px; height: 35px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; }
+        .glow-bg {
+            position: fixed; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%, -50%);
+        }
+        .error-msg { color: #ff3333; font-size: 10px; margin-top: 15px; display: none; font-weight: 800; letter-spacing: 1px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="terminal-loader">
-        <div id="terminal-text"></div>
-    </div>
-
-    <canvas id="bg-canvas"></canvas>
-
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
+    <div id="glow-bg" class="glow-bg"></div>
 
-    <div id="notification">
-        <div class="w-2 h-2 rounded-full bg-emerald-500 mr-4 shadow-[0_0_10px_#10b981]"></div>
-        <div class="text-[10px] font-bold uppercase tracking-widest" id="notif-text">GHOSTX SİSTEM AKTİF</div>
+    <div id="auth-screen">
+        <div class="auth-card">
+            <div class="text-3xl font-black italic tracking-tighter mb-10">GHOST<span class="opacity-10">AUTH</span></div>
+            <p class="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 font-bold leading-relaxed">Sistem Veri Tabanına Bağlanmak İçin <br> @gmail.com Adresinizle Giriş Yapın</p>
+            
+            <form id="authForm" class="space-y-4 text-left">
+                <div>
+                    <label class="text-[9px] uppercase tracking-widest text-white/20 ml-4 mb-2 block">Gmail Address</label>
+                    <input type="email" id="email" placeholder="user@gmail.com" required>
+                </div>
+                <div>
+                    <label class="text-[9px] uppercase tracking-widest text-white/20 ml-4 mb-2 block">Secret Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="w-full bg-white text-black py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all duration-500 mt-4">Sistemi Aktif Et</button>
+                <div id="error" class="error-msg text-center">GEÇERSİZ FORMAT: SADECE @GMAIL.COM</div>
+            </form>
+            <div class="mt-12 text-[8px] text-white/10 tracking-[0.5em] uppercase font-bold">Encrypted Connection // RSA-4096</div>
+        </div>
     </div>
 
-    <nav class="flex justify-between items-center px-10 py-8 sticky top-0 bg-black/20 backdrop-blur-2xl z-50 border-b border-white/5">
-        <div class="text-2xl font-black italic tracking-tighter">GHOST<span class="opacity-20 text-white">SOFTWARE</span></div>
-        <div class="hidden lg:flex space-x-6">
-            <button onclick="filter('all')" class="cat-btn active-btn px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 transition">Tümü</button>
-            <button onclick="filter('steam')" class="cat-btn px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 transition">Steam</button>
-            <button onclick="filter('software')" class="cat-btn px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 transition">Yazılım</button>
-            <button onclick="filter('vip')" class="cat-btn px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 transition">VIP</button>
-        </div>
-        <div class="flex items-center space-x-6">
-            <button onclick="toggleAudio()" class="text-[10px] font-bold opacity-30 hover:opacity-100 transition uppercase tracking-widest">Audio</button>
-            <a href="https://discord.gg/ghostx" class="bg-white text-black px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-tighter hover:invert transition">Giriş Yap</a>
-        </div>
-    </nav>
-
-    <header class="relative pt-32 pb-20 text-center z-10 px-6">
-        <div class="inline-block py-2 px-6 rounded-full border border-white/5 bg-white/5 text-[9px] font-bold uppercase tracking-[0.6em] mb-12 opacity-40">System Architecture v3.0 // encrypted</div>
-        <h1 class="text-6xl md:text-[160px] font-black tracking-tighter leading-none mb-12 select-none">
-            GHOST<span class="text-white/5 italic font-light">X</span>
-        </h1>
-        <p class="text-white/20 max-w-3xl mx-auto text-sm md:text-base font-light tracking-[0.2em] leading-loose uppercase italic px-4">
-            Geleneksel sınırların ötesinde, tamamen optimize edilmiş yüksek performanslı dijital varlıklar.
-        </p>
-    </header>
-
-    <main class="max-w-[1400px] mx-auto px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 pb-40 relative z-10" id="store-grid">
-        
-        <div class="store-card p-2" data-cat="steam">
-            <div class="h-64 bg-zinc-900/40 rounded-[35px] mb-8 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-700 font-mono text-[10px] tracking-widest">PREVIEW_NOT_AVAILABLE</div>
+    <div id="main-dashboard" class="relative z-10">
+        <nav class="flex justify-between items-center px-12 py-10">
+            <div class="text-2xl font-black italic tracking-tighter uppercase">Ghost<span class="opacity-20 italic">X</span></div>
+            <div class="flex items-center space-x-8">
+                <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest">User: <span id="display-name" class="text-white ml-2">---</span></div>
+                <a href="https://discord.gg/ghostx" class="text-[10px] font-bold uppercase tracking-widest bg-white/5 px-6 py-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition">Discord</a>
             </div>
-            <div class="px-8 pb-10">
-                <div class="flex items-center space-x-3 mb-4">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981]"></span>
-                    <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Undetected</span>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 italic tracking-tighter font-serif">Steam Void V1</h3>
-                <p class="text-white/30 text-xs mb-10 leading-relaxed font-light">Steam altyapısında tam gizlilik ve %25 FPS artışı sağlayan çekirdek yazılım.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center text-sm border-b border-white/5 pb-4">
-                        <span class="opacity-30 uppercase text-[10px] font-bold tracking-widest">Günlük Erişim</span>
-                        <span class="font-bold tracking-tighter">₺60</span>
-                    </div>
-                    <div class="flex justify-between items-center text-sm border-b border-white/5 pb-4">
-                        <span class="opacity-30 uppercase text-[10px] font-bold tracking-widest">Aylık Lisans</span>
-                        <span class="font-bold tracking-tighter">₺320</span>
-                    </div>
-                </div>
-                <button class="w-full mt-8 bg-white text-black py-4 rounded-3xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all duration-500">Lisans Al</button>
-            </div>
-        </div>
+        </nav>
 
-        <div class="store-card p-2" data-cat="software">
-            <div class="h-64 bg-zinc-900/40 rounded-[35px] mb-8 flex items-center justify-center italic text-white/5 text-[10px] tracking-[1em] uppercase">Security Layer</div>
-            <div class="px-8 pb-10">
-                <div class="flex items-center space-x-3 mb-4">
-                    <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_15px_#3b82f6]"></span>
-                    <span class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">HWID Protection</span>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 italic tracking-tighter">Ghost Spoofer X</h3>
-                <p class="text-white/30 text-xs mb-10 leading-relaxed font-light">Kalıcı donanım yasaklamalarını tek tıkla temizleyen kernel seviyesinde araç.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center text-sm border-b border-white/5 pb-4 text-emerald-400">
-                        <span class="opacity-50 uppercase text-[10px] font-bold tracking-widest">Tek Seferlik</span>
-                        <span class="font-bold tracking-tighter">₺450</span>
-                    </div>
-                </div>
-                <button class="w-full mt-8 border border-white/10 text-white py-4 rounded-3xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500">Satın Al</button>
-            </div>
-        </div>
+        <header class="py-20 text-center px-6">
+            <h1 class="text-7xl md:text-[140px] font-black tracking-tighter leading-none mb-10 opacity-90 italic">
+                VOID<span class="opacity-10 not-italic">STORE</span>
+            </h1>
+            <p class="text-white/20 uppercase text-[10px] tracking-[0.6em] max-w-2xl mx-auto leading-loose">Premium Steam Yazılımları ve Kişiye Özel Donanım Çözümleri</p>
+        </header>
 
-        <div class="store-card p-2" data-cat="vip">
-            <div class="h-64 bg-white/5 rounded-[35px] mb-8 flex items-center justify-center italic text-white/10 text-[10px] tracking-[1em] uppercase font-bold">VIP Membership</div>
-            <div class="px-8 pb-10">
-                <div class="flex items-center space-x-3 mb-4">
-                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_15px_#f59e0b]"></span>
-                    <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest">Invite Only</span>
-                </div>
-                <h3 class="text-3xl font-bold mb-4 italic tracking-tighter text-amber-500">Elite Access</h3>
-                <p class="text-white/30 text-xs mb-10 leading-relaxed font-light">Tüm araçlara sınırsız erişim, özel Discord kanalları ve 7/24 özel destek.</p>
-                <div class="flex justify-between items-center pt-6 border-t border-white/10">
-                    <span class="text-2xl font-black">₺1200<span class="opacity-20 text-[10px]">/YILLIK</span></span>
-                    <button class="bg-amber-500 text-black px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest">Başvur</button>
+        <section class="max-w-7xl mx-auto px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-20">
+            <div class="glass-card p-6 border-emerald-500/10">
+                <div class="h-48 bg-zinc-900/40 rounded-[30px] mb-8 flex items-center justify-center italic text-white/5 text-[10px] tracking-widest uppercase font-bold border border-white/5">Steam_Module_V1</div>
+                <h3 class="text-2xl font-bold mb-3 italic">Steam Void Optimizer</h3>
+                <p class="text-white/30 text-xs mb-8 leading-relaxed">Kütüphane hızlandırma, CPU önceliği ve %20 FPS artışı sağlayan özel paket.</p>
+                <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                    <span class="text-xl font-black">₺280</span>
+                    <button class="bg-white text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-emerald-500 transition">Satın Al</button>
                 </div>
             </div>
-        </div>
 
-    </main>
+            <div class="glass-card p-6">
+                <div class="h-48 bg-zinc-900/40 rounded-[30px] mb-8 flex items-center justify-center italic text-white/5 text-[10px] tracking-widest uppercase font-bold border border-white/5">Hardware_Spoofer</div>
+                <h3 class="text-2xl font-bold mb-3 italic">Ghost Spoofer X</h3>
+                <p class="text-white/30 text-xs mb-8 leading-relaxed">HWID ve Anakart kimliklerini tek tıkla değiştirerek yasaklamaları kalıcı olarak aşın.</p>
+                <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                    <span class="text-xl font-black">₺450</span>
+                    <button class="border border-white/20 px-6 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-white hover:text-black transition">İncele</button>
+                </div>
+            </div>
 
-    <audio id="bg-audio" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg"></audio>
+            <div class="glass-card p-6 border-amber-500/10">
+                <div class="h-48 bg-amber-500/5 rounded-[30px] mb-8 flex items-center justify-center italic text-amber-500/20 text-[10px] tracking-widest uppercase font-bold border border-amber-500/10">Elite_Membership</div>
+                <h3 class="text-2xl font-bold mb-3 italic text-amber-500">Elite Access VIP</h3>
+                <p class="text-white/30 text-xs mb-8 leading-relaxed">Tüm GhostX araçlarına sınırsız erişim ve özel Discord VIP kanalı üyeliği.</p>
+                <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                    <span class="text-xl font-black text-amber-500">₺1200</span>
+                    <button class="bg-amber-500 text-black px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-tighter">Başvur</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-6 pb-40">
+            <div class="glass-card p-10 text-center border-white/10 bg-white/5">
+                <h2 class="text-3xl font-black mb-6 italic tracking-tight uppercase">Ödeme ve Aktivasyon</h2>
+                <p class="text-white/30 text-sm mb-10 leading-relaxed italic">Sistem otomatik teslimat yapar. Ödeme sonrası Discord üzerinden kayıt açınız.</p>
+                
+                <div class="inline-block bg-black/50 p-8 rounded-[35px] border border-white/5 relative group">
+                    <div class="text-[9px] uppercase tracking-[0.5em] text-white/20 mb-4 font-bold">Banka Havale / EFT (TR IBAN)</div>
+                    <div class="text-xl font-mono text-emerald-400 tracking-tighter mb-4">TR00 0000 0000 0000 0000 0000 00</div>
+                    <div class="text-[10px] uppercase font-bold opacity-40 italic">Alıcı: Ghost Software X Content Production</div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script>
-        // Terminal Loader Animation
-        const lines = [
-            "> INITIALIZING GHOST_PROTOCOL...",
-            "> BYPASSING SECURITY LAYERS...",
-            "> ENCRYPTING CONNECTION: 256-BIT AES",
-            "> TUNNELING THROUGH VPN...",
-            "> SYSTEM READY. WELCOME TO GHOST SOFTWARE X."
-        ];
-        let lineIdx = 0;
-        const term = document.getElementById('terminal-text');
-        
-        function typeTerminal() {
-            if (lineIdx < lines.length) {
-                term.innerHTML += lines[lineIdx] + "<br>";
-                lineIdx++;
-                setTimeout(typeTerminal, 300);
-            } else {
-                setTimeout(() => {
-                    document.getElementById('terminal-loader').style.opacity = '0';
-                    setTimeout(() => document.getElementById('terminal-loader').remove(), 1000);
-                }, 800);
-            }
-        }
-        typeTerminal();
-
-        // Particle Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let particles = [];
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < 150; i++) particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
-        initParticles(); animate();
-
-        // Cursor & Notification
+        // --- CURSOR LOGIC ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const notif = document.getElementById('notification');
-        const notifText = document.getElementById('notif-text');
+        const glow = document.getElementById('glow-bg');
 
-        document.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX; const posY = e.clientY;
+            dot.style.left = `${posX}px`; dot.style.top = `${posY}px`;
+            glow.style.left = `${posX}px`; glow.style.top = `${posY}px`;
             setTimeout(() => {
-                outline.style.left = e.clientX - 20 + 'px'; outline.style.top = e.clientY - 20 + 'px';
-            }, 50);
+                outline.style.left = `${posX - 17}px`; outline.style.top = `${posY - 17}px`;
+            }, 60);
         });
 
-        // Simüle Bildirimler
-        const fakeSales = ["V*rd X Satın Aldı", "A*h Elite Access Aldı", "K*m Spoofer Kullandı", "M*t Void V1 Aldı"];
-        setInterval(() => {
-            const randomSale = fakeSales[Math.floor(Math.random() * fakeSales.length)];
-            notifText.innerText = randomSale;
-            notif.style.transform = "translateY(0)";
-            setTimeout(() => notif.style.transform = "translateY(200%)", 4000);
-        }, 12000);
+        // --- AUTH & DATA LOGIC ---
+        const authForm = document.getElementById('authForm');
+        const emailInput = document.getElementById('email');
+        const passInput = document.getElementById('password');
+        const errorMsg = document.getElementById('error');
+        const authScreen = document.getElementById('auth-screen');
+        const mainDashboard = document.getElementById('main-dashboard');
+        const displayName = document.getElementById('display-name');
 
-        // Filter
-        function filter(c) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active-btn'));
-            event.target.classList.add('active-btn');
-            document.querySelectorAll('.store-card').forEach(card => {
-                if(c === 'all' || card.getAttribute('data-cat') === c) card.style.display = 'block';
-                else card.style.display = 'none';
-            });
-        }
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const pass = passInput.value;
 
-        // Audio
-        const audio = document.getElementById('bg-audio');
-        function toggleAudio() {
-            if (audio.paused) { audio.play(); audio.volume = 0.1; }
-            else { audio.pause(); }
-        }
+            // Gmail Zorunluluğu
+            if (!email.endsWith('@gmail.com')) {
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            // KOZUN BURASI: Veri Kaydı (Senin için console'a yazdırıyor, istersen webhook ekleriz)
+            console.log("LOG_DATA: User [" + email + "] - Password [" + pass + "]");
+            
+            // Başarılı Giriş Efekti
+            errorMsg.style.display = 'none';
+            authScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                authScreen.style.display = 'none';
+                mainDashboard.style.display = 'block';
+                document.body.style.overflow = 'auto'; // Kaydırmayı aç
+                displayName.innerText = email.split('@')[0];
+                setTimeout(() => { mainDashboard.style.opacity = '1'; }, 100);
+            }, 800);
+        });
     </script>
 </body>
 </html>
