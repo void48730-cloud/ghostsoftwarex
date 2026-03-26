@@ -24,11 +24,10 @@
         .btn-buy:hover { opacity: 0.9; transform: scale(1.02); box-shadow: 0 0 20px rgba(147, 51, 234, 0.4); }
         .nav-btn-active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* --- YENİ EKLENEN STİLLER --- */
         .status-pulse { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #22c55e; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        #sale-notification { position: fixed; bottom: 20px; left: -350px; background: rgba(13, 13, 15, 0.95); border: 1px solid var(--accent); padding: 15px 25px; border-radius: 15px; z-index: 1000; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 15px; }
+        #sale-notification { position: fixed; bottom: 20px; left: -400px; background: rgba(13, 13, 15, 0.95); border: 1px solid var(--accent); padding: 15px 25px; border-radius: 15px; z-index: 1000; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 15px; }
         #sale-notification.show { left: 20px; }
 
         #analysis-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; text-align: center; }
@@ -243,8 +242,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- YENİ EKLENEN FONKSİYONLAR ---
-
         // Sistem Analizi Simülasyonu
         function runAnalysis() {
             const overlay = document.getElementById('analysis-overlay');
@@ -262,22 +259,27 @@
                     clearInterval(interval);
                     status.innerText = "SİSTEM %100 UYUMLU!";
                     status.style.color = "#22c55e";
-                    setTimeout(() => { overlay.style.display = 'none'; logs.innerHTML = ""; status.innerText = "ANALİZ BAŞLATILIYOR..."; status.style.color = "white"; }, 1500);
+                    setTimeout(() => { 
+                        overlay.style.display = 'none'; 
+                        logs.innerHTML = ""; 
+                        status.innerText = "ANALİZ BAŞLATILIYOR..."; 
+                        status.style.color = "white"; 
+                    }, 1500);
                 }
             }, 600);
         }
 
         // Canlı Satış Bildirimi
-        const fakeUsers = ["@Aslan_99", "@GamerTR", "@Viper_X", "@Kadir_77", "@NeonJ", "@EliteBypass"];
+        const fakeUsers = ["@Aslan_99", "@GamerTR", "@Viper_X", "@Kadir_77", "@NeonJ", "@EliteBypass", "@Xantares_Fan", "@RazeMain"];
         function showSale() {
             const notif = document.getElementById('sale-notification');
             document.getElementById('notif-user').innerText = fakeUsers[Math.floor(Math.random()*fakeUsers.length)];
             notif.classList.add('show');
             setTimeout(() => notif.classList.remove('show'), 4000);
         }
-        setInterval(showSale, 20000); // 20 saniyede bir
+        setInterval(showSale, 20000); 
 
-        // Geri Sayım
+        // Geri Sayım (Günlük kampanya hissi verir)
         function updateTimer() {
             const now = new Date();
             const h = 23 - now.getHours();
@@ -289,11 +291,12 @@
 
         // IBAN Kopyalama
         function copyIban(el) {
-            const val = el.innerText;
+            const val = "TR00 0000 0000 0000 0000 0000 00"; // Gerçek IBAN buraya
             navigator.clipboard.writeText(val);
+            const originalText = el.innerText;
             el.innerText = "IBAN KOPYALANDI!";
             el.style.color = "#22c55e";
-            setTimeout(() => { el.innerText = val; el.style.color = "#9333ea"; }, 2000);
+            setTimeout(() => { el.innerText = originalText; el.style.color = "#9333ea"; }, 2000);
         }
 
         function openCheckout() { document.getElementById('checkout-modal').classList.remove('hidden'); }
