@@ -3,248 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST X | OVERLORD V24</title>
+    <title>Ghost SoftwareX | Donanım Yasaklarına Son</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --p: #00ff88; --bg: #010101; --g: rgba(255, 255, 255, 0.02); }
-        * { cursor: none !important; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; height: 100vh; }
-        
-        .bg-glow { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 50%, #0a1f14 0%, #010101 100%); }
-        .grid-lines { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(0,255,136,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.02) 1px, transparent 1px); background-size: 50px 50px; opacity: 0.6; }
-
-        .page { display: none; height: calc(100vh - 90px); overflow-y: auto; padding: 60px 8%; position: relative; z-index: 10; opacity: 0; transition: 0.4s ease; }
-        .page.active { display: block; opacity: 1; }
-
-        .glass { background: var(--g); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.05); border-radius: 28px; transition: 0.4s; }
-        .glass:hover { border-color: var(--p); box-shadow: 0 0 50px rgba(0,255,136,0.1); transform: translateY(-8px); }
-        .neon-title { font-family: 'Syncopate', sans-serif; text-shadow: 0 0 20px var(--p); }
-
-        #c { width: 5px; height: 5px; background: #fff; position: fixed; z-index: 10000; border-radius: 50%; pointer-events: none; }
-        #cf { width: 35px; height: 35px; border: 1px solid var(--p); position: fixed; z-index: 9999; border-radius: 50%; transition: 0.1s; pointer-events: none; }
-
-        .no-scroll::-webkit-scrollbar { width: 4px; }
-        .no-scroll::-webkit-scrollbar-thumb { background: var(--p); border-radius: 10px; }
-        .status-tag { font-size: 7px; font-weight: 900; padding: 4px 10px; border-radius: 50px; background: rgba(0,255,136,0.1); color: var(--p); border: 1px solid rgba(0,255,136,0.3); }
+        body { background-color: #0a0a0c; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .neon-border { border: 1px solid rgba(139, 92, 246, 0.3); box-shadow: 0 0 15px rgba(139, 92, 246, 0.1); }
+        .neon-text { text-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+        .gradient-bg { background: linear-gradient(135deg, #111019 0%, #080808 100%); }
+        .btn-gradient { background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%); transition: 0.3s; }
+        .btn-gradient:hover { opacity: 0.9; transform: scale(1.02); }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <div class="bg-glow"></div>
-    <div class="grid-lines"></div>
-    <div id="c"></div><div id="cf"></div>
-
-    <div id="auth" class="fixed inset-0 z-[10001] bg-black flex items-center justify-center p-6 text-center">
-        <div class="glass p-12 w-full max-w-md border-t-4 border-[#0f8]">
-            <h1 class="neon-title text-2xl mb-2 tracking-widest">GHOST<span class="text-[#0f8]">X</span></h1>
-            <p class="text-[8px] uppercase tracking-[0.6em] text-white/20 mb-10 font-black italic underline">Overlord Access v24.0</p>
-            <form id="auth-form" class="space-y-4">
-                <input type="email" id="u-m" placeholder="GİRİŞ MAİLİ" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8] transition text-[10px] font-bold uppercase tracking-widest">
-                <input type="password" id="u-p" placeholder="ERİŞİM ANAHTARI" required class="w-full bg-white/5 border border-white/5 p-5 rounded-3xl outline-none focus:border-[#0f8] transition text-[10px] font-bold">
-                <button type="submit" class="w-full bg-[#0f8] text-black py-5 rounded-3xl font-black text-[10px] uppercase tracking-[0.4em] hover:shadow-[0_0_50px_rgba(0,255,136,0.5)] transition-all">Sistemi Başlat</button>
-            </form>
+    <nav class="flex justify-between items-center px-8 py-6 sticky top-0 bg-[#0a0a0c]/90 backdrop-blur-md z-50 border-b border-white/5">
+        <div class="text-2xl font-black tracking-tighter neon-text">GHOST <span class="text-purple-500">SOFTWAREX</span></div>
+        <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
+            <a href="#home" class="hover:text-purple-500 transition">Ana Sayfa</a>
+            <a href="#features" class="hover:text-purple-500 transition">Neden Biz?</a>
+            <a href="#shop" class="hover:text-purple-500 transition">Mağaza</a>
+            <a href="#faq" class="hover:text-purple-500 transition">S.S.S</a>
         </div>
-    </div>
+        <a href="https://discord.gg/ghostsoftwarex" target="_blank" class="btn-gradient px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-purple-500/20">DISCORD KATIL</a>
+    </nav>
 
-    <div id="app" class="hidden h-screen flex flex-col">
-        <header class="h-[90px] px-12 flex justify-between items-center bg-black/40 backdrop-blur-2xl border-b border-white/5 z-[100]">
-            <div class="neon-title text-xl italic tracking-tighter cursor-pointer" onclick="go('home')">GHOST<span class="text-[#0f8]">X</span></div>
-            <nav class="hidden lg:flex space-x-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/30">
-                <button onclick="go('home')" class="hover:text-white transition">ANA SAYFA</button>
-                <button onclick="go('shop')" class="hover:text-white transition">MAĞAZA</button>
-                <button onclick="go('about')" class="hover:text-white transition">HAKKIMIZDA</button>
-                <button onclick="go('reviews')" class="hover:text-white transition">REFERANSLAR</button>
-            </nav>
-            <button onclick="tC()" class="bg-[#0f8]/10 text-[#0f8] px-8 py-3 rounded-full border border-[#0f8]/20 text-[10px] font-black uppercase tracking-widest">
-                SEPET [<span id="q">0</span>]
-            </button>
-        </header>
-
-        <main class="flex-1 overflow-hidden relative">
-            
-            <section id="home" class="page active flex flex-col items-center justify-center text-center">
-                <div class="mb-4 text-[#0f8] text-[10px] font-black tracking-[0.5em] uppercase px-4 py-1 bg-[#0f8]/5 border border-[#0f8]/20 rounded-full animate-pulse">Sistem: Aktif & Tespit Edilemez</div>
-                <h2 class="text-6xl md:text-9xl font-black italic uppercase leading-none mb-10 tracking-tighter">SINIRLAR <br> <span class="text-[#0f8]">ORTADAN KALKIYOR.</span></h2>
-                <p class="max-w-2xl text-white/20 text-[10px] font-bold uppercase tracking-[0.5em] mb-12 italic leading-relaxed">Kernel düzeyinde modifikasyon ve profesyonel donanım maskeleme çözümleriyle oyunun kurallarını siz yazın.</p>
-                <div class="flex space-x-6">
-                    <button onclick="go('shop')" class="bg-white text-black px-12 py-5 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-[#0f8] transition">ÜRÜNLERİ İNCELE</button>
-                    <button onclick="window.open('https://discord.gg/ghostx')" class="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition">BİZE KATIL</button>
-                </div>
-            </section>
-
-            <section id="shop" class="page">
-                <div class="mb-16 border-b border-white/5 pb-10">
-                    <h2 class="text-5xl font-black italic uppercase mb-2">MODÜLER <span class="text-[#0f8]">MAĞAZA</span></h2>
-                    <p class="text-white/20 text-[9px] font-black uppercase tracking-widest italic">Kategorilere Göre Profesyonel Yazılımlar</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-32">
-                    
-                    <div class="glass p-10 flex flex-col">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">VALORANT</span><span class="status-tag">UNDETECTED</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">ARES PERM SPOOFER</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">Anakart, Disk ve BIOS seri numaralarını kalıcı olarak maskeler. Vanguard ve diğer anti-cheat sistemlerindeki HWID banlarını tek tıkla kaldırır.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺850</span><button onclick="add('ARES PERM SPOOFER', 850)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                    <div class="glass p-10 flex flex-col border-l-2 border-[#0f8]/20">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">PUBG MOBILE</span><span class="status-tag">UNDETECTED</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">ELITE ESP PRO</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">Oyuncu isimleri, can barları, kemik çizgileri ve mesafe bilgilerini haritada anlık gösterir. Güvenli bypass entegrelidir.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺450</span><button onclick="add('ELITE ESP PRO', 450)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                    <div class="glass p-10 flex flex-col">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">PUBG MOBILE</span><span class="status-tag">SAFE</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">NEXUS BYPASS</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">Emülatör üzerinden oynarken sistemin sizi mobil oyuncu olarak görmesini sağlar. Gerçek mobil oyuncularla eşleşirsiniz.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺350</span><button onclick="add('NEXUS BYPASS', 350)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                    <div class="glass p-10 flex flex-col">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">PUBG MOBILE</span><span class="status-tag">ACTIVE</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">EMULATOR MOD V2</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">GameLoop ve diğer emülatörler için özel optimizasyon modülü. FPS droplarını engeller ve tepki süresini hızlandırır.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺250</span><button onclick="add('EMULATOR MOD V2', 250)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                    <div class="glass p-10 flex flex-col">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">PUBG MOBILE</span><span class="status-tag">UNDETECTED</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">IPAD VIEW CONFIG</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">Ekran açısını iPad moduna getirir. Daha geniş görüş alanı ve düşük dikey sekme imkanı tanır.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺150</span><button onclick="add('IPAD VIEW CONFIG', 150)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                    <div class="glass p-10 flex flex-col bg-[#0f8]/5">
-                        <div class="flex justify-between items-start mb-6"><span class="text-[8px] font-black text-[#0f8] uppercase tracking-[0.3em]">STEAM MANIFEST</span><span class="status-tag">STABLE</span></div>
-                        <h3 class="text-2xl font-black italic uppercase mb-2">VOID OPTIMIZER</h3>
-                        <p class="text-[11px] text-white/30 mb-8 flex-1 leading-relaxed">Steam kütüphanesindeki oyun dosyalarını manifest üzerinden optimize eder. İnternet hızına göre indirme ve bağlantı iyileştirmesi yapar.</p>
-                        <div class="flex justify-between items-center"><span class="text-2xl font-black italic">₺300</span><button onclick="add('VOID OPTIMIZER', 300)" class="bg-[#0f8] text-black px-8 py-3 rounded-full text-[10px] font-black uppercase">SEPETE EKLE</button></div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="about" class="page">
-                <div class="max-w-5xl mx-auto space-y-12">
-                    <div class="glass p-12 relative overflow-hidden">
-                        <h3 class="text-3xl font-black italic mb-8 uppercase text-[#0f8]">GHOST SOFTWAREX VİZYONU</h3>
-                        <p class="text-sm text-white/40 leading-relaxed mb-10 italic font-bold uppercase tracking-widest">
-                            Ghost SoftwareX, 2026 yılının siber güvenlik ve yazılım modifikasyon standartlarını belirlemek amacıyla kurulmuş profesyonel bir ekiptir. Amacımız, oyuncuların donanım engellerine takılmadan, en güvenli ve stabil yazılımlarla rekabetçi kalmasını sağlamaktır. 
-                            <br><br>
-                            Yazılımlarımız Windows Kernel (Ring 0) düzeyinde çalışarak anti-cheat yazılımlarının kapsama alanı dışında kalır. Her bir ürünümüz, kullanıcıya özel olarak şifrelenen (Unique Build) yapılarla teslim edilir.
-                        </p>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="p-6 bg-white/5 rounded-2xl border-b-2 border-[#0f8]">
-                                <h4 class="text-[10px] font-black mb-2 uppercase">GİZLİLİK</h4>
-                                <p class="text-[9px] text-white/20">Verileriniz asla saklanmaz, sistem tamamen anonim çalışır.</p>
-                            </div>
-                            <div class="p-6 bg-white/5 rounded-2xl border-b-2 border-[#0f8]">
-                                <h4 class="text-[10px] font-black mb-2 uppercase">DESTEK</h4>
-                                <p class="text-[9px] text-white/20">7/24 Discord üzerinden teknik kurulum desteği sunuyoruz.</p>
-                            </div>
-                            <div class="p-6 bg-white/5 rounded-2xl border-b-2 border-[#0f8]">
-                                <h4 class="text-[10px] font-black mb-2 uppercase">TEKNOLOJİ</h4>
-                                <p class="text-[9px] text-white/20">Yazılımlarımız 128-bit AES şifreleme ile korunur.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reviews" class="page">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl font-black italic uppercase mb-2">MÜŞTERİ <span class="text-[#0f8]">REFERANSLARI</span></h2>
-                    <p class="text-white/20 text-[9px] font-bold uppercase tracking-widest italic underline">Gerçek Kullanıcı Deneyimleri</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 pb-32">
-                    <div class="glass p-8 border-l-2 border-[#0f8]"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"Ares Spoofer tek tıkla MSI anakart banımı açtı, 5 aydır Valorant'ta ban yemedim. Teşekkürler Ghost X."</p><span class="text-[#0f8] font-black text-[10px]">@Vortex_Dev</span></div>
-                    <div class="glass p-8"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"PUBG Mobile Nexus Bypass sayesinde emülatörde mobil oyuncularla eşleşiyorum, rank kasmak çok kolaylaştı."</p><span class="text-[#0f8] font-black text-[10px]">@Slayer31</span></div>
-                    <div class="glass p-8"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"Void Optimizer gerçekten input lag'i hissettirir derecede düşürdü. Steam Manifest ayarları efsane."</p><span class="text-[#0f8] font-black text-[10px]">@Neo_Nexus</span></div>
-                    <div class="glass p-8"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"Hilelerin kurulumu çok basit, Discord'daki arkadaşlar her adımda yardımcı oldular. Güvenilir adres."</p><span class="text-[#0f8] font-black text-[10px]">@Cihan_Soft</span></div>
-                    <div class="glass p-8"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"Elite ESP Pro hilesinde sekme kontrolü muazzam. Hiç ban riski hissetmiyorum."</p><span class="text-[#0f8] font-black text-[10px]">@Hyper_Android</span></div>
-                    <div class="glass p-8"><p class="text-xs italic text-white/40 mb-6 font-bold uppercase">"iPad view ile görüş açım inanılmaz arttı. Özellikle yakın çatışmalarda çok büyük avantaj sağlıyor."</p><span class="text-[#0f8] font-black text-[10px]">@Zion_User</span></div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <div id="cart" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#050505] border-l border-white/5 z-[1000] translate-x-full transition-transform duration-500 flex flex-col">
-        <div class="p-10 flex justify-between items-center border-b border-white/5">
-            <h3 class="text-xl font-black italic uppercase tracking-widest">ENVANTER</h3>
-            <button onclick="tC()" class="text-white/20 hover:text-white text-xl">✕</button>
+    <section id="home" class="py-20 px-8 text-center max-w-5xl mx-auto">
+        <span class="bg-purple-900/30 text-purple-400 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block border border-purple-500/20">2026 GÜNCEL VERSİYON</span>
+        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">DİJİTAL KİMLİĞİNİ <br><span class="text-purple-500">SIFIRLA,</span> OYUNA DÖN.</h1>
+        <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Ghost SoftwareX ile donanım yasaklarını (HWID) kalıcı olarak tarihe gömün. Tek bir işlemle sisteminizi sıfırlayın.</p>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+            <a href="#shop" class="btn-gradient px-10 py-4 rounded-xl text-lg font-bold shadow-2xl">HEMEN SATIN AL</a>
+            <a href="#features" class="bg-white/5 hover:bg-white/10 px-10 py-4 rounded-xl text-lg font-bold transition border border-white/10">DETAYLARI GÖR</a>
         </div>
-        <div id="cart-list" class="flex-1 overflow-y-auto p-10 space-y-4 no-scroll"></div>
-        <div class="p-10 bg-black/50 border-t border-white/5">
-            <div class="flex justify-between mb-8"><span class="text-white/20 text-[10px] font-bold uppercase">TOPLAM</span><span id="tot" class="text-3xl font-black text-[#0f8] italic">₺0</span></div>
-            <button onclick="pay()" class="w-full bg-[#0f8] text-black py-6 rounded-full font-black text-[10px] uppercase tracking-[0.4em]">ÖDEMEYE GEÇ</button>
-            <button onclick="clearS()" class="w-full text-white/10 hover:text-red-500 py-4 text-[8px] font-black uppercase">SEPETİ SIFIRLA</button>
-        </div>
-    </div>
+    </section>
 
-    <div id="pay-m" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-6 bg-black/98 backdrop-blur-2xl">
-        <div class="glass p-12 w-full max-w-md relative border-t-4 border-[#0f8] text-center">
-            <button onclick="document.getElementById('pay-m').classList.add('hidden')" class="absolute top-6 right-6 text-white/20 hover:text-white">✕ KAPAT</button>
-            <h4 class="text-2xl font-black italic mb-10 uppercase text-[#0f8]">ÖDEME TALEBİ</h4>
-            <div class="p-8 bg-white/5 rounded-3xl border border-white/5 mb-10">
-                <p class="text-[8px] text-white/30 uppercase mb-3 font-black italic">IBAN (ZİRAAT BANKASI)</p>
-                <p class="font-mono text-[#0f8] text-xs select-all">TR00 0000 0000 0000 0000 0000 00</p>
-                <p class="mt-6 text-[9px] text-amber-500 font-black uppercase">REF: <span id="oid">GX-0000</span></p>
+    <section id="features" class="py-20 px-8 gradient-bg border-y border-white/5">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+            <div class="p-8 neon-border rounded-2xl bg-black/40">
+                <i class="fas fa-microchip text-4xl text-purple-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Kökten Değişim</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Sıradan spooferlar gibi geçici ID atamayız. Kayıt defterinden BIOS izlerine kadar her noktayı kökten yenileriz.</p>
             </div>
-            <button onclick="window.open('https://discord.gg/ghostx')" class="w-full bg-[#0f8] text-black py-5 rounded-full font-black text-[10px] uppercase tracking-widest">DEKONTU İLET</button>
+            <div class="p-8 neon-border rounded-2xl bg-black/40">
+                <i class="fas fa-shield-halved text-4xl text-purple-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">%100 Undetected</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Vanguard, BattlEye ve EAC sistemleri tarafından asla fark edilmez. Sistem dosyalarınıza dokunmaz, sadece maskeler.</p>
+            </div>
+            <div class="p-8 neon-border rounded-2xl bg-black/40">
+                <i class="fas fa-bolt text-4xl text-purple-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Geniş Uyumluluk</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">ASUS, MSI, Gigabyte, Monster... Masaüstü veya laptop fark etmeksizin tüm modern mimarilerde tam stabilite.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-24 px-8 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-widest">GHOST <span class="text-purple-500">STORE</span></h2>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition"></div>
+                <div class="relative bg-[#111] p-4 rounded-2xl border border-white/10 aspect-video flex items-center justify-center overflow-hidden">
+                   <div class="text-center">
+                       <i class="fas fa-box-open text-6xl text-purple-500 mb-4"></i>
+                       <p class="text-xs text-gray-500 uppercase tracking-widest italic">Görsel Bekleniyor...</p>
+                   </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="inline-block bg-red-600/20 text-red-500 px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest">SINIRLI SÜRELİ LANSMAN</div>
+                <h3 class="text-3xl font-black italic uppercase">Valorant Perm Spoofer</h3>
+                <p class="text-gray-400">Tek seferlik kullanım lisansı. Donanım banınızı kalıcı olarak kaldırır. Format veya BIOS güncellemesi gerektirmez.</p>
+                
+                <div class="flex items-end space-x-4 mb-8">
+                    <span class="text-4xl font-black text-white italic">600 TL</span>
+                    <span class="text-xl text-gray-600 line-through font-bold">1.400 TL</span>
+                </div>
+
+                <button onclick="document.getElementById('payment-modal').classList.remove('hidden')" class="w-full btn-gradient py-5 rounded-xl text-xl font-black shadow-2xl shadow-purple-600/30">SEPETE EKLE & ÖDEMEYE GEÇ</button>
+                <p class="text-[10px] text-gray-600 text-center uppercase tracking-widest italic">Anında Teslimat • 7/24 Discord Desteği</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 px-8 bg-white/5">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-black text-center mb-12 uppercase tracking-widest italic">Sıkça Sorulan Sorular</h2>
+            <div class="space-y-4">
+                <div class="p-6 bg-black/40 rounded-xl border border-white/5">
+                    <h4 class="font-bold text-purple-400 mb-2 italic uppercase tracking-tighter text-sm italic underline decoration-purple-500/50">Tek seferlik kullanım nedir?</h4>
+                    <p class="text-gray-400 text-sm">600 TL karşılığında banınızı bir kez kalıcı olarak kaldırırız. Tekrar ban yemeniz durumunda yeni lisans gerekir.</p>
+                </div>
+                <div class="p-6 bg-black/40 rounded-xl border border-white/5">
+                    <h4 class="font-bold text-purple-400 mb-2 italic uppercase tracking-tighter text-sm italic underline decoration-purple-500/50">Yazılım ban yedirir mi?</h4>
+                    <p class="text-gray-400 text-sm">Hayır. Yazılımımız sadece kimliğinizi maskeler, oyunun kodlarına müdahale etmez. %100 güvenlidir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="payment-modal" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4 backdrop-blur-xl">
+        <div class="bg-[#111] p-8 rounded-3xl max-w-md w-full border border-purple-500/30 shadow-2xl relative">
+            <button onclick="document.getElementById('payment-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-black mb-6 italic text-center uppercase">ÖDEME BİLGİLERİ</h3>
+            
+            <div class="bg-purple-900/10 p-6 rounded-2xl mb-6 border border-purple-500/20">
+                <p class="text-xs text-purple-400 uppercase font-black mb-2 tracking-widest">ALICI ADI SOYADI</p>
+                <p class="text-lg font-bold mb-4 text-white">[İSİM SOYİSİM BURAYA]</p>
+                <p class="text-xs text-purple-400 uppercase font-black mb-2 tracking-widest">IBAN ADRESİ</p>
+                <p class="text-sm font-mono bg-black/50 p-3 rounded border border-white/5 text-purple-300">TR00 0000 0000 0000 0000 0000 00</p>
+            </div>
+
+            <div class="bg-red-900/10 p-4 rounded-xl border border-red-500/20 mb-6">
+                <p class="text-[11px] text-red-400 leading-tight"><strong>⚠️ ÖNEMLİ:</strong> Açıklama kısmına sadece <strong>'Yazılım Geliştirme Bedeli'</strong> yazınız. Hile, Valorant, Spoofer gibi kelimeler yasaktır.</p>
+            </div>
+
+            <a href="https://discord.gg/ghostsoftwarex" target="_blank" class="block w-full text-center bg-white text-black py-4 rounded-xl font-black hover:bg-gray-200 transition uppercase">DEKONT GÖNDER & ÜRÜNÜ AL</a>
         </div>
     </div>
 
-    <script>
-        let s = [];
-        function go(p) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(p).classList.add('active');
-        }
+    <footer class="py-12 border-t border-white/5 text-center opacity-50 text-xs tracking-[0.2em] uppercase">
+        GHOST SOFTWAREX © 2026 - ALL RIGHTS RESERVED
+    </footer>
 
-        document.getElementById('auth-form').onsubmit = (e) => {
-            e.preventDefault();
-            document.getElementById('auth').style.display = 'none';
-            document.getElementById('app').classList.remove('hidden');
-        };
-
-        function tC() { document.getElementById('cart').classList.toggle('translate-x-full'); }
-
-        function add(ad, fiyat) {
-            s.push({ad, fiyat});
-            uU();
-            if(document.getElementById('cart').classList.contains('translate-x-full')) tC();
-        }
-
-        function rem(idx) { s.splice(idx, 1); uU(); }
-        function clearS() { s = []; uU(); tC(); }
-
-        function uU() {
-            document.getElementById('q').innerText = s.length;
-            const l = document.getElementById('cart-list');
-            let t = 0;
-            l.innerHTML = s.map((i, idx) => {
-                t += i.fiyat;
-                return `<div class="glass p-6 flex justify-between items-center border-white/10">
-                    <div><p class="text-[10px] font-black uppercase italic">${i.ad}</p><p class="text-xs text-[#0f8] font-bold">₺${i.fiyat}</p></div>
-                    <button onclick="rem(${idx})" class="text-white/20 hover:text-red-500 font-black text-lg transition">✕</button>
-                </div>`;
-            }).join('');
-            document.getElementById('tot').innerText = "₺" + t;
-        }
-
-        function pay() {
-            if(s.length === 0) return;
-            document.getElementById('pay-m').classList.remove('hidden');
-            document.getElementById('oid').innerText = "GX-" + Math.floor(1000 + Math.random() * 9999);
-        }
-
-        const c = document.getElementById('c'); const cf = document.getElementById('cf');
-        window.onmousemove = (e) => {
-            c.style.left = e.clientX+'px'; c.style.top = e.clientY+'px';
-            setTimeout(() => { cf.style.left = e.clientX-15+'px'; cf.style.top = e.clientY-15+'px'; }, 40);
-        }
-    </script>
 </body>
 </html>
