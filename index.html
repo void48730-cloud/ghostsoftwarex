@@ -1,161 +1,278 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost Software | Premium HWID Spoofer Store</title>
-    <!-- Tailwind CSS ve FontAwesome İkonları -->
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        @import url('https://googleapis.com');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Software</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#050505,#0d0d0d,#111);
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#00aaff30;
+    filter:blur(150px);
+    top:-200px;
+    left:-200px;
+    z-index:-1;
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#6f00ff30;
+    filter:blur(150px);
+    bottom:-200px;
+    right:-200px;
+    z-index:-1;
+}
+
+header{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.logo{
+    font-size:4rem;
+    font-weight:700;
+    background:linear-gradient(90deg,#00aaff,#6f00ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    margin-top:15px;
+    color:#bdbdbd;
+    font-size:1.2rem;
+}
+
+.description{
+    max-width:800px;
+    margin:30px auto;
+    color:#999;
+    line-height:1.8;
+}
+
+/* BURAYI DEĞİŞTİREBİLİRSİN */
+.custom-description{
+    margin-top:20px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:15px;
+    background:rgba(255,255,255,.03);
+}
+
+.products{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    padding:50px 20px 100px;
+}
+
+.card{
+    width:360px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    padding:35px;
+    transition:.4s;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00aaff;
+}
+
+.card h2{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:3rem;
+    font-weight:700;
+    color:#00aaff;
+    margin:20px 0;
+}
+
+.features{
+    list-style:none;
+    margin:25px 0;
+}
+
+.features li{
+    margin:15px 0;
+    color:#ccc;
+}
+
+.buy-options{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    flex:1;
+    text-align:center;
+    text-decoration:none;
+    padding:15px;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.discord{
+    background:#5865F2;
+    color:white;
+}
+
+.shopier{
+    background:#00c853;
+    color:white;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#777;
+}
+
+@media(max-width:800px){
+    .logo{
+        font-size:3rem;
+    }
+
+    .card{
+        width:100%;
+        max-width:400px;
+    }
+}
+
+</style>
 </head>
-<body class="text-slate-800 antialiased bg-[#f1f5f9]">
+<body>
 
-    <!-- ÜST MENÜ (NAVBAR) -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-red-500 p-2.5 rounded-xl text-white shadow-md shadow-red-500/20">
-                    <i class="fa-solid fa-ghost text-xl"></i>
-                </div>
-                <span class="text-xl font-extrabold tracking-tight text-slate-900">GHOST <span class="text-red-500">SOFTWARE</span></span>
-            </div>
-            <div>
-                <a href="https://discord.gg" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center space-x-2">
-                    <i class="fa-brands fa-discord text-base text-[#5865F2]"></i>
-                    <span>Discord'a Katıl</span>
-                </a>
-            </div>
+<header>
+
+    <h1 class="logo">Ghost Software</h1>
+
+    <!-- BAŞLIK -->
+    <p class="subtitle">
+        Premium Software Solutions
+    </p>
+
+    <!-- AÇIKLAMA -->
+    <div class="description">
+        Buraya mağazanızın açıklamasını yazabilirsiniz.
+        Yazılımınızın özelliklerini, destek süresini,
+        kullanım şartlarını veya ekstra bilgileri ekleyebilirsiniz.
+    </div>
+
+    <div class="custom-description">
+        <h3>Açıklama Başlığı</h3>
+        <br>
+        <p>
+            Bu alan tamamen size özeldir. İstediğiniz duyuru,
+            güncelleme bilgisi veya ürün detaylarını yazabilirsiniz.
+        </p>
+    </div>
+
+</header>
+
+<section class="products">
+
+    <div class="card">
+        <h2>Lifetime License</h2>
+
+        <div class="price">2700₺</div>
+
+        <ul class="features">
+            <li>✔ Ömür Boyu Kullanım</li>
+            <li>✔ Sürekli Güncelleme</li>
+            <li>✔ Öncelikli Destek</li>
+            <li>✔ Premium Erişim</li>
+        </ul>
+
+        <div class="buy-options">
+
+            <a class="btn discord"
+            href="https://discord.gg/e5g3pM3bEg"
+            target="_blank">
+            Discord Satın Al
+            </a>
+
+            <a class="btn shopier"
+            href="https://www.shopier.com/ghostsoftware"
+            target="_blank">
+            Shopier Satın Al
+            </a>
+
         </div>
-    </header>
+    </div>
 
-    <main class="max-w-7xl mx-auto px-6 py-10">
+    <div class="card">
 
-        <!-- HERO ALANI -->
-        <section class="bg-gradient-to-r from-slate-950 via-slate-900 to-red-950 text-white rounded-3xl p-8 md:p-12 mb-10 relative overflow-hidden shadow-xl">
-            <div class="absolute -right-20 -top-20 w-80 h-80 bg-red-500/10 blur-3xl rounded-full"></div>
-            <div class="max-w-4xl relative z-10">
-                <span class="bg-red-500 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">
-                    🔥 EN ÇOK SATAN VALORANT SPOOFER
-                </span>
+        <h2>One-Time License</h2>
 
-                <h1 class="text-4xl md:text-5xl font-black mt-4 leading-tight">
-                    Ghost Premium Gaming Software Store
-                </h1>
+        <div class="price">900₺</div>
 
-                <p class="text-slate-300 mt-4 text-base md:text-lg leading-relaxed max-w-2xl">
-                    Van 152 ve Val 5 hatalarına saniyeler içinde son verin. Tüm anakart modellerini destekleyen, kernel tabanlı %100 kalıcı donanım banı (HWID) kaldırma mağazası.
-                </p>
+        <ul class="features">
+            <li>✔ Tek Seferlik Kullanım</li>
+            <li>✔ Hızlı Teslimat</li>
+            <li>✔ Teknik Destek</li>
+            <li>✔ Güvenli Satın Alma</li>
+        </ul>
 
-                <div class="mt-6 flex flex-wrap gap-4">
-                    <a href="#urunler" class="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl font-bold transition text-center shadow-lg shadow-red-500/20">
-                        Ürünleri İncele
-                    </a>
-                    <a href="https://cheatglobal.com" target="_blank" class="bg-white/10 hover:bg-white/15 text-white border border-white/10 px-6 py-4 rounded-xl font-bold transition text-center text-sm flex items-center space-x-2">
-                        <span>CheatGlobal Onaylı Satış</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <div class="buy-options">
 
-        <!-- İSTATİSTİKLER BÖLÜMÜ -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            <div class="bg-white p-6 rounded-2xl text-center shadow-sm border border-slate-200/60">
-                <h3 class="text-3xl font-black text-red-500">12K+</h3>
-                <p class="text-slate-500 text-xs mt-1 font-medium">Aktif Müşteri</p>
-            </div>
+            <a class="btn discord"
+            href="https://discord.gg/e5g3pM3bEg"
+            target="_blank">
+            Discord Satın Al
+            </a>
 
-            <div class="bg-white p-6 rounded-2xl text-center shadow-sm border border-slate-200/60">
-                <h3 class="text-3xl font-black text-red-500">98%</h3>
-                <p class="text-slate-500 text-xs mt-1 font-medium">Memnuniyet Oranı</p>
-            </div>
+            <a class="btn shopier"
+            href="https://www.shopier.com/ghostsoftware"
+            target="_blank">
+            Shopier Satın Al
+            </a>
 
-            <div class="bg-white p-6 rounded-2xl text-center shadow-sm border border-slate-200/60">
-                <h3 class="text-3xl font-black text-red-500">24/7</h3>
-                <p class="text-slate-500 text-xs mt-1 font-medium">Canlı Destek</p>
-            </div>
+        </div>
 
-            <div class="bg-white p-6 rounded-2xl text-center shadow-sm border border-slate-200/60">
-                <h3 class="text-3xl font-black text-red-500">5DK</h3>
-                <p class="text-slate-500 text-xs mt-1 font-medium">Teslimat Süresi</p>
-            </div>
-        </section>
+    </div>
 
-        <!-- DETAYLI BİLGİLENDİRME PANELİ (YAZILIM DETAYLARI) -->
-        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-10">
-            <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center space-x-2">
-                <i class="fa-solid fa-circle-info text-red-500"></i>
-                <span>Ghost Spoofer Nedir & Nasıl Çalışır?</span>
-            </h3>
-            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                Valorant (Vanguard) hile veya şüpheli durumlarda bilgisayarınızın anakart, disk ve MAC adresini kara listeye alarak donanım banı uygular. Ghost Spoofer, bu donanım kimliklerini çekirdek katmanında <strong>Kalıcı (Permanent)</strong> olarak temiz verilerle değiştirir. Sisteminiz Vanguard tarafından tamamen yeni alınmış sıfır bir bilgisayar gibi algılanır.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <span class="font-bold text-slate-900 text-xs block mb-1">💻 Tüm Anakartlar</span>
-                    <span class="text-slate-500 text-[11px]">ASUS, MSI, Gigabyte ve tüm oyuncu laptoplarında %100 uyumluluk.</span>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <span class="font-bold text-slate-900 text-xs block mb-1">🛠️ Birebir Canlı Kurulum</span>
-                    <span class="text-slate-500 text-[11px]">Kurulumu yapamazsanız Discord üzerinden AnyDesk ile bağlanıp biz yapıyoruz.</span>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <span class="font-bold text-slate-900 text-xs block mb-1">⚡ Delay Ban Çözümü</span>
-                    <span class="text-slate-500 text-[11px]">Oyuna girdikten birkaç maç sonra gelen gecikmeli ban döngülerini tamamen kırar.</span>
-                </div>
-            </div>
-        </section>
+</section>
 
-        <!-- ÜRÜNLER (TAM SENİN İSTEDİĞİN MODEL VE YENİ FİYATLAR) -->
-        <section id="urunler">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">
-                    Ghost Lisans Seçenekleri
-                </h2>
-                <span class="text-xs font-semibold text-emerald-600 flex items-center space-x-1 bg-emerald-50 px-2.5 py-1 rounded-md">
-                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                    <span>Anında Teslimat</span>
-                </span>
-            </div>
+<footer>
+    © 2026 Ghost Software • All Rights Reserved
+</footer>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-
-                <!-- KART 1: TEK SEFERLİK (20 DOLAR) -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200/80 transition flex flex-col justify-between">
-                    <div>
-                        <!-- Ürün Görsel Alanı -->
-                        <div class="h-44 bg-gradient-to-br from-slate-900 via-slate-800 to-red-950 flex flex-col items-center justify-center text-white relative">
-                            <span class="text-3xl font-black tracking-wider heading-font">GHOST</span>
-                            <span class="text-[10px] tracking-widest text-red-500 font-bold uppercase mt-1">ONE-TIME LICENSE</span>
-                        </div>
-
-                        <div class="p-6">
-                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">
-                                Ekonomik Seçenek
-                            </span>
-
-                            <h3 class="font-bold text-xl mt-3 text-slate-900">
-                                Ghost Spoofer - 1X Kullanım
-                            </h3>
-
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">
-                                Bilgisayarınızın mevcut donanım banını tek bir seferlik kökten ve tamamen kaldırmak için en ideal pakettir.
-                            </p>
-
-                            <ul class="mt-4 space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-4">
-                                <li><i class="fa-solid fa-check text-red-500 mr-1.5"></i> Kalıcı (Permanent) İşlem</li>
-                                <li><i class="fa-solid fa-check text-red-500 mr-1.5"></i> Formatsız Çalışma Seçeneği</li>
-                                <li><i class="fa-solid fa-check text-red-500 mr-1.5"></i> Tüm Sürücüler Dahil</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="p-6 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center">
-                        <div>
-                            <span class="text-3xl font-black text-slate-900">$20</span>
-                            <span class="text-[10px] font-semibold text-slate-400 block">Tek Seferlik Ödeme</span>
-                        </div>
-
+</body>
+</html>
