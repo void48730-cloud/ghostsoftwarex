@@ -23,25 +23,25 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* Background glow */
+/* background glow */
 body::before,
 body::after{
 content:"";
 position:fixed;
 width:600px;
 height:600px;
-filter:blur(160px);
+filter:blur(170px);
 z-index:-1;
 }
 
 body::before{
-background:#00a2ff40;
+background:#00a2ff35;
 top:-200px;
 left:-200px;
 }
 
 body::after{
-background:#8c52ff40;
+background:#8c52ff35;
 bottom:-200px;
 right:-200px;
 }
@@ -70,7 +70,7 @@ background:linear-gradient(90deg,#00a2ff,#8c52ff);
 }
 
 nav a{
-color:#ccc;
+color:#aaa;
 margin:0 12px;
 text-decoration:none;
 font-size:.95rem;
@@ -98,9 +98,9 @@ margin-bottom:20px;
 }
 
 .hero p{
-max-width:700px;
-color:#bbb;
-font-size:1.2rem;
+max-width:750px;
+color:#bdbdbd;
+font-size:1.15rem;
 }
 
 .buttons{
@@ -120,6 +120,7 @@ transition:.3s;
 .primary{
 background:linear-gradient(90deg,#00a2ff,#8c52ff);
 color:#fff;
+box-shadow:0 0 25px rgba(0,162,255,.25);
 }
 
 .secondary{
@@ -151,7 +152,7 @@ gap:22px;
 
 /* CARD */
 .card{
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.04);
 border:1px solid rgba(255,255,255,.08);
 backdrop-filter:blur(15px);
 padding:28px;
@@ -161,16 +162,18 @@ transition:.3s;
 
 .card:hover{
 transform:translateY(-8px);
-border-color:#00a2ff55;
+border-color:#00a2ff60;
+box-shadow:0 0 30px rgba(0,162,255,.08);
 }
 
-/* PRODUCT */
+/* PRICE */
 .price{
 font-size:2.4rem;
 color:#00a2ff;
 margin:18px 0;
 }
 
+/* LIST */
 ul{
 list-style:none;
 margin:15px 0;
@@ -184,12 +187,12 @@ color:#ccc;
 /* FAQ */
 .faq h3{
 color:#00a2ff;
-margin-bottom:8px;
+margin-bottom:6px;
 }
 
 .faq p{
 color:#bbb;
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 /* DISCORD */
@@ -197,7 +200,7 @@ margin-bottom:20px;
 text-align:center;
 padding:60px;
 border-radius:25px;
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.04);
 border:1px solid rgba(255,255,255,.08);
 }
 
@@ -206,27 +209,32 @@ footer{
 text-align:center;
 padding:40px;
 color:#777;
+border-top:1px solid rgba(255,255,255,.05);
+margin-top:50px;
 }
 
-/* CHEATGLOBAL BADGE */
+/* PARTNER LINK (clean minimal) */
 .partner{
 position:fixed;
-bottom:18px;
-right:18px;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.1);
-padding:10px 14px;
-border-radius:12px;
+bottom:15px;
+right:15px;
 font-size:.85rem;
-color:#ccc;
-z-index:9999;
+color:#aaa;
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(10px);
+padding:8px 12px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,.08);
 }
 
 .partner a{
 color:#00a2ff;
 text-decoration:none;
 font-weight:600;
+}
+
+.partner a:hover{
+text-decoration:underline;
 }
 
 /* RESPONSIVE */
@@ -254,7 +262,7 @@ nav{display:none;}
 <!-- HERO -->
 <section class="hero">
 <h1>Premium Software Solutions</h1>
-<p>Secure, fast and professional digital products built for performance and reliability.</p>
+<p>Secure, fast and high-performance digital products built for reliability, stability and long-term use.</p>
 
 <div class="buttons">
 <a href="#products" class="btn primary">Buy Now</a>
@@ -274,7 +282,7 @@ nav{display:none;}
 </div>
 </section>
 
-<!-- WHY US -->
+<!-- WHY -->
 <section id="why">
 <h2 class="title">Why Choose Us?</h2>
 
@@ -282,7 +290,7 @@ nav{display:none;}
 
 <div class="card">
 <h3>Security First</h3>
-<p>All products are protected and constantly updated.</p>
+<p>All products are encrypted, safe and regularly updated.</p>
 </div>
 
 <div class="card">
@@ -291,8 +299,8 @@ nav{display:none;}
 </div>
 
 <div class="card">
-<h3>Lifetime Support</h3>
-<p>We provide continuous professional support.</p>
+<h3>Premium Support</h3>
+<p>We provide long-term and fast customer support.</p>
 </div>
 
 </div>
@@ -310,13 +318,12 @@ nav{display:none;}
 
 <ul>
 <li>Lifetime Access</li>
-<li>Premium Features</li>
-<li>Priority Support</li>
 <li>Free Updates</li>
+<li>Priority Support</li>
 </ul>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord Purchase</a>
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier Purchase</a>
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
 </div>
 
 <div class="card">
@@ -329,8 +336,8 @@ nav{display:none;}
 <li>Standard Support</li>
 </ul>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord Purchase</a>
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier Purchase</a>
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
 </div>
 
 </div>
@@ -342,13 +349,13 @@ nav{display:none;}
 
 <div class="faq">
 <h3>How do I receive my product?</h3>
-<p>After payment, your license is delivered instantly via Discord or Shopier system.</p>
+<p>After payment, your license is delivered instantly.</p>
 
-<h3>Do you offer support?</h3>
-<p>Yes, all customers receive full support.</p>
+<h3>Do you provide support?</h3>
+<p>Yes, full support is included.</p>
 
 <h3>Which payment methods are available?</h3>
-<p>Discord and Shopier are supported.</p>
+<p>Discord & Shopier.</p>
 </div>
 </section>
 
@@ -368,11 +375,11 @@ nav{display:none;}
 Ghost Software © 2026 — All Rights Reserved
 </footer>
 
-<!-- PARTNER BADGE -->
+<!-- CLEAN PARTNER LINK -->
 <div class="partner">
-Partner: 
+Partner:
 <a href="https://cheatglobal.com/" target="_blank">
-:contentReference[oaicite:0]{index=0}
+CheatGlobal
 </a>
 </div>
 
