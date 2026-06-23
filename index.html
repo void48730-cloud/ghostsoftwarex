@@ -1,6 +1,5 @@
-```html
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,51 +18,51 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#070b12;
+background:#070a12;
 color:#fff;
 overflow-x:hidden;
 }
 
-body::before{
-content:"";
-position:fixed;
-width:500px;
-height:500px;
-background:#00a2ff40;
-filter:blur(150px);
-top:-200px;
-left:-200px;
-z-index:-1;
-}
-
+/* Background glow */
+body::before,
 body::after{
 content:"";
 position:fixed;
-width:500px;
-height:500px;
-background:#8c52ff40;
-filter:blur(150px);
-right:-200px;
-bottom:-200px;
+width:600px;
+height:600px;
+filter:blur(160px);
 z-index:-1;
 }
 
+body::before{
+background:#00a2ff40;
+top:-200px;
+left:-200px;
+}
+
+body::after{
+background:#8c52ff40;
+bottom:-200px;
+right:-200px;
+}
+
+/* HEADER */
 header{
 position:fixed;
 top:0;
 width:100%;
-padding:20px 8%;
+padding:18px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(15px);
-background:rgba(0,0,0,.2);
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(18px);
 border-bottom:1px solid rgba(255,255,255,.05);
 z-index:1000;
 }
 
 .logo{
-font-size:2rem;
+font-size:1.8rem;
 font-weight:700;
 background:linear-gradient(90deg,#00a2ff,#8c52ff);
 -webkit-background-clip:text;
@@ -71,19 +70,18 @@ background:linear-gradient(90deg,#00a2ff,#8c52ff);
 }
 
 nav a{
-color:#fff;
+color:#ccc;
+margin:0 12px;
 text-decoration:none;
-margin:0 15px;
+font-size:.95rem;
+transition:.3s;
 }
 
-.lang button{
-background:none;
-border:none;
-font-size:26px;
-cursor:pointer;
-margin-left:8px;
+nav a:hover{
+color:#fff;
 }
 
+/* HERO */
 .hero{
 min-height:100vh;
 display:flex;
@@ -91,11 +89,11 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:0 20px;
+padding:120px 20px 0;
 }
 
 .hero h1{
-font-size:4rem;
+font-size:3.8rem;
 margin-bottom:20px;
 }
 
@@ -105,13 +103,17 @@ color:#bbb;
 font-size:1.2rem;
 }
 
+.buttons{
+margin-top:40px;
+}
+
 .btn{
 display:inline-block;
-padding:15px 30px;
-margin:10px;
-border-radius:15px;
+padding:14px 28px;
+border-radius:14px;
 text-decoration:none;
 font-weight:600;
+margin:8px;
 transition:.3s;
 }
 
@@ -129,91 +131,116 @@ color:#fff;
 transform:translateY(-5px);
 }
 
+/* SECTIONS */
 section{
-padding:100px 8%;
+padding:90px 8%;
 }
 
-.section-title{
+.title{
 text-align:center;
-font-size:2.5rem;
+font-size:2.4rem;
 margin-bottom:50px;
 }
 
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:22px;
 }
 
+/* CARD */
 .card{
 background:rgba(255,255,255,.05);
 border:1px solid rgba(255,255,255,.08);
 backdrop-filter:blur(15px);
-padding:30px;
-border-radius:25px;
+padding:28px;
+border-radius:22px;
 transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-8px);
+border-color:#00a2ff55;
 }
 
-.product-price{
-font-size:2.5rem;
+/* PRODUCT */
+.price{
+font-size:2.4rem;
 color:#00a2ff;
-margin:20px 0;
+margin:18px 0;
 }
 
-.card ul{
+ul{
 list-style:none;
-margin:20px 0;
+margin:15px 0;
 }
 
-.card li{
-margin:10px 0;
+li{
+margin:8px 0;
 color:#ccc;
 }
 
-.faq{
-margin-bottom:30px;
-}
-
+/* FAQ */
 .faq h3{
 color:#00a2ff;
-margin-bottom:10px;
+margin-bottom:8px;
 }
 
-.discord-box{
+.faq p{
+color:#bbb;
+margin-bottom:20px;
+}
+
+/* DISCORD */
+.discord{
 text-align:center;
 padding:60px;
-border-radius:30px;
+border-radius:25px;
 background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
 }
 
+/* FOOTER */
 footer{
-padding:40px;
 text-align:center;
+padding:40px;
 color:#777;
 }
 
+/* CHEATGLOBAL BADGE */
+.partner{
+position:fixed;
+bottom:18px;
+right:18px;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.1);
+padding:10px 14px;
+border-radius:12px;
+font-size:.85rem;
+color:#ccc;
+z-index:9999;
+}
+
+.partner a{
+color:#00a2ff;
+text-decoration:none;
+font-weight:600;
+}
+
+/* RESPONSIVE */
 @media(max-width:768px){
-
-nav{
-display:none;
-}
-
-.hero h1{
-font-size:2.6rem;
-}
-
+.hero h1{font-size:2.5rem;}
+nav{display:none;}
 }
 
 </style>
 </head>
+
 <body>
 
 <header>
-
 <div class="logo">Ghost Software</div>
 
 <nav>
@@ -222,226 +249,132 @@ font-size:2.6rem;
 <a href="#faq">FAQ</a>
 <a href="#discord">Discord</a>
 </nav>
-
-<div class="lang">
-<button onclick="setLang('tr')">🇹🇷</button>
-<button onclick="setLang('en')">🇺🇸</button>
-</div>
-
 </header>
 
+<!-- HERO -->
 <section class="hero">
+<h1>Premium Software Solutions</h1>
+<p>Secure, fast and professional digital products built for performance and reliability.</p>
 
-<h1 id="heroTitle">Premium Yazılım Çözümleri</h1>
-
-<p id="heroText">
-Güvenli, hızlı ve profesyonel dijital çözümler.
-</p>
-
-<div style="margin-top:40px;">
-<a href="#products" class="btn primary" id="buyButton">Satın Al</a>
-<a href="https://discord.gg/e5g3pM3bEg" target="_blank" class="btn secondary" id="joinButton">Discord'a Katıl</a>
+<div class="buttons">
+<a href="#products" class="btn primary">Buy Now</a>
+<a href="https://discord.gg/e5g3pM3bEg" class="btn secondary">Join Discord</a>
 </div>
-
 </section>
 
+<!-- STATS -->
 <section>
-
-<h2 class="section-title" id="statsTitle">İstatistikler</h2>
+<h2 class="title">Statistics</h2>
 
 <div class="grid">
-<div class="card"><h2>500+</h2><p>Happy Customers</p></div>
+<div class="card"><h2>500+</h2><p>Customers</p></div>
 <div class="card"><h2>24/7</h2><p>Support</p></div>
 <div class="card"><h2>99.9%</h2><p>Uptime</p></div>
-<div class="card"><h2>100%</h2><p>Secure Payments</p></div>
+<div class="card"><h2>100%</h2><p>Secure</p></div>
 </div>
-
 </section>
 
+<!-- WHY US -->
 <section id="why">
-
-<h2 class="section-title" id="whyTitle">Neden Biz?</h2>
+<h2 class="title">Why Choose Us?</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>🛡 Secure Protection</h3>
-<p>Tüm ürünler korunur ve sürekli güncellenir.</p>
+<h3>Security First</h3>
+<p>All products are protected and constantly updated.</p>
 </div>
 
 <div class="card">
-<h3>⚡ Instant Delivery</h3>
-<p>Siparişiniz mümkün olan en kısa sürede teslim edilir.</p>
+<h3>Instant Delivery</h3>
+<p>Receive your product immediately after purchase.</p>
 </div>
 
 <div class="card">
-<h3>💬 Lifetime Support</h3>
-<p>Her zaman profesyonel destek.</p>
+<h3>Lifetime Support</h3>
+<p>We provide continuous professional support.</p>
 </div>
 
 </div>
-
 </section>
 
+<!-- PRODUCTS -->
 <section id="products">
-
-<h2 class="section-title" id="productsTitle">Ürünler</h2>
+<h2 class="title">Products</h2>
 
 <div class="grid">
 
 <div class="card">
-
-<h3 id="lifeTitle">Lifetime License</h3>
-
-<div class="product-price">2700₺</div>
+<h3>Lifetime License</h3>
+<div class="price">2700₺</div>
 
 <ul>
-<li>✔ Lifetime Access</li>
-<li>✔ Premium Features</li>
-<li>✔ Lifetime Updates</li>
-<li>✔ Priority Support</li>
+<li>Lifetime Access</li>
+<li>Premium Features</li>
+<li>Priority Support</li>
+<li>Free Updates</li>
 </ul>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
-
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
-
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord Purchase</a>
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier Purchase</a>
 </div>
 
 <div class="card">
-
-<h3 id="onceTitle">One-Time License</h3>
-
-<div class="product-price">900₺</div>
+<h3>One-Time License</h3>
+<div class="price">900₺</div>
 
 <ul>
-<li>✔ One Time Purchase</li>
-<li>✔ Fast Delivery</li>
-<li>✔ Technical Support</li>
+<li>Single Purchase</li>
+<li>Fast Delivery</li>
+<li>Standard Support</li>
 </ul>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
-
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
-
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord Purchase</a>
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier Purchase</a>
 </div>
 
 </div>
-
 </section>
 
-<section>
-
-<h2 class="section-title">How It Works</h2>
-
-<div class="grid">
-<div class="card">1. Choose your package.</div>
-<div class="card">2. Complete payment.</div>
-<div class="card">3. Receive your software.</div>
-<div class="card">4. Enjoy premium access.</div>
-</div>
-
-</section>
-
+<!-- FAQ -->
 <section id="faq">
-
-<h2 class="section-title">FAQ / SSS</h2>
+<h2 class="title">FAQ</h2>
 
 <div class="faq">
 <h3>How do I receive my product?</h3>
-<p>Your license is delivered after payment.</p>
-</div>
+<p>After payment, your license is delivered instantly via Discord or Shopier system.</p>
 
-<div class="faq">
-<h3>Do you provide support?</h3>
-<p>Yes, every customer receives support.</p>
-</div>
+<h3>Do you offer support?</h3>
+<p>Yes, all customers receive full support.</p>
 
-<div class="faq">
 <h3>Which payment methods are available?</h3>
-<p>Discord and Shopier.</p>
+<p>Discord and Shopier are supported.</p>
 </div>
-
 </section>
 
+<!-- DISCORD -->
 <section id="discord">
+<div class="discord">
+<h2>Join Our Community</h2>
+<p>Get updates, support and announcements instantly.</p>
 
-<div class="discord-box">
-
-<h2 id="discordTitle">Join Our Community</h2>
-
-<p id="discordText">
-Get support, updates and announcements instantly.
-</p>
-
-<br><br>
-
-<a class="btn primary"
-href="https://discord.gg/e5g3pM3bEg"
-target="_blank">
-Join Discord
-</a>
-
+<br>
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Join Discord</a>
 </div>
-
 </section>
 
+<!-- FOOTER -->
 <footer>
-
-Ghost Software © 2026
-
+Ghost Software © 2026 — All Rights Reserved
 </footer>
 
-<script>
-
-const translations = {
-
-tr:{
-heroTitle:"Premium Yazılım Çözümleri",
-heroText:"Güvenli, hızlı ve profesyonel dijital çözümler.",
-buyButton:"Satın Al",
-joinButton:"Discord'a Katıl",
-statsTitle:"İstatistikler",
-whyTitle:"Neden Biz?",
-productsTitle:"Ürünler",
-lifeTitle:"Ömür Boyu Lisans",
-onceTitle:"Tek Seferlik Lisans",
-discordTitle:"Topluluğumuza Katılın",
-discordText:"Destek, güncellemeler ve duyurulara anında erişin."
-},
-
-en:{
-heroTitle:"Premium Software Solutions",
-heroText:"Secure, fast and professional digital solutions.",
-buyButton:"Buy Now",
-joinButton:"Join Discord",
-statsTitle:"Statistics",
-whyTitle:"Why Choose Us?",
-productsTitle:"Products",
-lifeTitle:"Lifetime License",
-onceTitle:"One-Time License",
-discordTitle:"Join Our Community",
-discordText:"Get support, updates and announcements instantly."
-}
-
-};
-
-function setLang(lang){
-
-localStorage.setItem('lang',lang);
-
-Object.keys(translations[lang]).forEach(id=>{
-document.getElementById(id).innerText=translations[lang][id];
-});
-
-}
-
-window.onload=()=>{
-setLang(localStorage.getItem('lang') || 'tr');
-};
-
-</script>
+<!-- PARTNER BADGE -->
+<div class="partner">
+Partner: 
+<a href="https://cheatglobal.com/" target="_blank">
+:contentReference[oaicite:0]{index=0}
+</a>
+</div>
 
 </body>
 </html>
-```
