@@ -3,129 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Store | Premium Valorant HWID Spoofer - %100 Kalıcı Ban Kaldırma</title>
+    <title>Ghost Software | Premium Valorant HWID Spoofer - %100 Permanent & Undetected</title>
     <!-- Tailwind CSS ve FontAwesome İkonları -->
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         @import url('https://googleapis.com');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0e17; }
-        .neon-glow { box-shadow: 0 0 25px rgba(239, 68, 68, 0.25); }
-        .neon-border:hover { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
-        .cg-border { border: 1px solid rgba(59, 130, 246, 0.2); background: linear-gradient(135deg, rgba(30,41,59,0.5) 0%, rgba(15,23,42,0.8) 100%); }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #06070d; 
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Premium Animasyonlu Arka Plan */
+        .cyber-grid {
+            background-image: linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+        
+        /* Ghost Neon Efektleri */
+        .ghost-glow-red {
+            box-shadow: 0 0 40px -10px rgba(239, 68, 68, 0.3);
+        }
+        .ghost-card {
+            background: linear-gradient(135deg, rgba(17, 19, 31, 0.7) 0%, rgba(10, 11, 18, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ghost-card:hover {
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.15);
+        }
+        
+        /* Status Pulse */
+        .pulse-green {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
     </style>
 </head>
-<body class="text-gray-200 antialiased selection:bg-red-500 selection:text-white">
+<body class="text-gray-300 antialiased selection:bg-red-500 selection:text-white cyber-grid">
 
-    <!-- Gelişmiş Navigasyon Barı -->
-    <nav class="border-b border-gray-800/80 bg-[#0c0e17]/90 backdrop-blur-md sticky top-0 z-50">
+    <!-- Üst Duyuru Çubuğu (CheatGlobal Ortaklığı) -->
+    <div class="bg-gradient-to-r from-red-950/40 via-blue-950/40 to-red-950/40 border-b border-gray-900 text-center py-2.5 px-4 text-xs font-medium tracking-wide">
+        <span class="text-gray-400">🔥 Ghost Software resmi onaylı satış konusu çok yakında</span> 
+        <a href="https://cheatglobal.com" target="_blank" class="text-blue-400 font-bold hover:text-blue-300 underline mx-1 transition">CheatGlobal</a> 
+        <span class="text-gray-400">forumlarında aktif oluyor!</span>
+    </div>
+
+    <!-- Gelişmiş Premium Nav Bar -->
+    <nav class="border-b border-gray-900 bg-[#06070d]/80 backdrop-blur-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="bg-red-500/10 p-2.5 rounded-xl border border-red-500/20">
-                    <i class="fa-solid fa-shield-halved text-red-500 text-xl"></i>
+                    <i class="fa-solid fa-ghost text-red-500 text-xl"></i>
                 </div>
-                <span class="text-xl font-extrabold tracking-wider text-white">DEV <span class="text-red-500">STORE</span></span>
+                <span class="text-xl font-black tracking-wider text-white">GHOST <span class="text-red-500 font-light">SOFTWARE</span></span>
             </div>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-gray-400">
-                <a href="#aciklama" class="hover:text-white transition">Detaylı Bilgi</a>
-                <a href="#neden-biz" class="hover:text-white transition">Neden Biz?</a>
-                <a href="#urunler" class="hover:text-white transition">Paketlerimiz</a>
-                <a href="#sss" class="hover:text-white transition">S.S.S</a>
+            
+            <div class="hidden lg:flex items-center space-x-8 text-xs font-semibold tracking-widest uppercase text-gray-400">
+                <a href="#analiz" class="hover:text-red-500 transition">Teknoloji</a>
+                <a href="#neden-biz" class="hover:text-red-500 transition">Avantajlar</a>
+                <a href="#urunler" class="hover:text-red-500 transition">Fiyatlandırma</a>
+                <a href="#sss" class="hover:text-red-500 transition">S.S.S</a>
             </div>
-            <div>
-                <a href="https://discord.gg" target="_blank" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold tracking-wide transition flex items-center space-x-2 neon-glow">
+
+            <!-- Sistem Durumu ve Discord Butonu -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden sm:flex items-center space-x-2 bg-green-500/5 border border-green-500/20 px-3 py-1.5 rounded-lg text-xs font-bold text-green-400">
+                    <span class="w-2 h-2 rounded-full bg-green-500 pulse-green"></span>
+                    <span>SPOOFER: UNDETECTED</span>
+                </div>
+                <a href="https://discord.gg" target="_blank" class="bg-white hover:bg-red-500 text-black hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-300 flex items-center space-x-2 border border-white/10">
                     <i class="fa-brands fa-discord text-base"></i>
-                    <span>Discord'a Katıl</span>
+                    <span>Müşteri Paneli</span>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Ana Başlık (Hero) Alanı -->
-    <section class="max-w-7xl mx-auto px-6 pt-20 pb-12 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-500/5 blur-[150px] rounded-full -z-10"></div>
-        
-        <!-- CheatGlobal Küçük Bilgilendirme Kartı -->
-        <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-6 text-xs text-blue-400 font-medium">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Aktif Satış Konumuz Çok Yakında <a href="https://cheatglobal.com/" target="_blank" class="underline font-bold hover:text-blue-300">CheatGlobal</a> Üzerinde!</span>
+    <!-- Ultra-Modern Hero Alanı -->
+    <section class="max-w-7xl mx-auto px-6 pt-24 pb-20 text-center relative">
+        <!-- Arka Plan Işık Efektleri -->
+        <div class="absolute top-12 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-red-600/10 blur-[130px] rounded-full -z-10"></div>
+        <div class="absolute top-32 left-1/3 w-[300px] h-[300px] bg-blue-600/5 blur-[120px] rounded-full -z-10"></div>
+
+        <div class="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-1.5 mb-6 text-xs text-red-400 font-bold uppercase tracking-widest">
+            <i class="fa-solid fa-bolt-lightning text-xs"></i>
+            <span>KERNEL LEVEL BYPASS TECHNOLOGY</span>
         </div>
         
-        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-            Valorant HWID Banını <br class="hidden md:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">Saniyeler İçinde</span> Kökten Kazı!
+        <h1 class="text-4xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl mx-auto leading-[1.1]">
+            Vanguard Donanım Banını <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-red-600 font-light">İz Bırakmadan</span> Yok Edin.
         </h1>
-        <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto mb-10 font-medium leading-relaxed">
-            Van 152, Val 5 veya gecikmeli (delay) ban döngüsüne mi girdiniz? Dev Store Premium Spoofer sayesinde donanım kimliklerinizi tamamen manipüle ederek Vanguard korumasını tamamen devredışı bırakıyoruz.
+        
+        <p class="text-gray-400 text-base md:text-xl max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+            Ghost Software, bilgisayarınızın seri numaralarını en derin katmanda manipüle eder. VAN 152 ve VAL 5 hatalarını, anakartınıza veya sistem kararlılığına zarar vermeden kalıcı olarak ortadan kaldırır.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-            <a href="#urunler" class="w-full sm:w-auto bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold transition text-center shadow-lg shadow-red-500/20">
-                <i class="fa-solid fa-basket-shopping mr-2"></i> Ürünleri İncele
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+            <a href="#urunler" class="w-full bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl font-bold tracking-wide uppercase text-xs transition-all duration-300 ghost-glow-red text-center">
+                <i class="fa-solid fa-terminal mr-2"></i> Mağazayı Görüntüle
             </a>
-            <a href="https://discord.gg" target="_blank" class="w-full sm:w-auto border border-gray-800 bg-[#141724] hover:bg-[#1b1f32] text-white px-8 py-4 rounded-xl font-bold transition text-center flex items-center justify-center space-x-2">
-                <i class="fa-brands fa-discord text-xl text-[#5865F2]"></i>
-                <span>Canlı Destek Al</span>
+            <a href="https://discord.gg" target="_blank" class="w-full border border-gray-800 bg-[#0d0f1a] hover:bg-[#131626] hover:border-gray-700 text-gray-300 px-8 py-4 rounded-xl font-bold tracking-wide uppercase text-xs transition-all text-center flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-discord text-[#5865F2]"></i>
+                <span>Destek Talebi Aç</span>
             </a>
+        </div>
+
+        <!-- İstatistik Sayaçları -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-24 pt-12 border-t border-gray-900/60 text-left">
+            <div>
+                <div class="text-3xl font-bold text-white font-display">%100</div>
+                <div class="text-xs text-gray-500 font-medium tracking-wide uppercase mt-1">Kalıcı Çözüm Oranı</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-white font-display">6 Dakika</div>
+                <div class="text-xs text-gray-500 font-medium tracking-wide uppercase mt-1">Ortalama Kurulum Süresi</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-white font-display">Tüm OEM</div>
+                <div class="text-xs text-gray-500 font-medium tracking-wide uppercase mt-1">Anakart Uyumluluğu</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold text-white font-display">7/24</div>
+                <div class="text-xs text-gray-500 font-medium tracking-wide uppercase mt-1">AnyDesk Teknik Destek</div>
+            </div>
         </div>
     </section>
 
-    <!-- Uzun Detaylı Açıklama Bölümü -->
-    <section id="aciklama" class="max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
-        <div class="bg-[#111320] border border-gray-800/60 rounded-3xl p-8 md:p-12">
-            <div class="max-w-4xl mx-auto">
-                <span class="text-red-500 font-bold uppercase tracking-widest text-xs block mb-3">NEDİR BU HWID BAN VE NASIL ÇÖZÜLÜR?</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-6">Sistemimiz Bilgisayarınızı Tamamen Yeniler</h2>
-                <div class="space-y-6 text-gray-400 text-sm md:text-base leading-relaxed">
-                    <p>
-                        Valorant, hile kullanan veya şüpheli hareketler sergileyen oyuncuları cezalandırmak için sadece hesabı kapatmakla kalmaz. Bilgisayarınızın ana kartına (Motherboard), işlemcine (CPU), depolama birimlerine (SSD/HDD) ve ağ kartına (MAC) özel dijital imzalar atarak **HWID (Hardware ID) banı** atar. Bu durum, yeni bir hesap açsanız dahi oyuna girdiğiniz anda **VAN 152** veya birkaç dakika sonra **VAL 5** hatası almanıza neden olur.
-                    </p>
-                    <p>
-                        Geliştirdiğimiz **Dev Store Premium Spoofer**, bilgisayarınızın donanım kimliklerini çekirdek (Kernel) seviyesinde tamamen benzersiz ve temiz değerlerle değiştirir. Vanguard anti-cheat sistemi bilgisayarınızı taradığında, onu tamamen "mağazadan yeni alınmış sıfır bir bilgisayar" olarak görür. Böylece 3 ay boyunca banınızın açılmasını beklemek zorunda kalmazsınız.
-                    </p>
-                    <p class="border-l-4 border-red-500 pl-4 bg-red-500/5 py-3 rounded-r-xl text-gray-300">
-                        <strong>Önemli Detay:</strong> Piyasada satılan ucuz ve kalitesiz geçici (temporary) spoofer'lar gibi her bilgisayar açılışında tekrar çalıştırılma ihtiyacı duymaz. Sistemimiz <strong>Kalıcı (Permanent)</strong> olarak değişiklik yaptığı için güvenliğinizi en üst düzeyde tutar.
-                    </p>
-                </div>
+    <!-- Derinleştirilmiş Teknik Analiz Kılavuzu -->
+    <section id="analiz" class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-900/40">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5">
+                <span class="text-red-500 font-bold uppercase tracking-widest text-xs block mb-3">RUGGED BYPASS ARCHITECTURE</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">Vanguard Sistemleri Donanımınızı Nasıl İşaretler?</h2>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
+                    Riot Games'in geliştirdiği anti-cheat motoru Vanguard, hile yaptığınız tespit edildiği an anakartınızın benzersiz kimlik kodlarını (UUID, Baseboard Serial), işlemcinizin kayıt anahtarlarını, disklerinizin birim numaralarını (Volume ID) ve ağ adaptörünüzün fiziksel adresini (MAC) kara listeye alır.
+                </p>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Siz yeni hesap açsanız dahi, bilgisayarınız her açıldığında bu seri numaraları eşleştirilir ve sistem sizi saniyeler içinde oyundan atarak uzaklaştırır. <strong>Ghost Software</strong>, donanım yapılandırma tablonuzu (SMBIOS) kernel modunda tamamen manipüle ederek Vanguard'ı kusursuz bir şekilde yanıltır.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Gelişmiş Neden Biz Bölümü -->
-    <section id="neden-biz" class="max-w-7xl mx-auto px-6 py-16 border-t border-gray-900/60">
-        <div class="text-center mb-16">
-            <span class="text-red-500 font-bold uppercase tracking-widest text-xs">FARKIMIZ VE GÜVENCEMİZ</span>
-            <h2 class="text-3xl font-black text-white mt-2">Neden Dev Store'u Seçmelisiniz?</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm mt-2">Piyasadaki diğer spoofer yazılımlarından bizi ayıran, bizi lider yapan özellikler.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div class="bg-[#111320] border border-gray-800/80 p-8 rounded-2xl flex items-start space-x-5">
-                <div class="bg-red-500/10 p-4 rounded-xl border border-red-500/20 text-red-500 text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-microchip"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-2">Geniş Anakart & İşlemci Desteği</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Yazılımımız sadece belirli modellerde değil; ASUS, MSI, Gigabyte, ASRock, Biostar gibi masaüstü sistemlerin yanı sıra Monster, Excalibur, HP, Lenovo, Dell gibi tüm oyuncu laptoplarında da %100 uyumlulukla test edilmiştir. Intel ve AMD işlemcilerde kusursuz çalışır.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-[#111320] border border-gray-800/80 p-8 rounded-2xl flex items-start space-x-5">
-                <div class="bg-red-500/10 p-4 rounded-xl border border-red-500/20 text-red-500 text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-user-gear"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-2">Birebir Canlı Uzaktan Destek</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Süreç gözünüzü korkutmasın. Satın alım sonrasında Discord sunucumuz üzerinden teknik ekibimiz anında sizinle ilgilenir. Eğer bilgisayar terimlerine uzak biriyseniz, AnyDesk veya TeamViewer üzerinden bilgisayarınıza bağlanarak tüm işlemleri baştan sona tamamen biz gerçekleştiriyoruz.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-[#111320] border border-gray-800/80 p-8 rounded-2xl flex items-start space-x-5">
-                <div class="bg-red-500/10 p-4 rounded-xl border border-red-500/20 text-red-500 text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-2">Delay (Gecikmeli) Ban Çözümü</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="p-6 rounded-2xl bg-[#090b12] border border-gray-900">
