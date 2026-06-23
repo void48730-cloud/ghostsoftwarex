@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -5,174 +6,206 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ghost Software</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-    background:linear-gradient(135deg,#050505,#0d0d0d,#111);
-    color:white;
-    overflow-x:hidden;
+background:#070b12;
+color:#fff;
+overflow-x:hidden;
 }
 
 body::before{
-    content:'';
-    position:fixed;
-    width:600px;
-    height:600px;
-    background:#00aaff30;
-    filter:blur(150px);
-    top:-200px;
-    left:-200px;
-    z-index:-1;
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:#00a2ff40;
+filter:blur(150px);
+top:-200px;
+left:-200px;
+z-index:-1;
 }
 
 body::after{
-    content:'';
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#6f00ff30;
-    filter:blur(150px);
-    bottom:-200px;
-    right:-200px;
-    z-index:-1;
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:#8c52ff40;
+filter:blur(150px);
+right:-200px;
+bottom:-200px;
+z-index:-1;
 }
 
 header{
-    text-align:center;
-    padding:100px 20px;
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(15px);
+background:rgba(0,0,0,.2);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:1000;
 }
 
 .logo{
-    font-size:4rem;
-    font-weight:700;
-    background:linear-gradient(90deg,#00aaff,#6f00ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+font-size:2rem;
+font-weight:700;
+background:linear-gradient(90deg,#00a2ff,#8c52ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.subtitle{
-    margin-top:15px;
-    color:#bdbdbd;
-    font-size:1.2rem;
+nav a{
+color:#fff;
+text-decoration:none;
+margin:0 15px;
 }
 
-.description{
-    max-width:800px;
-    margin:30px auto;
-    color:#999;
-    line-height:1.8;
+.lang button{
+background:none;
+border:none;
+font-size:26px;
+cursor:pointer;
+margin-left:8px;
 }
 
-/* BURAYI DEĞİŞTİREBİLİRSİN */
-.custom-description{
-    margin-top:20px;
-    padding:20px;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:15px;
-    background:rgba(255,255,255,.03);
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
 }
 
-.products{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
-    padding:50px 20px 100px;
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
 }
 
-.card{
-    width:360px;
-    background:rgba(255,255,255,.04);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:25px;
-    padding:35px;
-    transition:.4s;
-    box-shadow:0 0 30px rgba(0,0,0,.4);
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#00aaff;
-}
-
-.card h2{
-    font-size:2rem;
-    margin-bottom:10px;
-}
-
-.price{
-    font-size:3rem;
-    font-weight:700;
-    color:#00aaff;
-    margin:20px 0;
-}
-
-.features{
-    list-style:none;
-    margin:25px 0;
-}
-
-.features li{
-    margin:15px 0;
-    color:#ccc;
-}
-
-.buy-options{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
+.hero p{
+max-width:700px;
+color:#bbb;
+font-size:1.2rem;
 }
 
 .btn{
-    flex:1;
-    text-align:center;
-    text-decoration:none;
-    padding:15px;
-    border-radius:12px;
-    font-weight:600;
-    transition:.3s;
+display:inline-block;
+padding:15px 30px;
+margin:10px;
+border-radius:15px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
 }
 
-.discord{
-    background:#5865F2;
-    color:white;
+.primary{
+background:linear-gradient(90deg,#00a2ff,#8c52ff);
+color:#fff;
 }
 
-.shopier{
-    background:#00c853;
-    color:white;
+.secondary{
+border:1px solid rgba(255,255,255,.2);
+color:#fff;
 }
 
 .btn:hover{
-    transform:scale(1.05);
+transform:translateY(-5px);
+}
+
+section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:50px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:25px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.product-price{
+font-size:2.5rem;
+color:#00a2ff;
+margin:20px 0;
+}
+
+.card ul{
+list-style:none;
+margin:20px 0;
+}
+
+.card li{
+margin:10px 0;
+color:#ccc;
+}
+
+.faq{
+margin-bottom:30px;
+}
+
+.faq h3{
+color:#00a2ff;
+margin-bottom:10px;
+}
+
+.discord-box{
+text-align:center;
+padding:60px;
+border-radius:30px;
+background:rgba(255,255,255,.05);
 }
 
 footer{
-    text-align:center;
-    padding:40px;
-    color:#777;
+padding:40px;
+text-align:center;
+color:#777;
 }
 
-@media(max-width:800px){
-    .logo{
-        font-size:3rem;
-    }
+@media(max-width:768px){
 
-    .card{
-        width:100%;
-        max-width:400px;
-    }
+nav{
+display:none;
+}
+
+.hero h1{
+font-size:2.6rem;
+}
+
 }
 
 </style>
@@ -181,98 +214,234 @@ footer{
 
 <header>
 
-    <h1 class="logo">Ghost Software</h1>
+<div class="logo">Ghost Software</div>
 
-    <!-- BAŞLIK -->
-    <p class="subtitle">
-        Premium Software Solutions
-    </p>
+<nav>
+<a href="#products">Products</a>
+<a href="#why">Why Us</a>
+<a href="#faq">FAQ</a>
+<a href="#discord">Discord</a>
+</nav>
 
-    <!-- AÇIKLAMA -->
-    <div class="description">
-        Buraya mağazanızın açıklamasını yazabilirsiniz.
-        Yazılımınızın özelliklerini, destek süresini,
-        kullanım şartlarını veya ekstra bilgileri ekleyebilirsiniz.
-    </div>
-
-    <div class="custom-description">
-        <h3>Açıklama Başlığı</h3>
-        <br>
-        <p>
-            Bu alan tamamen size özeldir. İstediğiniz duyuru,
-            güncelleme bilgisi veya ürün detaylarını yazabilirsiniz.
-        </p>
-    </div>
+<div class="lang">
+<button onclick="setLang('tr')">🇹🇷</button>
+<button onclick="setLang('en')">🇺🇸</button>
+</div>
 
 </header>
 
-<section class="products">
+<section class="hero">
 
-    <div class="card">
-        <h2>Lifetime License</h2>
+<h1 id="heroTitle">Premium Yazılım Çözümleri</h1>
 
-        <div class="price">2700₺</div>
+<p id="heroText">
+Güvenli, hızlı ve profesyonel dijital çözümler.
+</p>
 
-        <ul class="features">
-            <li>✔ Ömür Boyu Kullanım</li>
-            <li>✔ Sürekli Güncelleme</li>
-            <li>✔ Öncelikli Destek</li>
-            <li>✔ Premium Erişim</li>
-        </ul>
+<div style="margin-top:40px;">
+<a href="#products" class="btn primary" id="buyButton">Satın Al</a>
+<a href="https://discord.gg/e5g3pM3bEg" target="_blank" class="btn secondary" id="joinButton">Discord'a Katıl</a>
+</div>
 
-        <div class="buy-options">
+</section>
 
-            <a class="btn discord"
-            href="https://discord.gg/e5g3pM3bEg"
-            target="_blank">
-            Discord Satın Al
-            </a>
+<section>
 
-            <a class="btn shopier"
-            href="https://www.shopier.com/ghostsoftware"
-            target="_blank">
-            Shopier Satın Al
-            </a>
+<h2 class="section-title" id="statsTitle">İstatistikler</h2>
 
-        </div>
-    </div>
+<div class="grid">
+<div class="card"><h2>500+</h2><p>Happy Customers</p></div>
+<div class="card"><h2>24/7</h2><p>Support</p></div>
+<div class="card"><h2>99.9%</h2><p>Uptime</p></div>
+<div class="card"><h2>100%</h2><p>Secure Payments</p></div>
+</div>
 
-    <div class="card">
+</section>
 
-        <h2>One-Time License</h2>
+<section id="why">
 
-        <div class="price">900₺</div>
+<h2 class="section-title" id="whyTitle">Neden Biz?</h2>
 
-        <ul class="features">
-            <li>✔ Tek Seferlik Kullanım</li>
-            <li>✔ Hızlı Teslimat</li>
-            <li>✔ Teknik Destek</li>
-            <li>✔ Güvenli Satın Alma</li>
-        </ul>
+<div class="grid">
 
-        <div class="buy-options">
+<div class="card">
+<h3>🛡 Secure Protection</h3>
+<p>Tüm ürünler korunur ve sürekli güncellenir.</p>
+</div>
 
-            <a class="btn discord"
-            href="https://discord.gg/e5g3pM3bEg"
-            target="_blank">
-            Discord Satın Al
-            </a>
+<div class="card">
+<h3>⚡ Instant Delivery</h3>
+<p>Siparişiniz mümkün olan en kısa sürede teslim edilir.</p>
+</div>
 
-            <a class="btn shopier"
-            href="https://www.shopier.com/ghostsoftware"
-            target="_blank">
-            Shopier Satın Al
-            </a>
+<div class="card">
+<h3>💬 Lifetime Support</h3>
+<p>Her zaman profesyonel destek.</p>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</section>
+
+<section id="products">
+
+<h2 class="section-title" id="productsTitle">Ürünler</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3 id="lifeTitle">Lifetime License</h3>
+
+<div class="product-price">2700₺</div>
+
+<ul>
+<li>✔ Lifetime Access</li>
+<li>✔ Premium Features</li>
+<li>✔ Lifetime Updates</li>
+<li>✔ Priority Support</li>
+</ul>
+
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
+
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
+
+</div>
+
+<div class="card">
+
+<h3 id="onceTitle">One-Time License</h3>
+
+<div class="product-price">900₺</div>
+
+<ul>
+<li>✔ One Time Purchase</li>
+<li>✔ Fast Delivery</li>
+<li>✔ Technical Support</li>
+</ul>
+
+<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
+
+<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">How It Works</h2>
+
+<div class="grid">
+<div class="card">1. Choose your package.</div>
+<div class="card">2. Complete payment.</div>
+<div class="card">3. Receive your software.</div>
+<div class="card">4. Enjoy premium access.</div>
+</div>
+
+</section>
+
+<section id="faq">
+
+<h2 class="section-title">FAQ / SSS</h2>
+
+<div class="faq">
+<h3>How do I receive my product?</h3>
+<p>Your license is delivered after payment.</p>
+</div>
+
+<div class="faq">
+<h3>Do you provide support?</h3>
+<p>Yes, every customer receives support.</p>
+</div>
+
+<div class="faq">
+<h3>Which payment methods are available?</h3>
+<p>Discord and Shopier.</p>
+</div>
+
+</section>
+
+<section id="discord">
+
+<div class="discord-box">
+
+<h2 id="discordTitle">Join Our Community</h2>
+
+<p id="discordText">
+Get support, updates and announcements instantly.
+</p>
+
+<br><br>
+
+<a class="btn primary"
+href="https://discord.gg/e5g3pM3bEg"
+target="_blank">
+Join Discord
+</a>
+
+</div>
 
 </section>
 
 <footer>
-    © 2026 Ghost Software • All Rights Reserved
+
+Ghost Software © 2026
+
 </footer>
+
+<script>
+
+const translations = {
+
+tr:{
+heroTitle:"Premium Yazılım Çözümleri",
+heroText:"Güvenli, hızlı ve profesyonel dijital çözümler.",
+buyButton:"Satın Al",
+joinButton:"Discord'a Katıl",
+statsTitle:"İstatistikler",
+whyTitle:"Neden Biz?",
+productsTitle:"Ürünler",
+lifeTitle:"Ömür Boyu Lisans",
+onceTitle:"Tek Seferlik Lisans",
+discordTitle:"Topluluğumuza Katılın",
+discordText:"Destek, güncellemeler ve duyurulara anında erişin."
+},
+
+en:{
+heroTitle:"Premium Software Solutions",
+heroText:"Secure, fast and professional digital solutions.",
+buyButton:"Buy Now",
+joinButton:"Join Discord",
+statsTitle:"Statistics",
+whyTitle:"Why Choose Us?",
+productsTitle:"Products",
+lifeTitle:"Lifetime License",
+onceTitle:"One-Time License",
+discordTitle:"Join Our Community",
+discordText:"Get support, updates and announcements instantly."
+}
+
+};
+
+function setLang(lang){
+
+localStorage.setItem('lang',lang);
+
+Object.keys(translations[lang]).forEach(id=>{
+document.getElementById(id).innerText=translations[lang][id];
+});
+
+}
+
+window.onload=()=>{
+setLang(localStorage.getItem('lang') || 'tr');
+};
+
+</script>
 
 </body>
 </html>
+```
