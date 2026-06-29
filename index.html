@@ -1,386 +1,1082 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Software</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Software — Premium Hardware Spoofer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        :root {
+            --bg-dark: #020202;
+            --card-bg: rgba(5, 5, 7, 0.75);
+            --card-border: rgba(255, 255, 255, 0.02);
+            --card-border-glow: rgba(255, 255, 255, 0.2);
+            --text-muted: #75757a;
+            --font-mono: 'Space Grotesk', sans-serif;
+            --cyber-glow: 0 0 25px rgba(255, 255, 255, 0.08);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
-body{
-background:#070a12;
-color:#fff;
-overflow-x:hidden;
-}
+        /* PREMIUM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+        }
 
-/* background glow */
-body::before,
-body::after{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-filter:blur(170px);
-z-index:-1;
-}
+        body {
+            background: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-body::before{
-background:#00a2ff35;
-top:-200px;
-left:-200px;
-}
+        /* SCANLINE CRT EFEKT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+            z-index: 9999;
+            background-size: 100% 3px;
+            pointer-events: none;
+        }
 
-body::after{
-background:#8c52ff35;
-bottom:-200px;
-right:-200px;
-}
+        /* SCROLL PROGRESS */
+        #scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            width: 0%;
+            z-index: 2000;
+        }
 
-/* HEADER */
-header{
-position:fixed;
-top:0;
-width:100%;
-padding:18px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,.25);
-backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(255,255,255,.05);
-z-index:1000;
-}
+        /* DİNAMİK INTERAKTİF CANVAS ARKAPLAN */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
 
-.logo{
-font-size:1.8rem;
-font-weight:700;
-background:linear-gradient(90deg,#00a2ff,#8c52ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+        /* DIKEY TEKNOLOJİK DEKOR HATLAR */
+        .cyber-line-left {
+            position: absolute;
+            left: 4%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 50%, rgba(255,255,255,0) 100%);
+            z-index: -1;
+        }
+        .cyber-line-right {
+            position: absolute;
+            right: 4%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 50%, rgba(255,255,255,0) 100%);
+            z-index: -1;
+        }
 
-nav a{
-color:#aaa;
-margin:0 12px;
-text-decoration:none;
-font-size:.95rem;
-transition:.3s;
-}
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(2, 2, 3, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-nav a:hover{
-color:#fff;
-}
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-/* HERO */
-.hero{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:120px 20px 0;
-}
+        .brand-logo {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+        }
 
-.hero h1{
-font-size:3.8rem;
-margin-bottom:20px;
-}
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #fff;
+            text-transform: uppercase;
+        }
 
-.hero p{
-max-width:750px;
-color:#bdbdbd;
-font-size:1.15rem;
-}
+        /* HUD PANEL */
+        .status-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 4px 10px;
+            border-radius: 2px;
+            font-family: var(--font-mono);
+        }
 
-.buttons{
-margin-top:40px;
-}
+        .status-dot {
+            width: 4px;
+            height: 4px;
+            background-color: #00ff66;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff66;
+            animation: pulse 2s infinite;
+        }
 
-.btn{
-display:inline-block;
-padding:14px 28px;
-border-radius:14px;
-text-decoration:none;
-font-weight:600;
-margin:8px;
-transition:.3s;
-}
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
 
-.primary{
-background:linear-gradient(90deg,#00a2ff,#8c52ff);
-color:#fff;
-box-shadow:0 0 25px rgba(0,162,255,.25);
-}
+        .status-text {
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.secondary{
-border:1px solid rgba(255,255,255,.2);
-color:#fff;
-}
+        .live-ping {
+            font-size: 0.58rem;
+            color: #555;
+            font-weight: 600;
+            border-left: 1px solid rgba(255,255,255,0.06);
+            padding-left: 8px;
+        }
 
-.btn:hover{
-transform:translateY(-5px);
-}
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
 
-/* SECTIONS */
-section{
-padding:90px 8%;
-}
+        nav a {
+            color: var(--text-muted);
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: .8rem;
+            font-weight: 500;
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
 
-.title{
-text-align:center;
-font-size:2.4rem;
-margin-bottom:50px;
-}
+        nav a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.015);
+        }
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:22px;
-}
+        nav a.shopier-nav {
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.005);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+        }
+        nav a.shopier-nav:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: var(--cyber-glow);
+        }
 
-/* CARD */
-.card{
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-padding:28px;
-border-radius:22px;
-transition:.3s;
-}
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            z-index: 1100;
+        }
 
-.card:hover{
-transform:translateY(-8px);
-border-color:#00a2ff60;
-box-shadow:0 0 30px rgba(0,162,255,.08);
-}
+        .menu-toggle span {
+            width: 16px;
+            height: 1px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
 
-/* PRICE */
-.price{
-font-size:2.4rem;
-color:#00a2ff;
-margin:18px 0;
-}
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 24px 60px;
+        }
 
-/* LIST */
-ul{
-list-style:none;
-margin:15px 0;
-}
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.005);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            color: #666;
+            padding: 4px 14px;
+            border-radius: 2px;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            letter-spacing: 1.5px;
+        }
 
-li{
-margin:8px 0;
-color:#ccc;
-}
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 40%, #555555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* FAQ */
-.faq h3{
-color:#00a2ff;
-margin-bottom:6px;
-}
+        .hero p {
+            max-width: 660px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
 
-.faq p{
-color:#bbb;
-margin-bottom:18px;
-}
+        .buttons {
+            margin-top: 45px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-/* DISCORD */
-.discord{
-text-align:center;
-padding:60px;
-border-radius:25px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 34px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+        }
 
-/* FOOTER */
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-border-top:1px solid rgba(255,255,255,.05);
-margin-top:50px;
-}
+        .primary {
+            background: #fff;
+            color: #000;
+            border: 1px solid #fff;
+        }
 
-/* PARTNER LINK (clean minimal) */
-.partner{
-position:fixed;
-bottom:15px;
-right:15px;
-font-size:.85rem;
-color:#aaa;
-background:rgba(0,0,0,.25);
-backdrop-filter:blur(10px);
-padding:8px 12px;
-border-radius:10px;
-border:1px solid rgba(255,255,255,.08);
-}
+        .primary:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--cyber-glow);
+        }
 
-.partner a{
-color:#00a2ff;
-text-decoration:none;
-font-weight:600;
-}
+        .secondary {
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.002);
+            color: #cccccc;
+            backdrop-filter: blur(10px);
+        }
 
-.partner a:hover{
-text-decoration:underline;
-}
+        .secondary:hover {
+            background: rgba(255, 255, 255, 0.015);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+        }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-.hero h1{font-size:2.5rem;}
-nav{display:none;}
-}
+        /* SECTIONS */
+        section {
+            padding: 110px 6%;
+            position: relative;
+        }
 
-</style>
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 65px;
+        }
+
+        .title-wrapper span {
+            color: #3f3f42;
+            font-weight: 600;
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-top: 10px;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #fff 50%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+        }
+
+        /* STATS PANEL */
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(3, 3, 4, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            padding: 38px 20px;
+            text-align: center;
+            clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+            transition: all 0.4s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: rgba(255, 255, 255, 0.03);
+            background: rgba(9, 9, 11, 0.75);
+        }
+
+        .stat-card h2 {
+            font-family: var(--font-mono);
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #fff 40%, #555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-card p {
+            color: #444;
+            font-weight: 600;
+            font-size: 0.7rem;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* PREMIUM CARDS */
+        .card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 42px 38px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--card-border-glow);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .card .desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            min-height: 50px;
+        }
+
+        .card.featured {
+            border-color: rgba(255, 255, 255, 0.04);
+            background: rgba(8, 8, 12, 0.85);
+        }
+        
+        .card.featured:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 0.6rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+        }
+
+        /* PRICE */
+        .price {
+            font-family: var(--font-mono);
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+            padding-bottom: 18px;
+            letter-spacing: -1.5px;
+        }
+        
+        .price span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            color: #444;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        /* CHECKLIST */
+        ul {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        li {
+            margin: 14px 0;
+            color: #95959a;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        li .icon {
+            margin-right: 12px;
+            font-size: 0.7rem;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            clip-path: polygon(3px 0%, 100% 0%, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0% 100%, 0% 3px);
+        }
+
+        .card .btn {
+            width: 100%;
+        }
+
+        /* FAQ ACCORDION */
+        .faq-container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+            margin-bottom: 6px;
+            background: transparent;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 22px 6px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+        }
+
+        .faq-trigger span.chevron {
+            font-size: 1.1rem;
+            color: #222;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-content p {
+            padding: 0 6px 22px 6px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-size: 0.88rem;
+        }
+
+        .faq-item.active .faq-trigger span.chevron {
+            transform: rotate(45deg);
+            color: #fff;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 280px;
+        }
+
+        /* DISCORD HUD */
+        .discord-box {
+            text-align: center;
+            padding: 85px 30px;
+            background: #ffffff;
+            color: #000;
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            clip-path: polygon(25px 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0% 100%, 0% 25px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .discord-box h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .discord-box p {
+            color: #333;
+            margin-bottom: 32px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .discord-box .btn.primary {
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
+        }
+        
+        .discord-box .btn.primary:hover {
+            background: transparent;
+            color: #000;
+        }
+
+        /* SOL ALT TERMINAL HUD */
+        #live-terminal {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 210px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 10px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            color: #555;
+            z-index: 999;
+            pointer-events: none;
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+        }
+        #live-terminal .term-title {
+            color: #a3a3a3;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+        #live-terminal .term-log {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #222;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-top: 1px solid rgba(255, 255, 255, 0.003);
+            margin-top: 90px;
+            letter-spacing: 0.5px;
+        }
+
+        /* PARTNER LAYER */
+        .partner {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            font-size: .68rem;
+            font-family: var(--font-mono);
+            color: #444;
+            background: rgba(2, 2, 3, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            z-index: 999;
+            clip-path: polygon(5px 0%, 100% 0%, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0% 100%, 0% 5px);
+        }
+
+        .partner a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 3px;
+        }
+
+        .partner a:hover {
+            color: #fff;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media(max-width:900px){
+            .hero h1 { font-size: 2.8rem; }
+            section { padding: 75px 5%; }
+            .menu-toggle { display: flex; }
+            .cyber-line-left, .cyber-line-right, #live-terminal { display: none; }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(2, 2, 3, 0.99);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 25px;
+                padding: 30px;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            nav.active { right: 0; }
+            nav a { width: 100%; text-align: center; font-size: 1rem; }
+            
+            .menu-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+            .menu-toggle.open span:nth-child(2) { opacity: 0; }
+            .menu-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">Ghost Software</div>
+    <div class="cyber-line-left"></div>
+    <div class="cyber-line-right"></div>
 
-<nav>
-<a href="#products">Products</a>
-<a href="#why">Why Us</a>
-<a href="#faq">FAQ</a>
-<a href="#discord">Discord</a>
-</nav>
-</header>
+    <div id="scroll-indicator"></div>
 
-<!-- HERO -->
-<section class="hero">
-<h1>Premium Software Solutions</h1>
-<p>Secure, fast and high-performance digital products built for reliability, stability and long-term use.</p>
+    <!-- REVOLUTIONARY INTERACTIVE BACKGROUND ENGINE -->
+    <canvas id="bg-canvas"></canvas>
 
-<div class="buttons">
-<a href="#products" class="btn primary">Buy Now</a>
-<a href="https://discord.gg/e5g3pM3bEg" class="btn secondary">Join Discord</a>
-</div>
-</section>
+    <header id="main-header">
+        <a href="#" class="logo-container">
+            <img src="LOGO_LINKI_BURAYA" alt="Ghost Logo" class="brand-logo">
+            <div class="logo">Ghost Software</div>
+            <div class="status-container">
+                <span class="status-dot"></span>
+                <span class="status-text">Active</span>
+                <span class="live-ping" id="ping-hud">11ms</span>
+            </div>
+        </a>
+        
+        <button class="menu-toggle" id="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-<!-- STATS -->
-<section>
-<h2 class="title">Statistics</h2>
+        <nav id="nav-menu">
+            <a href="#products">Paketler</a>
+            <a href="#faq">Soru-Cevap</a>
+            <a href="#discord">Destek</a>
+            <a href="https://www.shopier.com/ghostsoftware" target="_blank" class="shopier-nav">Shopier Mağaza</a>
+        </nav>
+    </header>
 
-<div class="grid">
-<div class="card"><h2>24/7</h2><p>Support</p></div>
-<div class="card"><h2>99.9%</h2><p>Uptime</p></div>
-<div class="card"><h2>100%</h2><p>Secure</p></div>
-</div>
-</section>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">Vanguard Bypass Kararlı Sürüm</div>
+        <h1>Donanım Banını Kalıcı Olarak Kaldırın</h1>
+        <p>Riot Games platformlarında aldığınız cihaz uzaklaştırmalarını, sistemi yormayan kernel düzeyindeki sürücü altyapımızla güvenle temizleyin.</p>
 
-<!-- WHY -->
-<section id="why">
-<h2 class="title">Why Choose Us?</h2>
+        <div class="buttons">
+            <a href="#products" class="btn primary">Ürünleri Görüntüle</a>
+            <a href="https://discord.gg/e5g3pM3bEg" class="btn secondary">Discord Topluluğu</a>
+        </div>
+    </section>
 
-<div class="grid">
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="grid stats-grid">
+            <div class="stat-card"><h2>7/24</h2><p>Birebir Teknik Destek</p></div>
+            <div class="stat-card"><h2>Kernel</h2><p>Gelişmiş Sürücü Mimarisi</p></div>
+            <div class="stat-card"><h2>Anlık</h2><p>Otomatik Teslimat Sistemi</p></div>
+        </div>
+    </section>
 
-<div class="card">
-<h3>Security First</h3>
-<p>All products are encrypted, safe and regularly updated.</p>
-</div>
+    <!-- PRODUCTS -->
+    <section id="products">
+        <div class="title-wrapper">
+            <span>Satın Alım</span>
+            <h2 class="title">Lisans Seçenekleri</h2>
+        </div>
 
-<div class="card">
-<h3>Instant Delivery</h3>
-<p>Receive your product immediately after purchase.</p>
-</div>
+        <div class="grid">
+            <!-- One-Time Plan -->
+            <div class="card">
+                <h3>Tek Seferlik Lisans</h3>
+                <p class="desc">Mevcut cihaz banını anında kaldırıp, ekstra bir hile kullanımı planlamayan oyuncular için en ideal seçenek.</p>
+                <div class="price">900₺ <span>/ Tek Kullanım</span></div>
 
-<div class="card">
-<h3>Premium Support</h3>
-<p>We provide long-term and fast customer support.</p>
-</div>
+                <ul>
+                    <li><span class="icon">✓</span> <span><b>Cihaz ID Temizliği:</b> Bilgisayar bileşenlerindeki aktif ban loglarını tek işlemde tamamen sıfırlar.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Güvenli Altyapı:</b> Vanguard sistemlerinin taramalarına yakalanmayan kararlı kernel sürücüsü.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Hata Çözümleri:</b> Karşılaştığınız VAN 152 ve VAL 5 gibi tüm donanım engellerini kaldırır.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Delay Ban Engeli:</b> İlk birkaç maçtan sonra ekrana gelen gecikmeli bağlantı kopma sorunlarını çözer.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Windows Uyum Geçmişi:</b> Kararlı performans sunan güncel Windows 10 sürümleriyle kusursuz entegrasyon.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Seri Numarası Manipülasyonu:</b> Depolama birimleri (SSD/HDD), anakart ve MAC adreslerini derinlemesini maskeler.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Kurulum Rehberi:</b> Satın alım sonrasında sorunsuz ilerlemeniz adına hazırlanmış rehber içerik.</span></li>
+                </ul>
 
-</div>
-</section>
+                <a href="https://www.shopier.com/ghostsoftware" target="_blank" class="btn primary">Shopier İle Güvenli Satın Al</a>
+                <a href="https://discord.gg/e5g3pM3bEg" class="btn secondary">Discord Üzerinden Satın Al</a>
+            </div>
 
-<!-- PRODUCTS -->
-<section id="products">
-<h2 class="title">Products</h2>
+            <!-- Lifetime Plan -->
+            <div class="card featured">
+                <div class="badge">Önerilen Paket</div>
+                <h3>Sınırsız Ömür Boyu Lisans</h3>
+                <p class="desc">Üçüncü parti yazılımları aktif olarak kullanan ve gelecekteki olası ban risklerine karşı kalıcı çözüm arayanlar için.</p>
+                <div class="price">2700₺ <span>/ Sınırsız</span></div>
 
-<div class="grid">
+                <ul>
+                    <li><span class="icon">✓</span> <span><b>Sınırsız Kullanım Hakkı:</b> İleride tekrar yasaklansanız dahi ek bir ödeme yapmadan dilediğiniz kadar spof hakkı.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Sürekli Güncel Sürücü:</b> Vanguard'ın yaptığı tüm yama güncellemelerine karşı otomatik ve ücretsiz adaptasyon.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Kapsamlı HWID Değişimi:</b> İşlemci, RAM, GPU, anakart ve gizli işletim sistemi kayıtlarını kökten yenileme.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Yararlanma Garantisi:</b> Gelecek dönemde devreye girebilecek tüm yeni güvenlik tedbirlerinde dahi tam geçerlilik.</span></li>
+                    <li><span class="icon">✓</span> <span><b>VIP Destek Önceliği:</b> Sunucumuz üzerinde teknik ekibimizle doğrudan ve öncelikli birebir iletişim hakkı.</span></li>
+                    <li><span class="icon">✓</span> <span><b>Yeni Modüllere Ücretsiz Erişim:</b> Yazılıma dahil edilecek tüm yeni alt araçlara hiçbir ek ücret ödemeden direkt sahip olma.</span></li>
+                </ul>
 
-<div class="card">
-<h3>Lifetime License</h3>
-<div class="price">2700₺</div>
+                <a href="https://www.shopier.com/ghostsoftware" target="_blank" class="btn primary">Shopier Üzerinden Sahip Ol</a>
+                <a href="https://discord.gg/e5g3pM3bEg" class="btn secondary">Discord Üzerinden Satın Al</a>
+            </div>
+        </div>
+    </section>
 
-<ul>
-<li>Lifetime Access</li>
-<li>Free Updates</li>
-<li>Priority Support</li>
-</ul>
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="title-wrapper">
+            <span>Bilgi Bankası</span>
+            <h2 class="title">Sıkça Sorulan Sorular</h2>
+        </div>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
-</div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-trigger">
+                    İşlem esnasında format veya BIOS güncellemesi gerekli mi?
+                    <span class="chevron">+</span>
+                </button>
+                <div class="faq-content">
+                    <p>Evet. Güvenlik sistemlerinin bilgisayarınıza bıraktığı izleri ve kalıntıları tamamen arındırmak adına temiz bir Windows 10 formatı ve BIOS sürüm değişimi adımları stabilite için uygulanmalıdır.</p>
+                </div>
+            </div>
 
-<div class="card">
-<h3>One-Time License</h3>
-<div class="price">900₺</div>
+            <div class="faq-item">
+                <button class="faq-trigger">
+                    Yazılım hangi oyun platformlarında geçerlidir?
+                    <span class="chevron">+</span>
+                </button>
+                <div class="faq-content">
+                    <p>Geliştirdiğimiz donanım temizleyici yazılım, şu anda öncelikli olarak Riot Games (Vanguard) koruma mekanizmalarında kesin sonuç verecek şekilde kurgulanmıştır.</p>
+                </div>
+            </div>
 
-<ul>
-<li>Single Purchase</li>
-<li>Fast Delivery</li>
-<li>Standard Support</li>
-</ul>
+            <div class="faq-item">
+                <button class="faq-trigger">
+                    Delay Ban (Gecikmeli Uzaklaştırma) sorununu tamamen çözer mi?
+                    <span class="chevron">+</span>
+                </button>
+                <div class="faq-content">
+                    <p>Kesinlikle. Spoofer adımlarını eksikosiz tamamlayıp sisteme uyguladığınızda, oyuna girdikten kısa süre sonra bağlantının kopmasıyla sonuçlanan delay ban durumları tamamen çözüme kavuşur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Discord</a>
-<a href="https://www.shopier.com/ghostsoftware" class="btn secondary">Shopier</a>
-</div>
+    <!-- DISCORD -->
+    <section id="discord">
+        <div class="discord-box">
+            <h2>Sorularınız Varsa Topluluğumuza Katılın</h2>
+            <p>Aklınıza takılan tüm detaylar, kurulum adımları ve satın alım öncesi merak ettikleriniz için Discord sunucumuzda sizleri bekliyoruz.</p>
+            <a href="https://discord.gg/e5g3pM3bEg" target="_blank" class="btn primary">
+                Discord Sunucusuna Bağlan
+            </a>
+        </div>
+    </section>
 
-</div>
-</section>
+    <!-- TERMINAL HUD PANEL -->
+    <div id="live-terminal">
+        <div class="term-title"><span>GHOST_CONSOLE</span><span>v5.0</span></div>
+        <div class="term-log" id="terminal-log-text">System core listening...</div>
+    </div>
 
-<!-- FAQ -->
-<section id="faq">
-<h2 class="title">FAQ</h2>
+    <!-- FOOTER -->
+    <footer>
+        Ghost Software © 2026 — Tüm Hakları Saklıdır.
+    </footer>
 
-<div class="faq">
-<h3>How do I receive my product?</h3>
-<p>After payment, your license is delivered instantly.</p>
+    <!-- PARTNER LINK -->
+    <div class="partner">
+        Partner: <a href="https://cheatglobal.com/" target="_blank">CheatGlobal</a>
+    </div>
 
-<h3>Do you provide support?</h3>
-<p>Yes, full support is included.</p>
+    <!-- NEW REVOLUTIONARY PARALLAX GRID ENGINE -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        const pingHud = document.getElementById('ping-hud');
+        const logText = document.getElementById('terminal-log-text');
 
-<h3>Which payment methods are available?</h3>
-<p>Discord & Shopier.</p>
-</div>
-</section>
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-<!-- DISCORD -->
-<section id="discord">
-<div class="discord">
-<h2>Join Our Community</h2>
-<p>Get updates, support and announcements instantly.</p>
+        let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
 
-<br>
-<a href="https://discord.gg/e5g3pM3bEg" class="btn primary">Join Discord</a>
-</div>
-</section>
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
 
-<!-- FOOTER -->
-<footer>
-Ghost Software © 2026 — All Rights Reserved
-</footer>
+        window.addEventListener('mousemove', (e) => {
+            mouse.targetX = e.clientX;
+            mouse.targetY = e.clientY;
+        });
 
-<!-- CLEAN PARTNER LINK -->
-<div class="partner">
-Partner:
-<a href="https://cheatglobal.com/" target="_blank">
-CheatGlobal
-</a>
-</div>
+        // Kuantum Siber Hücreler
+        const cells = [];
+        const cellCount = 35;
 
+        class CyberCell {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.speedY = (Math.random() - 0.5) * 0.2;
+                this.alpha = Math.random() * 0.3 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        for(let i=0; i<cellCount; i++) cells.push(new CyberCell());
+
+        // 3D Esneyen Grid Çizim Motoru (Parallax Interactivity)
+        function drawParallaxGrid() {
+            // Yumuşak mouse takibi (Interpolation)
+            mouse.x += (mouse.targetX - mouse.x) * 0.08;
+            mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+            ctx.lineWidth = 1;
+
+            const gridSize = 65;
+            
+            // Dikey çizgileri bükerek çiz
+            for (let x = 0; x < width; x += gridSize) {
+                ctx.beginPath();
+                for (let y = 0; y < height; y += 20) {
+                    // Mouse mesafesine göre yatayda bükülme hesabı
+                    const dx = x - mouse.x;
+                    const dy = y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let distort = 0;
+                    
+                    if (dist < 250) {
+                        distort = (1 - dist / 250) * 8 * (dx / dist);
+                    }
+
+                    if (y === 0) ctx.moveTo(x + distort, y);
+                    else ctx.lineTo(x + distort, y);
+                }
+                ctx.stroke();
+            }
+
+            // Yatay çizgileri bükerek çiz
+            for (let y = 0; y < height; y += gridSize) {
+                ctx.beginPath();
+                for (let x = 0; x < width; x += 20) {
+                    const dx = x - mouse.x;
+                    const dy = y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let distort = 0;
+
+                    if (dist < 250) {
+                        distort = (1 - dist / 250) * 8 * (dy / dist);
+                    }
+
+                    if (x === 0) ctx.moveTo(x, y + distort);
+                    else ctx.lineTo(x, y + distort);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function mainEngineLoop() {
+            ctx.clearRect(0, 0, width, height);
+            drawParallaxGrid();
+            cells.forEach(cell => { cell.update(); cell.draw(); });
+            requestAnimationFrame(mainEngineLoop);
+        }
+        mainEngineLoop();
+
+        // LIVE TERMINAL LOGS SIMULATOR
+        const logs = [
+            "Driver: Loaded successfully",
+            "HWID Motherboard: Spoofed",
+            "HWID Disk Drive: Masked",
+            "Network MAC: Regenerated",
+            "Vanguard status: Bypass OK",
+            "Registry clean: Completed",
+            "Session: Secured and encrypted"
+        ];
+
+        setInterval(() => {
+            const randomPing = Math.floor(Math.random() * (13 - 7 + 1)) + 7;
+            pingHud.textContent = `${randomPing}ms`;
+            
+            if(Math.random() < 0.35) {
+                logText.textContent = logs[Math.floor(Math.random() * logs.length)];
+            }
+        }, 2000);
+
+        // SCROLL CONTROLLER
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const heightMax = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / heightMax) * 100;
+            document.getElementById('scroll-indicator').style.width = scrolled + '%';
+            
+            const header = document.getElementById('main-header');
+            if (winScroll > 50) {
+                header.style.padding = '14px 6%';
+                header.style.background = 'rgba(2, 2, 3, 0.9)';
+            } else {
+                header.style.padding = '24px 6%';
+                header.style.background = 'rgba(2, 2, 3, 0.4)';
+            }
+        });
+
+        // FAQ ACCORDION
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const trigger = item.querySelector('.faq-trigger');
+            trigger.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // MOBILE NAVIGATION
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // INJECTION PROTECTION LAYER
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; 
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; 
+        };
+    </script>
 </body>
 </html>
